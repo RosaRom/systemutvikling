@@ -36,13 +36,13 @@ namespace Admin
 
         protected void GridViewAdmin_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow row = GridViewAdmin.Rows[e.RowIndex];
+            //GridViewRow row = GridViewAdmin.Rows[e.RowIndex];
 
             //string s0 = e.NewValues["id"].ToString();
             string s1 = e.NewValues["fornavn"].ToString();
             string s2 = e.NewValues["etternavn"].ToString();
             string s3 = e.NewValues["stilling"].ToString();
-
+            
             //string query = String.Format("INSERT INTO test_brukere (fornavn, etternavn, stilling) VALUES ('{0}', '{1}', '{2}') WHERE id = {3}", s1, s2, s3, s0);
             //db.InsertDeleteUpdate(query);
         }
