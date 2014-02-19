@@ -11,7 +11,7 @@ namespace BrukerInterface
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //test for å sjekke om tillagte exisitng items blir oppdatert opp mot git repository
         }
     }
 }

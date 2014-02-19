@@ -5,6 +5,13 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gitTest", "gitTest\gitTest.csproj", "{9647A08C-0E44-4C7A-8273-8286CF40AF8C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BFFEA827-EE4F-45A3-92AC-24314B52FE40}"
+	ProjectSection(SolutionItems) = preProject
+		BrukerInterface\Bruker.aspx = BrukerInterface\Bruker.aspx
+		BrukerInterface\Bruker.aspx.cs = BrukerInterface\Bruker.aspx.cs
+		BrukerInterface\Bruker.aspx.designer.cs = BrukerInterface\Bruker.aspx.designer.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
