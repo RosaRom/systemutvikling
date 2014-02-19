@@ -11,6 +11,7 @@ namespace gitTest
         static void Main(string[] args)
         {
             Console.Write(String.Format("->{1,10}<-", "GitHubTest maddafakka!"));
+            Console.Write(String.Format("funker this sh!t?"));
         }
     }
 }
