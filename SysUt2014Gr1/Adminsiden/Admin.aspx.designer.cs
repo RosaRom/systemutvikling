@@ -13,13 +13,13 @@ namespace Admin {
     public partial class Admin {
         
         /// <summary>
-        /// form1 control.
+        /// Adminform control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm Adminform;
         
         /// <summary>
         /// GridViewAdmin control.
