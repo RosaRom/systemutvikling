@@ -14,11 +14,11 @@
             OnRowCancelingEdit="GridViewAdmin_RowCancelingEdit" OnRowEditing="GridViewAdmin_RowEditing" OnRowUpdating="GridViewAdmin_RowUpdating" OnRowDeleting="GridViewAdmin_RowDeleting">
             
             <Columns>
-                <asp:CommandField ShowDeleteButton="True" />
                 <asp:BoundField DataField="id" HeaderText="Id" SortExpression="id" ReadOnly="True" />
                 <asp:BoundField DataField="fornavn" HeaderText="Fornavn" SortExpression="fornavn" />
                 <asp:BoundField DataField="etternavn" HeaderText="Etternavn" SortExpression="etternavn" />
                 <asp:BoundField DataField="stilling" HeaderText="Stilling" SortExpression="stilling" />
+                <asp:CommandField ShowDeleteButton="True" />
             </Columns>
 
         </asp:GridView>
