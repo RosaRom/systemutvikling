@@ -95,7 +95,7 @@ namespace Adminsiden
         #endregion
 
         //Eksempel på ToString - litt usikker i hvordan sammenheng dette skal brukes
-        public string ToString()
+        public override string ToString()
         {
             if (brukertype.Equals(admin))
             {
