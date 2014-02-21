@@ -89,8 +89,8 @@ namespace Adminsiden
 
         //Eksempel på ToString - litt usikker i hvordan sammenheng dette skal brukes.
         //Er ikke sikkert vi har bruk for ToString(), men greit å ha just in case.
-        //Harkodet inn verdiene for groupID, må sjekkes opp mot databasen senere.
-        public string ToString()
+        //Hardkodet inn verdiene for groupID, må sjekkes opp mot databasen senere.
+        public override string ToString()
         {
             if (groupID == 0)
             {
