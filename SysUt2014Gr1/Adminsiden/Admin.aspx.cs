@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace Admin
 {
@@ -22,10 +23,18 @@ namespace Admin
 
         private void GetAllUsers()
         {
+            // GridViewAdmin.DataSource = AddRow(db.AdminGetAllUsers());
             GridViewAdmin.DataSource = db.AdminGetAllUsers();
             GridViewAdmin.DataBind();
         }
-
+        /*
+        private DataTable AddRow(DataTable dt)
+        {
+            DataRow dr = dt.NewRow();
+            dt.Rows.Add(dr);
+            return dt;
+        }
+        */
         protected void GridViewAdmin_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridViewAdmin.EditIndex = e.NewEditIndex;
@@ -40,12 +49,22 @@ namespace Admin
 
         protected void GridViewAdmin_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            string s0 = GridViewAdmin.DataKeys[e.RowIndex]["id"].ToString();
+            string id = GridViewAdmin.DataKeys[e.RowIndex]["id"].ToString();
             string s1 = e.NewValues["fornavn"].ToString();
             string s2 = e.NewValues["etternavn"].ToString();
             string s3 = e.NewValues["stilling"].ToString();
 
-            string query = String.Format("UPDATE test_brukere SET fornavn = '{0}', etternavn = '{1}', stilling = '{2}' WHERE id = {3}", s1, s2, s3, s0);
+            string query = String.Format("UPDATE test_brukere SET fornavn = '{0}', etternavn = '{1}', stilling = '{2}' WHERE id = {3}", s1, s2, s3, id);
+            db.InsertDeleteUpdate(query);
+            GridViewAdmin.EditIndex = -1;
+            GetAllUsers();
+        }
+
+        protected void GridViewAdmin_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string id = GridViewAdmin.DataKeys[e.RowIndex]["id"].ToString();
+            string query = String.Format("DELETE FROM test_brukere WHERE id = {0}", id);
+
             db.InsertDeleteUpdate(query);
             GridViewAdmin.EditIndex = -1;
             GetAllUsers();
