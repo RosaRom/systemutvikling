@@ -18,14 +18,13 @@ namespace Adminsiden
 {
     public class Brukerklasse
     {
-        private int brukerId, telefon, teamID, groupID, brukertype;
+        private int brukerId, telefon, teamID, groupID;
         private string fornavn, etternavn, brukernavn, email;
 
-        //Brukertyper; `const` ekvivalent med `final` syntax i Java
-        public const int admin = 0, vanlig_bruker = 1, team_leder = 2, prosjekt_leder = 3;
+        //GroupID erstatter konstantene
 
         public Brukerklasse(int brukerId, string etternavn, string fornavn, string brukernavn, int telefon,
-            string email, int teamID, int groupID, int brukertype)
+            string email, int teamID, int groupID)
         {
             this.brukerId = brukerId;
             this.etternavn = etternavn;
@@ -35,7 +34,6 @@ namespace Adminsiden
             this.email = email;
             this.teamID = teamID;
             this.groupID = groupID;
-            this.brukertype = brukertype;
         }
         
         #region Getters/Setters
@@ -87,38 +85,30 @@ namespace Adminsiden
             get { return groupID; }
             set { groupID = value; }
         }
-        
-        public int Brukertype
-        {
-            get { return brukertype; }
-            set { brukertype = value; }
-        }
         #endregion
 
-        //Eksempel på ToString - litt usikker i hvordan sammenheng dette skal brukes
+        //Eksempel på ToString - litt usikker i hvordan sammenheng dette skal brukes.
+        //Er ikke sikkert vi har bruk for ToString(), men greit å ha just in case.
+        //Harkodet inn verdiene for groupID, må sjekkes opp mot databasen senere.
         public string ToString()
         {
-            if (brukertype.Equals(admin))
+            if (groupID == 0)
             {
                 return String.Format("{0}: {1} {2}\nBrukertype: Administrator", brukerId, fornavn, etternavn);
             }
-
-            else if (brukertype.Equals(prosjekt_leder))
+            else if (groupID == 1)
             {
-                return String.Format("{0}: {1} {2}\nBrukertype: Bruker", brukerId, fornavn, etternavn);
+                return String.Format("{0}: {1} {2}\nBrukertype: Prosjektansvarlig", brukerId, fornavn, etternavn);
             }
-
-            else if (brukertype.Equals(team_leder))
+            else if (groupID == 2)
             {
                 return String.Format("{0}: {1} {2}\nBrukertype: Teamleder", brukerId, fornavn, etternavn);
             }
-
-            else if (brukertype.Equals(vanlig_bruker))
+            else if (groupID == 3)
             {
-                return String.Format("{0}: {1} {2}\nBrukertype: Bruker", brukerId, fornavn, etternavn);
+                return String.Format("{0}: {1} {2}\nBrukertype: Vanlig bruker", brukerId, fornavn, etternavn);
             }
-            else return String.Format("Feil under innhenting av brukerinformasjon.\nKontakt administrator.");
-            
+            else return String.Format("Feil under innhenting av brukerinformasjon.\nKan hende brukeren ikke tilhører en brukergruppe.\nKontakt administrator.");
         }
     }
 }
