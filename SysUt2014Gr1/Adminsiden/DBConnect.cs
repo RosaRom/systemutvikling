@@ -16,6 +16,7 @@ namespace Admin
         private string database;
         private string uid;
         private string password;
+        private string test;
 
         public DBConnect()
         {
