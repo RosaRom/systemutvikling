@@ -10,7 +10,8 @@ using System.Web;
  * 
  * Angående passord: Skal prosjektleder/admin selv velge passord for brukere forså skifte det til
  * det de vil ha selv? Eller skal skal det bare opprettes bruker, og ved første innlogging så må bruker 
- * velge passord?
+ * velge passord? SVAR: Admin setter nok opp et passord, og så må vi ha funksjonalitet som lar brukere skifte passord
+ * f.eks. en profilside.
  * 
  */
 namespace Adminsiden
