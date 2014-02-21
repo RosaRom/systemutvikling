@@ -23,18 +23,10 @@ namespace Admin
 
         private void GetAllUsers()
         {
-            // GridViewAdmin.DataSource = AddRow(db.AdminGetAllUsers());
             GridViewAdmin.DataSource = db.AdminGetAllUsers();
             GridViewAdmin.DataBind();
         }
-        /*
-        private DataTable AddRow(DataTable dt)
-        {
-            DataRow dr = dt.NewRow();
-            dt.Rows.Add(dr);
-            return dt;
-        }
-        */
+
         protected void GridViewAdmin_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridViewAdmin.EditIndex = e.NewEditIndex;
