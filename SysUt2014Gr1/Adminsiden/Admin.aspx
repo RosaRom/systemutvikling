@@ -23,7 +23,8 @@
                 <asp:BoundField DataField="mail" HeaderText="Mail" SortExpression="mail" />
                 <asp:BoundField DataField="teamID" HeaderText="TeamId" SortExpression="teamID" />
                 <asp:BoundField DataField="groupID" HeaderText="GruppeId" SortExpression="groupID" />
-                <asp:CommandField ShowDeleteButton="True" DeleteText="Deaktiver" />
+                <asp:BoundField DataField="aktiv" HeaderText="Aktiv" SortExpression="aktiv" />
+                <asp:CommandField ShowDeleteButton="True" DeleteText="Aktiver/Deaktiver" />
             </Columns>
 
         </asp:GridView>

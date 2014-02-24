@@ -56,12 +56,18 @@ namespace Admin
 
         protected void GridViewAdmin_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            //string id = GridViewAdmin.DataKeys[e.RowIndex]["id"].ToString();
-            /*
-            string query = String.Format("DELETE FROM test_brukere WHERE id = {0}", id);
+            string id = GridViewAdmin.DataKeys[e.RowIndex]["userID"].ToString();
+            string aktiv = e.Values["aktiv"].ToString();
+            string query;
+
+            if (aktiv.Equals("1"))
+                query = String.Format("UPDATE SUser SET aktiv = 0 WHERE userID = {0}", id);
+
+            else 
+                query = String.Format("UPDATE SUser SET aktiv = 1 WHERE userID = {0}", id);
 
             db.InsertDeleteUpdate(query);
-            */
+            
             GridViewAdmin.EditIndex = -1;
             GetAllUsers();
         }
