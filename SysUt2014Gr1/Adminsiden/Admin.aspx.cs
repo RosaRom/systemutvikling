@@ -162,5 +162,45 @@ namespace Admin
             }
             return GridViewSortDirection;
         }
+
+        // FUNKER IKKE ENDA
+        /*
+        protected void GridViewAdmin_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                if (String.Empty != GridViewSortDirection)
+                {
+                    AddSortImage(e.Row);
+                }
+            }
+        }
+
+        void AddSortImage(GridViewRow header)
+        {
+            Int32 columnIndex = Convert.ToInt32(header.DataItemIndex.ToString());
+            if (-1 == columnIndex)
+            {
+                return;
+            }
+            //Lager bildet utifra sort direction
+            Image sortImage = new Image(); 
+            string downURL = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.DOWNARROW.gif");
+            string upURL = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.UPARROW.gif");
+
+            if (GridViewSortDirection.Equals("ASC"))
+            {
+                sortImage.ImageUrl = downURL;
+                sortImage.AlternateText = "Stigende rekkefølge.";
+            }
+            else
+            {
+                sortImage.ImageUrl = upURL;
+                sortImage.AlternateText = "Synkende rekkefølge.";
+            }
+
+            //Legger til bildet i riktig header
+            header.Cells[columnIndex].Controls.Add(sortImage);
+        }*/
     }
 }
