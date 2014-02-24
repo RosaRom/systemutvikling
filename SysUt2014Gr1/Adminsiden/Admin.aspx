@@ -10,15 +10,20 @@
     <form id="Adminform" runat="server">
     <div>
     
-        <asp:GridView ID="GridViewAdmin" AllowSorting="True" AllowPaging="True" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="True" DataKeyNames="id" 
+        <asp:GridView ID="GridViewAdmin" AllowSorting="True" AllowPaging="True" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="True" DataKeyNames="userID" 
             OnRowCancelingEdit="GridViewAdmin_RowCancelingEdit" OnRowEditing="GridViewAdmin_RowEditing" OnRowUpdating="GridViewAdmin_RowUpdating" OnRowDeleting="GridViewAdmin_RowDeleting">
             
             <Columns>
-                <asp:BoundField DataField="id" HeaderText="Id" SortExpression="id" ReadOnly="True" />
-                <asp:BoundField DataField="fornavn" HeaderText="Fornavn" SortExpression="fornavn" />
-                <asp:BoundField DataField="etternavn" HeaderText="Etternavn" SortExpression="etternavn" />
-                <asp:BoundField DataField="stilling" HeaderText="Stilling" SortExpression="stilling" />
-                <asp:CommandField ShowDeleteButton="True" />
+                <asp:BoundField DataField="userID" HeaderText="Id" SortExpression="userID" ReadOnly="True" />
+                <asp:BoundField DataField="surname" HeaderText="Etternavn" SortExpression="surname" />
+                <asp:BoundField DataField="firstname" HeaderText="Fornavn" SortExpression="firstname" />
+                <asp:BoundField DataField="username" HeaderText="Brukernavn" SortExpression="username" />
+
+                <asp:BoundField DataField="phone" HeaderText="Telefon" SortExpression="phone" />
+                <asp:BoundField DataField="mail" HeaderText="Mail" SortExpression="mail" />
+                <asp:BoundField DataField="teamID" HeaderText="TeamId" SortExpression="teamID" />
+                <asp:BoundField DataField="groupID" HeaderText="GruppeId" SortExpression="groupID" />
+                <asp:CommandField ShowDeleteButton="True" DeleteText="Deaktiver" />
             </Columns>
 
         </asp:GridView>

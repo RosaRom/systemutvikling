@@ -41,6 +41,7 @@ namespace Admin
 
         protected void GridViewAdmin_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            /*
             string id = GridViewAdmin.DataKeys[e.RowIndex]["id"].ToString();
             string s1 = e.NewValues["fornavn"].ToString();
             string s2 = e.NewValues["etternavn"].ToString();
@@ -50,14 +51,17 @@ namespace Admin
             db.InsertDeleteUpdate(query);
             GridViewAdmin.EditIndex = -1;
             GetAllUsers();
+             * */
         }
 
         protected void GridViewAdmin_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string id = GridViewAdmin.DataKeys[e.RowIndex]["id"].ToString();
+            //string id = GridViewAdmin.DataKeys[e.RowIndex]["id"].ToString();
+            /*
             string query = String.Format("DELETE FROM test_brukere WHERE id = {0}", id);
 
             db.InsertDeleteUpdate(query);
+            */
             GridViewAdmin.EditIndex = -1;
             GetAllUsers();
         }
