@@ -23,7 +23,17 @@ namespace Admin
 
         private void GetAllUsers()
         {
-            GridViewAdmin.DataSource = db.AdminGetAllUsers();
+            string queryActive = "SELECT * FROM SUser WHERE aktiv = '1'";
+
+            GridViewAdmin.DataSource = db.AdminGetAllUsers(queryActive);
+            GridViewAdmin.DataBind();
+        }
+
+        private void GetInactiveUsers()
+        {
+            string queryInactive = "SELECT * FROM SUser WHERE aktiv = '0'";
+
+            GridViewAdmin.DataSource = db.AdminGetAllUsers(queryInactive);
             GridViewAdmin.DataBind();
         }
 
@@ -69,6 +79,16 @@ namespace Admin
             db.InsertDeleteUpdate(query);
             
             GridViewAdmin.EditIndex = -1;
+            GetAllUsers();
+        }
+
+        protected void btnDeaktiverte_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAktiv_Click(object sender, EventArgs e)
+        {
             GetAllUsers();
         }
     }

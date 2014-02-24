@@ -47,9 +47,9 @@ namespace Admin
             return true;
         }
 
-        public DataTable AdminGetAllUsers()
+        public DataTable AdminGetAllUsers(string query)
         {
-            string query = "SELECT * FROM SUser";
+            
 
             if (this.OpenConnection() == true)
             {

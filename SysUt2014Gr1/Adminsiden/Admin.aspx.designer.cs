@@ -22,6 +22,24 @@ namespace Admin {
         protected global::System.Web.UI.HtmlControls.HtmlForm Adminform;
         
         /// <summary>
+        /// btnDeaktiverte control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDeaktiverte;
+        
+        /// <summary>
+        /// btnAktiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAktiv;
+        
+        /// <summary>
         /// GridViewAdmin control.
         /// </summary>
         /// <remarks>
