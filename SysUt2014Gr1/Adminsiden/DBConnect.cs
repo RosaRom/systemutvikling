@@ -49,7 +49,7 @@ namespace Admin
 
         public DataTable AdminGetAllUsers(string query)
         {
-            
+
 
             if (this.OpenConnection() == true)
             {

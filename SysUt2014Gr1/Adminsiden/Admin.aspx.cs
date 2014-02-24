@@ -13,13 +13,25 @@ namespace Admin
         private DBConnect db = new DBConnect();
         private Boolean active = true;
 
+        // Brukes i forhold til sorting i ConvertSortDirectionToSql-metoden
+        private string GridViewSortDirection
+        {
+            get { return ViewState["SortDirection"] as string ?? "DESC"; }
+            set { ViewState["SortDirection"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                ViewState["active"] = active;
                 GetUsers();
             }
-            
+            else
+            {
+                active = (Boolean)ViewState["active"];
+            }
+
         }
 
         private void GetAllUsers()
@@ -33,9 +45,6 @@ namespace Admin
         private void GetInactiveUsers()
         {
             string queryInactive = "SELECT * FROM SUser WHERE aktiv = '0'";
-            
-            //GridViewAdmin.DataSource = null;
-            //GridViewAdmin.DataBind();
 
             GridViewAdmin.DataSource = db.AdminGetAllUsers(queryInactive);
             GridViewAdmin.DataBind();
@@ -55,17 +64,22 @@ namespace Admin
 
         protected void GridViewAdmin_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            /*
-            string id = GridViewAdmin.DataKeys[e.RowIndex]["id"].ToString();
-            string s1 = e.NewValues["fornavn"].ToString();
-            string s2 = e.NewValues["etternavn"].ToString();
-            string s3 = e.NewValues["stilling"].ToString();
 
-            string query = String.Format("UPDATE test_brukere SET fornavn = '{0}', etternavn = '{1}', stilling = '{2}' WHERE id = {3}", s1, s2, s3, id);
+            string id = GridViewAdmin.DataKeys[e.RowIndex]["userID"].ToString();
+            string surname = e.NewValues["surname"].ToString();
+            string firstname = e.NewValues["firstname"].ToString();
+            string username = e.NewValues["username"].ToString();
+            string phone = e.NewValues["phone"].ToString();
+            string mail = e.NewValues["mail"].ToString();
+            string teamID = e.NewValues["teamID"].ToString();
+            string groupID = e.NewValues["groupID"].ToString();
+
+            string query = String.Format("UPDATE SUser SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
+                surname, firstname, username, phone, mail, teamID, groupID, id);
             db.InsertDeleteUpdate(query);
             GridViewAdmin.EditIndex = -1;
-            GetAllUsers();
-             * */
+            GetUsers();
+
         }
 
         protected void GridViewAdmin_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -98,13 +112,55 @@ namespace Admin
         protected void btnDeaktiverte_Click(object sender, EventArgs e)
         {
             active = false;
+            ViewState["active"] = active;
             GetInactiveUsers();
         }
 
         protected void btnAktiv_Click(object sender, EventArgs e)
         {
             active = true;
+            ViewState["active"] = active;
             GetAllUsers();
+        }
+        
+        protected void GridViewAdmin_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            string query;
+            if (active)
+            {
+                query = "SELECT * FROM SUser WHERE aktiv = '1'";
+            }
+            else
+            {
+                query = "SELECT * FROM SUser WHERE aktiv = '0'";
+            }
+
+            DataTable dataTable = db.AdminGetAllUsers(query);
+            GridViewAdmin.DataSource = dataTable;
+
+            if (dataTable != null)
+            {
+                DataView dataView = new DataView(dataTable);
+                dataView.Sort = e.SortExpression + " " + ConvertSortDirectionToSql(e.SortDirection);
+
+                GridViewAdmin.DataSource = dataView;
+                GridViewAdmin.DataBind();
+            }      
+
+        }
+
+        private string ConvertSortDirectionToSql(SortDirection sortDirection)
+        {
+            switch (GridViewSortDirection)
+            {
+                case "ASC":
+                    GridViewSortDirection = "DESC";
+                    break;
+                case "DESC":
+                    GridViewSortDirection = "ASC";
+                    break;
+            }
+            return GridViewSortDirection;
         }
     }
 }
