@@ -123,6 +123,7 @@ namespace Admin
             GetAllUsers();
         }
         
+        // Sorting metode
         protected void GridViewAdmin_Sorting(object sender, GridViewSortEventArgs e)
         {
             string query;
@@ -146,7 +147,6 @@ namespace Admin
                 GridViewAdmin.DataSource = dataView;
                 GridViewAdmin.DataBind();
             }      
-
         }
 
         private string ConvertSortDirectionToSql(SortDirection sortDirection)
