@@ -10,13 +10,14 @@ namespace Admin
 {
     public partial class Admin : System.Web.UI.Page
     {
-        DBConnect db = new DBConnect();
+        private DBConnect db = new DBConnect();
+        private Boolean active = true;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                GetAllUsers();
+                GetUsers();
             }
             
         }
@@ -32,6 +33,9 @@ namespace Admin
         private void GetInactiveUsers()
         {
             string queryInactive = "SELECT * FROM SUser WHERE aktiv = '0'";
+            
+            //GridViewAdmin.DataSource = null;
+            //GridViewAdmin.DataBind();
 
             GridViewAdmin.DataSource = db.AdminGetAllUsers(queryInactive);
             GridViewAdmin.DataBind();
@@ -40,13 +44,13 @@ namespace Admin
         protected void GridViewAdmin_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridViewAdmin.EditIndex = e.NewEditIndex;
-            GetAllUsers();
+            GetUsers();
         }
 
         protected void GridViewAdmin_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             GridViewAdmin.EditIndex = -1;
-            GetAllUsers();
+            GetUsers();
         }
 
         protected void GridViewAdmin_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -73,22 +77,33 @@ namespace Admin
             if (aktiv.Equals("1"))
                 query = String.Format("UPDATE SUser SET aktiv = 0 WHERE userID = {0}", id);
 
-            else 
+            else
                 query = String.Format("UPDATE SUser SET aktiv = 1 WHERE userID = {0}", id);
 
             db.InsertDeleteUpdate(query);
-            
+
             GridViewAdmin.EditIndex = -1;
-            GetAllUsers();
+
+            GetUsers();
+        }
+
+        private void GetUsers()
+        {
+            if (active == true)
+                GetAllUsers();
+            else
+                GetInactiveUsers();
         }
 
         protected void btnDeaktiverte_Click(object sender, EventArgs e)
         {
-
+            active = false;
+            GetInactiveUsers();
         }
 
         protected void btnAktiv_Click(object sender, EventArgs e)
         {
+            active = true;
             GetAllUsers();
         }
     }
