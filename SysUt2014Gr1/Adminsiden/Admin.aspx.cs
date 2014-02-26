@@ -165,17 +165,27 @@ namespace Admin
         }
         protected void btnFilter_Click(object sender, EventArgs e) //Når brukeren vil filtrere listen med brukere
         {
-            if (FilterSearchTerms.Text.Equals(String.Empty))
-            {
-                FilterSearchTerms.Text = "Mangler søkevilkår!";
-            }
-            else
-            {
-            //FilterSearchDropdown er en DropDownList, FilterSearchTerms er en textbox
-            string column = FilterSearchDropdown.SelectedItem.Text; //Gir kolonnen brukeren vil filtrere etter i form av String
-            string terms = FilterSearchTerms.Text;   //Gir termer/vilkår for filtrering
+            try
+            {   //FilterSearchDropdown er en DropDownList, FilterSearchTerms er en textbox
+                if (FilterSearchTerms.Text.Equals(String.Empty))
+                {
+                    FilterSearchTerms.Text = "Mangler søkevilkår!";
+                }
+                else
+                {
+                    
+                    string column = FilterSearchDropdown.SelectedItem.Text; //Gir kolonnen brukeren vil filtrere etter i form av String
+                    string terms = FilterSearchTerms.Text;   //Gir termer/vilkår for filtrering
         
-            FilterGridView(column, terms);
+                    FilterGridView(column, terms);
+                }
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {   /*
+                string feilmelding = "Kunne ikke filtrere brukere!";
+                feilmelding += ex.Message;
+                throw new Exception(feilmelding);
+                FilterSearchTerms.Text = "Feil med SQL spørringen!"; */
             }
         }
 
@@ -230,14 +240,14 @@ namespace Admin
         {
             DataTable filterTable = new DataTable(); //Lager en data table for å lagre data fra spørringen
 
-            string filterStatement = "SELECT * FROM [SUser] WHERE [{0}] LIKE @terms"; //Henter alle fra SUser-tabellen med korrekt kolonnenavn / vilkår fra databasen
+            string filterStatement = "SELECT * FROM SUser WHERE '{0}' LIKE @terms"; //Henter alle fra SUser-tabellen med korrekt kolonnenavn / vilkår fra databasen
             filterStatement = String.Format(filterStatement, column);
 
             MySqlCommand sqlCmd = new MySqlCommand(filterStatement); //Lager en SQL spørring
             sqlCmd.CommandType = CommandType.Text;
 
             //Definerer @variablene i sql statement
-            sqlCmd.Parameters.AddWithValue("@terms", terms);
+            sqlCmd.Parameters.AddWithValue("@terms", "%" + terms + "%");
 
             filterTable = db.FilterGridView(sqlCmd);
 
