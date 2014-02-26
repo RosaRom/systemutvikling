@@ -22,16 +22,32 @@ namespace Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            GridViewInsertEmpty();
             if (!Page.IsPostBack)
             {
                 ViewState["active"] = active;
                 GetUsers();
+                
             }
             else
             {
                 active = (Boolean)ViewState["active"];
             }
+            
+        }
 
+        private void GridViewInsertEmpty()
+        {
+            string query = "SELECT * FROM SUser WHERE userID = 1";
+            DataTable dt = db.AdminGetAllUsers(query);
+            
+            dt.Rows.Add(dt.NewRow());
+            GridViewInsert.DataSource = dt;
+            GridViewInsert.DataBind();
+
+            //i tilfelle userID returnerer en bruker og ikke en tom rad
+            //GridViewInsert.Rows[0].Visible = false;
+            //GridViewInsert.Rows[0].Controls.Clear();
         }
 
         private void GetAllUsers()
@@ -55,16 +71,17 @@ namespace Admin
             GridViewAdmin.EditIndex = e.NewEditIndex;
             GetUsers();
         }
-
+        
+        
         protected void GridViewAdmin_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             GridViewAdmin.EditIndex = -1;
             GetUsers();
         }
-
+        
+        //Kjøres fra listen med brukere nå en bruker oppdateres
         protected void GridViewAdmin_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-
             string id = GridViewAdmin.DataKeys[e.RowIndex]["userID"].ToString();
             string surname = e.NewValues["surname"].ToString();
             string firstname = e.NewValues["firstname"].ToString();
@@ -79,7 +96,44 @@ namespace Admin
             db.InsertDeleteUpdate(query);
             GridViewAdmin.EditIndex = -1;
             GetUsers();
+        }
 
+        //RowEditing for å legge til nye brukere
+        protected void GridViewInsert_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridViewInsert.EditIndex = e.NewEditIndex;
+            GridViewInsertEmpty();
+        }
+
+        //kjøres om man trykke cancel ved edit av ny bruker
+        protected void GridViewInsert_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            GridViewInsert.EditIndex = -1;
+            GridViewInsertEmpty();
+        }
+
+        //RowUpdating kjøres når det legges til en ny bruker
+        protected void GridViewInsert_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            string surname = e.NewValues["surname"].ToString();
+            string firstname = e.NewValues["firstname"].ToString();
+            string username = e.NewValues["username"].ToString();
+            string phone = e.NewValues["phone"].ToString();
+            string mail = e.NewValues["mail"].ToString();
+            string teamID = e.NewValues["teamID"].ToString();
+            string groupID = e.NewValues["groupID"].ToString();
+
+            string query = String.Format("INSERT INTO SUser VALUES('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7})",
+                surname, firstname, "123", username, phone, mail, teamID, groupID);
+
+            GetUsers();
+            GridViewInsertEmpty();
+        }
+
+        private void GridViewUpdate(GridView gridView, GridViewUpdateEventArgs e)
+        {
+            
+             
         }
 
         protected void GridViewAdmin_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -162,6 +216,11 @@ namespace Admin
             }
             return GridViewSortDirection;
         }
+
+        
+
+        
+
 
         // FUNKER IKKE ENDA
         /*

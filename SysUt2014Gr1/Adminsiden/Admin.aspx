@@ -10,6 +10,21 @@
     <form id="Adminform" runat="server">
     <div>
     
+        <asp:GridView ID="GridViewInsert" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" AutoGenerateEditButton="True" OnRowCancelingEdit="GridViewInsert_RowCancelingEdit" OnRowEditing="GridViewInsert_RowEditing" OnRowUpdating="GridViewInsert_RowUpdating">
+            
+            <Columns>
+                <asp:BoundField DataField="surname" HeaderText="Etternavn" SortExpression="surname" />
+                <asp:BoundField DataField="firstname" HeaderText="Fornavn" SortExpression="firstname" />
+                <asp:BoundField DataField="username" HeaderText="Brukernavn" SortExpression="username" />
+
+                <asp:BoundField DataField="phone" HeaderText="Telefon" SortExpression="phone" />
+                <asp:BoundField DataField="mail" HeaderText="Mail" SortExpression="mail" />
+                <asp:BoundField DataField="teamID" HeaderText="TeamId" SortExpression="teamID" />
+                <asp:BoundField DataField="groupID" HeaderText="GruppeId" SortExpression="groupID" />
+            </Columns>
+
+        </asp:GridView>
+    
         <asp:Button ID="btnDeaktiverte" runat="server" OnClick="btnDeaktiverte_Click" Text="Deaktiverte brukere" />
         <asp:Button ID="btnAktiv" runat="server" OnClick="btnAktiv_Click" Text="Aktive brukere" />
     
