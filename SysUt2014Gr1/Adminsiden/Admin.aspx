@@ -10,7 +10,7 @@
     <form id="Adminform" runat="server">
     <div>
     
-        <asp:GridView ID="GridViewInsert" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" AutoGenerateEditButton="True"
+        <asp:GridView ID="GridViewInsert" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" AutoGenerateEditButton="True" 
             OnRowCancelingEdit="GridViewInsert_RowCancelingEdit" OnRowEditing="GridViewInsert_RowEditing" OnRowUpdating="GridViewInsert_RowUpdating">
             <Columns>
                 <asp:BoundField DataField="surname" HeaderText="Etternavn" SortExpression="surname" />
