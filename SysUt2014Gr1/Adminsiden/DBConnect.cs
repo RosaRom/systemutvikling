@@ -60,6 +60,18 @@ namespace Admin
             }
             return dataTable;
         }
+        public DataTable getAll(string query)
+        {
+            if (this.OpenConnection() == true)
+            {
+                dataTable = new DataTable();
+                adapter = new MySqlDataAdapter(query, connection);
+                adapter.Fill(dataTable);
+                this.CloseConnection();
+            }
+            return dataTable;
+
+        }
 
         public void InsertDeleteUpdate(string query)
         {
