@@ -49,16 +49,27 @@ namespace Admin
 
         public DataTable AdminGetAllUsers(string query)
         {
-
-
-            if (this.OpenConnection() == true)
+            try
             {
-                dataTable = new DataTable();
-                adapter = new MySqlDataAdapter(query, connection);
-                adapter.Fill(dataTable);
+                if (this.OpenConnection() == true)
+                {
+                    dataTable = new DataTable();
+                    adapter = new MySqlDataAdapter(query, connection);
+                    adapter.Fill(dataTable);
+                }
+
+                return dataTable;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                string message = "Klarte ikke hente data fra databasen!";
+                message += ex.Message;
+                throw new Exception(message);
+            }
+            finally
+            {
                 this.CloseConnection();
             }
-            return dataTable;
         }
 
         public void InsertDeleteUpdate(string query)

@@ -174,11 +174,7 @@ namespace Admin
             }
             else
             {
-            //FilterSearchDropdown er en DropDownList, FilterSearchTerms er en textbox
-            string column = FilterSearchDropdown.SelectedItem.Text; //Gir kolonnen brukeren vil filtrere etter i form av String
-            string terms = FilterSearchTerms.Text;   //Gir termer/vilkår for filtrering
-        
-            FilterGridView(column, terms);
+            FilterGridView();
             }
         }
 
@@ -229,7 +225,7 @@ namespace Admin
         }
 
         //Metode for å filtrere GridViewAdmin
-        public void FilterGridView(string column, string terms)
+        public void FilterGridView()
         {
             DataTable filterTable = new DataTable(); //Lager en data table for å lagre data fra spørringen
 
