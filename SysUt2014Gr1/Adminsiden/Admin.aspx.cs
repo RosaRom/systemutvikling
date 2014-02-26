@@ -23,12 +23,13 @@ namespace Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            GridViewInsertEmpty();
+            
             
             if (!Page.IsPostBack)
             {
                 ViewState["active"] = active;
                 GetUsers();
+                GridViewInsertEmpty();
             }
             else
             {
@@ -132,9 +133,11 @@ namespace Admin
             string teamID = e.NewValues["teamID"].ToString();
             string groupID = e.NewValues["groupID"].ToString();
 
-            string query = String.Format("INSERT INTO SUser VALUES('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7})",
-                surname, firstname, "123", username, phone, mail, teamID, groupID);
+            string query = String.Format("INSERT INTO SUser (surname, firstname, password, username, phone, mail, teamID, groupID, aktiv) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})",
+                surname, firstname, "123", username, phone, mail, teamID, groupID, "1");
 
+            db.InsertDeleteUpdate(query);
+            GridViewInsert.EditIndex = -1;
             GetUsers();
             GridViewInsertEmpty();
         }
