@@ -13,7 +13,7 @@ namespace Admin
         private DBConnect db = new DBConnect();
         private Boolean active = true;
 
-        // Brukes i forhold til sorting i ConvertSortDirectionToSql-metoden
+        // Brukes i forhold til sorting og for å lagre view states når det er flere spørringer opp mot websiden
         private string GridViewSortDirection
         {
             get { return ViewState["SortDirection"] as string ?? "DESC"; }
@@ -122,6 +122,20 @@ namespace Admin
             ViewState["active"] = active;
             GetAllUsers();
         }
+        protected void btnFilter_Click1(object sender, EventArgs e) //Når brukeren vil filtrere listen med brukere
+        {
+            //FilterSearchDropdown er en DropDownList, FilterSearchTerms er en textbox
+            string column = FilterSearchDropdown.SelectedItem.Text; //Gir kolonnen brukeren vil filtrere etter i form av String
+            string terms = FilterSearchTerms.Text;   //Gir termer/vilkår for filtrering
+
+            FilterGridView(column, terms);
+        }
+
+        protected void btnFjernFilter_Click1(object sender, EventArgs e)//Når brukeren velger å fjerne filtering
+        {
+            FilterSearchTerms.Text = "";    //fjerner tekst fra søkevilkårboksen
+            GetUsers();                     // Oppdaterer lista 
+        }
         
         // Sorting metode
         protected void GridViewAdmin_Sorting(object sender, GridViewSortEventArgs e)
@@ -162,6 +176,16 @@ namespace Admin
             }
             return GridViewSortDirection;
         }
+
+        public void FilterGridView(string column, string terms)
+        {
+            DataTable filterTabel = new DataTable();
+            string filterStatement = "";
+        }
+
+        
+
+        
 
         // FUNKER IKKE ENDA
         /*

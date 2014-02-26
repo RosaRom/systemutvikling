@@ -72,5 +72,32 @@ namespace Admin
                 this.CloseConnection();
             }
         }
+
+        public DataTable FilterGridView(MySqlCommand sqlCmd)
+        {
+            try
+            {
+                if (this.OpenConnection() == true)
+            {
+                sqlCmd.Connection = this.connection;
+
+                dataTable = new DataTable();
+                MySqlDataAdapter filterAdapter = new MySqlDataAdapter(sqlCmd);
+                filterAdapter.Fill(dataTable);   
+            }
+            return dataTable;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                string feilmelding = "Kunne ikke filtrere brukere!";
+                feilmelding += ex.Message;
+                throw new Exception(feilmelding);
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            
+        }
     }
 }

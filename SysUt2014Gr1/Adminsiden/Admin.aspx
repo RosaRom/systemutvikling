@@ -12,7 +12,12 @@
     
         <asp:Button ID="btnDeaktiverte" runat="server" OnClick="btnDeaktiverte_Click" Text="Deaktiverte brukere" />
         <asp:Button ID="btnAktiv" runat="server" OnClick="btnAktiv_Click" Text="Aktive brukere" />
-    
+        <asp:TextBox ID="FilterSearchTerms" runat="server"></asp:TextBox>
+        <asp:DropDownList ID="FilterSearchDropdown" runat="server">
+        </asp:DropDownList>
+        <asp:Button ID="btnFilter" runat="server" Text="Filter" OnClick="btnFilter_Click1" />
+        <asp:Button ID="btnFjernFilter" runat="server" Text="Fjern filter" OnClick="btnFjernFilter_Click1" />
+
         <asp:GridView ID="GridViewAdmin" AllowSorting="True" AllowPaging="True" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="True" EnableViewState="true" DataKeyNames="userID" 
             OnRowCancelingEdit="GridViewAdmin_RowCancelingEdit" OnRowEditing="GridViewAdmin_RowEditing" OnRowUpdating="GridViewAdmin_RowUpdating" OnRowDeleting="GridViewAdmin_RowDeleting" OnSorting="GridViewAdmin_Sorting" >
             
@@ -32,7 +37,14 @@
 
         </asp:GridView>
 
+        
+
+        
+
+        
+
     </div>
+        
     </form>
 </body>
 </html>
