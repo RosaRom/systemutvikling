@@ -122,7 +122,7 @@ namespace Admin
             ViewState["active"] = active;
             GetAllUsers();
         }
-        protected void btnFilter_Click1(object sender, EventArgs e) //Når brukeren vil filtrere listen med brukere
+        protected void btnFilter_Click(object sender, EventArgs e) //Når brukeren vil filtrere listen med brukere
         {
             //FilterSearchDropdown er en DropDownList, FilterSearchTerms er en textbox
             string column = FilterSearchDropdown.SelectedItem.Text; //Gir kolonnen brukeren vil filtrere etter i form av String
@@ -131,7 +131,7 @@ namespace Admin
             FilterGridView(column, terms);
         }
 
-        protected void btnFjernFilter_Click1(object sender, EventArgs e)//Når brukeren velger å fjerne filtering
+        protected void btnFjernFilter_Click(object sender, EventArgs e)//Når brukeren velger å fjerne filtering
         {
             FilterSearchTerms.Text = "";    //fjerner tekst fra søkevilkårboksen
             GetUsers();                     // Oppdaterer lista 
