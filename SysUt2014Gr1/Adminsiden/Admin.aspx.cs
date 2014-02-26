@@ -83,7 +83,6 @@ namespace Admin
             db.InsertDeleteUpdate(query);
             GridViewAdmin.EditIndex = -1;
             GetUsers();
-
         }
 
         protected void GridViewAdmin_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -169,11 +168,18 @@ namespace Admin
         }
         protected void btnFilter_Click(object sender, EventArgs e) //Når brukeren vil filtrere listen med brukere
         {
+            if (FilterSearchTerms.Text.Equals(String.Empty))
+            {
+                FilterSearchTerms.Text = "Mangler søkevilkår!";
+            }
+            else
+            {
             //FilterSearchDropdown er en DropDownList, FilterSearchTerms er en textbox
             string column = FilterSearchDropdown.SelectedItem.Text; //Gir kolonnen brukeren vil filtrere etter i form av String
             string terms = FilterSearchTerms.Text;   //Gir termer/vilkår for filtrering
         
             FilterGridView(column, terms);
+            }
         }
 
         protected void btnFjernFilter_Click(object sender, EventArgs e)//Når brukeren velger å fjerne filtering
@@ -222,19 +228,33 @@ namespace Admin
             return GridViewSortDirection;
         }
 
+        //Metode for å filtrere GridViewAdmin
         public void FilterGridView(string column, string terms)
         {
-            DataTable filterTable = new DataTable();
-            string filterStatement = "SELECT * FROM [SUser] WHERE [{0}] LIKE @terms"; //select alle fra SUser med korrekt kolonnenavn / vilkår
+            DataTable filterTable = new DataTable(); //Lager en data table for å lagre data fra spørringen
+
+            string filterStatement = "SELECT * FROM [SUser] WHERE [{0}] LIKE @terms"; //Henter alle fra SUser-tabellen med korrekt kolonnenavn / vilkår fra databasen
             filterStatement = String.Format(filterStatement, column);
 
-            MySqlCommand sqlCmd = new MySqlCommand(filterStatement);
+            MySqlCommand sqlCmd = new MySqlCommand(filterStatement); //Lager en SQL spørring
             sqlCmd.CommandType = CommandType.Text;
 
             //Definerer @variablene i sql statement
-            sqlCmd.Parameters.AddWithValue("@terms", column);
+            sqlCmd.Parameters.AddWithValue("@terms", terms);
 
+            filterTable = db.FilterGridView(sqlCmd);
 
+            if (filterTable.Rows.Count > 0) //Hvis søkevilkåret gir resultater
+            {   
+                //Om søket ga resultat
+                GridViewAdmin.DataSource = filterTable; //Setter data source til den filtrerte data table
+                GridViewAdmin.DataBind();               //Oppdaterer data i GridView
+            }
+            else
+            {
+                //Søket ga ingen resultat, trenger ikke refreshe GridViewAdmin
+                FilterSearchTerms.Text = "Søket ga null resultat!"; //Gir bruker beskjed
+            }
         }
 
         // FUNKER IKKE ENDA
