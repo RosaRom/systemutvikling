@@ -22,6 +22,8 @@ namespace Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            GridViewInsertEmpty();
+            
             if (!Page.IsPostBack)
             {
                 ViewState["active"] = active;
@@ -31,7 +33,7 @@ namespace Admin
             {
                 active = (Boolean)ViewState["active"];
             }
-
+            
         }
 
         private void GetAllUsers()
@@ -55,13 +57,13 @@ namespace Admin
             GridViewAdmin.EditIndex = e.NewEditIndex;
             GetUsers();
         }
-
+        
         protected void GridViewAdmin_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             GridViewAdmin.EditIndex = -1;
             GetUsers();
         }
-
+        
         protected void GridViewAdmin_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
 
@@ -109,6 +111,45 @@ namespace Admin
                 GetInactiveUsers();
         }
 
+        private void GridViewInsertEmpty()
+        {
+            string query = "SELECT * FROM SUser WHERE userID = 1";
+            DataTable dt = db.AdminGetAllUsers(query);
+            dt.Rows.Add(dt.NewRow());
+            GridViewInsert.DataSource = dt;
+            GridViewInsert.DataBind();
+        }
+
+        //RowUpdating kjøres når det legges til en ny bruker
+        protected void GridViewInsert_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            string surname = e.NewValues["surname"].ToString();
+            string firstname = e.NewValues["firstname"].ToString();
+            string username = e.NewValues["username"].ToString();
+            string phone = e.NewValues["phone"].ToString();
+            string mail = e.NewValues["mail"].ToString();
+            string teamID = e.NewValues["teamID"].ToString();
+            string groupID = e.NewValues["groupID"].ToString();
+
+            string query = String.Format("INSERT INTO SUser VALUES('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7})",
+                surname, firstname, "123", username, phone, mail, teamID, groupID);
+
+            GetUsers();
+            GridViewInsertEmpty();
+        }
+
+        protected void GridViewInsert_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridViewInsert.EditIndex = e.NewEditIndex;
+            GridViewInsertEmpty();
+        }
+
+        protected void GridViewInsert_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            GridViewInsert.EditIndex = -1;
+            GridViewInsertEmpty();
+        }
+
         protected void btnDeaktiverte_Click(object sender, EventArgs e)
         {
             active = false;
@@ -127,7 +168,7 @@ namespace Admin
             //FilterSearchDropdown er en DropDownList, FilterSearchTerms er en textbox
             string column = FilterSearchDropdown.SelectedItem.Text; //Gir kolonnen brukeren vil filtrere etter i form av String
             string terms = FilterSearchTerms.Text;   //Gir termer/vilkår for filtrering
-
+        
             FilterGridView(column, terms);
         }
 
@@ -182,10 +223,6 @@ namespace Admin
             DataTable filterTabel = new DataTable();
             string filterStatement = "";
         }
-
-        
-
-        
 
         // FUNKER IKKE ENDA
         /*
