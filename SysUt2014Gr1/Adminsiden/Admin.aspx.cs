@@ -115,7 +115,7 @@ namespace Admin
         //RowUpdating kjøres når det legges til en ny bruker
         protected void GridViewInsert_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            string surname = e.NewValues["surname"].ToString();
+            string surname = GridViewInsert.DataKeys[e.RowIndex]["surname"].ToString();
             string firstname = e.NewValues["firstname"].ToString();
             string username = e.NewValues["username"].ToString();
             string phone = e.NewValues["phone"].ToString();
@@ -125,6 +125,9 @@ namespace Admin
 
             string query = String.Format("INSERT INTO SUser VALUES('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7})",
                 surname, firstname, "123", username, phone, mail, teamID, groupID);
+
+            db.InsertDeleteUpdate(query);
+            GridViewInsert.EditIndex = -1;
 
             GetUsers();
             GridViewInsertEmpty();
@@ -217,7 +220,7 @@ namespace Admin
             return GridViewSortDirection;
         }
 
-        
+ 
 
         
 
