@@ -78,14 +78,14 @@ namespace Admin
             try
             {
                 if (this.OpenConnection() == true)
-                {
-                    sqlCmd.Connection = this.connection;
+            {
+                sqlCmd.Connection = this.connection;
 
-                    dataTable = new DataTable();
-                    MySqlDataAdapter filterAdapter = new MySqlDataAdapter(sqlCmd);
-                    filterAdapter.Fill(dataTable);
-                }
-                return dataTable;
+                dataTable = new DataTable();
+                MySqlDataAdapter filterAdapter = new MySqlDataAdapter(sqlCmd);
+                filterAdapter.Fill(dataTable);   
+            }
+            return dataTable;
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
@@ -97,7 +97,7 @@ namespace Admin
             {
                 this.CloseConnection();
             }
-
+            
         }
     }
 }
