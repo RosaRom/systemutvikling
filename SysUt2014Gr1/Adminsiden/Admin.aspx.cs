@@ -263,7 +263,7 @@ namespace Admin
             else
             {
                 //Søket ga ingen resultat, trenger ikke refreshe GridViewAdmin
-                FilterSearchTerms.Text = "Søket ga null resultat!"; //Gir bruker beskjed
+                FilterSearchTerms.Text = "Søket ga ingen resultat!"; //Gir bruker beskjed
             }
         }
 
