@@ -72,7 +72,7 @@ namespace Admin
                 this.CloseConnection();
             }
         }
-
+        /*
         //Metode for å sende filtrert DataTable, sql spørring manipuleres i Admin.aspx.cs
         public DataTable FilterGridView(MySqlCommand sqlCmd)
         {
@@ -100,5 +100,6 @@ namespace Admin
             }
             
         }
+         * */
     }
 }

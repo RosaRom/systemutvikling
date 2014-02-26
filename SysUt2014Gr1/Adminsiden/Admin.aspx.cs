@@ -233,16 +233,10 @@ namespace Admin
         {
             DataTable filterTable = new DataTable(); //Lager en data table for å lagre data fra spørringen
 
-            string filterStatement = "SELECT * FROM [SUser] WHERE [{0}] LIKE @terms"; //Henter alle fra SUser-tabellen med korrekt kolonnenavn / vilkår fra databasen
-            filterStatement = String.Format(filterStatement, column);
+            //Henter alle fra SUser-tabellen med korrekt kolonnenavn / vilkår fra databasen
+            string filterStatement = String.Format("SELECT * FROM SUser WHERE {0} LIKE '{1}'", FilterSearchDropdown.Text, FilterSearchTerms.Text); 
 
-            MySqlCommand sqlCmd = new MySqlCommand(filterStatement); //Lager en SQL spørring
-            sqlCmd.CommandType = CommandType.Text;
-
-            //Definerer @variablene i sql statement
-            sqlCmd.Parameters.AddWithValue("@terms", terms);
-
-            filterTable = db.FilterGridView(sqlCmd);
+            filterTable = db.AdminGetAllUsers(filterStatement);
 
             if (filterTable.Rows.Count > 0) //Hvis søkevilkåret gir resultater
             {   
