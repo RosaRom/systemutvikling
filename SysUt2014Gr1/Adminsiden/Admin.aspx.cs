@@ -23,8 +23,6 @@ namespace Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            
             if (!Page.IsPostBack)
             {
                 ViewState["active"] = active;
@@ -34,8 +32,7 @@ namespace Admin
             else
             {
                 active = (Boolean)ViewState["active"];
-            }
-            
+            }    
         }
 
         private void GetAllUsers()
