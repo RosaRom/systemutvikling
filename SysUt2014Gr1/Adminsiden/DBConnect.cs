@@ -72,34 +72,5 @@ namespace Admin
                 this.CloseConnection();
             }
         }
-        /*
-        //Metode for å sende filtrert DataTable, sql spørring manipuleres i Admin.aspx.cs
-        public DataTable FilterGridView(MySqlCommand sqlCmd)
-        {
-            try
-            {
-                if (this.OpenConnection() == true) //Åpner connection
-            {
-                sqlCmd.Connection = this.connection; //Får inn en sql command uten connection property, gir den riktig database connection her
-
-                dataTable = new DataTable();
-                MySqlDataAdapter filterAdapter = new MySqlDataAdapter(sqlCmd); //Lager en data adapter for å få all data fra databasespørringen og for å sette det inn i en data table
-                filterAdapter.Fill(dataTable); //Fyller datatable med data fra SQL connection   
-            }
-            return dataTable;
-            }
-            catch (System.Data.SqlClient.SqlException ex) //Om noe skulle gå galt
-            {
-                string feilmelding = "Kunne ikke filtrere brukere!";
-                feilmelding += ex.Message;
-                throw new Exception(feilmelding);
-            }
-            finally
-            {
-                this.CloseConnection(); //Lukker connection
-            }
-            
-        }
-         * */
     }
 }
