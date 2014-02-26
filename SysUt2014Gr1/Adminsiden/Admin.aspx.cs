@@ -234,7 +234,7 @@ namespace Admin
             DataTable filterTable = new DataTable(); //Lager en data table for å lagre data fra spørringen
 
             //Henter alle fra SUser-tabellen med korrekt kolonnenavn / vilkår fra databasen
-            string filterStatement = String.Format("SELECT * FROM SUser WHERE {0} LIKE '{1}'", FilterSearchDropdown.Text, FilterSearchTerms.Text); 
+            string filterStatement = String.Format("SELECT * FROM SUser WHERE {0} LIKE '%{1}%'", FilterSearchDropdown.Text, FilterSearchTerms.Text); 
 
             filterTable = db.AdminGetAllUsers(filterStatement);
 
