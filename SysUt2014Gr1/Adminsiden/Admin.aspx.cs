@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace Admin
 {
@@ -179,8 +180,17 @@ namespace Admin
 
         public void FilterGridView(string column, string terms)
         {
-            DataTable filterTabel = new DataTable();
-            string filterStatement = "";
+            DataTable filterTable = new DataTable();
+            string filterStatement = "SELECT * FROM [SUser] WHERE [{0}] LIKE @terms"; //select alle fra SUser med korrekt kolonnenavn / vilkår
+            filterStatement = String.Format(filterStatement, column);
+
+            MySqlCommand sqlCmd = new MySqlCommand(filterStatement);
+            sqlCmd.CommandType = CommandType.Text;
+
+            //Definerer @variablene i sql statement
+            sqlCmd.Parameters.AddWithValue("@terms", column);
+
+
         }
 
         
