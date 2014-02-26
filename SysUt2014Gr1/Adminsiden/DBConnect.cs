@@ -25,9 +25,9 @@ namespace Admin
         private void Initialize()
         {
             server = "kark.hin.no";
-            database = "KALM_DB1";
-            uid = "kristiana";
-            password = "kristiana123";
+            database = "gruppe1";
+            uid = "gruppe1";
+            password = "gruppe.123";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
@@ -47,9 +47,9 @@ namespace Admin
             return true;
         }
 
-        public DataTable AdminGetAllUsers()
+        public DataTable AdminGetAllUsers(string query)
         {
-            string query = "SELECT * FROM test_brukere";
+
 
             if (this.OpenConnection() == true)
             {

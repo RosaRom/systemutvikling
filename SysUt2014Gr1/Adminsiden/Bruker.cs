@@ -35,15 +35,15 @@ namespace Adminsiden
             this.teamID = teamID;
             this.groupID = groupID;
         }
-        
+
         #region Getters/Setters
-        
+
         public int BrukerId
         {
             get { return brukerId; }
             set { brukerId = value; }
         }
-        
+
         public string Fornavn
         {
             get { return fornavn; }
@@ -55,31 +55,31 @@ namespace Adminsiden
             get { return etternavn; }
             set { etternavn = value; }
         }
-        
+
         public string Brukernavn
         {
             get { return brukernavn; }
             set { brukernavn = value; }
-        } 
-        
+        }
+
         public int Telefon
         {
             get { return telefon; }
             set { telefon = value; }
         }
-        
+
         public string Email
         {
             get { return email; }
             set { email = value; }
         }
-        
+
         public int TeamID
         {
             get { return teamID; }
             set { teamID = value; }
         }
-        
+
         public int GroupID
         {
             get { return groupID; }
