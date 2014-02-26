@@ -32,6 +32,7 @@
             <asp:ListItem Value="firstname">Fornavn</asp:ListItem>
             <asp:ListItem Value="surname">Etternavn</asp:ListItem>
             <asp:ListItem Value="username">Brukernavn</asp:ListItem>
+            <asp:ListItem></asp:ListItem>
         </asp:DropDownList>
         <asp:Button ID="btnFilter" runat="server" Text="Filter" OnClick="btnFilter_Click" />
         <asp:Button ID="btnFjernFilter" runat="server" Text="Fjern filter" OnClick="btnFjernFilter_Click" />
@@ -54,13 +55,6 @@
             </Columns>
 
         </asp:GridView>
-
-        
-
-        
-
-        
-
     </div>
         
     </form>
