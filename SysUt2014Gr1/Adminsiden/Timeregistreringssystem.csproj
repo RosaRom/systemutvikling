@@ -69,6 +69,8 @@
     <Content Include="AdminStyle.css" />
     <Content Include="Bruker.aspx" />
     <None Include="Resources\MorildData.png" />
+    <None Include="Resources\grd_alt.png" />
+    <None Include="Resources\grd_head.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

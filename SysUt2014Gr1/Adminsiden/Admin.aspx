@@ -24,7 +24,9 @@
 
         <asp:GridView ID="GridViewInsert" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" AutoGenerateEditButton="True" 
             OnRowCancelingEdit="GridViewInsert_RowCancelingEdit" OnRowEditing="GridViewInsert_RowEditing" OnRowUpdating="GridViewInsert_RowUpdating" 
-            CssClass="AdminStyle.css">
+            CssClass="gridView" AlternatingRowStyle-CssClass="alt">
+            
+            <AlternatingRowStyle CssClass="alt" />
             
             <Columns>
                 <asp:BoundField DataField="surname" HeaderText="Etternavn" SortExpression="surname" />
@@ -52,13 +54,14 @@
         </div>
 
         <div id="knapperAktivInaktiv">
-            <asp:Button ID="btnDeaktiverte" runat="server" OnClick="btnDeaktiverte_Click" Text="Deaktiverte brukere" CssClass="AdminStyle.css" />
-            <asp:Button ID="btnAktiv" runat="server" OnClick="btnAktiv_Click" Text="Aktive brukere" CssClass="AdminStyle.css" />
+            <asp:Button ID="btnDeaktiverte" runat="server" OnClick="btnDeaktiverte_Click" Text="Deaktiverte brukere"/>
+            <asp:Button ID="btnAktiv" runat="server" OnClick="btnAktiv_Click" Text="Aktive brukere"/>
             <asp:Label runat="server">Oversikt over alle brukere</asp:Label>
         </div>
 
         <asp:GridView ID="GridViewAdmin" AllowSorting="True" AllowPaging="True" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="True" EnableViewState="true" DataKeyNames="userID" 
-            OnRowCancelingEdit="GridViewAdmin_RowCancelingEdit" OnRowEditing="GridViewAdmin_RowEditing" OnRowUpdating="GridViewAdmin_RowUpdating" OnRowDeleting="GridViewAdmin_RowDeleting" OnSorting="GridViewAdmin_Sorting" >
+            OnRowCancelingEdit="GridViewAdmin_RowCancelingEdit" OnRowEditing="GridViewAdmin_RowEditing" OnRowUpdating="GridViewAdmin_RowUpdating" OnRowDeleting="GridViewAdmin_RowDeleting" OnSorting="GridViewAdmin_Sorting" 
+            CssClass="gridView" AlternatingRowStyle-CssClass="alt">
             
             <Columns>
                 <asp:BoundField DataField="userID" HeaderText="Id" SortExpression="userID" ReadOnly="True" />

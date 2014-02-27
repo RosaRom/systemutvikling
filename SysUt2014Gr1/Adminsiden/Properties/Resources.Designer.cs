@@ -73,6 +73,26 @@ namespace Adminsiden.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap grd_alt {
+            get {
+                object obj = ResourceManager.GetObject("grd_alt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap grd_head {
+            get {
+                object obj = ResourceManager.GetObject("grd_head", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MorildData {
             get {
                 object obj = ResourceManager.GetObject("MorildData", resourceCulture);
