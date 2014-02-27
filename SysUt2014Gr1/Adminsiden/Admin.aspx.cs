@@ -51,6 +51,7 @@ namespace Admin
             GridViewAdmin.DataBind();
         }
 
+        #region Events
         protected void GridViewAdmin_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridViewAdmin.EditIndex = e.NewEditIndex;
@@ -99,23 +100,6 @@ namespace Admin
             GridViewAdmin.EditIndex = -1;
 
             GetUsers();
-        }
-
-        private void GetUsers()
-        {
-            if (active == true)
-                GetAllUsers();
-            else
-                GetInactiveUsers();
-        }
-
-        private void GridViewInsertEmpty()
-        {
-            string query = "SELECT * FROM SUser WHERE userID = 1";
-            DataTable dt = db.AdminGetAllUsers(query);
-            dt.Rows.Add(dt.NewRow());
-            GridViewInsert.DataSource = dt;
-            GridViewInsert.DataBind();
         }
 
         //RowUpdating kjøres når det legges til en ny bruker
@@ -206,6 +190,7 @@ namespace Admin
                 GridViewAdmin.DataBind();
             }      
         }
+        #endregion
 
         private string ConvertSortDirectionToSql(SortDirection sortDirection)
         {
@@ -220,6 +205,25 @@ namespace Admin
             }
             return GridViewSortDirection;
         }
+
+        private void GetUsers()
+        {
+            if (active == true)
+                GetAllUsers();
+            else
+                GetInactiveUsers();
+        }
+
+        private void GridViewInsertEmpty()
+        {
+            string query = "SELECT * FROM SUser WHERE userID = 1";
+            DataTable dt = db.AdminGetAllUsers(query);
+            dt.Rows.Add(dt.NewRow());
+            GridViewInsert.DataSource = dt;
+            GridViewInsert.DataBind();
+        }
+
+        
 
         //Metode for å filtrere GridViewAdmin
         public void FilterGridView()
