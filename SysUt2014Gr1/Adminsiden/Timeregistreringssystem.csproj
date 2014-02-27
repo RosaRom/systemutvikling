@@ -66,6 +66,7 @@
     <Content Include="Admin.aspx" />
     <EmbeddedResource Include="Resources\UPARROW.GIF" />
     <EmbeddedResource Include="Resources\DOWNARROW.GIF" />
+    <Content Include="AdminStyle.css" />
     <Content Include="Bruker.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>

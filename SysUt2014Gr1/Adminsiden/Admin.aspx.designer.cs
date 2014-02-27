@@ -31,24 +31,6 @@ namespace Admin {
         protected global::System.Web.UI.WebControls.GridView GridViewInsert;
         
         /// <summary>
-        /// btnDeaktiverte control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeaktiverte;
-        
-        /// <summary>
-        /// btnAktiv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAktiv;
-        
-        /// <summary>
         /// FilterSearchTerms control.
         /// </summary>
         /// <remarks>
@@ -83,6 +65,24 @@ namespace Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnFjernFilter;
+        
+        /// <summary>
+        /// btnDeaktiverte control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDeaktiverte;
+        
+        /// <summary>
+        /// btnAktiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAktiv;
         
         /// <summary>
         /// GridViewAdmin control.
