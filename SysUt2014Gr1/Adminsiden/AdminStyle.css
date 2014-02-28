@@ -1,7 +1,7 @@
 ﻿
 
 Body{
-    background-color:gray;
+    background-color:lightgray;
 }
 
 #adminLogo{
@@ -17,7 +17,6 @@ Body{
     border-bottom-style:solid;
     background-color:white;
     width:70%;
-    
 }
 
 #GridViewAdmin{
@@ -27,7 +26,6 @@ Body{
     border-bottom-style:solid;
     background-color:white;
     width:70%;
-    
 }
 
 #søkefelt{
@@ -65,11 +63,16 @@ Body{
 .gridView th{
     background: url(Resources/grd_head.png) repeat-x top;
     background-size:100%;
-    
+    color:white;
+    border-color:black;
 }
 
 .gridView .alt{
     background: url(Resources/grd_alt.png) repeat-x top;
     background-size:100%;
+}
+
+.gridViewHeader a{
+    color:white;
 }
 
