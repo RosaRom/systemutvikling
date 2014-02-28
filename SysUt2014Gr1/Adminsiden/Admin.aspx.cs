@@ -277,9 +277,9 @@ namespace Admin
                     default:
                         sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.DOWNARROW.gif");
                         e.Row.Cells[Convert.ToInt32(e.Row.DataItemIndex.ToString())].Controls.Add(sortImage);
-                        break; */
+                        break; 
                 }
-            }
-        }
+            } 
+        }*/
     }
 }
