@@ -68,6 +68,7 @@
     <EmbeddedResource Include="Resources\DOWNARROW.GIF" />
     <Content Include="AdminStyle.css" />
     <Content Include="Bruker.aspx" />
+    <None Include="Properties\PublishProfiles\tord.pubxml" />
     <None Include="Resources\MorildData.png" />
     <None Include="Resources\grd_alt.png" />
     <None Include="Resources\grd_head.png" />
