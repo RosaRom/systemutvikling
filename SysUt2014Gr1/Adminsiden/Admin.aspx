@@ -13,9 +13,7 @@
         <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA"/>
     </div>
 
-    <form id="Adminform" runat="server">
-    
-        
+    <form id="Adminform" runat="server">  
 
     <div>
         <div id="overskriftInsert">
@@ -47,7 +45,6 @@
                 <asp:ListItem Value="firstname">Fornavn</asp:ListItem>
                 <asp:ListItem Value="surname">Etternavn</asp:ListItem>
                 <asp:ListItem Value="username">Brukernavn</asp:ListItem>
-                <asp:ListItem></asp:ListItem>
             </asp:DropDownList>
             <asp:Button ID="btnFilter" runat="server" Text="Søk" OnClick="btnFilter_Click" />
             <asp:Button ID="btnFjernFilter" runat="server" Text="Fjern filter" OnClick="btnFjernFilter_Click" />
@@ -61,7 +58,7 @@
 
         <asp:GridView ID="GridViewAdmin" AllowSorting="True" AllowPaging="True" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="True" EnableViewState="true" DataKeyNames="userID" 
             OnRowCancelingEdit="GridViewAdmin_RowCancelingEdit" OnRowEditing="GridViewAdmin_RowEditing" OnRowUpdating="GridViewAdmin_RowUpdating" OnRowDeleting="GridViewAdmin_RowDeleting" OnSorting="GridViewAdmin_Sorting" 
-            CssClass="gridView" AlternatingRowStyle-CssClass="alt">
+            CssClass="gridView" AlternatingRowStyle-CssClass="alt" HeaderStyle-CssClass="gridViewHeader">
             
             <Columns>
                 <asp:BoundField DataField="userID" HeaderText="Id" SortExpression="userID" ReadOnly="True" />
