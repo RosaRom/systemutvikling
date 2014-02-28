@@ -260,14 +260,15 @@ namespace Admin
                 {
                     sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.DOWNARROW.gif");
                 }
-                else if (GridViewSortDirection.Equals("DESC")) 
+                else if (GridViewSortDirection.Equals("DESC"))
                 {
-                    sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.UPARROW.gif")
+                    sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.UPARROW.gif");
                 }
-                
-                switch (GridViewSortDirection) {
-                    
-                    case "ASC": 
+
+                switch (GridViewSortDirection)
+                {
+
+                    case "ASC":
                         e.Row.Cells[Convert.ToInt32(e.Row.DataItemIndex.ToString())].Controls.Add(sortImage);
                         break;
                     case "DESC":
