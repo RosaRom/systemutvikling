@@ -71,21 +71,21 @@ namespace Admin
         {
             try
             {
-                string id = GridViewAdmin.DataKeys[e.RowIndex]["userID"].ToString();
-                string surname = e.NewValues["surname"].ToString();
-                string firstname = e.NewValues["firstname"].ToString();
-                string username = e.NewValues["username"].ToString();
-                string phone = e.NewValues["phone"].ToString();
-                string mail = e.NewValues["mail"].ToString();
-                string teamID = e.NewValues["teamID"].ToString();
-                string groupID = e.NewValues["groupID"].ToString();
+            string id = GridViewAdmin.DataKeys[e.RowIndex]["userID"].ToString();
+            string surname = e.NewValues["surname"].ToString();
+            string firstname = e.NewValues["firstname"].ToString();
+            string username = e.NewValues["username"].ToString();
+            string phone = e.NewValues["phone"].ToString();
+            string mail = e.NewValues["mail"].ToString();
+            string teamID = e.NewValues["teamID"].ToString();
+            string groupID = e.NewValues["groupID"].ToString();
 
-                string query = String.Format("UPDATE SUser SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
-                    surname, firstname, username, phone, mail, teamID, groupID, id);
-                db.InsertDeleteUpdate(query);
-                GridViewAdmin.EditIndex = -1;
-                GetUsers();
-            }
+            string query = String.Format("UPDATE SUser SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
+                surname, firstname, username, phone, mail, teamID, groupID, id);
+            db.InsertDeleteUpdate(query);
+            GridViewAdmin.EditIndex = -1;
+            GetUsers();
+        }
             catch(Exception exception)
             {
                 string error = exception.Message;
@@ -117,22 +117,22 @@ namespace Admin
         {
             try
             {
-                string surname = e.NewValues["surname"].ToString();
-                string firstname = e.NewValues["firstname"].ToString();
-                string username = e.NewValues["username"].ToString();
-                string phone = e.NewValues["phone"].ToString();
-                string mail = e.NewValues["mail"].ToString();
-                string teamID = e.NewValues["teamID"].ToString();
-                string groupID = e.NewValues["groupID"].ToString();
+            string surname = e.NewValues["surname"].ToString();
+            string firstname = e.NewValues["firstname"].ToString();
+            string username = e.NewValues["username"].ToString();
+            string phone = e.NewValues["phone"].ToString();
+            string mail = e.NewValues["mail"].ToString();
+            string teamID = e.NewValues["teamID"].ToString();
+            string groupID = e.NewValues["groupID"].ToString();
 
-                string query = String.Format("INSERT INTO SUser (surname, firstname, password, username, phone, mail, teamID, groupID, aktiv) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})",
-                    surname, firstname, "123", username, phone, mail, teamID, groupID, "1");
+            string query = String.Format("INSERT INTO SUser (surname, firstname, password, username, phone, mail, teamID, groupID, aktiv) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})",
+                surname, firstname, "123", username, phone, mail, teamID, groupID, "1");
 
-                db.InsertDeleteUpdate(query);
-                GridViewInsert.EditIndex = -1;
-                GetUsers();
-                GridViewInsertEmpty();
-            }
+            db.InsertDeleteUpdate(query);
+            GridViewInsert.EditIndex = -1;
+            GetUsers();
+            GridViewInsertEmpty();
+        }
             catch (Exception exception)
             {
                 string error = exception.Message;
@@ -145,7 +145,7 @@ namespace Admin
             GridViewInsert.EditIndex = e.NewEditIndex;
             GridViewInsertEmpty();
         }
-        
+
         //kjøres når trykker cancel etter å ha trykket edit i legg til ny bruker gridviewen
         protected void GridViewInsert_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
@@ -278,40 +278,34 @@ namespace Admin
         /*
         protected void GridViewAdmin_RowCreated(object sender, GridViewRowEventArgs e)
         {
+            Image sortImage = new Image();
+
             if (e.Row.RowType == DataControlRowType.Header)
             {
-                if (String.Empty != GridViewSortDirection)
+                if (GridViewSortDirection.Equals("ASC"))
                 {
-                    AddSortImage(e.Row);
+                    sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.DOWNARROW.gif");
                 }
+                else if (GridViewSortDirection.Equals("DESC"))
+                {
+                    sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.UPARROW.gif");
             }
-        }
 
-        void AddSortImage(GridViewRow header)
+                switch (GridViewSortDirection)
         {
-            Int32 columnIndex = Convert.ToInt32(header.DataItemIndex.ToString());
-            if (-1 == columnIndex)
-            {
-                return;
-            }
-            //Lager bildet utifra sort direction
-            Image sortImage = new Image(); 
-            string downURL = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.DOWNARROW.gif");
-            string upURL = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.UPARROW.gif");
 
-            if (GridViewSortDirection.Equals("ASC"))
-            {
-                sortImage.ImageUrl = downURL;
-                sortImage.AlternateText = "Stigende rekkefølge.";
+                    case "ASC":
+                        e.Row.Cells[Convert.ToInt32(e.Row.DataItemIndex.ToString())].Controls.Add(sortImage);
+                        break;
+                    case "DESC":
+                        e.Row.Cells[Convert.ToInt32(e.Row.DataItemIndex.ToString())].Controls.Add(sortImage);
+                        break;
+                    default:
+                        sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.DOWNARROW.gif");
+                        e.Row.Cells[Convert.ToInt32(e.Row.DataItemIndex.ToString())].Controls.Add(sortImage);
+                        break; 
             }
-            else
-            {
-                sortImage.ImageUrl = upURL;
-                sortImage.AlternateText = "Synkende rekkefølge.";
             }
-
-            //Legger til bildet i riktig header
-            header.Cells[columnIndex].Controls.Add(sortImage);
         }*/
     }
 }
