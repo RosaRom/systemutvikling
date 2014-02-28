@@ -7,90 +7,108 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Admin {
+namespace Bruker {
     
     
-    public partial class Admin {
+    public partial class Bruker {
         
         /// <summary>
-        /// Adminform control.
+        /// Brukerform control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm Adminform;
+        protected global::System.Web.UI.HtmlControls.HtmlForm Brukerform;
         
         /// <summary>
-        /// GridViewInsert control.
+        /// taskName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewInsert;
+        protected global::System.Web.UI.WebControls.DropDownList taskName;
         
         /// <summary>
-        /// FilterSearchTerms control.
+        /// projectName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FilterSearchTerms;
+        protected global::System.Web.UI.WebControls.DropDownList projectName;
         
         /// <summary>
-        /// FilterSearchDropdown control.
+        /// projectDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList FilterSearchDropdown;
+        protected global::System.Web.UI.WebControls.TextBox projectDescription;
         
         /// <summary>
-        /// btnFilter control.
+        /// Calendar1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFilter;
+        protected global::System.Web.UI.WebControls.Calendar Calendar1;
         
         /// <summary>
-        /// btnFjernFilter control.
+        /// Lb_fra control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFjernFilter;
+        protected global::System.Web.UI.WebControls.Label Lb_fra;
         
         /// <summary>
-        /// btnDeaktiverte control.
+        /// Tb_fra control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeaktiverte;
+        protected global::System.Web.UI.WebControls.TextBox Tb_fra;
         
         /// <summary>
-        /// btnAktiv control.
+        /// Lb_til control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAktiv;
+        protected global::System.Web.UI.WebControls.Label Lb_til;
         
         /// <summary>
-        /// GridViewAdmin control.
+        /// Tb_til control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewAdmin;
+        protected global::System.Web.UI.WebControls.TextBox Tb_til;
+        
+        /// <summary>
+        /// workPlace control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList workPlace;
+        
+        /// <summary>
+        /// comment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox comment;
     }
 }

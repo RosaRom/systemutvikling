@@ -66,6 +66,11 @@
     <Content Include="Admin.aspx" />
     <EmbeddedResource Include="Resources\UPARROW.GIF" />
     <EmbeddedResource Include="Resources\DOWNARROW.GIF" />
+    <Content Include="AdminStyle.css" />
+    <Content Include="Bruker.aspx" />
+    <None Include="Resources\MorildData.png" />
+    <None Include="Resources\grd_alt.png" />
+    <None Include="Resources\grd_head.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +80,13 @@
     </Compile>
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bruker.aspx.cs">
+      <DependentUpon>Bruker.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bruker.aspx.designer.cs">
+      <DependentUpon>Bruker.aspx</DependentUpon>
     </Compile>
     <Compile Include="Bruker.cs" />
     <Compile Include="DBConnect.cs" />
