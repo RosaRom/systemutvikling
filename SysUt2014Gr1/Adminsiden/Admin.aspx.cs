@@ -32,7 +32,7 @@ namespace Admin
             else
             {
                 active = (Boolean)ViewState["active"];
-            }    
+            }
         }
 
         private void GetAllUsers()
@@ -57,13 +57,13 @@ namespace Admin
             GridViewAdmin.EditIndex = e.NewEditIndex;
             GetUsers();
         }
-        
+
         protected void GridViewAdmin_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             GridViewAdmin.EditIndex = -1;
             GetUsers();
         }
-        
+
         protected void GridViewAdmin_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
 
@@ -155,7 +155,7 @@ namespace Admin
             }
             else
             {
-            FilterGridView();
+                FilterGridView();
             }
         }
 
@@ -164,7 +164,7 @@ namespace Admin
             FilterSearchTerms.Text = "";    //fjerner tekst fra søkevilkårboksen
             GetUsers();                     // Oppdaterer lista 
         }
-        
+
         // Sorting metode
         protected void GridViewAdmin_Sorting(object sender, GridViewSortEventArgs e)
         {
@@ -188,7 +188,7 @@ namespace Admin
 
                 GridViewAdmin.DataSource = dataView;
                 GridViewAdmin.DataBind();
-            }      
+            }
         }
         #endregion
 
@@ -223,7 +223,7 @@ namespace Admin
             GridViewInsert.DataBind();
         }
 
-        
+
 
         //Metode for å filtrere GridViewAdmin
         public void FilterGridView()
@@ -231,12 +231,12 @@ namespace Admin
             DataTable filterTable = new DataTable(); //Lager en data table for å lagre data fra spørringen
 
             //Henter alle fra SUser-tabellen med korrekt kolonnenavn / vilkår fra databasen
-            string filterStatement = String.Format("SELECT * FROM SUser WHERE {0} LIKE '%{1}%'", FilterSearchDropdown.Text, FilterSearchTerms.Text); 
+            string filterStatement = String.Format("SELECT * FROM SUser WHERE {0} LIKE '%{1}%'", FilterSearchDropdown.Text, FilterSearchTerms.Text);
 
             filterTable = db.AdminGetAllUsers(filterStatement);
 
             if (filterTable.Rows.Count > 0) //Hvis søkevilkåret gir resultater
-            {   
+            {
                 //Om søket ga resultat
                 GridViewAdmin.DataSource = filterTable; //Setter data source til den filtrerte data table
                 GridViewAdmin.DataBind();               //Oppdaterer data i GridView
@@ -249,43 +249,36 @@ namespace Admin
         }
 
         // FUNKER IKKE ENDA
-        /*
+
         protected void GridViewAdmin_RowCreated(object sender, GridViewRowEventArgs e)
         {
+            Image sortImage = new Image();
+
             if (e.Row.RowType == DataControlRowType.Header)
             {
-                if (String.Empty != GridViewSortDirection)
+                if (GridViewSortDirection.Equals("ASC"))
                 {
-                    AddSortImage(e.Row);
+                    sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.DOWNARROW.gif");
+                }
+                else if (GridViewSortDirection.Equals("DESC")) 
+                {
+                    sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.UPARROW.gif")
+                }
+                
+                switch (GridViewSortDirection) {
+                    
+                    case "ASC": 
+                        e.Row.Cells[Convert.ToInt32(e.Row.DataItemIndex.ToString())].Controls.Add(sortImage);
+                        break;
+                    case "DESC":
+                        e.Row.Cells[Convert.ToInt32(e.Row.DataItemIndex.ToString())].Controls.Add(sortImage);
+                        break;
+                    default:
+                        sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.DOWNARROW.gif");
+                        e.Row.Cells[Convert.ToInt32(e.Row.DataItemIndex.ToString())].Controls.Add(sortImage);
+                        break;
                 }
             }
         }
-
-        void AddSortImage(GridViewRow header)
-        {
-            Int32 columnIndex = Convert.ToInt32(header.DataItemIndex.ToString());
-            if (-1 == columnIndex)
-            {
-                return;
-            }
-            //Lager bildet utifra sort direction
-            Image sortImage = new Image(); 
-            string downURL = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.DOWNARROW.gif");
-            string upURL = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.UPARROW.gif");
-
-            if (GridViewSortDirection.Equals("ASC"))
-            {
-                sortImage.ImageUrl = downURL;
-                sortImage.AlternateText = "Stigende rekkefølge.";
-            }
-            else
-            {
-                sortImage.ImageUrl = upURL;
-                sortImage.AlternateText = "Synkende rekkefølge.";
-            }
-
-            //Legger til bildet i riktig header
-            header.Cells[columnIndex].Controls.Add(sortImage);
-        }*/
     }
 }
