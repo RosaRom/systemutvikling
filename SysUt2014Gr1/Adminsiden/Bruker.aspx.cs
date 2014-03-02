@@ -13,6 +13,7 @@ namespace Bruker
     public partial class Bruker : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
+        List<String> liste = new List<string>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +24,7 @@ namespace Bruker
                 getWorkplace();
             }         
         }
-
+        //Fyller dropdown med tasks
         private void GetTasks ()
         {
             string query = "SELECT * FROM STask";
@@ -32,14 +33,26 @@ namespace Bruker
             taskName.Items.Insert(0, new ListItem("<Velg task>", "0"));
             taskName.DataBind();
         }
+        //Fyller dropdown med prosjekter
+        //Oppretter liste med prosjektnavn/beskrivelse for å fylle ut textbox i "projectName_SelectedIndexChanged"
         private void getProjects ()
         {
             string query = "SELECT * FROM SProject";
-            projectName.DataSource = db.getAll(query);
+            DataTable dt = new DataTable();
+            dt = db.getAll(query);
+            projectName.DataSource = dt;
             projectName.DataValueField = "projectName";
             projectName.Items.Insert(0, new ListItem("<Velg prosjekt>", "0"));
             projectName.DataBind();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string strValue = Convert.ToString(row["projectName"]) + ", " +
+                         Convert.ToString(row["Description"]);
+                liste.Add(strValue);
+            }
         }
+        //Fyller dropdown med plasser å jobbe fra
         private void getWorkplace()
         {
             string query = "SELECT * FROM SWorkplace";
@@ -48,15 +61,13 @@ namespace Bruker
             workPlace.Items.Insert(0, new ListItem("<Velg arbeidsplass>", "0"));
             workPlace.DataBind();
         }
-
+        //Fyller textbox med prosjektbeskrivelse til valgt prosjekt.
         protected void projectName_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Ikke ferdig enda
             string selectedValue = projectName.SelectedValue;
-            string query ="SELECT Description From SProsjekt WHERE prosjektName =" + selectedValue;
-            //projectDescription.Text = db.getAll(query);
-
-            
+            projectDescription.Text = liste.Find(p => p.Contains(selectedValue));
+  
         }
     }
 }
