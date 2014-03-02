@@ -40,13 +40,13 @@ namespace Bruker {
         protected global::System.Web.UI.WebControls.DropDownList projectName;
         
         /// <summary>
-        /// projectDescription control.
+        /// TxtArea_projectComment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox projectDescription;
+        protected global::System.Web.UI.WebControls.TextBox TxtArea_projectComment;
         
         /// <summary>
         /// Calendar1 control.
@@ -103,12 +103,21 @@ namespace Bruker {
         protected global::System.Web.UI.WebControls.DropDownList workPlace;
         
         /// <summary>
-        /// comment control.
+        /// TxtArea_userComment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox comment;
+        protected global::System.Web.UI.WebControls.TextBox TxtArea_userComment;
+        
+        /// <summary>
+        /// btn_ok control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_ok;
     }
 }

@@ -95,5 +95,17 @@ namespace Admin
                 this.CloseConnection();
             }
         }
+       /* public void InsertTimeSheet(string _start, string _stop, int _userID, int _taskID, string _description, int _workplaceID, int _active, int _projectID)
+        {
+            //string query = "INSERT INTO TimeSheet (start, stop, userID, taskID, description, workplaceID, active, projectID) VALUES('" + first_name + "', '" + second_name + "')"
+                
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.ExecuteNonQuery();
+
+                this.CloseConnection();
+            }
+        }*/
     }
 }

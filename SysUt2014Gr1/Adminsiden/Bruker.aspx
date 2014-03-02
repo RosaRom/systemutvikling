@@ -20,8 +20,8 @@
             left: 16px;
             top: 525px;
             position: absolute;
-            height: 58px;
-            width: 214px;
+            height: 37px;
+            width: 216px;
         }
         #form1 {
             width: 250px;
@@ -31,6 +31,10 @@
         }
         #projectDescription {
             width: 216px;
+        }
+        #TA_Comment {
+            width: 211px;
+            height: 41px;
         }
     </style>
 </head>
@@ -42,7 +46,7 @@
        <table cellpadding="5">
          <tr>
             <td class="auto-style2">
-                   <asp:DropDownList ID="taskName" runat="server" AppendDataBoundItems="true" Height="20px" Width="220px">
+                   <asp:DropDownList ID="taskName" runat="server" AppendDataBoundItems="true" Height="20px" Width="220px" OnSelectedIndexChanged="taskName_SelectedIndexChanged">
                    </asp:DropDownList>
                 <br />
                 <br />
@@ -50,7 +54,7 @@
                    </asp:DropDownList>
                 <br />
                 <br />
-                   &nbsp;<asp:TextBox ID="projectDescription" runat="server" BorderStyle="Double" Height="40px" ReadOnly="True" Width="210px"></asp:TextBox>
+                 <asp:TextBox id="TxtArea_projectComment" TextMode="multiline" Columns="25" Rows="5" runat="server" ReadOnly="True" />
                 <br />
                 <br />
                 <asp:Calendar id="Calendar1"
@@ -71,13 +75,14 @@
                 <asp:TextBox ID="Tb_til" runat="server" style="z-index: 1; left: 181px; top: 369px; width: 50px; right: 904px; "></asp:TextBox>
                 <br />
                 <br />
-                <asp:DropDownList ID="workPlace" runat="server" AppendDataBoundItems="true" Height="20px" Width="220px">
+                <asp:DropDownList ID="workPlace" runat="server" AppendDataBoundItems="true" Height="20px" Width="220px" OnSelectedIndexChanged="workPlace_SelectedIndexChanged">
                 </asp:DropDownList>
                 <br />
                 <br />
-                &nbsp;<asp:TextBox ID="comment" runat="server" BorderStyle="Double" Height="55px" Width="210px"></asp:TextBox>
+                <asp:TextBox id="TxtArea_userComment" TextMode="multiline" Columns="25" Rows="5" runat="server" />
                 <br />
                 <br />
+                   <asp:Button ID="btn_ok" runat="server" OnClick="btn_ok_Click" Text="OK" Width="223px" />
                 <br />
             </td>
          </tr>

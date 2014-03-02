@@ -13,7 +13,8 @@ namespace Bruker
     public partial class Bruker : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
-        List<String> liste = new List<string>();
+        int userID = 1; //Denne må sittes under login, noe som ikke er skrevet enda. Hardkodet inntil videre.
+        List<String> projectList = new List<string>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,8 +38,8 @@ namespace Bruker
         //Oppretter liste med prosjektnavn/beskrivelse for å fylle ut textbox i "projectName_SelectedIndexChanged"
         private void getProjects ()
         {
-            string query = "SELECT * FROM SProject";
             DataTable dt = new DataTable();
+            string query = "SELECT * FROM SProject";
             dt = db.getAll(query);
             projectName.DataSource = dt;
             projectName.DataValueField = "projectName";
@@ -47,9 +48,10 @@ namespace Bruker
 
             foreach (DataRow row in dt.Rows)
             {
-                string strValue = Convert.ToString(row["projectName"]) + ", " +
-                         Convert.ToString(row["Description"]);
-                liste.Add(strValue);
+                string strValue =   Convert.ToInt32(row["projectID"]) + ", " + 
+                                    Convert.ToString(row["projectName"]) + ", " +
+                                    Convert.ToString(row["Description"]);
+                projectList.Add(strValue);
             }
         }
         //Fyller dropdown med plasser å jobbe fra
@@ -61,13 +63,43 @@ namespace Bruker
             workPlace.Items.Insert(0, new ListItem("<Velg arbeidsplass>", "0"));
             workPlace.DataBind();
         }
+        //Herfra og ned er ikke ferdig enda->
+
         //Fyller textbox med prosjektbeskrivelse til valgt prosjekt.
         protected void projectName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Ikke ferdig enda
-            string selectedValue = projectName.SelectedValue;
-            projectDescription.Text = liste.Find(p => p.Contains(selectedValue));
-  
+            
+            selectedProject = projectName.SelectedValue;
+            TxtArea_projectComment.Text = projectList.Find(p => p.Contains(selectedProject));
         }
+        protected void taskName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //selectedTaskID = taskName.SelectedValue;
+        }
+        protected void workPlace_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //selectedWorkplaceID = workPlace.SelectedValue;
+        }
+
+        private string selectedProject;
+        private int selectedTaskID;
+        private int selectedProjectID;
+        private int selectedWorkplaceID;
+        int active = 0;
+
+        protected void btn_ok_Click(object sender, EventArgs e)
+        {
+           /* var projectID = projectList.Find(item == "test").value;
+            string userDescription = TxtArea_userComment.Text;
+
+            string timeFrom = Tb_fra.Text;
+            string timeTo = Tb_til.Text;
+
+            db.InsertTimeSheet(timeFrom, timeTo, userID, selectedTaskID, userDescription, selectedWorkplaceID, active, selectedProjectID);*/
+        }
+
+
+
+       
     }
 }
