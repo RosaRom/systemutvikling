@@ -40,7 +40,7 @@ namespace Admin
         private void GetAllUsers()
         {
             string queryActive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM SUser, STeam, SUserGroup WHERE aktiv = '1' AND SUser.teamID = STeam.teamID AND SUser.groupID = SUserGroup.groupID";
-
+            
             GridViewAdmin.DataSource = db.AdminGetAllUsers(queryActive);
             GridViewAdmin.DataBind();
         }
@@ -288,7 +288,7 @@ namespace Admin
 
         protected void FilterSearchDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         // FUNKER IKKE ENDA
