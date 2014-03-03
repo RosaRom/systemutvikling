@@ -126,8 +126,11 @@ namespace Admin
             string username = e.NewValues["username"].ToString();
             string phone = e.NewValues["phone"].ToString();
             string mail = e.NewValues["mail"].ToString();
-            string teamID = e.NewValues["teamID"].ToString();
-            string groupID = e.NewValues["groupID"].ToString();
+            string teamName = e.NewValues["teamName"].ToString();
+            string groupName = e.NewValues["groupName"].ToString();
+
+            int teamID = db.GetTeamGroupId("SELECT teamID from STeam WHERE teamName LIKE '" + teamName + "'");
+            int groupID = db.GetTeamGroupId("SELECT groupID from SUserGroup WHERE groupName LIKE '" + groupName + "'");
 
             string query = String.Format("INSERT INTO SUser (surname, firstname, password, username, phone, mail, teamID, groupID, aktiv) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})",
                 surname, firstname, "123", username, phone, mail, teamID, groupID, "1");
@@ -246,7 +249,7 @@ namespace Admin
         //setter inn en tom rad for å kunne legge til en bruker
         private void GridViewInsertEmpty()
         {
-            string query = "SELECT * FROM SUser WHERE userID = 1";
+            string query = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM SUser, STeam, SUserGroup WHERE userID = 1 AND SUser.teamID = STeam.teamID AND SUser.groupID = SUserGroup.groupID";
             DataTable dt = db.AdminGetAllUsers(query);
             dt.Rows.Add(dt.NewRow());
             GridViewInsert.DataSource = dt;
