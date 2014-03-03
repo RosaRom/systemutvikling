@@ -11,7 +11,7 @@ namespace Admin
 {
     public partial class Admin : System.Web.UI.Page
     {
-        private DBConnect db = new DBConnect();
+        private DBConnect db;
         private Boolean active = true;
 
         // Brukes i forhold til sorting og for å lagre view states når det er flere spørringer opp mot websiden
@@ -23,6 +23,7 @@ namespace Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            db = new DBConnect();
             if (!Page.IsPostBack)
             {
                 ViewState["active"] = active;
@@ -272,6 +273,16 @@ namespace Admin
                 //Søket ga ingen resultat, trenger ikke refreshe GridViewAdmin
                 FilterSearchTerms.Text = "Søket ga ingen resultat!"; //Gir bruker beskjed
             }
+        }
+
+        protected void GridViewInsert_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void FilterSearchDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         // FUNKER IKKE ENDA

@@ -12,14 +12,24 @@
     
     </div>
         <p>
-            Prosjekt</p>
-        <p>
-            <asp:Button ID="newProject" runat="server" Height="35px" Text="Nytt prosjekt" Width="196px" />
-        </p>
         <asp:DropDownList ID="projectList" runat="server" Width="197px">
         </asp:DropDownList>
+            <asp:Button ID="btnShowProject" runat="server" Text="Vis" />
+        </p>
         <p>
-            <asp:Button ID="viewProjectFromList" runat="server" Text="Endre prosjekt" Width="196px" />
+            <asp:Button ID="btnEditProject" runat="server" Text="Endre" Width="66px" OnClick="btnEditProject_Click" />
+            <asp:Button ID="btnArchiveProject" runat="server" Text="Arkiver" Width="81px" />
+            <asp:Button ID="btnShowArchive" runat="server" Text="Vis arkiv" Width="90px" />
+        </p>
+        <p>
+            <asp:Button ID="btnNewProject" runat="server" Height="35px" Text="Opprett prosjekt" Width="236px" />
+        </p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            <asp:Button ID="btnEditProfile" runat="server" Text="Endre profilinstillinger" Width="236px" />
         </p>
     </form>
 </body>
