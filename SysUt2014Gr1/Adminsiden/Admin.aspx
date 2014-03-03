@@ -68,9 +68,8 @@
 
                     <asp:BoundField DataField="phone" HeaderText="Telefon" SortExpression="phone" />
                     <asp:BoundField DataField="mail" HeaderText="Mail" SortExpression="mail" />
-                    <asp:BoundField DataField="teamID" HeaderText="TeamId" SortExpression="teamID" />
-                    <asp:BoundField DataField="groupID" HeaderText="GruppeId" SortExpression="groupID" />
-                    <asp:BoundField DataField="aktiv" HeaderText="Aktiv" SortExpression="aktiv" ReadOnly="True" />
+                    <asp:BoundField DataField="teamName" HeaderText="Team" SortExpression="teamID" />
+                    <asp:BoundField DataField="groupName" HeaderText="Brukertype" SortExpression="groupID" />
                     <asp:CommandField ShowDeleteButton="True" DeleteText="Aktiver/Deaktiver" />
                 </Columns>
 
