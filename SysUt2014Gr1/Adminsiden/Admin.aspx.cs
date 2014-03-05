@@ -299,13 +299,6 @@ namespace Admin
             return db.AdminGetAllUsers(query);
         }
 
-        protected DataTable DropDownBoxGroup()
-        {
-            string query = "SELECT * FROM SUserGroup";
-
-            return db.AdminGetAllUsers(query);
-        }
-
         // FUNKER IKKE ENDA
         /*
         protected void GridViewAdmin_RowCreated(object sender, GridViewRowEventArgs e)
