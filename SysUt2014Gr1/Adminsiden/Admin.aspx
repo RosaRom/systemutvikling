@@ -22,7 +22,7 @@
 
             <asp:GridView ID="GridViewInsert" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" AutoGenerateEditButton="True"
                 OnRowCancelingEdit="GridViewInsert_RowCancelingEdit" OnRowEditing="GridViewInsert_RowEditing" OnRowUpdating="GridViewInsert_RowUpdating"
-                CssClass="gridView" AlternatingRowStyle-CssClass="alt" OnSelectedIndexChanged="GridViewInsert_SelectedIndexChanged">
+                CssClass="gridView" AlternatingRowStyle-CssClass="alt">
 
                 <AlternatingRowStyle CssClass="alt" />
 
@@ -34,13 +34,19 @@
                     <asp:BoundField DataField="phone" HeaderText="Telefon" SortExpression="phone" />
                     <asp:BoundField DataField="mail" HeaderText="Mail" SortExpression="mail" />
                     <asp:BoundField DataField="teamName" HeaderText="Team" SortExpression="teamID" />
-                    <asp:BoundField DataField="groupName" HeaderText="Brukertype" SortExpression="groupID" />
+
+                    <asp:TemplateField HeaderText="Brukertype">
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="dropDownGroup" DataSource="<%# DropDownBoxGroup() %>" 
+                                DataTextField="groupName" DataValueField="groupName" runat="server"></asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
 
             <div id="søkefelt">
                 <asp:TextBox ID="FilterSearchTerms" runat="server"></asp:TextBox>
-                <asp:DropDownList ID="FilterSearchDropdown" runat="server" OnSelectedIndexChanged="FilterSearchDropdown_SelectedIndexChanged">
+                <asp:DropDownList ID="FilterSearchDropdown" runat="server">
                     <asp:ListItem Value="userID">Bruker ID</asp:ListItem>
                     <asp:ListItem Value="firstname">Fornavn</asp:ListItem>
                     <asp:ListItem Value="surname">Etternavn</asp:ListItem>

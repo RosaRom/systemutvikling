@@ -119,6 +119,8 @@ namespace Admin
         //RowUpdating kjøres når det legges til en ny bruker
         protected void GridViewInsert_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            GridViewRow row = GridViewInsert.Rows[e.RowIndex];
+
             try
             {
             string surname = e.NewValues["surname"].ToString();
@@ -127,7 +129,8 @@ namespace Admin
             string phone = e.NewValues["phone"].ToString();
             string mail = e.NewValues["mail"].ToString();
             string teamName = e.NewValues["teamName"].ToString();
-            string groupName = e.NewValues["groupName"].ToString();
+            DropDownList group = (DropDownList)row.FindControl("dropDownGroup");
+            string groupName = group.SelectedItem.Text;
 
             int teamID = db.GetTeamGroupId("SELECT teamID from STeam WHERE teamName LIKE '" + teamName + "'");
             int groupID = db.GetTeamGroupId("SELECT groupID from SUserGroup WHERE groupName LIKE '" + groupName + "'");
@@ -281,14 +284,11 @@ namespace Admin
             }
         }
 
-        protected void GridViewInsert_SelectedIndexChanged(object sender, EventArgs e)
+        protected DataTable DropDownBoxGroup()
         {
+            string query = "SELECT * FROM SUserGroup";
 
-        }
-
-        protected void FilterSearchDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
+            return db.AdminGetAllUsers(query);
         }
 
         // FUNKER IKKE ENDA
