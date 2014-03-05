@@ -27,13 +27,19 @@
                 <AlternatingRowStyle CssClass="alt" />
 
                 <Columns>
-                    <asp:BoundField DataField="surname" HeaderText="Etternavn" SortExpression="surname" />
-                    <asp:BoundField DataField="firstname" HeaderText="Fornavn" SortExpression="firstname" />
-                    <asp:BoundField DataField="username" HeaderText="Brukernavn" SortExpression="username" />
+                    <asp:BoundField DataField="surname" HeaderText="Etternavn"/>
+                    <asp:BoundField DataField="firstname" HeaderText="Fornavn"/>
+                    <asp:BoundField DataField="username" HeaderText="Brukernavn"/>
 
-                    <asp:BoundField DataField="phone" HeaderText="Telefon" SortExpression="phone" />
-                    <asp:BoundField DataField="mail" HeaderText="Mail" SortExpression="mail" />
-                    <asp:BoundField DataField="teamName" HeaderText="Team" SortExpression="teamID" />
+                    <asp:BoundField DataField="phone" HeaderText="Telefon"/>
+                    <asp:BoundField DataField="mail" HeaderText="Mail"/>
+
+                    <asp:TemplateField HeaderText="Team">
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="dropDownTeam" DataSource="<%# DropDownBoxTeam() %>" 
+                                DataTextField="teamName" DataValueField="teamName" runat="server"></asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Brukertype">
                         <EditItemTemplate>

@@ -128,7 +128,8 @@ namespace Admin
             string username = e.NewValues["username"].ToString();
             string phone = e.NewValues["phone"].ToString();
             string mail = e.NewValues["mail"].ToString();
-            string teamName = e.NewValues["teamName"].ToString();
+            DropDownList team = (DropDownList)row.FindControl("dropDownTeam");
+            string teamName = team.SelectedItem.Text;
             DropDownList group = (DropDownList)row.FindControl("dropDownGroup");
             string groupName = group.SelectedItem.Text;
 
@@ -287,6 +288,13 @@ namespace Admin
         protected DataTable DropDownBoxGroup()
         {
             string query = "SELECT * FROM SUserGroup";
+
+            return db.AdminGetAllUsers(query);
+        }
+
+        protected DataTable DropDownBoxTeam()
+        {
+            string query = "SELECT * FROM STeam";
 
             return db.AdminGetAllUsers(query);
         }
