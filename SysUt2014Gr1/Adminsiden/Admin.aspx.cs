@@ -33,14 +33,14 @@ namespace Admin
             else
             {
                 active = (Boolean)ViewState["active"];                  //sørger for å ta vare på booleanverdien til active mellom postback
-            }    
+            }
         }
 
         //her hentes alle aktive brukere ut og vises i gridview
         private void GetAllUsers()
         {
-            string queryActive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM SUser, STeam, SUserGroup WHERE aktiv = '1' AND SUser.teamID = STeam.teamID AND SUser.groupID = SUserGroup.groupID";
-            
+            string queryActive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '1' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
+
             GridViewAdmin.DataSource = db.AdminGetAllUsers(queryActive);
             GridViewAdmin.DataBind();
         }
@@ -48,7 +48,7 @@ namespace Admin
         //her hentes alle inaktive brukere ut og vises når admin vil se de
         private void GetInactiveUsers()
         {
-            string queryInactive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM SUser, STeam, SUserGroup WHERE aktiv = '0' AND SUser.teamID = STeam.teamID AND SUser.groupID = SUserGroup.groupID";
+            string queryInactive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '0' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
 
             GridViewAdmin.DataSource = db.AdminGetAllUsers(queryInactive);
             GridViewAdmin.DataBind();
@@ -72,25 +72,25 @@ namespace Admin
         {
             try
             {
-            string id = GridViewAdmin.DataKeys[e.RowIndex]["userID"].ToString();
-            string surname = e.NewValues["surname"].ToString();
-            string firstname = e.NewValues["firstname"].ToString();
-            string username = e.NewValues["username"].ToString();
-            string phone = e.NewValues["phone"].ToString();
-            string mail = e.NewValues["mail"].ToString();
-            string teamName = e.NewValues["teamName"].ToString();
-            string groupName = e.NewValues["groupName"].ToString();
+                string id = GridViewAdmin.DataKeys[e.RowIndex]["userID"].ToString();
+                string surname = e.NewValues["surname"].ToString();
+                string firstname = e.NewValues["firstname"].ToString();
+                string username = e.NewValues["username"].ToString();
+                string phone = e.NewValues["phone"].ToString();
+                string mail = e.NewValues["mail"].ToString();
+                string teamName = e.NewValues["teamName"].ToString();
+                string groupName = e.NewValues["groupName"].ToString();
 
-            int teamID = db.GetTeamGroupId("SELECT teamID from STeam WHERE teamName LIKE '" + teamName + "'");
-            int groupID = db.GetTeamGroupId("SELECT groupID from SUserGroup WHERE groupName LIKE '" + groupName + "'");
+                int teamID = db.GetTeamGroupId("SELECT teamID from Team WHERE teamName LIKE '" + teamName + "'");
+                int groupID = db.GetTeamGroupId("SELECT groupID from UserGroup WHERE groupName LIKE '" + groupName + "'");
 
-            string query = String.Format("UPDATE SUser SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
-                surname, firstname, username, phone, mail, teamID, groupID, id);
-            db.InsertDeleteUpdate(query);
-            GridViewAdmin.EditIndex = -1;
-            GetUsers();
-        }
-            catch(Exception exception)
+                string query = String.Format("UPDATE User SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
+                    surname, firstname, username, phone, mail, teamID, groupID, id);
+                db.InsertDeleteUpdate(query);
+                GridViewAdmin.EditIndex = -1;
+                GetUsers();
+            }
+            catch (Exception exception)
             {
                 string error = exception.Message;
             }
@@ -104,10 +104,10 @@ namespace Admin
             string query;
 
             if (aktiv.Equals("1"))
-                query = String.Format("UPDATE SUser SET aktiv = 0 WHERE userID = {0}", id);
+                query = String.Format("UPDATE User SET aktiv = 0 WHERE userID = {0}", id);
 
             else
-                query = String.Format("UPDATE SUser SET aktiv = 1 WHERE userID = {0}", id);
+                query = String.Format("UPDATE User SET aktiv = 1 WHERE userID = {0}", id);
 
             db.InsertDeleteUpdate(query);
 
@@ -121,25 +121,25 @@ namespace Admin
         {
             try
             {
-            string surname = e.NewValues["surname"].ToString();
-            string firstname = e.NewValues["firstname"].ToString();
-            string username = e.NewValues["username"].ToString();
-            string phone = e.NewValues["phone"].ToString();
-            string mail = e.NewValues["mail"].ToString();
-            string teamName = e.NewValues["teamName"].ToString();
-            string groupName = e.NewValues["groupName"].ToString();
+                string surname = e.NewValues["surname"].ToString();
+                string firstname = e.NewValues["firstname"].ToString();
+                string username = e.NewValues["username"].ToString();
+                string phone = e.NewValues["phone"].ToString();
+                string mail = e.NewValues["mail"].ToString();
+                string teamName = e.NewValues["teamName"].ToString();
+                string groupName = e.NewValues["groupName"].ToString();
 
-            int teamID = db.GetTeamGroupId("SELECT teamID from STeam WHERE teamName LIKE '" + teamName + "'");
-            int groupID = db.GetTeamGroupId("SELECT groupID from SUserGroup WHERE groupName LIKE '" + groupName + "'");
+                int teamID = db.GetTeamGroupId("SELECT teamID from Team WHERE teamName LIKE '" + teamName + "'");
+                int groupID = db.GetTeamGroupId("SELECT groupID from UserGroup WHERE groupName LIKE '" + groupName + "'");
 
-            string query = String.Format("INSERT INTO SUser (surname, firstname, password, username, phone, mail, teamID, groupID, aktiv) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})",
-                surname, firstname, "123", username, phone, mail, teamID, groupID, "1");
+                string query = String.Format("INSERT INTO User (surname, firstname, password, username, phone, mail, teamID, groupID, aktiv) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})",
+                    surname, firstname, "123", username, phone, mail, teamID, groupID, "1");
 
-            db.InsertDeleteUpdate(query);
-            GridViewInsert.EditIndex = -1;
-            GetUsers();
-            GridViewInsertEmpty();
-        }
+                db.InsertDeleteUpdate(query);
+                GridViewInsert.EditIndex = -1;
+                GetUsers();
+                GridViewInsertEmpty();
+            }
             catch (Exception exception)
             {
                 string error = exception.Message;
@@ -185,7 +185,7 @@ namespace Admin
             }
             else
             {
-            FilterGridView();
+                FilterGridView();
             }
         }
 
@@ -195,18 +195,18 @@ namespace Admin
             FilterSearchTerms.Text = "";    //fjerner tekst fra søkevilkårboksen
             GetUsers();                     // Oppdaterer lista 
         }
-        
+
         //metode for sortering av brukere
         protected void GridViewAdmin_Sorting(object sender, GridViewSortEventArgs e)
         {
             string query;
             if (active)
             {
-                query = "SELECT * FROM SUser WHERE aktiv = '1'";
+                query = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '1' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
             }
             else
             {
-                query = "SELECT * FROM SUser WHERE aktiv = '0'";
+                query = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '0' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
             }
 
             DataTable dataTable = db.AdminGetAllUsers(query);
@@ -219,7 +219,7 @@ namespace Admin
 
                 GridViewAdmin.DataSource = dataView;
                 GridViewAdmin.DataBind();
-            }      
+            }
         }
         #endregion
 
@@ -249,27 +249,27 @@ namespace Admin
         //setter inn en tom rad for å kunne legge til en bruker
         private void GridViewInsertEmpty()
         {
-            string query = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM SUser, STeam, SUserGroup WHERE userID = 1 AND SUser.teamID = STeam.teamID AND SUser.groupID = SUserGroup.groupID";
+            string query = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE userID = 1 AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
             DataTable dt = db.AdminGetAllUsers(query);
             dt.Rows.Add(dt.NewRow());
             GridViewInsert.DataSource = dt;
             GridViewInsert.DataBind();
         }
 
-        
+
 
         //Metode for å filtrere GridViewAdmin
         public void FilterGridView()
         {
             DataTable filterTable = new DataTable(); //Lager en data table for å lagre data fra spørringen
 
-            //Henter alle fra SUser-tabellen med korrekt kolonnenavn / vilkår fra databasen
-            string filterStatement = String.Format("SELECT * FROM SUser WHERE {0} LIKE '%{1}%'", FilterSearchDropdown.Text, FilterSearchTerms.Text); 
+            //Henter alle fra User-tabellen med korrekt kolonnenavn / vilkår fra databasen
+            string filterStatement = String.Format("SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE {0} LIKE '%{1}%' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID", FilterSearchDropdown.Text, FilterSearchTerms.Text);
 
             filterTable = db.AdminGetAllUsers(filterStatement);
 
             if (filterTable.Rows.Count > 0) //Hvis søkevilkåret gir resultater
-            {   
+            {
                 //Om søket ga resultat
                 GridViewAdmin.DataSource = filterTable; //Setter data source til den filtrerte data table
                 GridViewAdmin.DataBind();               //Oppdaterer data i GridView
@@ -279,16 +279,6 @@ namespace Admin
                 //Søket ga ingen resultat, trenger ikke refreshe GridViewAdmin
                 FilterSearchTerms.Text = "Søket ga ingen resultat!"; //Gir bruker beskjed
             }
-        }
-
-        protected void GridViewInsert_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void FilterSearchDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
         }
 
         // FUNKER IKKE ENDA
