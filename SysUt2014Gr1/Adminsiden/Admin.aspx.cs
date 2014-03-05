@@ -288,8 +288,11 @@ namespace Admin
         protected DataTable DropDownBoxTeam()
         {
             string query = "SELECT * FROM STeam";
+            DataTable table = new DataTable();
+            table = db.AdminGetAllUsers(query);
+            table.Rows.InsertAt(table.NewRow(), 0);
 
-            return db.AdminGetAllUsers(query);
+            return table;
         }
 
         protected DataTable DropDownBoxGroup()
