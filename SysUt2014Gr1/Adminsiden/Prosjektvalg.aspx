@@ -14,15 +14,15 @@
 </head>
 <body style="height: 166px">
     <form id="form1" runat="server">
-    <div>
-    
-    </div>
         <br />
-        <asp:DropDownList ID="Dropdown_prosjekt" runat="server" Height="30px" OnSelectedIndexChanged="Dropdown_prosjekt_SelectedIndexChanged" Width="140px">
-        </asp:DropDownList>
-        <p>
-            <asp:TextBox ID="Tb_description" runat="server" Height="57px" Width="137px"></asp:TextBox>
-        </p>
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+            CssClass="gridView" AlternatingRowStyle-CssClass="alt" HeaderStyle-CssClass="gridViewHeader">
+            <Columns>
+               <asp:BoundField DataField="projectName" HeaderText="Prosjekt navn" />
+               <asp:BoundField DataField="projectDescription" HeaderText="Prosjekt beskrivelse" />
+
+            </Columns>
+        </asp:GridView>
     </form>
 </body>
 </html>

@@ -32,7 +32,7 @@ namespace Bruker
         //Fyller dropdown med tasks
         private void GetTasks ()
         {
-            string query = "SELECT * FROM Task Where projectID=" + projectID;
+            string query = "SELECT * FROM Task";
             taskName.DataSource = db.getAll(query);
             taskName.DataValueField = "taskID";
             taskName.DataTextField = "taskName";

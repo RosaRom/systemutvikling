@@ -1,6 +1,7 @@
 ﻿using Admin;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,22 +19,23 @@ namespace Adminsiden
             if (!Page.IsPostBack)
             {
                 GetProject();
-            }     
-            
+            }        
         }
         private void GetProject()
         {
+           /* DataTable dt = new DataTable();
             string query = "SELECT * FROM Project";
-            Dropdown_prosjekt.DataSource = db.getAll(query);
+            dt = db.getAll(query);
+            Dropdown_prosjekt.DataSource = dt;
             Dropdown_prosjekt.DataValueField = "projectDescription";
-            Dropdown_prosjekt.DataTextField = "projectName";
+            Dropdown_prosjekt.DataTextField = "projectName"; 
             Dropdown_prosjekt.Items.Insert(0, new ListItem("<Velg prosjekt>", "0"));
-            Dropdown_prosjekt.DataBind();
-        }
+            Dropdown_prosjekt.DataBind();*/
 
-        protected void Dropdown_prosjekt_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           Tb_description.Text = Dropdown_prosjekt.SelectedValue;
+            string query = "SELECT projectName, projectDescription FROM Project";
+
+            GridView1.DataSource = db.getAll(query);
+            GridView1.DataBind();
         }
     }
 }
