@@ -75,6 +75,20 @@
     <None Include="Resources\grd_head.png" />
     <Content Include="editProject.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
+    <Content Include="Resources\calendar.jpg" />
+    <Content Include="Scripts\.gitignore" />
+    <Content Include="Scripts\GruntFile.js" />
+    <Content Include="Scripts\index.html" />
+    <Content Include="Scripts\jquery.datepair.js" />
+    <Content Include="Scripts\jquery.timepicker.css" />
+    <Content Include="Scripts\jquery.timepicker.js" />
+    <Content Include="Scripts\jquery.timepicker.min.js" />
+    <Content Include="Styles\bootstrap-datepicker.css" />
+    <Content Include="Styles\bootstrap-datepicker.js" />
+    <Content Include="Styles\glyphicons-halflings.png" />
+    <Content Include="Styles\screenshot.png" />
+    <Content Include="Styles\site.css" />
+    <Content Include="Styles\site.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +134,10 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\tord.pubxml" />
+    <Content Include="Scripts\component.json" />
+    <Content Include="Scripts\jt.timepicker.jquery.json" />
+    <Content Include="Scripts\package.json" />
+    <Content Include="Scripts\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -134,6 +152,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

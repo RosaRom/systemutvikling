@@ -1,10 +1,19 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="True" CodeBehind="Bruker.aspx.cs" Inherits="Bruker.Bruker" %>
 
+<script type="text/javascript" src="Styles/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="Scripts/jquery.timepicker.js"></script>
+<script type="text/javascript" src="Scripts/jquery.datepair.js"></script>
+
+<script type="text/javascript" src="Scripts/jquery.timepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="Scripts/jquery.timepicker.css" />
+<script type="text/javascript" src="lib/base.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/base.css" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
    <script runat="server" >
-
+                
    </script>
 
 <head runat="server">
@@ -12,7 +21,7 @@
     <style type="text/css">
         .auto-style2 {
             width: 225px;
-            margin-left: 320px;
+            margin-left: 360px;
             height: 366px;
         }
         #TextArea1 {
@@ -50,30 +59,33 @@
                    </asp:DropDownList>
                 <br />
                 <br />
-                   <asp:DropDownList ID="projectName" runat="server" AppendDataBoundItems="true" Height="20px" Width="220px" OnSelectedIndexChanged="projectName_SelectedIndexChanged">
-                   </asp:DropDownList>
-                <br />
-                <br />
-                 <asp:TextBox id="TxtArea_projectComment" TextMode="multiline" Columns="25" Rows="5" runat="server" ReadOnly="True" />
-                <br />
-                <br />
-                <asp:Calendar id="Calendar1"
-                       runat="server" Height="180px" Width="220px" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" style="margin-left: 0px">
-                      <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-                      <NextPrevStyle VerticalAlign="Bottom" />
-                      <OtherMonthDayStyle ForeColor="#808080" />
-                      <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-                      <SelectorStyle BackColor="#CCCCCC" />
-                      <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                      <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                      <WeekendDayStyle BackColor="#FFFFCC" />
-                </asp:Calendar>
-                <br />
-                <asp:Label ID="Lb_fra" runat="server" Text="Fra: "></asp:Label>
-                <asp:TextBox ID="Tb_fra" runat="server" style="z-index: 1; left: 73px; top: 369px; width: 50px"></asp:TextBox>
-                <asp:Label ID="Lb_til" runat="server" Text="Til: "></asp:Label>
-                <asp:TextBox ID="Tb_til" runat="server" style="z-index: 1; left: 181px; top: 369px; width: 50px; right: 904px; "></asp:TextBox>
-                <br />
+                <p id="demo">
+                <input type="text" class="date start" />
+                <input type="text" class="time start" />
+                to
+                <input type="text" class="date end" />
+                <input type="text" class="time end" />
+                </p>        
+                
+                <script>
+                    $('#demo').datepair();
+
+                    $('#demo .time').timepicker({
+                        'showDuration': true,
+                        'timeFormat': 'g:ia',
+                        'scrollDefaultNow': true
+                    });
+
+                    $('#demo .date').datepicker({
+                        'format': 'yyyy-m-d',
+                        'autoclose': true
+                    });
+                </script>
+
+                   <asp:TextBox ID="Tb_fra" runat="server" Width="108px"></asp:TextBox>
+                   <asp:TextBox ID="Tb_til" runat="server" Width="108px"></asp:TextBox>
+                   <br />
+
                 <br />
                 <asp:DropDownList ID="workPlace" runat="server" AppendDataBoundItems="true" Height="20px" Width="220px" OnSelectedIndexChanged="workPlace_SelectedIndexChanged">
                 </asp:DropDownList>
