@@ -32,7 +32,7 @@ namespace Bruker
         //Fyller dropdown med tasks
         private void GetTasks ()
         {
-            string query = "SELECT * FROM STask Where projectID=" + projectID;
+            string query = "SELECT * FROM Task Where projectID=" + projectID;
             taskName.DataSource = db.getAll(query);
             taskName.DataValueField = "taskID";
             taskName.DataTextField = "taskName";
@@ -61,7 +61,7 @@ namespace Bruker
         //Fyller dropdown med plasser å jobbe fra
         private void getWorkplace()
         {
-            string query = "SELECT * FROM SWorkplace";
+            string query = "SELECT * FROM Workplace";
             workPlace.DataSource = db.getAll(query);
             workPlace.DataValueField = "workplaceID";
             workPlace.DataTextField = "workplace";
