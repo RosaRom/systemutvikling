@@ -34,7 +34,13 @@
                     <asp:BoundField DataField="phone" HeaderText="Telefon" SortExpression="phone" />
                     <asp:BoundField DataField="mail" HeaderText="Mail" SortExpression="mail" />
                     <asp:BoundField DataField="teamName" HeaderText="Team" SortExpression="teamID" />
-                    <asp:BoundField DataField="groupName" HeaderText="Brukertype" SortExpression="groupID" />
+
+                    <asp:TemplateField HeaderText="Brukertype">
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="dropDownGroup" DataSource="<%# DropDownBoxGroup() %>" 
+                                DataTextField="groupName" DataValueField="groupName" runat="server"></asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
 

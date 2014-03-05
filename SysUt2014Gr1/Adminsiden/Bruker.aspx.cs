@@ -13,7 +13,12 @@ namespace Bruker
     public partial class Bruker : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
-        int userID = 1; //Denne må sittes under login, noe som ikke er skrevet enda. Hardkodet inntil videre.
+        private int userID = 2; //Denne må sittes under login, noe som ikke er skrevet enda. Hardkodet inntil videre.
+        private int projectID = 1; //Denne må sittes under login, noe som ikke er skrevet enda. Hardkodet inntil videre.
+        private int active = 0; //Denne må sittes under login, noe som ikke er skrevet enda. Hardkodet inntil videre.
+        private int TaskID;
+        private int WorkplaceID;
+
         List<String> projectList = new List<string>();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -21,22 +26,21 @@ namespace Bruker
             if (!Page.IsPostBack)
             {
                 GetTasks();
-                getProjects();
                 getWorkplace();
             }         
         }
         //Fyller dropdown med tasks
         private void GetTasks ()
         {
-            string query = "SELECT * FROM STask";
+            string query = "SELECT * FROM STask Where projectID=" + projectID;
             taskName.DataSource = db.getAll(query);
-            taskName.DataValueField = "taskName";
+            taskName.DataValueField = "taskID";
+            taskName.DataTextField = "taskName";
             taskName.Items.Insert(0, new ListItem("<Velg task>", "0"));
             taskName.DataBind();
         }
         //Fyller dropdown med prosjekter
-        //Oppretter liste med prosjektnavn/beskrivelse for å fylle ut textbox i "projectName_SelectedIndexChanged"
-        private void getProjects ()
+        /*private void getProjects ()
         {
             DataTable dt = new DataTable();
             string query = "SELECT * FROM SProject";
@@ -53,53 +57,35 @@ namespace Bruker
                                     Convert.ToString(row["Description"]);
                 projectList.Add(strValue);
             }
-        }
+        }*/
         //Fyller dropdown med plasser å jobbe fra
         private void getWorkplace()
         {
             string query = "SELECT * FROM SWorkplace";
             workPlace.DataSource = db.getAll(query);
-            workPlace.DataValueField = "workplace";
+            workPlace.DataValueField = "workplaceID";
+            workPlace.DataTextField = "workplace";
             workPlace.Items.Insert(0, new ListItem("<Velg arbeidsplass>", "0"));
             workPlace.DataBind();
         }
         //Herfra og ned er ikke ferdig enda->
 
-        //Fyller textbox med prosjektbeskrivelse til valgt prosjekt.
-        protected void projectName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-            selectedProject = projectName.SelectedValue;
-            TxtArea_projectComment.Text = projectList.Find(p => p.Contains(selectedProject));
-        }
         protected void taskName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //selectedTaskID = taskName.SelectedValue;
+            TaskID = Convert.ToInt32(taskName.SelectedValue);
         }
         protected void workPlace_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //selectedWorkplaceID = workPlace.SelectedValue;
+            WorkplaceID = Convert.ToInt32(workPlace.SelectedValue);
         }
-
-        private string selectedProject;
-        private int selectedTaskID;
-        private int selectedProjectID;
-        private int selectedWorkplaceID;
-        int active = 0;
 
         protected void btn_ok_Click(object sender, EventArgs e)
         {
-           /* var projectID = projectList.Find(item == "test").value;
             string userDescription = TxtArea_userComment.Text;
 
-            string timeFrom = Tb_fra.Text;
-            string timeTo = Tb_til.Text;
-
-            db.InsertTimeSheet(timeFrom, timeTo, userID, selectedTaskID, userDescription, selectedWorkplaceID, active, selectedProjectID);*/
+            DateTime timeFrom = DateTime.Parse(Tb_fra.Text);
+            DateTime timeTo = DateTime.Parse(Tb_til.Text);
+            db.InsertTimeSheet(timeFrom, timeTo, userID, TaskID, userDescription, WorkplaceID, active, projectID);
         }
-
-
-
-       
     }
 }
