@@ -37,14 +37,14 @@
                     <asp:TemplateField HeaderText="Team">
                         <EditItemTemplate>
                             <asp:DropDownList ID="dropDownTeam" DataSource="<%# DropDownBoxTeam() %>" 
-                                DataTextField="teamName" DataValueField="teamName" runat="server"></asp:DropDownList>
+                                DataTextField="teamName" DataValueField="teamID" runat="server"></asp:DropDownList>
                         </EditItemTemplate>
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Brukertype">
                         <EditItemTemplate>
                             <asp:DropDownList ID="dropDownGroup" DataSource="<%# DropDownBoxGroup() %>" 
-                                DataTextField="groupName" DataValueField="groupName" runat="server"></asp:DropDownList>
+                                DataTextField="groupName" DataValueField="groupID" runat="server"></asp:DropDownList>
                         </EditItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -80,8 +80,32 @@
 
                     <asp:BoundField DataField="phone" HeaderText="Telefon" SortExpression="phone" />
                     <asp:BoundField DataField="mail" HeaderText="Mail" SortExpression="mail" />
-                    <asp:BoundField DataField="teamName" HeaderText="Team" SortExpression="teamID" />
-                    <asp:BoundField DataField="groupName" HeaderText="Brukertype" SortExpression="groupID" />
+
+                    <asp:TemplateField HeaderText="Team">
+
+                        <ItemTemplate>
+                            <%# Eval("teamName")%>
+                        </ItemTemplate>
+
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="dropDownTeamUsers" DataSource="<%# DropDownBoxTeamExistingUsers() %>" 
+                                DataTextField="teamName" DataValueField="teamID" runat="server"></asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Brukertype">
+                        
+                        <ItemTemplate>
+                            <%# Eval("groupName")%>
+                        </ItemTemplate>
+
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="dropDownGroupUsers" DataSource="<%# DropDownBoxGroup() %>" 
+                                DataTextField="groupName" DataValueField="groupID" runat="server"></asp:DropDownList>
+                        </EditItemTemplate>
+
+                    </asp:TemplateField>
+
                     <asp:CommandField ShowDeleteButton="True" DeleteText="Aktiver/Deaktiver" />
                 </Columns>
 

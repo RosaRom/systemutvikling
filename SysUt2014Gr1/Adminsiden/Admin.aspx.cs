@@ -70,6 +70,8 @@ namespace Admin
         //metoden kjøres når admin oppdaterer en eksisterende bruker
         protected void GridViewAdmin_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            GridViewRow row = GridViewAdmin.Rows[e.RowIndex];
+
             try
             {
                 string id = GridViewAdmin.DataKeys[e.RowIndex]["userID"].ToString();
@@ -78,11 +80,16 @@ namespace Admin
                 string username = e.NewValues["username"].ToString();
                 string phone = e.NewValues["phone"].ToString();
                 string mail = e.NewValues["mail"].ToString();
-                string teamName = e.NewValues["teamName"].ToString();
-                string groupName = e.NewValues["groupName"].ToString();
+                //string teamName = e.NewValues["teamName"].ToString();
+                //string groupName = e.NewValues["groupName"].ToString();
 
-                int teamID = db.GetTeamGroupId("SELECT teamID from Team WHERE teamName LIKE '" + teamName + "'");
-                int groupID = db.GetTeamGroupId("SELECT groupID from UserGroup WHERE groupName LIKE '" + groupName + "'");
+                DropDownList team = (DropDownList)row.FindControl("dropDownTeamUsers");
+                DropDownList group = (DropDownList)row.FindControl("dropDownGroupUsers");
+
+                int teamID = Convert.ToInt32(team.SelectedValue);
+                    //db.GetTeamGroupId("SELECT teamID from Team WHERE teamName LIKE '" + teamName + "'");
+                int groupID = Convert.ToInt32(group.SelectedValue);
+                    //db.GetTeamGroupId("SELECT groupID from UserGroup WHERE groupName LIKE '" + groupName + "'");
 
                 string query = String.Format("UPDATE User SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
                 surname, firstname, username, phone, mail, teamID, groupID, id);
@@ -129,12 +136,12 @@ namespace Admin
                 string phone = e.NewValues["phone"].ToString();
                 string mail = e.NewValues["mail"].ToString();
                 DropDownList team = (DropDownList)row.FindControl("dropDownTeam");
-                string teamName = team.SelectedItem.Text;
+                //string teamName = team.SelectedItem.Text;
                 DropDownList group = (DropDownList)row.FindControl("dropDownGroup");
-                string groupName = group.SelectedItem.Text;
+                //string groupName = group.SelectedItem.Text;
 
-                int teamID = db.GetTeamGroupId("SELECT teamID from Team WHERE teamName LIKE '" + teamName + "'");
-                int groupID = db.GetTeamGroupId("SELECT groupID from UserGroup WHERE groupName LIKE '" + groupName + "'");
+                int teamID = Convert.ToInt32(team.SelectedValue);
+                int groupID = Convert.ToInt32(group.SelectedValue);
 
                 string query = String.Format("INSERT INTO User (surname, firstname, password, username, phone, mail, teamID, groupID, aktiv) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})",
                 surname, firstname, "123", username, phone, mail, teamID, groupID, "1");
@@ -297,7 +304,14 @@ namespace Admin
 
         protected DataTable DropDownBoxGroup()
         {
-            string query = "SELECT * FROM SUserGroup";
+            string query = "SELECT * FROM UserGroup";
+
+            return db.AdminGetAllUsers(query);
+        }
+
+        protected DataTable DropDownBoxTeamExistingUsers()
+        {
+            string query = "SELECT * FROM Team";
 
             return db.AdminGetAllUsers(query);
         }
