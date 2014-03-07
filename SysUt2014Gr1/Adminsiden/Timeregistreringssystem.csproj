@@ -76,6 +76,7 @@
     <Content Include="editProject.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
     <Content Include="Prosjektvalg.aspx" />
+    <Content Include="ProsjektvalgStyle.css" />
     <Content Include="Resources\calendar.jpg" />
     <Content Include="Scripts\.gitignore" />
     <Content Include="Scripts\GruntFile.js" />

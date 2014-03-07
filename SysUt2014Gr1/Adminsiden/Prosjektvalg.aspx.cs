@@ -12,8 +12,6 @@ namespace Adminsiden
     public partial class Prosjektvalg : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
-        string description;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -23,19 +21,19 @@ namespace Adminsiden
         }
         private void GetProject()
         {
-           /* DataTable dt = new DataTable();
-            string query = "SELECT * FROM Project";
-            dt = db.getAll(query);
-            Dropdown_prosjekt.DataSource = dt;
-            Dropdown_prosjekt.DataValueField = "projectDescription";
-            Dropdown_prosjekt.DataTextField = "projectName"; 
-            Dropdown_prosjekt.Items.Insert(0, new ListItem("<Velg prosjekt>", "0"));
-            Dropdown_prosjekt.DataBind();*/
-
-            string query = "SELECT projectName, projectDescription FROM Project";
-
-            GridView1.DataSource = db.getAll(query);
-            GridView1.DataBind();
+            string query = "SELECT projectID, projectName, projectDescription FROM Project";
+            GridViewProject.DataSource = db.getAll(query);
+            GridViewProject.DataBind();
         }
+        protected void GridViewProject_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument.ToString());
+            int projectID = Convert.ToInt32(GridViewProject.Rows[index].Cells[1].Text);
+            int userID = 2;
+            Session["projectID"] = projectID;
+            Session["userID"] = userID;
+            Server.Transfer("Bruker.aspx", true);
+        }
+  
     }
 }
