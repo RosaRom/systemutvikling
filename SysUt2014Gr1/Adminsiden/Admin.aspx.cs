@@ -40,7 +40,7 @@ namespace Admin
         private void GetAllUsers()
         {
             string queryActive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '1' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
-            
+
             GridViewAdmin.DataSource = db.AdminGetAllUsers(queryActive);
             GridViewAdmin.DataBind();
         }
@@ -80,16 +80,12 @@ namespace Admin
                 string username = e.NewValues["username"].ToString();
                 string phone = e.NewValues["phone"].ToString();
                 string mail = e.NewValues["mail"].ToString();
-                //string teamName = e.NewValues["teamName"].ToString();
-                //string groupName = e.NewValues["groupName"].ToString();
 
                 DropDownList team = (DropDownList)row.FindControl("dropDownTeamUsers");
                 DropDownList group = (DropDownList)row.FindControl("dropDownGroupUsers");
 
                 int teamID = Convert.ToInt32(team.SelectedValue);
-                    //db.GetTeamGroupId("SELECT teamID from Team WHERE teamName LIKE '" + teamName + "'");
                 int groupID = Convert.ToInt32(group.SelectedValue);
-                    //db.GetTeamGroupId("SELECT groupID from UserGroup WHERE groupName LIKE '" + groupName + "'");
 
                 string query = String.Format("UPDATE User SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
                 surname, firstname, username, phone, mail, teamID, groupID, id);
@@ -107,10 +103,9 @@ namespace Admin
         protected void GridViewAdmin_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string id = GridViewAdmin.DataKeys[e.RowIndex]["userID"].ToString();
-            string aktiv = e.Values["aktiv"].ToString();
             string query;
 
-            if (aktiv.Equals("1"))
+            if (active)
                 query = String.Format("UPDATE User SET aktiv = 0 WHERE userID = {0}", id);
 
             else
