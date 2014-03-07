@@ -115,7 +115,7 @@ namespace Admin
        public void InsertTimeSheet(DateTime _start, DateTime _stop, int _userID, int _taskID, string _description, int _workplaceID, int _active, int _projectID)
         {
             string query = "INSERT INTO STimeSheet (start, stop, userID, taskID, description, workplaceID, active, projectID) VALUES('" + _start + "', '" + _stop + "', '" + _userID + "', '" + _taskID + "', '" + _description + "', '" + _workplaceID + "', '" + _active + "', '" + _projectID + "')";
-                
+            
             if (this.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
