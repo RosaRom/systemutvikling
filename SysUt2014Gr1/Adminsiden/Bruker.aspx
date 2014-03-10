@@ -22,7 +22,7 @@
         .auto-style2 {
             width: 225px;
             margin-left: 360px;
-            height: 366px;
+            height: 387px;
         }
         #TextArea1 {
             z-index: 1;
@@ -49,45 +49,35 @@
 </head>
 <body>
    <form id="Brukerform" runat="server">
-      <h3> Bruker timeregistrering</h3>
-      <br />
-      <br /> 
+      <h3Bruker timeregistrering</h3>
        <table cellpadding="5">
          <tr>
             <td class="auto-style2">
-                   <asp:DropDownList ID="taskName" runat="server" AppendDataBoundItems="true" Height="20px" Width="220px" OnSelectedIndexChanged="taskName_SelectedIndexChanged">
-                   </asp:DropDownList>
-                <br />
-                <br />
-                <p id="demo">
-                <input type="text" class="date start" />
-                <input type="text" class="time start" />
-                to
-                <input type="text" class="date end" />
-                <input type="text" class="time end" />
-                </p>        
-                
-                <script>
-                    $('#demo').datepair();
-
-                    $('#demo .time').timepicker({
-                        'showDuration': true,
-                        'timeFormat': 'g:ia',
-                        'scrollDefaultNow': true
-                    });
-
-                    $('#demo .date').datepicker({
-                        'format': 'yyyy-m-d',
-                        'autoclose': true
-                    });
-                </script>
-
-                   <asp:TextBox ID="Tb_fra" runat="server" Width="108px"></asp:TextBox>
-                   <asp:TextBox ID="Tb_til" runat="server" Width="108px"></asp:TextBox>
+                   
                    <br />
-
+                <br />
+                   <asp:Calendar ID="Calendar1" runat="server" Width="220px"></asp:Calendar>
+                   <br />
+                   <asp:Label ID="Label1" runat="server" Text="Arbeid påbegynt:"></asp:Label>
+&nbsp;&nbsp;
+                   <asp:Label ID="Label2" runat="server" Text="Arbeid avsluttet:"></asp:Label>
+                <br />
+                   <asp:DropDownList ID="ddl_hour_from" runat="server" Height="20px" Width="50px">
+                   </asp:DropDownList>
+                   <asp:DropDownList ID="ddl_min_from" runat="server" Height="20px" style="margin-bottom: 0px" Width="50px">
+                   </asp:DropDownList>
+                   &nbsp;
+                   <asp:DropDownList ID="ddl_hour_to" runat="server" Height="20px" Width="50px">
+                   </asp:DropDownList>
+                   <asp:DropDownList ID="ddl_min_to" runat="server" Height="20px" Width="50px">
+                   </asp:DropDownList>
+                   <br />
                 <br />
                 <asp:DropDownList ID="workPlace" runat="server" AppendDataBoundItems="true" Height="20px" Width="220px" OnSelectedIndexChanged="workPlace_SelectedIndexChanged">
+                </asp:DropDownList>
+                <br />
+                <br />
+                <asp:DropDownList ID="taskName" runat="server" AppendDataBoundItems="true" Height="20px" Width="220px" OnSelectedIndexChanged="taskName_SelectedIndexChanged">
                 </asp:DropDownList>
                 <br />
                 <br />
@@ -96,6 +86,9 @@
                 <br />
                    <asp:Button ID="btn_ok" runat="server" OnClick="btn_ok_Click" Text="OK" Width="223px" />
                 <br />
+                <br />
+                   <asp:Label ID="label_result" runat="server" Visible="False"></asp:Label>
+                   <br />
             </td>
          </tr>
       </table>
