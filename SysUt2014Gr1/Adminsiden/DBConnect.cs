@@ -57,7 +57,6 @@ namespace Admin
                     adapter = new MySqlDataAdapter(query, connection);
                     adapter.Fill(dataTable);
                 }
-
                 return dataTable;
             }
             catch (System.Data.SqlClient.SqlException ex)

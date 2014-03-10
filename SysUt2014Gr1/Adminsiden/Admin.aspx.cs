@@ -278,7 +278,7 @@ namespace Admin
         //setter inn en tom rad for å kunne legge til en bruker
         private void GridViewInsertEmpty()
         {
-            string query = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE userID = 1 AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
+            string query = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE userID = 0 AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
             DataTable dt = db.AdminGetAllUsers(query);
             dt.Rows.Add(dt.NewRow());
             GridViewInsert.DataSource = dt;
@@ -313,7 +313,7 @@ namespace Admin
 
         protected DataTable DropDownBoxTeam()
         {
-            string query = "SELECT * FROM STeam";
+            string query = "SELECT * FROM Team";
             DataTable table = new DataTable();
             table = db.AdminGetAllUsers(query);
             table.Rows.InsertAt(table.NewRow(), 0);

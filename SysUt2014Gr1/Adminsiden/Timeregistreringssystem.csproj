@@ -80,9 +80,11 @@
     <None Include="Resources\grd_alt.png" />
     <None Include="Resources\grd_head.png" />
     <Content Include="css\OpprettProsjektStyle.css" />
+    <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="editProject.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
+    <Content Include="ProsjektAnsvarligNyBruker.aspx" />
     <Content Include="Prosjektvalg.aspx" />
     <Content Include="css\ProsjektvalgStyle.css" />
     <Content Include="Resources\calendar.jpg" />
@@ -132,6 +134,13 @@
     </Compile>
     <Compile Include="ProsjektAnsvarlig.aspx.designer.cs">
       <DependentUpon>ProsjektAnsvarlig.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProsjektAnsvarligNyBruker.aspx.cs">
+      <DependentUpon>ProsjektAnsvarligNyBruker.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProsjektAnsvarligNyBruker.aspx.designer.cs">
+      <DependentUpon>ProsjektAnsvarligNyBruker.aspx</DependentUpon>
     </Compile>
     <Compile Include="Prosjektvalg.aspx.cs">
       <DependentUpon>Prosjektvalg.aspx</DependentUpon>
