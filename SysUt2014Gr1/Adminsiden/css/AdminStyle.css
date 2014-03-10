@@ -61,14 +61,14 @@ Body{
 }
 
 .gridView th{
-    background: url(Resources/grd_head.png) repeat-x top;
+    background: url(../Resources/grd_head.png) repeat-x top;
     background-size:100%;
     color:white;
     border-color:black;
 }
 
 .gridView .alt{
-    background: url(Resources/grd_alt.png) repeat-x top;
+    background: url(../Resources/grd_alt.png) repeat-x top;
     background-size:100%;
 }
 
