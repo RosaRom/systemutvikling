@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Administrator</title>
-    <link rel="Stylesheet" type="text/css" href="AdminStyle.css" />
+    <link rel="Stylesheet" type="text/css" href="css/AdminStyle.css" />
 </head>
 <body>
 

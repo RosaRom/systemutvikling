@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Velg prosjekt</title>
-    <link rel="Stylesheet" type="text/css" href="ProsjektvalgStyle.css" />
+    <link rel="Stylesheet" type="text/css" href="css/ProsjektvalgStyle.css" />
 </head>
 <body>
 

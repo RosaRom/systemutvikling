@@ -87,7 +87,7 @@
                    <asp:Button ID="btn_ok" runat="server" OnClick="btn_ok_Click" Text="OK" Width="223px" />
                 <br />
                 <br />
-                   <asp:Label ID="label_result" runat="server" Text="Label" Visible="False"></asp:Label>
+                   <asp:Label ID="label_result" runat="server" Visible="False"></asp:Label>
                    <br />
             </td>
          </tr>
