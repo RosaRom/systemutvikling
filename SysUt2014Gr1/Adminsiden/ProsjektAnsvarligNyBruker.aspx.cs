@@ -22,6 +22,8 @@ namespace Adminsiden
             {
                 GridViewInsertEmpty();
             }
+            else
+                beskjed.Text = "";
         }
 
         protected DataTable DropDownBoxTeam()
@@ -37,9 +39,12 @@ namespace Adminsiden
         private void GridViewInsertEmpty()
         {
             string query = "SELECT userID, surname, firstname, username, password, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE userID = 0 AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
+            
             DataTable dt = db.AdminGetAllUsers(query);
             dt.Columns["groupName"].DefaultValue = "Bruker";
             dt.Rows.Add(dt.NewRow());
+
+            GridViewProsjektAnsvarligInsert.EditIndex = 0;
             GridViewProsjektAnsvarligInsert.DataSource = dt;
             GridViewProsjektAnsvarligInsert.DataBind();
         }
@@ -86,6 +91,7 @@ namespace Adminsiden
         protected void GridViewProsjektAnsvarligInsert_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             GridViewProsjektAnsvarligInsert.EditIndex = -1;
+            beskjed.Text = "";
             GridViewInsertEmpty();
         }
     }
