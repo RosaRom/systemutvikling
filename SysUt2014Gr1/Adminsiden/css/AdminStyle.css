@@ -11,7 +11,6 @@ Body{
 
 #GridViewInsert{
     margin-top:0.5%;
-    margin-bottom:5%;
     margin-left:15%;
     border-color:black;
     border-bottom-style:solid;
@@ -58,6 +57,12 @@ Body{
     border-bottom:1px solid black;
     border-top:1px solid black;
     padding:0.5% 0 0.5% 0;
+}
+
+#beskjedTilBruker{
+    margin-left:15%;
+    margin-bottom:5%;
+    margin-top:1%;
 }
 
 .gridView th{
