@@ -50,6 +50,7 @@ namespace Adminsiden
         protected void fromCalendar_SelectionChanged(object sender, EventArgs e)
         {
             tb_dateFrom.Text = Convert.ToDateTime(fromCalendar.SelectedDate, CultureInfo.GetCultureInfo("nb-NO")).ToString("dd/MM/yyyy");
+            fromCalendar.Visible = false;
         }
 
         protected void ib_fromCalendar_Click(object sender, ImageClickEventArgs e)
