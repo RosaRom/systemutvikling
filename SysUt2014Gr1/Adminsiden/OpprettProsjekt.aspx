@@ -6,11 +6,6 @@
 <head runat="server">
     <title>Opprett prosjekt</title>
     <link rel="Stylesheet" type="text/css" href="css/OpprettProsjektStyle.css" />
-    <style type="text/css">
-        #TextArea1 {
-            height: 45px;
-        }
-    </style>
 
     <script type="text/javascript">
         /**
@@ -51,21 +46,35 @@
     </div>
     <form id="OpprettProsjekt" runat="server">
         <div id="textbox">
-            <asp:Label ID="Label_projectName" runat="server" Text="Prosjekt navn"></asp:Label>
+            <asp:Label ID="lbl_projectName" runat="server" Text="Prosjekt navn"></asp:Label>
             <br />
             <asp:TextBox ID="tb_projectName" runat="server" Width="200px"></asp:TextBox>
             <br />
+
             <br />
+            <asp:Label ID="lbl_dateFrom" runat="server" Text="Fra: "></asp:Label>
+            <asp:TextBox ID="tb_dateFrom" runat="server"></asp:TextBox>
+            <asp:Label ID="lbl_dateTo" runat="server" Text="Til: "></asp:Label>
+            <asp:TextBox ID="tb_dateTo" runat="server"></asp:TextBox>
+            <asp:ImageButton ID="ib_fromCalendar" runat="server" Height="25px" ImageUrl="~/Resources/CalendarImage.jpg" OnClick="ib_fromCalendar_Click" Width="30px" />
+            <br />
+            <asp:Calendar ID="fromCalendar" runat="server" BorderWidth="2px" BackColor="white" Width="200px"
+                ForeColor="Black" Height="180px" Font-Size="8pt" Font-Names="Verdana" BorderColor="#E4DA85"
+                BorderStyle="Outset" DayNameFormat="FirstLetter" CellPadding="4" OnSelectionChanged="fromCalendar_SelectionChanged">
+                <TodayDayStyle ForeColor="Black" BackColor="#E9E19A"></TodayDayStyle>
+                <DayHeaderStyle Font-Size="7pt" Font-Bold="True" BackColor="#E9E19A"></DayHeaderStyle>
+                <SelectedDayStyle Font-Bold="True" ForeColor="White" BackColor="#D5D900"></SelectedDayStyle>
+            </asp:Calendar>
             <br />
 
-            <asp:Label ID="LabelprojectDesc" runat="server" Text="Prosjekt beskrivelse"></asp:Label>
+            <asp:Label ID="LabelprojectDesc" runat="server" Text="Prosjektbeskrivelse"></asp:Label>
 
             <textarea id="TextArea_ProjectDescription" cols="40" rows="3" onkeydown="return taLimit(this)" onkeyup="return taCount(this, 'counter')"></textarea><br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Du har <b><span id="counter">255</span></b> tegn igjen til din beskrivelse...
             <br />
             <br />
-            <asp:Label ID="LabelTasks" runat="server" Text="Ligg til tasks"></asp:Label>
+            <asp:Label ID="LabelTasks" runat="server" Text="Legg til tasks"></asp:Label>
             <br />
             <asp:TextBox ID="tb_tasks" runat="server" Width="200px"></asp:TextBox>
             <br />
