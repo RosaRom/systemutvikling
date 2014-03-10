@@ -6,6 +6,44 @@
 <head runat="server">
     <title>Opprett prosjekt</title>
     <link rel="Stylesheet" type="text/css" href="css/OpprettProsjektStyle.css" />
+    <style type="text/css">
+        #TextArea1 {
+            height: 45px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        /**
+         * DHTML textbox character counter script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+         */
+
+        maxL = 255;
+        var bName = navigator.appName;
+        function taLimit(taObj) {
+            if (taObj.value.length == maxL) return false;
+            return true;
+        }
+
+        function taCount(taObj, Cnt) {
+            objCnt = createObject(Cnt);
+            objVal = taObj.value;
+            if (objVal.length > maxL) objVal = objVal.substring(0, maxL);
+            if (objCnt) {
+                if (bName == "Netscape") {
+                    objCnt.textContent = maxL - objVal.length;
+                }
+                else { objCnt.innerText = maxL - objVal.length; }
+            }
+            return true;
+        }
+        function createObject(objId) {
+            if (document.getElementById) return document.getElementById(objId);
+            else if (document.layers) return eval("document." + objId);
+            else if (document.all) return eval("document.all." + objId);
+            else return eval("document." + objId);
+        }
+    </script>
+
 </head>
 <body>
     <div id="Logo">
@@ -18,9 +56,13 @@
             <asp:TextBox ID="tb_projectName" runat="server" Width="200px"></asp:TextBox>
             <br />
             <br />
-            <asp:Label ID="LabelprojectDesc" runat="server" Text="Prosjekt beskrivelse"></asp:Label>
             <br />
-            <asp:TextBox ID="tb_projectDesc" runat="server" Width="200px"></asp:TextBox>
+
+            <asp:Label ID="LabelprojectDesc" runat="server" Text="Prosjekt beskrivelse"></asp:Label>
+
+            <textarea id="TextArea_ProjectDescription" cols="40" rows="3" onkeydown="return taLimit(this)" onkeyup="return taCount(this, 'counter')"></textarea><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Du har <b><span id="counter">255</span></b> tegn igjen til din beskrivelse...
             <br />
             <br />
             <asp:Label ID="LabelTasks" runat="server" Text="Ligg til tasks"></asp:Label>
@@ -45,7 +87,7 @@
         </div>
         <div id="calendar">
             <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:DropDownList ID="ddl_hour" runat="server">
             </asp:DropDownList>
             <asp:DropDownList ID="ddl_min" runat="server">
