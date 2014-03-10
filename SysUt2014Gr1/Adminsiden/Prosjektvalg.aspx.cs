@@ -19,18 +19,18 @@ namespace Adminsiden
             if (!Page.IsPostBack)
             {
                 GetProject();
-            }        
+            }
         }
         private void GetProject()
         {
-           /* DataTable dt = new DataTable();
-            string query = "SELECT * FROM Project";
-            dt = db.getAll(query);
-            Dropdown_prosjekt.DataSource = dt;
-            Dropdown_prosjekt.DataValueField = "projectDescription";
-            Dropdown_prosjekt.DataTextField = "projectName"; 
-            Dropdown_prosjekt.Items.Insert(0, new ListItem("<Velg prosjekt>", "0"));
-            Dropdown_prosjekt.DataBind();*/
+            /* DataTable dt = new DataTable();
+             string query = "SELECT * FROM Project";
+             dt = db.getAll(query);
+             Dropdown_prosjekt.DataSource = dt;
+             Dropdown_prosjekt.DataValueField = "projectDescription";
+             Dropdown_prosjekt.DataTextField = "projectName"; 
+             Dropdown_prosjekt.Items.Insert(0, new ListItem("<Velg prosjekt>", "0"));
+             Dropdown_prosjekt.DataBind();*/
 
             string query = "SELECT projectName, projectDescription FROM Project";
 
