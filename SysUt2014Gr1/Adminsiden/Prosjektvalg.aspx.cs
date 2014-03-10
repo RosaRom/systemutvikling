@@ -21,6 +21,7 @@ namespace Adminsiden
         }
         private void GetProject()
         {
+            
             string query = "SELECT projectID, projectName, projectDescription FROM Project";
             GridViewProject.DataSource = db.getAll(query);
             GridViewProject.DataBind();

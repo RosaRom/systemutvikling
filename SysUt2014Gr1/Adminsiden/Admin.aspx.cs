@@ -13,6 +13,7 @@ namespace Admin
     {
         private DBConnect db;
         private Boolean active = true;
+        private DataTable table = new DataTable();
 
         // Brukes i forhold til sorting og for å lagre view states når det er flere spørringer opp mot websiden
         private string GridViewSortDirection
@@ -27,30 +28,47 @@ namespace Admin
             if (!Page.IsPostBack)
             {
                 ViewState["active"] = active;
-                GetUsers();
+                GetAllUsersReset();
                 GridViewInsertEmpty();
             }
             else
             {
                 active = (Boolean)ViewState["active"];                  //sørger for å ta vare på booleanverdien til active mellom postback
+                table = (DataTable)ViewState["table"];
             }
         }
 
         //her hentes alle aktive brukere ut og vises i gridview
-        private void GetAllUsers()
+        private void GetAllUsersReset()
         {
             string queryActive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '1' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
-            
-            GridViewAdmin.DataSource = db.AdminGetAllUsers(queryActive);
+            table = db.AdminGetAllUsers(queryActive);
+            ViewState["table"] = table;
+
+            GridViewAdmin.DataSource = table;
+            GridViewAdmin.DataBind();
+        }
+
+        private void GetAllUsers()
+        {
+            GridViewAdmin.DataSource = (DataTable)ViewState["table"];
             GridViewAdmin.DataBind();
         }
 
         //her hentes alle inaktive brukere ut og vises når admin vil se de
-        private void GetInactiveUsers()
+        private void GetInactiveUsersReset()
         {
             string queryInactive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '0' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
+            table = db.AdminGetAllUsers(queryInactive);
+            ViewState["table"] = table;
 
-            GridViewAdmin.DataSource = db.AdminGetAllUsers(queryInactive);
+            GridViewAdmin.DataSource = table;
+            GridViewAdmin.DataBind();
+        }
+
+        private void GetInactiveUsers()
+        {
+            GridViewAdmin.DataSource = (DataTable)ViewState["table"];
             GridViewAdmin.DataBind();
         }
 
@@ -80,22 +98,22 @@ namespace Admin
                 string username = e.NewValues["username"].ToString();
                 string phone = e.NewValues["phone"].ToString();
                 string mail = e.NewValues["mail"].ToString();
-                //string teamName = e.NewValues["teamName"].ToString();
-                //string groupName = e.NewValues["groupName"].ToString();
 
                 DropDownList team = (DropDownList)row.FindControl("dropDownTeamUsers");
                 DropDownList group = (DropDownList)row.FindControl("dropDownGroupUsers");
 
                 int teamID = Convert.ToInt32(team.SelectedValue);
-                    //db.GetTeamGroupId("SELECT teamID from Team WHERE teamName LIKE '" + teamName + "'");
                 int groupID = Convert.ToInt32(group.SelectedValue);
-                    //db.GetTeamGroupId("SELECT groupID from UserGroup WHERE groupName LIKE '" + groupName + "'");
 
                 string query = String.Format("UPDATE User SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
                 surname, firstname, username, phone, mail, teamID, groupID, id);
                 db.InsertDeleteUpdate(query);
                 GridViewAdmin.EditIndex = -1;
-                GetUsers();
+
+                if (active)
+                    GetAllUsersReset();
+                else
+                    GetInactiveUsersReset();
             }
             catch (Exception exception)
             {
@@ -107,10 +125,9 @@ namespace Admin
         protected void GridViewAdmin_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string id = GridViewAdmin.DataKeys[e.RowIndex]["userID"].ToString();
-            string aktiv = e.Values["aktiv"].ToString();
             string query;
 
-            if (aktiv.Equals("1"))
+            if (active)
                 query = String.Format("UPDATE User SET aktiv = 0 WHERE userID = {0}", id);
 
             else
@@ -120,7 +137,10 @@ namespace Admin
 
             GridViewAdmin.EditIndex = -1;
 
-            GetUsers();
+            if (active)
+                GetAllUsersReset();
+            else
+                GetInactiveUsersReset();
         }
 
         //RowUpdating kjøres når det legges til en ny bruker
@@ -136,9 +156,7 @@ namespace Admin
                 string phone = e.NewValues["phone"].ToString();
                 string mail = e.NewValues["mail"].ToString();
                 DropDownList team = (DropDownList)row.FindControl("dropDownTeam");
-                //string teamName = team.SelectedItem.Text;
                 DropDownList group = (DropDownList)row.FindControl("dropDownGroup");
-                //string groupName = group.SelectedItem.Text;
 
                 int teamID = Convert.ToInt32(team.SelectedValue);
                 int groupID = Convert.ToInt32(group.SelectedValue);
@@ -148,7 +166,12 @@ namespace Admin
 
                 db.InsertDeleteUpdate(query);
                 GridViewInsert.EditIndex = -1;
-                GetUsers();
+
+                if (active)
+                    GetAllUsersReset();
+                else
+                    GetInactiveUsersReset();
+
                 GridViewInsertEmpty();
             }
             catch (Exception exception)
@@ -176,7 +199,7 @@ namespace Admin
         {
             active = false;
             ViewState["active"] = active;
-            GetInactiveUsers();
+            GetInactiveUsersReset();
         }
 
         //viser aktive brukere
@@ -184,7 +207,7 @@ namespace Admin
         {
             active = true;
             ViewState["active"] = active;
-            GetAllUsers();
+            GetAllUsersReset();
         }
 
         //søkeknappen for å finne spesifikke brukere
@@ -204,29 +227,24 @@ namespace Admin
         protected void btnFjernFilter_Click(object sender, EventArgs e)//Når brukeren velger å fjerne filtering
         {
             FilterSearchTerms.Text = "";    //fjerner tekst fra søkevilkårboksen
-            GetUsers();                     // Oppdaterer lista 
+            if (active)
+                GetAllUsersReset();             // Oppdaterer lista 
+            else
+                GetInactiveUsersReset();
         }
 
         //metode for sortering av brukere
         protected void GridViewAdmin_Sorting(object sender, GridViewSortEventArgs e)
         {
-            string query;
-            if (active)
-            {
-                query = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '1' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
-            }
-            else
-            {
-                query = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '0' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
-            }
-
-            DataTable dataTable = db.AdminGetAllUsers(query);
+            DataTable dataTable = table;
             GridViewAdmin.DataSource = dataTable;
 
             if (dataTable != null)
             {
                 DataView dataView = new DataView(dataTable);
                 dataView.Sort = e.SortExpression + " " + ConvertSortDirectionToSql(e.SortDirection);
+
+                ViewState["table"] = dataView.ToTable();
 
                 GridViewAdmin.DataSource = dataView;
                 GridViewAdmin.DataBind();
@@ -282,6 +300,7 @@ namespace Admin
             if (filterTable.Rows.Count > 0) //Hvis søkevilkåret gir resultater
             {
                 //Om søket ga resultat
+                ViewState["table"] = filterTable;
                 GridViewAdmin.DataSource = filterTable; //Setter data source til den filtrerte data table
                 GridViewAdmin.DataBind();               //Oppdaterer data i GridView
             }
