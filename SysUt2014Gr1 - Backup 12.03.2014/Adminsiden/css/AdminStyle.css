@@ -1,0 +1,79 @@
+﻿
+
+Body{
+    background-color:lightgray;
+}
+
+#adminLogo{
+    text-align:center;
+    margin-top:2%;
+}
+
+#GridViewInsert{
+    margin-top:0.5%;
+    margin-bottom:5%;
+    margin-left:15%;
+    border-color:black;
+    border-bottom-style:solid;
+    background-color:white;
+    width:70%;
+}
+
+#GridViewAdmin{
+    margin-top:0.5%;
+    margin-left:15%;
+    border-color:black;
+    border-bottom-style:solid;
+    background-color:white;
+    width:70%;
+}
+
+#søkefelt{
+    padding-top:0.5%;
+    float:right;
+    margin-right:15%;
+}
+
+#knapperAktivInaktiv{
+    margin-right:15%;
+    margin-left:15%;
+    border-bottom:1px solid black;
+    border-top:1px solid black;
+    padding:0.5% 0 0.5% 0;
+}
+
+#btnDeaktiverte{
+    width:12%;
+}
+
+#btnAktiv{
+    width:12%;
+}
+
+#overskriftInsert{
+    width:70%;
+    margin-top:5%;
+    margin-right:15%;
+    margin-left:15%;
+    border-bottom:1px solid black;
+    border-top:1px solid black;
+    padding:0.5% 0 0.5% 0;
+}
+
+.gridView th{
+    background: url(../Resources/grd_head.png) repeat-x top;
+    background-size:100%;
+    color:white;
+    border-color:black;
+}
+
+.gridView .alt{
+    background: url(../Resources/grd_alt.png) repeat-x top;
+    background-size:100%;
+}
+
+.gridViewHeader a{
+    color:white;
+}
+
+
