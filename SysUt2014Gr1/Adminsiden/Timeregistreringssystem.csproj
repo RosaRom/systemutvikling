@@ -80,8 +80,10 @@
     <None Include="Resources\grd_alt.png" />
     <None Include="Resources\grd_head.png" />
     <Content Include="css\OpprettProsjektStyle.css" />
+    <Content Include="css\OpprettTeamStyle.css" />
     <Content Include="editProject.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
+    <Content Include="OpprettTeam.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
     <Content Include="Prosjektvalg.aspx" />
     <Content Include="css\ProsjektvalgStyle.css" />
@@ -119,6 +121,13 @@
     </Compile>
     <Compile Include="OpprettProsjekt.aspx.designer.cs">
       <DependentUpon>OpprettProsjekt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OpprettTeam.aspx.cs">
+      <DependentUpon>OpprettTeam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OpprettTeam.aspx.designer.cs">
+      <DependentUpon>OpprettTeam.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
