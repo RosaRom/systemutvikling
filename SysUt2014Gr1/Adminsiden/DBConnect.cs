@@ -57,7 +57,6 @@ namespace Admin
                     adapter = new MySqlDataAdapter(query, connection);
                     adapter.Fill(dataTable);
                 }
-
                 return dataTable;
             }
             catch (System.Data.SqlClient.SqlException ex)
@@ -84,6 +83,7 @@ namespace Admin
 
         }
 
+  
         public void InsertDeleteUpdate(string query)
         {
             if (this.OpenConnection() == true)

@@ -57,6 +57,10 @@
                 </Columns>
             </asp:GridView>
 
+            <div id="beskjedTilBruker">
+                <asp:Label ID="beskjed" runat="server">|</asp:Label>
+            </div>
+
             <div id="søkefelt">
                 <asp:TextBox ID="FilterSearchTerms" runat="server"></asp:TextBox>
                 <asp:DropDownList ID="FilterSearchDropdown" runat="server">

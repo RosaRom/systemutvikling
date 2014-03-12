@@ -1,8 +1,9 @@
 ﻿
-
 Body{
     background-color:lightgray;
 }
+
+
 
 #adminLogo{
     text-align:center;
@@ -11,6 +12,7 @@ Body{
 
 #GridViewInsert{
     margin-top:0.5%;
+    margin-bottom:5%;
     margin-left:15%;
     border-color:black;
     border-bottom-style:solid;
@@ -59,26 +61,18 @@ Body{
     padding:0.5% 0 0.5% 0;
 }
 
-#beskjedTilBruker{
-    margin-left:15%;
-    margin-bottom:5%;
-    margin-top:1%;
-}
-
 .gridView th{
-    background: url(../Resources/grd_head.png) repeat-x top;
+    background: url(Resources/grd_head.png) repeat-x top;
     background-size:100%;
     color:white;
     border-color:black;
 }
 
 .gridView .alt{
-    background: url(../Resources/grd_alt.png) repeat-x top;
+    background: url(Resources/grd_alt.png) repeat-x top;
     background-size:100%;
 }
 
 .gridViewHeader a{
     color:white;
 }
-
-

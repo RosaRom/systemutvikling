@@ -31,13 +31,13 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.DropDownList projectList;
         
         /// <summary>
-        /// btnShowProject control.
+        /// btnOK control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowProject;
+        protected global::System.Web.UI.WebControls.Button btnOK;
         
         /// <summary>
         /// btnEditProject control.
@@ -65,6 +65,15 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnShowArchive;
+        
+        /// <summary>
+        /// btnShowProject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnShowProject;
         
         /// <summary>
         /// btnNewProject control.

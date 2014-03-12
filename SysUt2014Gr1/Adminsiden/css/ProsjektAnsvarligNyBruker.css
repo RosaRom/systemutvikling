@@ -1,0 +1,48 @@
+﻿Body{
+    background-color:lightgray;
+}
+
+#adminLogo{
+    text-align:center;
+    margin-top:2%;
+}
+
+#GridViewProsjektAnsvarligInsert{
+    margin-top:0.5%;
+    margin-left:15%;
+    border-color:black;
+    border-bottom-style:solid;
+    background-color:white;
+    width:70%;
+}
+
+.gridView th{
+    background: url(../Resources/grd_head.png) repeat-x top;
+    background-size:100%;
+    color:white;
+    border-color:black;
+}
+
+.gridView .alt{
+    background: url(../Resources/grd_alt.png) repeat-x top;
+    background-size:100%;
+}
+
+.gridViewHeader a{
+    color:white;
+}
+
+#overskriftInsert{
+    width:70%;
+    margin-top:5%;
+    margin-right:15%;
+    margin-left:15%;
+    border-bottom:1px solid black;
+    border-top:1px solid black;
+    padding:0.5% 0 0.5% 0;
+}
+
+#beskjedTilBruker{
+    margin-left:15%;
+    margin-top:1%;
+}

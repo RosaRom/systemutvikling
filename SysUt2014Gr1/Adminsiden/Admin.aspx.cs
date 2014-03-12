@@ -35,6 +35,7 @@ namespace Admin
             {
                 active = (Boolean)ViewState["active"];                  //sørger for å ta vare på booleanverdien til active mellom postback
                 table = (DataTable)ViewState["table"];
+                beskjed.Text = "|";
             }
         }
 
@@ -173,10 +174,12 @@ namespace Admin
                     GetInactiveUsersReset();
 
                 GridViewInsertEmpty();
+                beskjed.Text = "Ny bruker lagt til";
             }
             catch (Exception exception)
             {
                 string error = exception.Message;
+                beskjed.Text = "En feil oppsto: " + error;
             }
         }
 
@@ -191,6 +194,7 @@ namespace Admin
         protected void GridViewInsert_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             GridViewInsert.EditIndex = -1;
+            beskjed.Text = "|";
             GridViewInsertEmpty();
         }
 
@@ -278,9 +282,11 @@ namespace Admin
         //setter inn en tom rad for å kunne legge til en bruker
         private void GridViewInsertEmpty()
         {
-            string query = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE userID = 1 AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
+            string query = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE userID = 0 AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
             DataTable dt = db.AdminGetAllUsers(query);
             dt.Rows.Add(dt.NewRow());
+
+            GridViewInsert.EditIndex = 0;
             GridViewInsert.DataSource = dt;
             GridViewInsert.DataBind();
         }
@@ -313,7 +319,7 @@ namespace Admin
 
         protected DataTable DropDownBoxTeam()
         {
-            string query = "SELECT * FROM STeam";
+            string query = "SELECT * FROM Team";
             DataTable table = new DataTable();
             table = db.AdminGetAllUsers(query);
             table.Rows.InsertAt(table.NewRow(), 0);
