@@ -22,6 +22,15 @@ namespace Adminsiden {
         protected global::System.Web.UI.HtmlControls.HtmlForm TeamForm;
         
         /// <summary>
+        /// Label_warning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label_warning;
+        
+        /// <summary>
         /// btn_opprett control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_opprett;
+        
+        /// <summary>
+        /// btn_deleteTeam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_deleteTeam;
         
         /// <summary>
         /// tb_newTeam control.
@@ -65,15 +83,6 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_selectTeam;
-        
-        /// <summary>
-        /// btn_selectTeam control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_selectTeam;
         
         /// <summary>
         /// ddl_users control.

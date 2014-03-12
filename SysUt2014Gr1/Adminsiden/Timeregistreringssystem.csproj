@@ -92,6 +92,7 @@
     <Content Include="Prosjektvalg.aspx" />
     <Content Include="css\ProsjektvalgStyle.css" />
     <Content Include="Resources\calendar.jpg" />
+    <Content Include="ViewProjectArchive.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +170,13 @@
     </Compile>
     <Compile Include="Resources\_ResourceRegistration.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="ViewProjectArchive.aspx.cs">
+      <DependentUpon>ViewProjectArchive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewProjectArchive.aspx.designer.cs">
+      <DependentUpon>ViewProjectArchive.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
