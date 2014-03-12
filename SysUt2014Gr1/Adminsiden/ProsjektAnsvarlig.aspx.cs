@@ -18,9 +18,11 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            db = new DBConnect();
+
+
             if (!Page.IsPostBack)
             {
-                db = new DBConnect();
                 FillProjectList();
             }
             else
@@ -64,7 +66,11 @@ namespace Adminsiden
 
         protected void btnArchiveProject_Click(object sender, EventArgs e)
         {
+            projectID = Convert.ToInt32(projectList.SelectedValue);
 
+            query = String.Format("UPDATE Project SET projectState = 0 WHERE projectID = '{0}'",
+                projectID);
+            db.InsertDeleteUpdate(query);
 
         }
 
