@@ -13,6 +13,11 @@
     </div>
     <form id="TeamForm" runat="server">
         <div id="Team">   
+            <br />
+            <asp:Button ID="btn_opprett" runat="server" OnClick="btn_opprett_Click" Text="Opprett team" />
+            <asp:TextBox ID="tb_newTeam" runat="server" Visible="False" Width="144px"></asp:TextBox>
+            <asp:Button ID="btn_createTeam" runat="server" OnClick="btn_createTeam_Click" Text="OK" Visible="False" Width="39px" />
+            <asp:Button ID="btn_abort" runat="server" OnClick="btn_abort_Click" Text="Avbryt" Visible="False" />
             <br />   
             <asp:DropDownList ID="ddl_selectTeam" runat="server" AppendDataBoundItems="true">
             </asp:DropDownList>
@@ -34,7 +39,6 @@
                     <asp:buttonfield buttontype="Button" text="Slett"/>
                 </Columns>
             </asp:GridView>
-            <asp:Button ID="btn_addTeam" runat="server" Text="Legg til team" />
         </div>
     </form>
 </body>

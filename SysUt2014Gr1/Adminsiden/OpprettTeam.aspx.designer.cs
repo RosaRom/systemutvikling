@@ -22,6 +22,42 @@ namespace Adminsiden {
         protected global::System.Web.UI.HtmlControls.HtmlForm TeamForm;
         
         /// <summary>
+        /// btn_opprett control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_opprett;
+        
+        /// <summary>
+        /// tb_newTeam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_newTeam;
+        
+        /// <summary>
+        /// btn_createTeam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_createTeam;
+        
+        /// <summary>
+        /// btn_abort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_abort;
+        
+        /// <summary>
         /// ddl_selectTeam control.
         /// </summary>
         /// <remarks>
@@ -74,14 +110,5 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView1;
-        
-        /// <summary>
-        /// btn_addTeam control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_addTeam;
     }
 }
