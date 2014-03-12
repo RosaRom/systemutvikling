@@ -1,4 +1,9 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OpprettProsjekt.aspx.cs" Inherits="Adminsiden.OpprettProsjekt" %>
+<%@ Page Language="C#" AutoEventWireup="true" Culture="auto" UICulture="auto" CodeBehind="OpprettProsjekt.aspx.cs" Inherits="Adminsiden.OpprettProsjekt" %>
+
+<%@ Register TagPrefix="asp" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
+<!-- Kommentar til registrering av AjaxControlToolkit:
+     Ajax er nå kun lagt til i denne webformen, må legges til i Web.Config for å fungere 
+     i hele prosjektet. Ikke funnet ut hvordan dette gjøres - Ari -->
 
 <!DOCTYPE html>
 
@@ -8,17 +13,33 @@
     <link rel="Stylesheet" type="text/css" href="css/OpprettProsjektStyle.css" />
 
     <script type="text/javascript">
-        /**
-         * DHTML textbox character counter script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+        /** Tegntellerskript for å telle og forhindre bruker i å skrive for mange tegn i en textbox, textview etc... 
+            Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
          */
 
-        maxL = 255;
-        var bName = navigator.appName;
+        maxL = 300;                         //Antall tilatte tegn i forhold til ProjectDescription field i databasen.
+        var bName = navigator.appName;      //Navnet på nettleseren
+        var keyevent = event.keyCode;       //Key event variabel som holder referanse til trykt knapp
+
+        /** Funksjonen taLimit() brukes i onkeydown-event i f.eks. Text Area; id="TextArea_ProjectDescription". 
+            Når en tast blir trykket sjekker metoden det totale antallet tegn som er tastet opp mot
+            maxvalue på text area (maxL). Hvis grensen er nådd returnerer metoden false, ingen ytterligere 
+            tastetrykkhendelse vil skje. Dette resulterte i en liten bug slik at bruker ikke kunne bruke backspacetasten
+            når brukeren har brukt opp antall tegn, måtte legge til  "if (key == 8) return true", for å få dette til
+            å fungere. Dette resulterte i en ny bug slik at maxvalue er nødt til å hardkodes inn i asp-syntaxen: maxlength="300".
+            Skal endringer gjøres må maxL-variabelen endres i tillegg til maxvalue property i asp-komponentet.
+          */
         function taLimit(taObj) {
+            // 8 er keyCode for backspaceknappen
+            if (key == 8) return true;
             if (taObj.value.length == maxL) return false;
+
             return true;
         }
 
+        /** Funksjonen taCount() brukes i onkeyup-event. Bruker denne metoden for å endre verdien på telleren som vises
+            og tatt høyde for copy-paste i feltet. Bruker innertext for å endre verdien på telleren, se i SPAN-elementet.
+            */
         function taCount(taObj, Cnt) {
             objCnt = createObject(Cnt);
             objVal = taObj.value;
@@ -31,6 +52,7 @@
             }
             return true;
         }
+        /** Metode for å lage document objekt */
         function createObject(objId) {
             if (document.getElementById) return document.getElementById(objId);
             else if (document.layers) return eval("document." + objId);
@@ -46,6 +68,8 @@
     </div>
     <form id="OpprettProsjekt" runat="server">
         <div id="textbox">
+            <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
+
             <asp:Label ID="lbl_projectName" runat="server" Text="Prosjekt navn"></asp:Label>
             <br />
             <asp:TextBox ID="tb_projectName" runat="server" Width="200px"></asp:TextBox>
@@ -54,24 +78,30 @@
             <br />
             <asp:Label ID="lbl_dateFrom" runat="server" Text="Fra: "></asp:Label>
             <asp:TextBox ID="tb_dateFrom" runat="server"></asp:TextBox>
+            <asp:CalendarExtender
+                ID="calendarDateFrom"
+                TargetControlID="tb_dateFrom"
+                Format="dd/MM/yyyy"
+                runat="server">
+            </asp:CalendarExtender>
+
             <asp:Label ID="lbl_dateTo" runat="server" Text="Til: "></asp:Label>
             <asp:TextBox ID="tb_dateTo" runat="server"></asp:TextBox>
-            <asp:ImageButton ID="ib_fromCalendar" runat="server" Height="25px" ImageUrl="~/Resources/CalendarImage.jpg" OnClick="ib_fromCalendar_Click" Width="30px" />
+            <asp:CalendarExtender
+                ID="calendarDateTo"
+                TargetControlID="tb_dateTo"
+                Format="dd/MM/yyyy"
+                runat="server">
+            </asp:CalendarExtender>
+
             <br />
-            <asp:Calendar ID="fromCalendar" runat="server" BorderWidth="2px" BackColor="white" Width="200px"
-                ForeColor="Black" Height="180px" Font-Size="8pt" Font-Names="Verdana" BorderColor="#E4DA85"
-                BorderStyle="Outset" DayNameFormat="FirstLetter" CellPadding="4" OnSelectionChanged="fromCalendar_SelectionChanged">
-                <TodayDayStyle ForeColor="Black" BackColor="#E9E19A"></TodayDayStyle>
-                <DayHeaderStyle Font-Size="7pt" Font-Bold="True" BackColor="#E9E19A"></DayHeaderStyle>
-                <SelectedDayStyle Font-Bold="True" ForeColor="White" BackColor="#D5D900"></SelectedDayStyle>
-            </asp:Calendar>
             <br />
 
-            <asp:Label ID="LabelprojectDesc" runat="server" Text="Prosjektbeskrivelse"></asp:Label>
+            <asp:Label ID="lblProjectDesc" runat="server" Text="Prosjektbeskrivelse"></asp:Label>
 
-            <textarea id="TextArea_ProjectDescription" cols="40" rows="3" onkeydown="return taLimit(this)" onkeyup="return taCount(this, 'counter')"></textarea><br />
+            <textarea id="TextArea_ProjectDescription" style="resize: none" maxlength="300" cols="40" rows="3" onkeydown="return taLimit(this)" onkeyup="return taCount(this, 'counter')"></textarea><br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Du har <b><span id="counter">255</span></b> tegn igjen til din beskrivelse...
+            Du har <b><span id="counter">300</span></b> tegn igjen til din beskrivelse...
             <br />
             <br />
             <asp:Label ID="LabelTasks" runat="server" Text="Legg til tasks"></asp:Label>
@@ -92,15 +122,6 @@
             <asp:Label ID="Label2" runat="server" Text="Team members"></asp:Label>
             <br />
             <asp:ListBox ID="lb_teamMembers" runat="server" Width="200px"></asp:ListBox>
-            <br />
-        </div>
-        <div id="calendar">
-            <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="ddl_hour" runat="server">
-            </asp:DropDownList>
-            <asp:DropDownList ID="ddl_min" runat="server">
-            </asp:DropDownList>
             <br />
         </div>
     </form>

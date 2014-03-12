@@ -13,6 +13,15 @@ namespace Adminsiden {
     public partial class OpprettProsjekt {
         
         /// <summary>
+        /// ToolkitScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
+        
+        /// <summary>
         /// lbl_projectName control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.TextBox tb_dateFrom;
         
         /// <summary>
+        /// calendarDateFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender calendarDateFrom;
+        
+        /// <summary>
         /// lbl_dateTo control.
         /// </summary>
         /// <remarks>
@@ -67,31 +85,22 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.TextBox tb_dateTo;
         
         /// <summary>
-        /// ib_fromCalendar control.
+        /// calendarDateTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ib_fromCalendar;
+        protected global::AjaxControlToolkit.CalendarExtender calendarDateTo;
         
         /// <summary>
-        /// fromCalendar control.
+        /// lblProjectDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar fromCalendar;
-        
-        /// <summary>
-        /// LabelprojectDesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelprojectDesc;
+        protected global::System.Web.UI.WebControls.Label lblProjectDesc;
         
         /// <summary>
         /// LabelTasks control.
@@ -173,32 +182,5 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox lb_teamMembers;
-        
-        /// <summary>
-        /// Calendar1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
-        
-        /// <summary>
-        /// ddl_hour control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_hour;
-        
-        /// <summary>
-        /// ddl_min control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_min;
     }
 }
