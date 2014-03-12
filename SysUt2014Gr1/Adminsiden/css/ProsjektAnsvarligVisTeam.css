@@ -11,3 +11,28 @@
     text-align:center;
     margin-top:4%;
 }
+
+#GridViewTeam{
+    margin-top:5%;
+    margin-left:25%;
+    border-color:black;
+    border-bottom-style:solid;
+    background-color:white;
+    width:50%;
+}
+
+.gridView th{
+    background: url(../Resources/grd_head.png) repeat-x top;
+    background-size:100%;
+    color:white;
+    border-color:black;
+}
+
+.gridView .alt{
+    background: url(../Resources/grd_alt.png) repeat-x top;
+    background-size:100%;
+}
+
+.gridViewHeader a{
+    color:white;
+}

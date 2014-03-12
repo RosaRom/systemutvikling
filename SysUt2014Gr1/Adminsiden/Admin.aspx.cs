@@ -43,6 +43,7 @@ namespace Admin
         private void GetAllUsersReset()
         {
             string queryActive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '1' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
+            
             table = db.AdminGetAllUsers(queryActive);
             ViewState["table"] = table;
 
