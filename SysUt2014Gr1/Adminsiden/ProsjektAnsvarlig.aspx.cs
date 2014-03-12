@@ -14,13 +14,25 @@ namespace Adminsiden
         string query;
         private DBConnect db;
         private DataTable dataTable;
-        private string projectID;
+        private int projectID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = new DBConnect();
-            FillProjectList();
+            if (!Page.IsPostBack)
+            {
+                db = new DBConnect();
+                FillProjectList();
+            }
+            else
+            {
+                if (ViewState["projectID"] != null)
+                {
+                    projectID = (int)ViewState["projectID"];
+                    Session["valg"] = projectID;
+                }
 
+            }
+       
         }
 
         private void FillProjectList()
@@ -36,29 +48,27 @@ namespace Adminsiden
 
         protected void btnEditProject_Click(object sender, EventArgs e)
         {
-            projectList.Text = projectList.SelectedValue;
-            Session["valg"] =  projectList.Text;
+            ViewState["projectID"] = Convert.ToInt32(projectList.SelectedValue);
+            projectID = Convert.ToInt32(projectList.SelectedValue);
 
-            Response.Redirect("editProject.aspx");
+            Response.Redirect(String.Format("editProject.aspx?id={0}", projectID));
         }
 
         protected void projectList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            projectID = projectList.Text;// Convert.ToInt32(projectList.SelectedValue);
-            
-
         }
 
         protected void btnOK_Click(object sender, EventArgs e)
         {
-           // projectID = Convert.ToInt32(projectList.SelectedValue);
-
         }
 
         protected void btnArchiveProject_Click(object sender, EventArgs e)
         {
 
+
         }
+
+     
 
      
     }

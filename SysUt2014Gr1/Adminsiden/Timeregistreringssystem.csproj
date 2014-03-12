@@ -88,7 +88,6 @@
     <Content Include="Prosjektvalg.aspx" />
     <Content Include="css\ProsjektvalgStyle.css" />
     <Content Include="Resources\calendar.jpg" />
-    <EmbeddedResource Include="Resources\CalendarImage.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

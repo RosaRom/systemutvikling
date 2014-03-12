@@ -13,36 +13,52 @@ namespace Adminsiden
     {
         private DBConnect db;
         private string query;
-        private string listRef;
-        private DataTable dataTable;
-
-
+        private DataTable dataTable = new DataTable();
+        private int projectID;
+        private string name = "test";
         protected void Page_Load(object sender, EventArgs e)
         {
             db = new DBConnect();
-            listRef = (String)Session["valg"];
-            Refresh();
-        }
 
+            if (!Page.IsPostBack)
+            {
+                projectID = Convert.ToInt32(Request.QueryString["id"]);
+                Refresh();
+            }
+            else
+            {
+                if (ViewState["name"] != null)
+                {
+                    name = (string)ViewState["name"];
+                }
+
+            }
+         
+
+        }
         private void EditProject()
         {
             /*
             query = String.Format("UPDATE Project SET projectName = '{0}', projectDescription = '{1}', projectState = '{2}', parentProjectID = '{3}' WHERE projectID = '{4}')",
                 tbProjectName.Text, tbProjectDescription.Text, "1", "0", "2");
              * */
+            
 
              query = String.Format("UPDATE Project SET projectName = '{0}' WHERE projectID = '{1}'",
-                tbProjectName.Text, "2");
+                name, projectID);
             db.InsertDeleteUpdate(query);
 
         }
         private void Refresh()
         {
-            query = "SELECT * FROM Project WHERE projectID = 2 ";// +listRef;
+            query = String.Format("SELECT * FROM Project WHERE projectID = '{0}'", projectID);// +listRef;
             dataTable = db.getAll(query);
 
             tbProjectName.Text = dataTable.Rows[0]["projectName"].ToString();
             tbProjectDescription.Text = dataTable.Rows[0]["projectDescription"].ToString();
+            ViewState["name"] = "teamTest";
+            ViewState["description"] = tbProjectDescription.Text;
+
 
         }
 
