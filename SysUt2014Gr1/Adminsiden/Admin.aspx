@@ -20,9 +20,16 @@
                 <asp:Label runat="server">Legg til nye brukere</asp:Label>
             </div>
 
-            <asp:GridView ID="GridViewInsert" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" AutoGenerateEditButton="True"
-                OnRowCancelingEdit="GridViewInsert_RowCancelingEdit" OnRowEditing="GridViewInsert_RowEditing" OnRowUpdating="GridViewInsert_RowUpdating"
-                CssClass="gridView" AlternatingRowStyle-CssClass="alt">
+            <asp:GridView ID="GridViewInsert" 
+                runat="server" 
+                AutoGenerateColumns="False" 
+                ShowHeaderWhenEmpty="True" 
+                AutoGenerateEditButton="True"
+                OnRowCancelingEdit="GridViewInsert_RowCancelingEdit" 
+                OnRowEditing="GridViewInsert_RowEditing" 
+                OnRowUpdating="GridViewInsert_RowUpdating"
+                CssClass="gridView" 
+                AlternatingRowStyle-CssClass="alt">
 
                 <AlternatingRowStyle CssClass="alt" />
 

@@ -1,0 +1,20 @@
+﻿Body{
+    background-color:lightgray;
+}
+#Logo{
+    text-align:center;
+    margin-top:2%;
+}
+
+#TeamForm{
+    text-align:center;
+    margin-top:3%;
+}
+#GridView1{
+     margin-top:0.5%;
+    margin-left:15%;
+    border-color:black;
+    border-bottom-style:solid;
+    background-color:white;
+    width:70%;
+}

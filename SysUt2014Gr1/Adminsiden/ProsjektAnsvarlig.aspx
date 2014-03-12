@@ -12,14 +12,15 @@
     
     </div>
         <p>
-        <asp:DropDownList ID="projectList" runat="server" Width="197px">
+        <asp:DropDownList ID="projectList" runat="server" Width="197px" OnSelectedIndexChanged="projectList_SelectedIndexChanged">
         </asp:DropDownList>
-            <asp:Button ID="btnShowProject" runat="server" Text="Vis" />
+            <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" Text="&lt;&lt; Velg" />
         </p>
         <p>
             <asp:Button ID="btnEditProject" runat="server" Text="Endre" Width="66px" OnClick="btnEditProject_Click" />
-            <asp:Button ID="btnArchiveProject" runat="server" Text="Arkiver" Width="81px" />
+            <asp:Button ID="btnArchiveProject" runat="server" Text="Arkiver" Width="81px" OnClick="btnArchiveProject_Click" />
             <asp:Button ID="btnShowArchive" runat="server" Text="Vis arkiv" Width="90px" />
+            <asp:Button ID="btnShowProject" runat="server" Text="Vis" />
         </p>
         <p>
             <asp:Button ID="btnNewProject" runat="server" Height="35px" Text="Opprett prosjekt" Width="236px" />

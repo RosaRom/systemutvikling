@@ -14,6 +14,7 @@ namespace Adminsiden
         string query;
         private DBConnect db;
         private DataTable dataTable;
+        private string projectID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,9 +25,10 @@ namespace Adminsiden
 
         private void FillProjectList()
         {
-            query = "SELECT ProjectName FROM Project WHERE projectState = 1";
+            query = "SELECT * FROM Project WHERE projectState = 1";
             dataTable = db.getAll(query);
-            projectList.DataValueField = "projectName";
+            projectList.DataTextField = "projectName";
+            projectList.DataValueField = "projectID";
             projectList.DataSource = dataTable;
             projectList.DataBind();
 
@@ -34,7 +36,30 @@ namespace Adminsiden
 
         protected void btnEditProject_Click(object sender, EventArgs e)
         {
+            projectList.Text = projectList.SelectedValue;
+            Session["valg"] =  projectList.Text;
+
             Response.Redirect("editProject.aspx");
         }
+
+        protected void projectList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            projectID = projectList.Text;// Convert.ToInt32(projectList.SelectedValue);
+            
+
+        }
+
+        protected void btnOK_Click(object sender, EventArgs e)
+        {
+           // projectID = Convert.ToInt32(projectList.SelectedValue);
+
+        }
+
+        protected void btnArchiveProject_Click(object sender, EventArgs e)
+        {
+
+        }
+
+     
     }
 }
