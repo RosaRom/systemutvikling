@@ -74,6 +74,7 @@
     <None Include="Resources\grd_alt.png" />
     <None Include="Resources\grd_head.png" />
     <Content Include="editProject.aspx" />
+    <Content Include="MainCSS.css" />
     <Content Include="ProsjektAnsvarlig.aspx" />
     <Content Include="Resources\calendar.jpg" />
     <Content Include="Scripts\.gitignore" />

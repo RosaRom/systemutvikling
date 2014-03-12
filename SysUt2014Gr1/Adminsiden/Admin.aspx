@@ -40,7 +40,7 @@
 
             <div id="søkefelt">
                 <asp:TextBox ID="FilterSearchTerms" runat="server"></asp:TextBox>
-                <asp:DropDownList ID="FilterSearchDropdown" runat="server" OnSelectedIndexChanged="FilterSearchDropdown_SelectedIndexChanged">
+                <asp:DropDownList ID="FilterSearchDropdown" runat="server">
                     <asp:ListItem Value="userID">Bruker ID</asp:ListItem>
                     <asp:ListItem Value="firstname">Fornavn</asp:ListItem>
                     <asp:ListItem Value="surname">Etternavn</asp:ListItem>

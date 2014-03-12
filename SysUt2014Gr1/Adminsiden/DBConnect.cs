@@ -84,6 +84,7 @@ namespace Admin
 
         }
 
+  
         public void InsertDeleteUpdate(string query)
         {
             if (this.OpenConnection() == true)
