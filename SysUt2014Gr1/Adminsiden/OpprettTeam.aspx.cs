@@ -22,6 +22,11 @@ namespace Adminsiden
                 getTeams();
                 fillGridView();
             }
+            else
+            {
+                teamID = (int)ViewState["teamID"];
+                userID = (int)ViewState["userID"];
+            }
         }
         private void getTeams()
         {
@@ -51,7 +56,7 @@ namespace Adminsiden
         protected void btn_addUser_Click(object sender, EventArgs e)
         {
             userID = Convert.ToInt32(ddl_users.SelectedValue);
-            string query = "UPDATE User SET groupID = 1 AND teamID=" + Convert.ToInt16(ViewState["teamID"]) + " WHERE userID=" + Convert.ToInt16(ViewState["userID"]);
+            string query = "UPDATE User SET groupID = 1 AND teamID=" + teamID + " WHERE userID=" + userID;
             db.InsertDeleteUpdate(query);
         }
 
