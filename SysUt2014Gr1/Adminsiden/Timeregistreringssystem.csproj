@@ -30,7 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -65,31 +65,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.aspx" />
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainPage.resx">
+      <DependentUpon>MainPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\UPARROW.GIF" />
     <EmbeddedResource Include="Resources\DOWNARROW.GIF" />
-    <Content Include="AdminStyle.css" />
+    <Content Include="css\AdminStyle.css" />
     <Content Include="Bruker.aspx" />
     <None Include="Properties\PublishProfiles\tord.pubxml" />
     <None Include="Resources\MorildData.png" />
     <None Include="Resources\grd_alt.png" />
     <None Include="Resources\grd_head.png" />
+    <Content Include="css\OpprettProsjektStyle.css" />
+    <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="editProject.aspx" />
-    <Content Include="MainCSS.css" />
+    <Content Include="OpprettProsjekt.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
+    <Content Include="ProsjektAnsvarligNyBruker.aspx" />
+    <Content Include="Prosjektvalg.aspx" />
+    <Content Include="css\ProsjektvalgStyle.css" />
     <Content Include="Resources\calendar.jpg" />
-    <Content Include="Scripts\.gitignore" />
-    <Content Include="Scripts\GruntFile.js" />
-    <Content Include="Scripts\index.html" />
-    <Content Include="Scripts\jquery.datepair.js" />
-    <Content Include="Scripts\jquery.timepicker.css" />
-    <Content Include="Scripts\jquery.timepicker.js" />
-    <Content Include="Scripts\jquery.timepicker.min.js" />
-    <Content Include="Styles\bootstrap-datepicker.css" />
-    <Content Include="Styles\bootstrap-datepicker.js" />
-    <Content Include="Styles\glyphicons-halflings.png" />
-    <Content Include="Styles\screenshot.png" />
-    <Content Include="Styles\site.css" />
-    <Content Include="Styles\site.js" />
+    <EmbeddedResource Include="Resources\CalendarImage.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +116,13 @@
       <DependentUpon>editProject.aspx</DependentUpon>
     </Compile>
     <Compile Include="LogIn.cs" />
+    <Compile Include="OpprettProsjekt.aspx.cs">
+      <DependentUpon>OpprettProsjekt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OpprettProsjekt.aspx.designer.cs">
+      <DependentUpon>OpprettProsjekt.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -130,15 +136,26 @@
     <Compile Include="ProsjektAnsvarlig.aspx.designer.cs">
       <DependentUpon>ProsjektAnsvarlig.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProsjektAnsvarligNyBruker.aspx.cs">
+      <DependentUpon>ProsjektAnsvarligNyBruker.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProsjektAnsvarligNyBruker.aspx.designer.cs">
+      <DependentUpon>ProsjektAnsvarligNyBruker.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Prosjektvalg.aspx.cs">
+      <DependentUpon>Prosjektvalg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prosjektvalg.aspx.designer.cs">
+      <DependentUpon>Prosjektvalg.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\_ResourceRegistration.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\tord.pubxml" />
-    <Content Include="Scripts\component.json" />
-    <Content Include="Scripts\jt.timepicker.jquery.json" />
-    <Content Include="Scripts\package.json" />
-    <Content Include="Scripts\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

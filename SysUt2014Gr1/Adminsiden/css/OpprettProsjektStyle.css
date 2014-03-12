@@ -1,0 +1,17 @@
+﻿Body{
+    background-color:lightgray;
+}
+#Logo{
+    text-align:center;
+    margin-top:2%;
+}
+
+#textbox{
+    text-align:center;
+    margin-top:3%;
+    margin-left: 40px;
+}
+#calendar{
+    margin-top:3%;
+    margin-left: 295px;
+}
