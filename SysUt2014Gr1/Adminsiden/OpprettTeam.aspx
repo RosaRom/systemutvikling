@@ -14,16 +14,18 @@
     <form id="TeamForm" runat="server">
         <div id="Team">   
             <br />
+            <asp:Label ID="Label_warning" runat="server" ForeColor="Red"></asp:Label>
+            <br />
             <asp:Button ID="btn_opprett" runat="server" OnClick="btn_opprett_Click" Text="Opprett team" />
+            <asp:Button ID="btn_deleteTeam" runat="server" Text="Slett team" Width="75px" OnClick="btn_deleteTeam_Click" />
             <asp:TextBox ID="tb_newTeam" runat="server" Visible="False" Width="144px"></asp:TextBox>
             <asp:Button ID="btn_createTeam" runat="server" OnClick="btn_createTeam_Click" Text="OK" Visible="False" Width="39px" />
             <asp:Button ID="btn_abort" runat="server" OnClick="btn_abort_Click" Text="Avbryt" Visible="False" />
             <br />   
-            <asp:DropDownList ID="ddl_selectTeam" runat="server" AppendDataBoundItems="true">
+            <asp:DropDownList ID="ddl_selectTeam" runat="server" AppendDataBoundItems="true" AutoPostBack="True" OnSelectedIndexChanged="ddl_selectTeam_SelectedIndexChanged" Width="175px">
             </asp:DropDownList>
-            <asp:Button ID="btn_selectTeam" runat="server" OnClick="btn_selectTeam_Click" Text="Velg" />
             <br />
-            <asp:DropDownList ID="ddl_users" runat="server" AppendDataBoundItems="true"></asp:DropDownList>
+            <asp:DropDownList ID="ddl_users" runat="server" AppendDataBoundItems="true" Width="175px"></asp:DropDownList>
             <br />
             <asp:Button ID="btn_addUser" runat="server" Text="Legg til bruker" OnClick="btn_addUser_Click" />
             <asp:Button ID="btn_addTeamleader" runat="server" Text="Legg til teamleder" OnClick="btn_addTeamleader_Click" />

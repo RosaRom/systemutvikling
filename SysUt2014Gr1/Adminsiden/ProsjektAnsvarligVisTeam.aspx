@@ -18,16 +18,17 @@
     <div>
         
         <h1 id="overskriftTeamNavn">
-             <asp:Label ID="teamNavn" runat="server">Team 1</asp:Label>
+             <asp:Label ID="teamNavn" runat="server"></asp:Label>
         </h1>
 
     </div>
-        <asp:GridView ID="GridViewTeam" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridViewTeam_RowDeleting">
+        <asp:GridView ID="GridViewTeam" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridViewTeam_RowDeleting" CssClass="gridView" AlternatingRowStyle-CssClass="alt">
             <Columns>
                 <asp:BoundField DataField="userID" HeaderText="Id"/>
                 <asp:BoundField DataField="firstname" HeaderText="Fornavn"/>
                 <asp:BoundField DataField="surname" HeaderText="Etternavn"/>
                 <asp:BoundField DataField="groupName" HeaderText="Brukertype"/>
+                <asp:BoundField DataField="teamName" HeaderText="Team"/>
                 <asp:CommandField ShowDeleteButton="True" DeleteText="Fjern fra team"/>
             </Columns>
         </asp:GridView>
