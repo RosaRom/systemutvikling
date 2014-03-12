@@ -81,18 +81,13 @@
     <None Include="Resources\grd_head.png" />
     <Content Include="css\OpprettProsjektStyle.css" />
     <Content Include="css\OpprettTeamStyle.css" />
-    <Content Include="css\ProsjektAnsvarligNyBruker.css" />
-    <Content Include="css\ProsjektAnsvarligVisTeam.css" />
     <Content Include="editProject.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
     <Content Include="OpprettTeam.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
-    <Content Include="ProsjektAnsvarligNyBruker.aspx" />
-    <Content Include="ProsjektAnsvarligVisTeam.aspx" />
     <Content Include="Prosjektvalg.aspx" />
     <Content Include="css\ProsjektvalgStyle.css" />
     <Content Include="Resources\calendar.jpg" />
-    <Content Include="ViewProjectArchive.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -147,20 +142,6 @@
     <Compile Include="ProsjektAnsvarlig.aspx.designer.cs">
       <DependentUpon>ProsjektAnsvarlig.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ProsjektAnsvarligNyBruker.aspx.cs">
-      <DependentUpon>ProsjektAnsvarligNyBruker.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ProsjektAnsvarligNyBruker.aspx.designer.cs">
-      <DependentUpon>ProsjektAnsvarligNyBruker.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ProsjektAnsvarligVisTeam.aspx.cs">
-      <DependentUpon>ProsjektAnsvarligVisTeam.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ProsjektAnsvarligVisTeam.aspx.designer.cs">
-      <DependentUpon>ProsjektAnsvarligVisTeam.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Prosjektvalg.aspx.cs">
       <DependentUpon>Prosjektvalg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -170,13 +151,6 @@
     </Compile>
     <Compile Include="Resources\_ResourceRegistration.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="ViewProjectArchive.aspx.cs">
-      <DependentUpon>ViewProjectArchive.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewProjectArchive.aspx.designer.cs">
-      <DependentUpon>ViewProjectArchive.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

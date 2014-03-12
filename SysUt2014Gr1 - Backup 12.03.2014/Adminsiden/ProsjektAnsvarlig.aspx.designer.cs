@@ -10,105 +10,78 @@
 namespace Adminsiden {
     
     
-    public partial class OpprettTeam {
+    public partial class ProsjektAnsvarlig {
         
         /// <summary>
-        /// TeamForm control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm TeamForm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// btn_opprett control.
+        /// projectList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_opprett;
+        protected global::System.Web.UI.WebControls.DropDownList projectList;
         
         /// <summary>
-        /// tb_newTeam control.
+        /// btnShowProject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_newTeam;
+        protected global::System.Web.UI.WebControls.Button btnShowProject;
         
         /// <summary>
-        /// btn_createTeam control.
+        /// btnEditProject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_createTeam;
+        protected global::System.Web.UI.WebControls.Button btnEditProject;
         
         /// <summary>
-        /// btn_abort control.
+        /// btnArchiveProject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_abort;
+        protected global::System.Web.UI.WebControls.Button btnArchiveProject;
         
         /// <summary>
-        /// ddl_selectTeam control.
+        /// btnShowArchive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_selectTeam;
+        protected global::System.Web.UI.WebControls.Button btnShowArchive;
         
         /// <summary>
-        /// btn_selectTeam control.
+        /// btnNewProject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_selectTeam;
+        protected global::System.Web.UI.WebControls.Button btnNewProject;
         
         /// <summary>
-        /// ddl_users control.
+        /// btnEditProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_users;
-        
-        /// <summary>
-        /// btn_addUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_addUser;
-        
-        /// <summary>
-        /// btn_addTeamleader control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_addTeamleader;
-        
-        /// <summary>
-        /// GridView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Button btnEditProfile;
     }
 }
