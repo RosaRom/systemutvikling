@@ -32,6 +32,23 @@
                 <asp:CommandField ShowDeleteButton="True" DeleteText="Fjern fra team"/>
             </Columns>
         </asp:GridView>
+
+        <asp:GridView ID="GridViewProject" runat="server" AutoGenerateColumns="False" CssClass="gridView" AlternatingRowStyle-CssClass="alt">
+            <Columns>
+                <asp:BoundField DataField="projectID" HeaderText="ID"/>
+                <asp:BoundField DataField="projectName" HeaderText="Prosjekt"/>
+                <asp:BoundField DataField="projectDescription" HeaderText="Beskrivelse"/>
+            </Columns>
+        </asp:GridView>
+
+        <div id="nyTeamleder">
+            <asp:Label ID="info" runat="server">Endre valgt bruker til Teamleder</asp:Label>
+            <br/>
+            <asp:DropDownList ID="DropDownTeam" runat="server">
+            </asp:DropDownList>
+
+            <asp:Button ID="btnOK" runat="server" Text="OK" />
+        </div>
     </form>
 </body>
 </html>
