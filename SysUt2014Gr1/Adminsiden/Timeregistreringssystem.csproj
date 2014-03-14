@@ -65,9 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.aspx" />
-    <EmbeddedResource Include="LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -79,11 +76,13 @@
     <None Include="Resources\MorildData.png" />
     <None Include="Resources\grd_alt.png" />
     <None Include="Resources\grd_head.png" />
+    <Content Include="css\Login.css" />
     <Content Include="css\OpprettProsjektStyle.css" />
     <Content Include="css\OpprettTeamStyle.css" />
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
     <Content Include="editProject.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
     <Content Include="OpprettTeam.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
@@ -119,7 +118,13 @@
     <Compile Include="editProject.aspx.designer.cs">
       <DependentUpon>editProject.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LogIn.cs" />
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OpprettProsjekt.aspx.cs">
       <DependentUpon>OpprettProsjekt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
