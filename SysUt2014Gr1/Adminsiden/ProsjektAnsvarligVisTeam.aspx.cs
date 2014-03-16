@@ -60,9 +60,14 @@ namespace Adminsiden
             GridViewProject.DataBind();
         }
 
-        private void DropDownTeam()
+        private void DropDownTeamFill()
         {
             
+        }
+
+        protected void btnOK_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

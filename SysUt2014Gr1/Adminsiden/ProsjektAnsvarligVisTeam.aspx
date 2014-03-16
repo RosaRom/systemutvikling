@@ -47,7 +47,7 @@
             <asp:DropDownList ID="DropDownTeam" runat="server">
             </asp:DropDownList>
 
-            <asp:Button ID="btnOK" runat="server" Text="OK" />
+            <asp:Button ID="btnOK" runat="server" Text="OK" OnClick="btnOK_Click" />
         </div>
     </form>
 </body>

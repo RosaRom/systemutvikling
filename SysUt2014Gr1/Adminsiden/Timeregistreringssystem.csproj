@@ -107,11 +107,13 @@
     <None Include="Resources\MorildData.png" />
     <None Include="Resources\grd_alt.png" />
     <None Include="Resources\grd_head.png" />
+    <Content Include="css\Login.css" />
     <Content Include="css\OpprettProsjektStyle.css" />
     <Content Include="css\OpprettTeamStyle.css" />
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
     <Content Include="editProject.aspx" />
+    <Content Include="login.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
     <Content Include="OpprettTeam.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
@@ -146,6 +148,13 @@
     </Compile>
     <Compile Include="editProject.aspx.designer.cs">
       <DependentUpon>editProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="LogIn.cs" />
     <Compile Include="OpprettProsjekt.aspx.cs">
