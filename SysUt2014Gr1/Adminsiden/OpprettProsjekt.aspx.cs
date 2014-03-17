@@ -1,3 +1,4 @@
+using Admin;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,6 +11,8 @@ namespace Adminsiden
 {
     public partial class OpprettProsjekt : System.Web.UI.Page
     {
+        private DBConnect db = new DBConnect();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

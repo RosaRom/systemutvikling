@@ -77,7 +77,7 @@
 
             <br />
             <asp:Label ID="lbl_dateFrom" runat="server" Text="Fra: "></asp:Label>
-            <asp:TextBox ID="tb_dateFrom" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tb_dateFrom" runat="server" Width="75px"></asp:TextBox>
             <asp:CalendarExtender
                 ID="calendarDateFrom"
                 TargetControlID="tb_dateFrom"
@@ -86,7 +86,7 @@
             </asp:CalendarExtender>
 
             <asp:Label ID="lbl_dateTo" runat="server" Text="Til: "></asp:Label>
-            <asp:TextBox ID="tb_dateTo" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tb_dateTo" runat="server" Width="75px"></asp:TextBox>
             <asp:CalendarExtender
                 ID="calendarDateTo"
                 TargetControlID="tb_dateTo"
@@ -98,31 +98,52 @@
             <br />
 
             <asp:Label ID="lblProjectDesc" runat="server" Text="Prosjektbeskrivelse"></asp:Label>
-
+            <br />
             <textarea id="TextArea_ProjectDescription" style="resize: none" maxlength="300" cols="40" rows="3" onkeydown="return taLimit(this)" onkeyup="return taCount(this, 'counter')"></textarea><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Du har <b><span id="counter">300</span></b> tegn igjen til din beskrivelse...
             <br />
             <br />
-            <asp:Label ID="LabelTasks" runat="server" Text="Legg til tasks"></asp:Label>
+            <asp:Label ID="lblUnderprosjekt" runat="server" Text="Gjør til underprosjekt av:"></asp:Label>
+            <asp:DropDownList ID="ddlUnderprosjekt" runat="server"></asp:DropDownList>
             <br />
-            <asp:TextBox ID="tb_tasks" runat="server" Width="200px"></asp:TextBox>
+            <br />
+            <asp:DropDownList ID="ddlTeam" runat="server" Width="175px"></asp:DropDownList>
+            <asp:Button ID="btnShowTeam" runat="server" Text="Vis" Visible="true" />
+            <asp:Button ID="btnCreateTeam" runat="server" Text="Opprett team" Visible="true" />
+
+            <!-- PopupExtender fra Ajax som viser en popup panel, denne ModalPopupExtender
+                er linket opp mot knappen btnShowTeam: TargetControlID="btnShowTeam".
+                Når brukeren trykker denne knappen kommer det opp et lite popupvindu som 
+                viser alle personen som er i det teamet som er valgt i DropDownList for teams. -->
+            <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtenderTeam" runat="server"
+                OkControlID="btnOkay" CancelControlID="btnCancel"
+                TargetControlID="btnShowTeam" PopupControlID="testPanel"
+                PopupDragHandleControlID="PopupHeader" Drag="true"
+                BackgroundCssClass="ModalPopupBG">
+            </ajaxToolkit:ModalPopupExtender>
+
+            <!-- Panelet som er koblet opp mot ModalPopupExtenderTeam-->
+            <asp:Panel ID="testPanel" runat="server" Style="border: solid 2px #000; display: none; width: 30%; height: auto;">
+                <div class="HelloWorldPopup">
+                    <div class="PopupHeader" id="PopupHeader" style="cursor: move">Header</div>
+                    <div class="PopupBody" id="PopupBody">
+                        <p>This is a simple modal dialog</p>
+                    </div>
+                    <div class="Controls">
+                        <input id="btnOkay" type="button" value="Done" />
+                        <input id="btnCancel" type="button" value="Cancel" />
+                    </div>
+                </div>
+            </asp:Panel>
+
+            <br />
+            <br />
+            <asp:Label ID="LabelTasks" runat="server" Text="Hovedtasks"></asp:Label>
+            &nbsp;
+            <asp:Button ID="btnAddMainTask" runat="server" Text="Legg til" />
+            <asp:Button ID="btnCreateMainTask" runat="server" Text="Opprett hovedtask" />
             <br />
             <asp:ListBox ID="lb_tasks" runat="server" Width="200px"></asp:ListBox>
-            <br />
-            <br />
-            <asp:CheckBox ID="CheckBox1" runat="server" Text="Subprosjekt" />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="Label1" runat="server" Text="Teams"></asp:Label>
-            <br />
-            <asp:ListBox ID="lb_parentProject" runat="server" Width="200px"></asp:ListBox>
-            <asp:ListBox ID="lb_Team" runat="server" Width="200px"></asp:ListBox>
-            <br />
-            <br />
-            <asp:Label ID="Label2" runat="server" Text="Team members"></asp:Label>
-            <br />
-            <asp:ListBox ID="lb_teamMembers" runat="server" Width="200px"></asp:ListBox>
-            <br />
         </div>
     </form>
 </body>
