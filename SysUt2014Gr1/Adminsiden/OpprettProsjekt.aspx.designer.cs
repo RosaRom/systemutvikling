@@ -13,13 +13,13 @@ namespace Adminsiden {
     public partial class OpprettProsjekt {
         
         /// <summary>
-        /// ToolkitScriptManager1 control.
+        /// ToolkitScriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
+        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager;
         
         /// <summary>
         /// lbl_projectName control.
@@ -94,103 +94,121 @@ namespace Adminsiden {
         protected global::AjaxControlToolkit.CalendarExtender calendarDateTo;
         
         /// <summary>
-        /// lblProjectDesc control.
+        /// lbl_ProjectDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProjectDesc;
+        protected global::System.Web.UI.WebControls.Label lbl_ProjectDesc;
         
         /// <summary>
-        /// lblUnderprosjekt control.
+        /// lbl_Underprosjekt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUnderprosjekt;
+        protected global::System.Web.UI.WebControls.Label lbl_Underprosjekt;
         
         /// <summary>
-        /// ddlUnderprosjekt control.
+        /// ddl_Hovedprosjekt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUnderprosjekt;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_Hovedprosjekt;
         
         /// <summary>
-        /// ddlTeam control.
+        /// ddl_Team control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTeam;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_Team;
         
         /// <summary>
-        /// btnShowTeam control.
+        /// dummy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowTeam;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dummy;
         
         /// <summary>
-        /// btnCreateTeam control.
+        /// btn_ShowTeam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreateTeam;
+        protected global::System.Web.UI.WebControls.Button btn_ShowTeam;
         
         /// <summary>
-        /// ModalPopupExtenderTeam control.
+        /// btn_CreateTeam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtenderTeam;
+        protected global::System.Web.UI.WebControls.Button btn_CreateTeam;
         
         /// <summary>
-        /// testPanel control.
+        /// ModalPopupExtender_Team control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel testPanel;
+        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender_Team;
         
         /// <summary>
-        /// LabelTasks control.
+        /// gridViewPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelTasks;
+        protected global::System.Web.UI.WebControls.Panel gridViewPanel;
         
         /// <summary>
-        /// btnAddMainTask control.
+        /// gv_selectedTeam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddMainTask;
+        protected global::System.Web.UI.WebControls.GridView gv_selectedTeam;
         
         /// <summary>
-        /// btnCreateMainTask control.
+        /// lbl_Tasks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreateMainTask;
+        protected global::System.Web.UI.WebControls.Label lbl_Tasks;
+        
+        /// <summary>
+        /// btn_AddMainTask control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_AddMainTask;
+        
+        /// <summary>
+        /// btn_CreateMainTask control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_CreateMainTask;
         
         /// <summary>
         /// lb_tasks control.
