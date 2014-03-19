@@ -101,9 +101,11 @@
     <None Include="Resources\MorildData.png" />
     <None Include="Resources\grd_alt.png" />
     <None Include="Resources\grd_head.png" />
+    <Content Include="css\EditProject.css" />
     <Content Include="css\Login.css" />
     <Content Include="css\OpprettProsjektStyle.css" />
     <Content Include="css\OpprettTeamStyle.css" />
+    <Content Include="css\ProsjektAnsvarlig.css" />
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
     <Content Include="editProject.aspx" />
