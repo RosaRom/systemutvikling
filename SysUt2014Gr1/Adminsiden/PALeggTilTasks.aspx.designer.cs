@@ -10,60 +10,69 @@
 namespace Adminsiden {
     
     
-    public partial class ProsjektAnsvarligVisTeam {
+    public partial class PALeggTilTasks {
         
         /// <summary>
-        /// teamNavn control.
+        /// DropDownTaskType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label teamNavn;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownTaskType;
         
         /// <summary>
-        /// GridViewTeam control.
+        /// taskName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewTeam;
+        protected global::System.Web.UI.WebControls.TextBox taskName;
         
         /// <summary>
-        /// GridViewProject control.
+        /// timerAllokert control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewProject;
+        protected global::System.Web.UI.WebControls.TextBox timerAllokert;
         
         /// <summary>
-        /// info control.
+        /// DropDownFaseFra control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label info;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownFaseFra;
         
         /// <summary>
-        /// DropDownTeam control.
+        /// DropDownFaseTil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownTeam;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownFaseTil;
         
         /// <summary>
-        /// btnOK control.
+        /// BtnOpprettFase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOK;
+        protected global::System.Web.UI.WebControls.Button BtnOpprettFase;
+        
+        /// <summary>
+        /// DropDownSubtask control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownSubtask;
     }
 }

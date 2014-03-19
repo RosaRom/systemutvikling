@@ -1,3 +1,4 @@
+using Admin;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,56 +11,64 @@ namespace Adminsiden
 {
     public partial class OpprettProsjekt : System.Web.UI.Page
     {
+        private DBConnect db;
+        private int webClientTeamID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            //tb_dateFrom.Attributes.Add("onkeydown", "DataField_KeyDown(this,'" + calendarDateFrom.ClientID + "')");
+            //tb_dateTo.Attributes.Add("onkeydown", "DataField_KeyDown(this,'" + calendarDateTo.ClientID + "')");
+            db = new DBConnect();
             if (!IsPostBack)
             {
-                fillTimeSelectDDL();
-                fromCalendar.Visible = false;
-                tb_dateFrom.Text = DateTime.Today.ToString("dd/MM/yyyy");
-                tb_dateTo.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                tb_dateFrom.Text = DateTime.Today.ToString("dd.MM.yyyy");
+                tb_dateTo.Text = DateTime.Today.ToString("dd.MM.yyyy");
+                getTeams(); //Binder teams fra databasen til DropDownList ddl_Team
+                getMainProjects(); //Binder hovedprosjekt til DropDownList ddl_Hovedprosjekt
             }
-
-        }
-        private void fillTimeSelectDDL()
-        {
-            if (ddl_hour.Items.Count == 0)
+            else
             {
-                for (int i = 0; i < 10; i++)
-                {
-                    ddl_hour.Items.Add("0" + i);
-                }
-                for (int i = 10; i < 24; i++)
-                {
-                    ddl_hour.Items.Add("" + i);
-                }
-            }
-            if (ddl_min.Items.Count == 0)
-            {
-                for (int i = 0; i < 10; i += 15)
-                {
-                    ddl_min.Items.Add("0" + i);
-                }
-                for (int i = 15; i < 60; i += 15)
-                {
-                    ddl_min.Items.Add("" + i);
-                }
+                if (ViewState["teamID"] != null)
+                    webClientTeamID = (int)ViewState["teamID"];
             }
         }
 
-        protected void fromCalendar_SelectionChanged(object sender, EventArgs e)
+        private void getTeams()
         {
-            tb_dateFrom.Text = Convert.ToDateTime(fromCalendar.SelectedDate, CultureInfo.GetCultureInfo("nb-NO")).ToString("dd/MM/yyyy");
-            fromCalendar.Visible = false;
+            string query = "SELECT * FROM Team";
+            ddl_Team.DataSource = db.getAll(query);
+            ddl_Team.DataTextField = "teamName";
+            ddl_Team.DataValueField = "teamID";
+            ddl_Team.Items.Insert(0, new ListItem("<Velg team>", "null")); //OBS! AppendDataBoundItems="true" i asp-kodene om dette skal funke!
+            ddl_Team.DataBind();
         }
 
-        protected void ib_fromCalendar_Click(object sender, ImageClickEventArgs e)
+        private void getMainProjects()
         {
-            if (fromCalendar.Visible == false)
-            {
-                fromCalendar.Visible = true;
-            }
-            else fromCalendar.Visible = false;
+            //Må nok endre litt på spørring etter hvert som vi får kontroll på projectState
+            string query = "SELECT projectName, projectID FROM Project WHERE parentProjectID = 0";
+            ddl_Hovedprosjekt.DataSource = db.getAll(query);
+            ddl_Hovedprosjekt.DataTextField = "projectName";
+            ddl_Hovedprosjekt.DataValueField = "projectID";
+            ddl_Hovedprosjekt.Items.Insert(0, new ListItem("<Velg Hovedprosjekt>", "0"));
+            ddl_Hovedprosjekt.DataBind();
         }
+
+        #region Events
+        protected void ModalPopup_ShowTeam(object sender, EventArgs e)
+        {
+            string query = "SELECT firstname, surname, groupName FROM User, UserGroup WHERE UserGroup.groupID = User.groupID AND teamID =" + webClientTeamID;
+            gv_selectedTeam.DataSource = db.getAll(query);
+            gv_selectedTeam.DataBind();
+            ModalPopupExtender_Team.Show();
+        }
+
+        protected void ddl_Team_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            webClientTeamID = Convert.ToInt32(ddl_Team.SelectedValue);
+            ViewState["teamID"] = webClientTeamID;
+        }
+
+        #endregion
     }
 }

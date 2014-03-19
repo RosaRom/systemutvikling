@@ -1,17 +1,156 @@
-﻿Body{
-    background-color:lightgray;
-}
-#Logo{
-    text-align:center;
-    margin-top:2%;
+﻿Body {
+    background-color: lightgray;
 }
 
-#textbox{
-    text-align:center;
-    margin-top:3%;
+#Logo {
+    text-align: center;
+    margin-top: 2%;
+}
+
+#textbox {
+    text-align: center;
+    margin-top: 3%;
     margin-left: 40px;
 }
-#calendar{
-    margin-top:3%;
-    margin-left: 295px;
+
+.ModalPopupBackground {
+    background-color: #666699;
+    filter: alpha(opacity=50);
+    opacity: 0.7;
+}
+
+.TeamGridViewPopup {
+    background: lightgray;
+}
+
+.blue .ajax__calendar_container {
+    width: 190px;
+    background-color: #EEEEEE;
+    border: solid 1px #DDDDDD;
+    -moz-border-radius-topleft: 8px /*{cornerRadius}*/;
+    -webkit-border-top-left-radius: 8px /*{cornerRadius}*/;
+    -khtml-border-top-left-radius: 8px /*{cornerRadius}*/;
+    border-top-left-radius: 8px /*{cornerRadius}*/;
+    -moz-border-radius-topright: 8px /*{cornerRadius}*/;
+    -webkit-border-top-right-radius: 8px /*{cornerRadius}*/;
+    -khtml-border-top-right-radius: 8px /*{cornerRadius}*/;
+    border-top-right-radius: 8px /*{cornerRadius}*/;
+    -moz-border-radius-bottomleft: 8px /*{cornerRadius}*/;
+    -webkit-border-bottom-left-radius: 8px /*{cornerRadius}*/;
+    -khtml-border-bottom-left-radius: 8px /*{cornerRadius}*/;
+    border-bottom-left-radius: 8px /*{cornerRadius}*/;
+    -moz-border-radius-bottomright: 8px /*{cornerRadius}*/;
+    -webkit-border-bottom-right-radius: 8px /*{cornerRadius}*/;
+    -khtml-border-bottom-right-radius: 8px /*{cornerRadius}*/;
+    border-bottom-right-radius: 8px /*{cornerRadius}*/;
+}
+
+.blue .ajax__calendar_body {
+    width: 180px;
+    height: 150px;
+    background-color: #EEEEEE;
+    border: solid 1px #cccccc;
+}
+
+.blue .ajax__calendar_header {
+    background-color: #95bbdb;
+    margin-bottom: 4px;
+    -moz-border-radius-topleft: 4px /*{cornerRadius}*/;
+    -webkit-border-top-left-radius: 4px /*{cornerRadius}*/;
+    -khtml-border-top-left-radius: 4px /*{cornerRadius}*/;
+    border-top-left-radius: 4px /*{cornerRadius}*/;
+    -moz-border-radius-topright: 4px /*{cornerRadius}*/;
+    -webkit-border-top-right-radius: 4px /*{cornerRadius}*/;
+    -khtml-border-top-right-radius: 4px /*{cornerRadius}*/;
+    border-top-right-radius: 4px /*{cornerRadius}*/;
+    -moz-border-radius-bottomleft: 4px /*{cornerRadius}*/;
+    -webkit-border-bottom-left-radius: 4px /*{cornerRadius}*/;
+    -khtml-border-bottom-left-radius: 4px /*{cornerRadius}*/;
+    border-bottom-left-radius: 4px /*{cornerRadius}*/;
+    -moz-border-radius-bottomright: 4px /*{cornerRadius}*/;
+    -webkit-border-bottom-right-radius: 4px /*{cornerRadius}*/;
+    -khtml-border-bottom-right-radius: 4px /*{cornerRadius}*/;
+    border-bottom-right-radius: 4px /*{cornerRadius}*/;
+}
+
+.blue .ajax__calendar_title {
+    color: #ffffff;
+    padding-top: 3px;
+}
+
+.blue .ajax__calendar_next,
+.blue .ajax__calendar_prev {
+    border: solid 2px #ffffff;
+    background-color: #95bbdb;
+    -moz-border-radius-topleft: 18px /*{cornerRadius}*/;
+    -webkit-border-top-left-radius: 18px /*{cornerRadius}*/;
+    -khtml-border-top-left-radius: 18px /*{cornerRadius}*/;
+    border-top-left-radius: 18px /*{cornerRadius}*/;
+    -moz-border-radius-topright: 18px /*{cornerRadius}*/;
+    -webkit-border-top-right-radius: 18px /*{cornerRadius}*/;
+    -khtml-border-top-right-radius: 18px /*{cornerRadius}*/;
+    border-top-right-radius: 18px /*{cornerRadius}*/;
+    -moz-border-radius-bottomleft: 18px /*{cornerRadius}*/;
+    -webkit-border-bottom-left-radius: 18px /*{cornerRadius}*/;
+    -khtml-border-bottom-left-radius: 18px /*{cornerRadius}*/;
+    border-bottom-left-radius: 18px /*{cornerRadius}*/;
+    -moz-border-radius-bottomright: 18px /*{cornerRadius}*/;
+    -webkit-border-bottom-right-radius: 18px /*{cornerRadius}*/;
+    -khtml-border-bottom-right-radius: 18px /*{cornerRadius}*/;
+    border-bottom-right-radius: 18px /*{cornerRadius}*/;
+}
+
+.blue .ajax__calendar_hover .ajax__calendar_next,
+.blue .ajax__calendar_hover .ajax__calendar_prev {
+    border: solid 2px #95bbdb;
+    background-color: #ffffff;
+}
+
+.blue .ajax__calendar_dayname {
+    text-align: center;
+    margin-bottom: 4px;
+    margin-top: 2px;
+}
+
+.blue .ajax__calendar_day,
+.blue .ajax__calendar_month,
+.blue .ajax__calendar_year {
+    margin: 1px 1px 1px 1px;
+    text-align: center;
+    border: solid 1px #cccccc;
+    color: #4094C4;
+    background-color: #f9f9f9;
+}
+
+.blue .ajax__calendar_hover .ajax__calendar_day,
+.blue .ajax__calendar_hover .ajax__calendar_month,
+.blue .ajax__calendar_hover .ajax__calendar_year {
+    color: #FBD850;
+    font-weight: bold;
+    background-color: #FEFEFE;
+    border: solid 1px #FBD850;
+}
+
+.blue .ajax__calendar_active .ajax__calendar_day,
+.blue .ajax__calendar_active .ajax__calendar_month,
+.blue .ajax__calendar_active .ajax__calendar_year {
+    color: #000000;
+    font-weight: bold;
+    background-color: #95bbdb;
+}
+
+.blue .ajax__calendar_today .ajax__calendar_day {
+    color: #000000;
+    font-weight: bold;
+    background-color: #95bbdb;
+}
+
+.blue .ajax__calendar_other,
+.blue .ajax__calendar_hover .ajax__calendar_today {
+    color: #000000;
+    font-weight: bold;
+}
+
+.ajax__calendar_days {
+    background-color: #EEEEEE;
 }

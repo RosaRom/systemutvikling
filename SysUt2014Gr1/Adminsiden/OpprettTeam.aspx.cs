@@ -75,7 +75,7 @@ namespace Adminsiden
             getUsers();
         }
 
-        protected void btn_selectTeam_Click(object sender, EventArgs e)
+        protected void ddl_selectTeam_SelectedIndexChanged(object sender, EventArgs e)
         {
             teamID = Convert.ToInt32(ddl_selectTeam.SelectedValue);
             fillGridView();
@@ -91,23 +91,32 @@ namespace Adminsiden
             tb_newTeam.Visible = true;
             btn_createTeam.Visible = true;
             btn_opprett.Visible = false;
+            btn_deleteTeam.Visible = false;
         }
 
         protected void btn_createTeam_Click(object sender, EventArgs e)
         {
             string newTeam = tb_newTeam.Text;
-            string query = "INSERT INTO Team (teamName) VALUES ('" + newTeam + "')";
-            db.InsertDeleteUpdate(query);
+            if (String.IsNullOrEmpty(newTeam))
+            {
+                Label_warning.Text = "Du må oppgi et navn";
+            }
+            else
+            {
+                string query = "INSERT INTO Team (teamName) VALUES ('" + newTeam + "')";
+                db.InsertDeleteUpdate(query);
 
-            ddl_selectTeam.Items.Clear();
-            getTeams();
+                ddl_selectTeam.Items.Clear();
+                getTeams();
+                Label_warning.Text = "";
 
-            tb_newTeam.Text = "";
-            btn_abort.Visible = false;
-            tb_newTeam.Visible = false;
-            btn_createTeam.Visible = false;
-            btn_opprett.Visible = true;
-
+                tb_newTeam.Text = "";
+                btn_abort.Visible = false;
+                tb_newTeam.Visible = false;
+                btn_createTeam.Visible = false;
+                btn_opprett.Visible = true;
+                btn_deleteTeam.Visible = true;
+            }
         }
 
         protected void btn_abort_Click(object sender, EventArgs e)
@@ -117,6 +126,18 @@ namespace Adminsiden
             tb_newTeam.Visible = false;
             btn_createTeam.Visible = false;
             btn_opprett.Visible = true;
+            btn_deleteTeam.Visible = true;
+
+            Label_warning.Text = "";
+        }
+
+        protected void btn_deleteTeam_Click(object sender, EventArgs e)
+        {
+            string query = "DELETE FROM Team WHERE teamID =" + teamID;
+            db.InsertDeleteUpdate(query);
+
+            ddl_selectTeam.Items.Clear();
+            getTeams();
         }
     }
 }

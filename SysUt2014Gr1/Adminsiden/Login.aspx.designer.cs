@@ -10,60 +10,69 @@
 namespace Adminsiden {
     
     
-    public partial class ProsjektAnsvarligVisTeam {
+    public partial class login {
         
         /// <summary>
-        /// teamNavn control.
+        /// loginForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label teamNavn;
+        protected global::System.Web.UI.HtmlControls.HtmlForm loginForm;
         
         /// <summary>
-        /// GridViewTeam control.
+        /// UsernameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewTeam;
+        protected global::System.Web.UI.WebControls.Label UsernameLabel;
         
         /// <summary>
-        /// GridViewProject control.
+        /// UsernameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewProject;
+        protected global::System.Web.UI.WebControls.TextBox UsernameTextBox;
         
         /// <summary>
-        /// info control.
+        /// PasswordLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label info;
+        protected global::System.Web.UI.WebControls.Label PasswordLabel;
         
         /// <summary>
-        /// DropDownTeam control.
+        /// PasswordTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownTeam;
+        protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
         
         /// <summary>
-        /// btnOK control.
+        /// submit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOK;
+        protected global::System.Web.UI.WebControls.Button submit;
+        
+        /// <summary>
+        /// LabelWarning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelWarning;
     }
 }

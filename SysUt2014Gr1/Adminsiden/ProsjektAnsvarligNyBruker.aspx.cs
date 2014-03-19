@@ -62,11 +62,13 @@ namespace Adminsiden
                 string phone = e.NewValues["phone"].ToString();
                 string mail = e.NewValues["mail"].ToString();
                 DropDownList team = (DropDownList)row.FindControl("dropDownTeam");
+                DropDownList userType = (DropDownList)row.FindControl("dropDownBruker");
 
                 int teamID = Convert.ToInt32(team.SelectedValue);
+                int userTypeID = Convert.ToInt32(userType.SelectedValue);
 
                 string query = String.Format("INSERT INTO User (surname, firstname, password, username, phone, mail, teamID, groupID, aktiv) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})",
-                surname, firstname, password, username, phone, mail, teamID, "1", "1");
+                surname, firstname, password, username, phone, mail, teamID, userTypeID, "1");
 
                 db.InsertDeleteUpdate(query);
                 GridViewProsjektAnsvarligInsert.EditIndex = -1;
