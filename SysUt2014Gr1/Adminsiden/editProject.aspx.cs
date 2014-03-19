@@ -54,12 +54,18 @@ namespace Adminsiden
             query = String.Format("SELECT * FROM Project WHERE projectID = '{0}'", projectID);// +listRef;
             dataTable = db.getAll(query);
 
-            tbProjectName.Text = dataTable.Rows[0]["projectName"].ToString();
-            tbProjectDescription.Text = dataTable.Rows[0]["projectDescription"].ToString();
-            ViewState["name"] = "teamTest";
-            ViewState["description"] = tbProjectDescription.Text;
-
-
+            try
+            {
+                tbProjectName.Text = dataTable.Rows[0]["projectName"].ToString();
+                tbProjectDescription.Text = dataTable.Rows[0]["projectDescription"].ToString();
+                ViewState["name"] = "teamTest";
+                ViewState["description"] = tbProjectDescription.Text;
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine("An error occurred: '{0}'", e);
+            }
+ 
         }
 
         protected void btnUpdateQuery_Click(object sender, EventArgs e)
