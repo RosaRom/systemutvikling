@@ -60,50 +60,6 @@
             else return eval("document." + objId);
         }
 
-        /** Denne skriptfunksjonen er linket opp mote textbox med CalendarExtender fra Ajax. 
-            Dette skriptet gjør at brukeren kan navigere seg i kalenderen ved hjelp av piltastene.
-            Skriptet tar utgangspunkt i valgt dato, by default: dagens dato.
-        function DateField_KeyDown(dateField, calendarExtenderName) {
-
-            lastKeyCodeEntered = event.keyCode;
-
-            if ((lastKeyCodeEntered == '37')        //keyCode 37 = left arrow
-                || (lastKeyCodeEntered == '38')     //keyCode 38 = up arrow
-                || (lastKeyCodeEntered == '39')     //keyCode 39 = right arrow
-                || (lastKeyCodeEntered == '40'))    //keyCode 40 = down arrow
-            {
-                var calendar = $find(calendarExtenderName);
-                var enteredDate = calendar.get_selectedDate();
-                var advanceDays = 0; //lagt til
-
-                if (enteredDate == null) {
-                    enteredDate = new Date();
-                }
-                else {
-                    //advanceDays = 0;
-                    switch (lastKeyCodeEntered) {
-                        case 37:
-                            advanceDays = -1;
-                            break;
-                        case 38:
-                            advanceDays = -7;
-                            break;
-                        case 39:
-                            advanceDays = 1;
-                            break;
-                        case 40:
-                            advanceDays = 7;
-                            break;
-                    }
-                    enteredDate.setDate(enteredDate.getDate() + advanceDays);
-                }
-                dateField.value = enteredDate.getDate() + "." + (enteredDate.getMonth() + 1) + "." + enteredDate.getFullYear();
-                calendar.set_selectedDate(enteredDate.getDate() + "/" + (enteredDate.getMonth() + 1) + "/" + enteredDate.getFullYear());
-            }   
-            
-            i asp koden: onkeydown="DateField_KeyDown(this, 'calendarDateFrom')"
-        }*/
-
     </script>
 
 </head>
@@ -143,7 +99,12 @@
             </asp:CalendarExtender>
 
             <asp:Label ID="lbl_dateTo" runat="server" Text="Til: "></asp:Label>
-            <asp:TextBox ID="tb_dateTo" runat="server" Width="75px" ReadOnly="true"></asp:TextBox>
+            <asp:TextBox
+                ID="tb_dateTo"
+                runat="server"
+                Width="75px"
+                ReadOnly="true">
+            </asp:TextBox>
             <asp:CalendarExtender
                 ID="calendarDateTo"
                 TargetControlID="tb_dateTo"
@@ -158,28 +119,64 @@
 
             <asp:Label ID="lbl_ProjectDesc" runat="server" Text="Prosjektbeskrivelse"></asp:Label>
             <br />
-            <textarea id="TextArea_ProjectDescription" style="resize: none" maxlength="300" cols="40" rows="3" onkeydown="return taLimit(this)" onkeyup="return taCount(this, 'counter')"></textarea><br />
+            <textarea
+                id="TextArea_ProjectDescription"
+                style="resize: none"
+                maxlength="300"
+                cols="40"
+                rows="3"
+                onkeydown="return taLimit(this)"
+                onkeyup="return taCount(this, 'counter')">
+            </textarea><br />
             Du har <b><span id="counter">300</span></b> tegn igjen til din beskrivelse...
             <br />
             <br />
-            <asp:Label ID="lbl_Underprosjekt" runat="server" Text="Gjør til underprosjekt av:"></asp:Label>
-            <asp:DropDownList ID="ddl_Hovedprosjekt" runat="server" AppendDataBoundItems="true"></asp:DropDownList>
+            <asp:Label
+                ID="lbl_Underprosjekt"
+                runat="server"
+                Text="Gjør til underprosjekt av:">
+            </asp:Label>
+            <asp:DropDownList
+                ID="ddl_Hovedprosjekt"
+                runat="server"
+                AppendDataBoundItems="true">
+            </asp:DropDownList>
             <br />
             <br />
-            <asp:DropDownList ID="ddl_Team" runat="server" AppendDataBoundItems="true" Width="175px" OnSelectedIndexChanged="ddl_Team_SelectedIndexChanged"></asp:DropDownList>
+            <asp:DropDownList
+                ID="ddl_Team"
+                runat="server"
+                AutoPostBack="true"
+                AppendDataBoundItems="true"
+                Width="175px"
+                OnSelectedIndexChanged="ddl_Team_SelectedIndexChanged">
+            </asp:DropDownList>
+
             <span id="dummy" runat="server"></span>
             <asp:Button ID="btn_ShowTeam" runat="server" Text="Vis" Visible="true" OnClick="ModalPopup_ShowTeam" />
             <asp:Button ID="btn_CreateTeam" runat="server" Text="Opprett team" Visible="true" />
+            <br />
+            <asp:Label
+                ID="lbl_warning"
+                runat="server"
+                Text="Valgt team er ikke gyldig!"
+                Visible="false"
+                ForeColor="Red">
+            </asp:Label>
 
             <!--PopupExtender fra Ajax som viser en popup panel, denne ModalPopupExtender
                 er linket opp mot knappen btnShowTeam: TargetControlID="btn_ShowTeam".
                 Når brukeren trykker denne knappen kommer det opp et lite popupvindu som 
                 viser alle personer som er i det teamet som er valgt i DropDownList for teams. 
                 -->
-            <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender_Team" runat="server"
+            <ajaxToolkit:ModalPopupExtender
+                ID="ModalPopupExtender_Team"
+                runat="server"
                 OkControlID="btnOkay"
-                TargetControlID="dummy" PopupControlID="gridViewPanel"
-                PopupDragHandleControlID="PopupHeader" Drag="true"
+                TargetControlID="dummy"
+                PopupControlID="gridViewPanel"
+                PopupDragHandleControlID="PopupHeader"
+                Drag="true"
                 BackgroundCssClass="ModalPopupBackground">
             </ajaxToolkit:ModalPopupExtender>
 
@@ -187,9 +184,23 @@
                 -->
             <asp:Panel ID="gridViewPanel" runat="server" Style="border: solid 2px #000; display: none; width: auto; height: auto;">
                 <div class="TeamGridViewPopup">
-                    <div class="PopupHeader" id="PopupHeader" style="cursor: move">Header</div>
+                    <div class="PopupHeader" id="PopupHeader" style="cursor: move">
+                        <asp:Label
+                            ID="lbl_teamPopupHeader"
+                            runat="server"
+                            Visible="true"
+                            Font-Bold="true">
+                        </asp:Label>
+                    </div>
                     <div class="PopupGridView" id="PopupGridView">
-                        <asp:GridView ID="gv_selectedTeam" runat="server" AutoGenerateColumns="false">
+                        <asp:GridView
+                            ID="gv_selectedTeam"
+                            runat="server"
+                            AutoGenerateColumns="false"
+                            AllowSorting="false"
+                            CssClass="gridView"
+                            AlternatingRowStyle-CssClass="alt"
+                            HeaderStyle-CssClass="gridViewHeader">
                             <Columns>
                                 <asp:BoundField DataField="firstname" HeaderText="Fornavn" />
                                 <asp:BoundField DataField="surname" HeaderText="Etternavn" />
@@ -198,7 +209,7 @@
                         </asp:GridView>
                     </div>
                     <div class="Controls">
-                        <input id="btnOkay" type="button" value="Done" />
+                        <input id="btnOkay" type="button" value="OK" />
                     </div>
                 </div>
             </asp:Panel>

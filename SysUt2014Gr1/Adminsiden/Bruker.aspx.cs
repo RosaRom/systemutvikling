@@ -26,47 +26,47 @@ namespace Bruker
                 GetTasks();
                 getWorkplace();
                 fillTimeSelectDDL();
-            }         
+            }
         }
         //Fyller dropdownlister med timer og minutter
-        private void fillTimeSelectDDL()       
+        private void fillTimeSelectDDL()
+        {
+            if (ddl_hour_from.Items.Count == 0)
             {
-                    if(ddl_hour_from.Items.Count== 0)
-                    {
-                        for (int i = 0; i < 10; i++)
-                        {
-                            ddl_hour_from.Items.Add("0" + i);
-                            ddl_hour_to.Items.Add("0" + i);
-                        }
-                        for (int i = 10; i < 24; i++)
-                        {
-                            ddl_hour_from.Items.Add("" + i);
-                            ddl_hour_to.Items.Add("" + i);
-                        }
-                    }
-                    if (ddl_min_from.Items.Count == 0)
-                    {
-                        for (int i = 0; i < 10; i+=15)
-                        {
-                            ddl_min_from.Items.Add("0" + i);
-                            ddl_min_to.Items.Add("0" + i);
-                        }
-                        for (int i = 15; i < 60; i += 15)
-                        {
-                            ddl_min_from.Items.Add("" + i);
-                            ddl_min_to.Items.Add("" + i);
-                        }
-                    }
+                for (int i = 0; i < 10; i++)
+                {
+                    ddl_hour_from.Items.Add("0" + i);
+                    ddl_hour_to.Items.Add("0" + i);
+                }
+                for (int i = 10; i < 24; i++)
+                {
+                    ddl_hour_from.Items.Add("" + i);
+                    ddl_hour_to.Items.Add("" + i);
+                }
             }
+            if (ddl_min_from.Items.Count == 0)
+            {
+                for (int i = 0; i < 10; i += 15)
+                {
+                    ddl_min_from.Items.Add("0" + i);
+                    ddl_min_to.Items.Add("0" + i);
+                }
+                for (int i = 15; i < 60; i += 15)
+                {
+                    ddl_min_from.Items.Add("" + i);
+                    ddl_min_to.Items.Add("" + i);
+                }
+            }
+        }
         //Fyller dropdown med tasks
-        private void GetTasks ()
+        private void GetTasks()
         {
             string query = "SELECT * FROM Task";
             taskName.DataSource = db.getAll(query);
             taskName.DataValueField = "taskID";
             taskName.DataTextField = "taskName";
             taskName.Items.Insert(0, new ListItem("<Velg task>", "0"));
-            taskName.DataBind();  
+            taskName.DataBind();
         }
         //Fyller dropdown med plasser å jobbe fra
         private void getWorkplace()
@@ -78,7 +78,7 @@ namespace Bruker
             workPlace.Items.Insert(0, new ListItem("<Velg arbeidsplass>", "0"));
             workPlace.DataBind();
         }
-       
+
         protected void taskName_SelectedIndexChanged(object sender, EventArgs e)
         {
             TaskID = Convert.ToInt32(taskName.SelectedValue);
@@ -110,7 +110,7 @@ namespace Bruker
             int projectID = Convert.ToInt32(Session["projectID"]);
             int userID = Convert.ToInt32(Session["userID"]);
 
-            if (dateFromFormated != null && dateToFormated != null && userID != 0 && TaskID != 0  && WorkplaceID != 0 && active != null && projectID != 0)
+            if (dateFromFormated != null && dateToFormated != null && userID != 0 && TaskID != 0 && WorkplaceID != 0 && active != 0 && projectID != 0)
             {
                 db.InsertTimeSheet(dateFromFormated, dateToFormated, userID, TaskID, userDescription, WorkplaceID, active, projectID);
                 label_result.Text = "Registreringen ble fullført";
