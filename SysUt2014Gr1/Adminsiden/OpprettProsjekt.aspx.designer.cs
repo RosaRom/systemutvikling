@@ -157,6 +157,15 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.Button btn_CreateTeam;
         
         /// <summary>
+        /// lbl_warning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_warning;
+        
+        /// <summary>
         /// ModalPopupExtender_Team control.
         /// </summary>
         /// <remarks>
@@ -173,6 +182,15 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel gridViewPanel;
+        
+        /// <summary>
+        /// lbl_teamPopupHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_teamPopupHeader;
         
         /// <summary>
         /// gv_selectedTeam control.
