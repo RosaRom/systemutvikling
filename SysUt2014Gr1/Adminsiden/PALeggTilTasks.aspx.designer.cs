@@ -13,13 +13,13 @@ namespace Adminsiden {
     public partial class PALeggTilTasks {
         
         /// <summary>
-        /// DropDownTaskType control.
+        /// DropDownMainTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownTaskType;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownMainTask;
         
         /// <summary>
         /// taskName control.
@@ -40,39 +40,30 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.TextBox timerAllokert;
         
         /// <summary>
-        /// DropDownFaseFra control.
+        /// beskrivelse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownFaseFra;
+        protected global::System.Web.UI.WebControls.TextBox beskrivelse;
         
         /// <summary>
-        /// DropDownFaseTil control.
+        /// DropDownSubTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownFaseTil;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownSubTask;
         
         /// <summary>
-        /// BtnOpprettFase control.
+        /// BtnLagreTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnOpprettFase;
-        
-        /// <summary>
-        /// DropDownSubtask control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownSubtask;
+        protected global::System.Web.UI.WebControls.Button BtnLagreTask;
     }
 }

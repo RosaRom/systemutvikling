@@ -110,6 +110,7 @@
     <Content Include="css\Login.css" />
     <Content Include="css\OpprettProsjektStyle.css" />
     <Content Include="css\OpprettTeamStyle.css" />
+    <Content Include="css\PALeggTilTask.css" />
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
     <Content Include="editProject.aspx" />
