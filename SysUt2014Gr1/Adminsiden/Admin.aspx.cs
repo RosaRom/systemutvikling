@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using MySql.Data.MySqlClient;
+using System.Text;
 
 namespace Admin
 {
@@ -144,6 +145,9 @@ namespace Admin
             else
                 GetInactiveUsersReset();
         }
+
+        
+        
 
         //RowUpdating kjøres når det legges til en ny bruker
         protected void GridViewInsert_RowUpdating(object sender, GridViewUpdateEventArgs e)
