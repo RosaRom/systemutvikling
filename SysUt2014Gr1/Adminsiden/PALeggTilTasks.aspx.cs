@@ -11,52 +11,52 @@ namespace Adminsiden
 {
     public partial class PALeggTilTasks : System.Web.UI.Page
     {
-        private int prosjektID = 0;            //hentes fra forrige side
+        private int prosjektID = 2;            //hentes fra forrige side
         private DBConnect db = new DBConnect();
+        private DataTable table = new DataTable();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                FillTasks();
                 FillMainTasks();
-            }
-            
-            else
-            {
-                FillTasks();
-
-                DropDownMainTask.DataSource = (DataTable)ViewState["dtMainTask"];
-                DropDownMainTask.DataBind();
             }
         }
 
+        //lagrer en ny task i databasen
         protected void BtnLagreTask_Click(object sender, EventArgs e)
         {
             
         }
 
+        //henter ut alle tasks som tilhører en valgt hovedtask, blir oppdatert hver gang hovedtask endres
         private void FillTasks()
         {
-            string queryTask = "SELECT taskID, taskName FROM Task";
-            DataTable dtTask = new DataTable();
-            
-            dtTask = db.AdminGetAllUsers(queryTask);
-            dtTask.Rows.InsertAt(dtTask.NewRow(), 0);
+            string queryTask = "SELECT taskID, taskName FROM Task WHERE TaskCategoryID = " + DropDownMainTask.SelectedValue.ToString();
 
-            DropDownSubTask.DataSource = dtTask;
+            table = db.AdminGetAllUsers(queryTask);
+            table.Rows.InsertAt(table.NewRow(), 0);
+
+            DropDownSubTask.DataSource = table;
             DropDownSubTask.DataBind();
         }
 
+        //kjøres ved oppstart av siden, henter ut alle hovedtasks til en gitt projectID
         private void FillMainTasks()
         {
-            string queryMainTask = "SELECT taskCategoryID, taskCategoryName FROM TaskCategory";
-            DataTable dtMainTask = new DataTable();
-            dtMainTask = db.AdminGetAllUsers(queryMainTask);
+            string queryMainTask = "SELECT taskCategoryID, taskCategoryName FROM TaskCategory WHERE projectID = " + prosjektID;
+            table = db.AdminGetAllUsers(queryMainTask);
 
-            ViewState["dtMainTask"] = dtMainTask;
-
-            DropDownMainTask.DataSource = dtMainTask;
+            DropDownMainTask.DataSource = table;
             DropDownMainTask.DataBind();
+
+            FillTasks();
+        }
+
+        //kjøres ved hver forandring av hovedtask, fyller opp tilhørende tasks på nytt
+        protected void DropDownMainTask_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FillTasks();
         }
     }
 }
