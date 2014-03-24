@@ -1,20 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Prosjektvalg.aspx.cs" Inherits="Adminsiden.Prosjektvalg" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Prosjektvalg.aspx.cs" Inherits="Adminsiden.Prosjektvalg" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Velg prosjekt</title>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="Stylesheet" type="text/css" href="css/ProsjektvalgStyle.css" />
-</head>
-<body>
+</asp:Content>
 
-    <div id="Logo">
-        <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
-                <h3>Velg prosjekt</h3>
-    </div>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <form id="prosjektvalgForm" runat="server">
+        <div id="header"><h3>Velg prosjekt</h3></div>
         <asp:GridView ID="GridViewProject" 
             AllowPaging="True" 
             AutoGenerateColumns="False"
@@ -25,12 +17,11 @@
             OnRowCommand="GridViewProject_RowCommand"
             runat="server" >
             <Columns>
-                <asp:buttonfield buttontype="Button" text="Velg prosjekt"/>
-                <asp:BoundField DataField="projectID" HeaderText="ID" />
-                <asp:BoundField DataField="projectName" HeaderText="Prosjekt navn" />
-                <asp:BoundField DataField="projectDescription" HeaderText="Prosjekt beskrivelse" />
+                <asp:buttonfield buttontype="Button" text="Velg prosjekt" ItemStyle-Width="1%"/>
+                <asp:BoundField DataField="projectID" HeaderText="ID" ItemStyle-Width="5%"/>
+                <asp:BoundField DataField="projectName" HeaderText="Prosjekt navn" ItemStyle-Width="20%" />
+                <asp:BoundField DataField="projectDescription" HeaderText="Prosjekt beskrivelse" ItemStyle-Width="30%" />
             </Columns>
         </asp:GridView>
     </form>
-</body>
-</html>
+</asp:Content>

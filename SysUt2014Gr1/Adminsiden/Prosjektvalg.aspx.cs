@@ -30,9 +30,7 @@ namespace Adminsiden
         {
             int index = Convert.ToInt32(e.CommandArgument.ToString());
             int projectID = Convert.ToInt32(GridViewProject.Rows[index].Cells[1].Text);
-            int userID = 2;
             Session["projectID"] = projectID;
-            Session["userID"] = userID;
             Server.Transfer("Bruker.aspx", true);
         }
   

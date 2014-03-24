@@ -1,18 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OpprettTeam.aspx.cs" Inherits="Adminsiden.OpprettTeam" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="OpprettTeam.aspx.cs" Inherits="Adminsiden.OpprettTeam" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Opprett team</title>
     <link rel="Stylesheet" type="text/css" href="css/OpprettTeamStyle.css" />
-</head>
-<body>
-    <div id="Logo">
-        <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
-    </div>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <form id="TeamForm" runat="server">
-        <div id="Team">   
             <br />
             <asp:Label ID="Label_warning" runat="server" ForeColor="Red"></asp:Label>
             <br />
@@ -35,13 +29,11 @@
                 AllowPaging="True" 
                 AutoGenerateColumns="False">
                 <Columns>
-                    <asp:BoundField DataField="firstname" HeaderText="Fornavn" />
-                    <asp:BoundField DataField="surname" HeaderText="Etternavn" />
-                    <asp:BoundField DataField="groupName" HeaderText="Rolle i teamet" />
-                    <asp:buttonfield buttontype="Button" text="Slett"/>
+                    <asp:BoundField DataField="firstname" HeaderText="Fornavn" ItemStyle-Width="40%" />
+                    <asp:BoundField DataField="surname" HeaderText="Etternavn" ItemStyle-Width="20%"/>
+                    <asp:BoundField DataField="groupName" HeaderText="Rolle i teamet" ItemStyle-Width="20%" />
+                    <asp:buttonfield buttontype="Button" text="Slett" ItemStyle-Width="1%"/>
                 </Columns>
             </asp:GridView>
-        </div>
     </form>
-</body>
-</html>
+</asp:Content>
