@@ -10,69 +10,78 @@
 namespace Adminsiden {
     
     
-    public partial class login {
+    public partial class PALeggTilTasks {
         
         /// <summary>
-        /// loginForm control.
+        /// DropDownMainTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm loginForm;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownMainTask;
         
         /// <summary>
-        /// UsernameLabel control.
+        /// taskName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label UsernameLabel;
+        protected global::System.Web.UI.WebControls.TextBox taskName;
         
         /// <summary>
-        /// tbUsername control.
+        /// timerAllokert control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbUsername;
+        protected global::System.Web.UI.WebControls.TextBox timerAllokert;
         
         /// <summary>
-        /// PasswordLabel control.
+        /// beskrivelse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PasswordLabel;
+        protected global::System.Web.UI.WebControls.TextBox beskrivelse;
         
         /// <summary>
-        /// tbPassword control.
+        /// DropDownPrioritering control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPassword;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownPrioritering;
         
         /// <summary>
-        /// submit control.
+        /// DropDownSubTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button submit;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownSubTask;
         
         /// <summary>
-        /// LabelWarning control.
+        /// BtnLagreTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelWarning;
+        protected global::System.Web.UI.WebControls.Button BtnLagreTask;
+        
+        /// <summary>
+        /// beskjed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label beskjed;
     }
 }

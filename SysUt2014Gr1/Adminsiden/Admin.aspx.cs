@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using MySql.Data.MySqlClient;
+using System.Text;
 
 namespace Admin
 {
@@ -43,6 +44,7 @@ namespace Admin
         private void GetAllUsersReset()
         {
             string queryActive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '1' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
+            
             table = db.AdminGetAllUsers(queryActive);
             ViewState["table"] = table;
 
@@ -143,6 +145,9 @@ namespace Admin
             else
                 GetInactiveUsersReset();
         }
+
+        
+        
 
         //RowUpdating kjøres når det legges til en ny bruker
         protected void GridViewInsert_RowUpdating(object sender, GridViewUpdateEventArgs e)

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Login</title>
+    <title>Administrator</title>
     <link rel="Stylesheet" type="text/css" href="css/Login.css" />
 </head>
 <body>
@@ -16,12 +16,12 @@
         <asp:Label ID="UsernameLabel" Text="Username"  runat="server" />
         </h3>
         <h3>
-        <asp:TextBox ID="UsernameTextBox" runat="server" />
+        <asp:TextBox ID="tbUsername" runat="server" />
         </h3>
         <h3>
         <asp:Label ID="PasswordLabel" Text="Password" runat="server" />
         </h3>
-        <asp:TextBox ID="PasswordTextBox" TextMode="Password" runat="server" />
+        <asp:TextBox ID="tbPassword" TextMode="Password" runat="server" />
         <br /><br />
         <asp:Button ID="submit" Text="Submit" runat="server" OnClick="submit_Click" />
         <br />

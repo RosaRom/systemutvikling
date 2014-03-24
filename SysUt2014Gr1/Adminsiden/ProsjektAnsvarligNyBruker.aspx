@@ -42,7 +42,14 @@
                         </EditItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:BoundField DataField="groupName" HeaderText="Brukertype" ReadOnly="True" ItemStyle-Width="8%" ItemStyle-HorizontalAlign="Center" />
+                    <asp:TemplateField HeaderText="Brukertype">
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="dropDownBruker" runat="server">
+                                <asp:ListItem Text="Bruker" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Teamleder" Value="2"></asp:ListItem>
+                            </asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
          </asp:GridView>
 

@@ -20,38 +20,40 @@
                 <asp:Label runat="server">Legg til nye brukere</asp:Label>
             </div>
 
-            <asp:GridView ID="GridViewInsert" 
-                runat="server" 
-                AutoGenerateColumns="False" 
-                ShowHeaderWhenEmpty="True" 
+            <asp:GridView ID="GridViewInsert"
+                runat="server"
+                AutoGenerateColumns="False"
+                ShowHeaderWhenEmpty="True"
                 AutoGenerateEditButton="True"
-                OnRowCancelingEdit="GridViewInsert_RowCancelingEdit" 
-                OnRowEditing="GridViewInsert_RowEditing" 
+                OnRowCancelingEdit="GridViewInsert_RowCancelingEdit"
+                OnRowEditing="GridViewInsert_RowEditing"
                 OnRowUpdating="GridViewInsert_RowUpdating"
-                CssClass="gridView" 
+                CssClass="gridView"
                 AlternatingRowStyle-CssClass="alt">
 
                 <AlternatingRowStyle CssClass="alt" />
 
                 <Columns>
-                    <asp:BoundField DataField="surname" HeaderText="Etternavn"/>
-                    <asp:BoundField DataField="firstname" HeaderText="Fornavn"/>
-                    <asp:BoundField DataField="username" HeaderText="Brukernavn"/>
+                    <asp:BoundField DataField="surname" HeaderText="Etternavn" />
+                    <asp:BoundField DataField="firstname" HeaderText="Fornavn" />
+                    <asp:BoundField DataField="username" HeaderText="Brukernavn" />
 
-                    <asp:BoundField DataField="phone" HeaderText="Telefon"/>
-                    <asp:BoundField DataField="mail" HeaderText="Mail"/>
+                    <asp:BoundField DataField="phone" HeaderText="Telefon" />
+                    <asp:BoundField DataField="mail" HeaderText="Mail" />
 
                     <asp:TemplateField HeaderText="Team">
                         <EditItemTemplate>
-                            <asp:DropDownList ID="dropDownTeam" DataSource="<%# DropDownBoxTeam() %>" 
-                                DataTextField="teamName" DataValueField="teamID" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="dropDownTeam" DataSource="<%# DropDownBoxTeam() %>"
+                                DataTextField="teamName" DataValueField="teamID" runat="server">
+                            </asp:DropDownList>
                         </EditItemTemplate>
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Brukertype">
                         <EditItemTemplate>
-                            <asp:DropDownList ID="dropDownGroup" DataSource="<%# DropDownBoxGroup() %>" 
-                                DataTextField="groupName" DataValueField="groupID" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="dropDownGroup" DataSource="<%# DropDownBoxGroup() %>"
+                                DataTextField="groupName" DataValueField="groupID" runat="server">
+                            </asp:DropDownList>
                         </EditItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -74,7 +76,7 @@
             </div>
 
             <div id="knapperAktivInaktiv">
-                <asp:Button ID="btnDeaktiverte" runat="server" OnClick="btnDeaktiverte_Click" Text="Deaktiverte brukere" />
+                <asp:Button ID="btnDeaktiverte" runat="server" OnClick="btnDeaktiverte_Click" Text="Deaktiverte brukere"  />
                 <asp:Button ID="btnAktiv" runat="server" OnClick="btnAktiv_Click" Text="Aktive brukere" />
                 <asp:Label runat="server">Oversikt over alle brukere</asp:Label>
             </div>
@@ -99,20 +101,22 @@
                         </ItemTemplate>
 
                         <EditItemTemplate>
-                            <asp:DropDownList ID="dropDownTeamUsers" DataSource="<%# DropDownBoxTeamExistingUsers() %>" 
-                                DataTextField="teamName" DataValueField="teamID" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="dropDownTeamUsers" DataSource="<%# DropDownBoxTeamExistingUsers() %>"
+                                DataTextField="teamName" DataValueField="teamID" runat="server">
+                            </asp:DropDownList>
                         </EditItemTemplate>
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Brukertype">
-                        
+
                         <ItemTemplate>
                             <%# Eval("groupName")%>
                         </ItemTemplate>
 
                         <EditItemTemplate>
-                            <asp:DropDownList ID="dropDownGroupUsers" DataSource="<%# DropDownBoxGroup() %>" 
-                                DataTextField="groupName" DataValueField="groupID" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="dropDownGroupUsers" DataSource="<%# DropDownBoxGroup() %>"
+                                DataTextField="groupName" DataValueField="groupID" runat="server">
+                            </asp:DropDownList>
                         </EditItemTemplate>
 
                     </asp:TemplateField>

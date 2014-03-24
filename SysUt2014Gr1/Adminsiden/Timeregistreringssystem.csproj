@@ -201,9 +201,6 @@
       <DependentUpon>Prosjektvalg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Prosjektvalg.aspx.designer.cs">
-      <DependentUpon>Prosjektvalg.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Resources\_ResourceRegistration.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ViewProjectArchive.aspx.cs">
