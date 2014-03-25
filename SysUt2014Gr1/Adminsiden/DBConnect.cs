@@ -89,9 +89,12 @@ namespace Admin
             if (this.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                cmd.ExecuteNonQuery();
-
+                try {
+                cmd.ExecuteNonQuery();    
+                }
+                 catch(InvalidOperationException e){
+                     Console.WriteLine("An error occurred: '{0}'", e);
+                 }
                 this.CloseConnection();
             }
         }
@@ -104,7 +107,7 @@ namespace Admin
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.ExecuteNonQuery();
-
+               
                 this.CloseConnection();
             }
         }
