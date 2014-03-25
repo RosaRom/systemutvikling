@@ -11,7 +11,7 @@ namespace Adminsiden
 {
     public partial class PALeggTilTasks : System.Web.UI.Page
     {
-        private int prosjektID = 2;            //hentes fra forrige side
+        private int prosjektID = 2;                                                     //hentes fra forrige side
         private DBConnect db = new DBConnect();
         private DataTable table = new DataTable();
 
@@ -26,6 +26,50 @@ namespace Adminsiden
         //lagrer en ny task i databasen
         protected void BtnLagreTask_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string taskCategoryID = DropDownMainTask.SelectedValue.ToString();
+                
+                string taskName;
+                if (taskNavn.Text.Equals(""))
+                    throw new Exception("Task må ha et navn");                          //lager exception med en message om ikke navn er satt
+                else
+                    taskName = taskNavn.Text;
+
+                string description;
+                if (beskrivelse.Text.Equals(""))
+                    description = "NULL";
+                else
+                    description = "'" + beskrivelse.Text + "'";
+
+                string priority = DropDownPrioritering.SelectedValue.ToString();
+                string state = "0";
+
+                string hoursAllocated;
+                if (timerAllokert.Text.Equals(""))
+                    hoursAllocated = "NULL";
+                else
+                    hoursAllocated = "'" + timerAllokert.Text + "'";
+
+                string parentTaskID;
+                if (DropDownSubTask.SelectedValue.ToString().Equals(""))
+                    parentTaskID = "NULL";
+                else
+                    parentTaskID = "'" + DropDownSubTask.SelectedValue.ToString() + "'";
+
+
+                string query = String.Format("INSERT INTO Task VALUES(null, '{0}', '{1}', {2}, '{3}', '{4}', {5}, {6})",
+                    taskCategoryID, taskName, description, priority, state, hoursAllocated, parentTaskID);
+                db.InsertDeleteUpdate(query);
+
+                beskjed.Text = "Ny task er lagt til";
+
+                FillTasks();
+                ResetForm();
+            } catch (Exception ex)
+            {
+                beskjed.Text = "Noe gikk galt: " + ex.Message;                              //skriver ut beskjed om noe gikk galt under lagring av task
+            }
             
         }
 
@@ -57,6 +101,17 @@ namespace Adminsiden
         protected void DropDownMainTask_SelectedIndexChanged(object sender, EventArgs e)
         {
             FillTasks();
+            beskjed.Text = "";
+            ResetForm();
+        }
+
+        private void ResetForm()
+        {
+            taskNavn.Text = "";
+            beskrivelse.Text = "";
+            DropDownPrioritering.SelectedIndex = 0;
+            timerAllokert.Text = "";
+            DropDownSubTask.SelectedIndex = 0;
         }
     }
 }
