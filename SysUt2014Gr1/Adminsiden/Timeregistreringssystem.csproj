@@ -114,6 +114,7 @@
     <Content Include="css\OpprettProsjektStyle.css" />
     <Content Include="css\OpprettTeamStyle.css" />
     <Content Include="css\PALeggTilTasks.css" />
+    <Content Include="css\PANyHovedtask.css" />
     <Content Include="css\Profile.css" />
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
@@ -124,6 +125,7 @@
     <Content Include="OpprettProsjekt.aspx" />
     <Content Include="OpprettTeam.aspx" />
     <Content Include="PALeggTilTasks.aspx" />
+    <Content Include="PANyHovedtask.aspx" />
     <Content Include="Profilside.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
     <Content Include="ProsjektAnsvarligNyBruker.aspx" />
@@ -210,6 +212,13 @@
     </Compile>
     <Compile Include="PALeggTilTasks.aspx.designer.cs">
       <DependentUpon>PALeggTilTasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PANyHovedtask.aspx.cs">
+      <DependentUpon>PANyHovedtask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PANyHovedtask.aspx.designer.cs">
+      <DependentUpon>PANyHovedtask.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profilside.aspx.cs">
       <DependentUpon>Profilside.aspx</DependentUpon>
