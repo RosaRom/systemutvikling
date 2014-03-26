@@ -30,20 +30,38 @@ namespace Adminsiden
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            lbError.Text = ""; // resetter error msg
             String dateFrom = tbDateFrom.Text;
-            phaseDateFrom = Convert.ToDateTime(dateFrom);
-
             String dateTo = tbDateTo.Text;
-            phaseDateTo = Convert.ToDateTime(dateTo);
 
-            // trenger sjekk for om phaseDateTo < phaseDateFrom (så du ikke kan sette sluttdato tidligere enn startdato)
+            try
+            {
+                // sjekker om noen inputfelt (med unntak av tbDescription) er tomme       
+                if (tbPhasename.Text != "" && tbDateFrom.Text != "" && tbDateTo.Text != "")
+                {
+                    phaseDateFrom = Convert.ToDateTime(dateFrom);
+                    phaseDateTo = Convert.ToDateTime(dateTo);
 
-            // sjekker om tbDescription er tom, og varierer input til WriteData() ettersom phaseDescription skal kunne være NULL
-            if (tbDescription.Text == "")
-                WriteData(tbPhasename.Text, phaseDateFrom, phaseDateTo, "");
+                    // sjekk for om phaseDateTo < phaseDateFrom (så du ikke kan sette sluttdato tidligere enn startdato)
+                    if (phaseDateFrom < phaseDateTo)
+                    {
+                        // sjekker om tbDescription er tom, og varierer input til WriteData() ettersom phaseDescription skal kunne være NULL
+                        if (tbDescription.Text == "")
+                            WriteData(tbPhasename.Text, phaseDateFrom, phaseDateTo, "");
 
-            else
-                WriteData(tbPhasename.Text, phaseDateFrom, phaseDateTo, tbDescription.Text);
+                        else
+                            WriteData(tbPhasename.Text, phaseDateFrom, phaseDateTo, tbDescription.Text);
+                    }
+                    else
+                        throw new Exception("Til-dato kan ikke være før fra-dato.");
+                }
+                else
+                    throw new Exception("En fase må ha Fasenavn, fra- og til-dato.");
+            }
+            catch (Exception ex)
+            {
+                lbError.Text = "" + ex.Message;
+            }
         }
         /*
                 protected void Disabled_DayRender(object sender, DayRenderEventArgs e)
