@@ -117,6 +117,7 @@
     <Content Include="css\PANyHovedtask.css" />
     <Content Include="css\Profile.css" />
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
+    <Content Include="css\ProsjektAnsvarligNyFase.css" />
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
     <Content Include="DummyPage.aspx" />
     <Content Include="editProject.aspx" />
