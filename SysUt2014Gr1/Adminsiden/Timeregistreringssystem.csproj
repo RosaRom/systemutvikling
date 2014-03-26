@@ -120,6 +120,7 @@
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
     <Content Include="DummyPage.aspx" />
     <Content Include="editProject.aspx" />
+    <Content Include="EditTask.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
     <Content Include="OpprettTeam.aspx" />
@@ -175,6 +176,13 @@
     </Compile>
     <Compile Include="editProject.aspx.designer.cs">
       <DependentUpon>editProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditTask.aspx.cs">
+      <DependentUpon>EditTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditTask.aspx.designer.cs">
+      <DependentUpon>EditTask.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
