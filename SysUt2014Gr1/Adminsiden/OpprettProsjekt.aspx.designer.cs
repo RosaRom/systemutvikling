@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Adminsiden {
-    
-    
-    public partial class OpprettProsjekt {
-        
+namespace Adminsiden
+{
+
+
+    public partial class OpprettProsjekt
+    {
+
         /// <summary>
         /// ToolkitScriptManager control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager;
-        
+
         /// <summary>
         /// lbl_projectName control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_projectName;
-        
+
         /// <summary>
         /// tb_projectName control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_projectName;
-        
+
         /// <summary>
         /// lbl_dateFrom control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_dateFrom;
-        
+
         /// <summary>
         /// tb_dateFrom control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_dateFrom;
-        
+
         /// <summary>
         /// calendarDateFrom control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender calendarDateFrom;
-        
+
         /// <summary>
         /// lbl_dateTo control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_dateTo;
-        
+
         /// <summary>
         /// tb_dateTo control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_dateTo;
-        
+
         /// <summary>
         /// calendarDateTo control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender calendarDateTo;
-        
+
         /// <summary>
         /// lbl_ProjectDesc control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_ProjectDesc;
-        
+
         /// <summary>
         /// TextArea_ProjectDescription control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTextArea TextArea_ProjectDescription;
-        
+
         /// <summary>
         /// counter control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl counter;
-        
+
         /// <summary>
         /// lbl_Underprosjekt control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Underprosjekt;
-        
+
         /// <summary>
         /// ddl_Hovedprosjekt control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Hovedprosjekt;
-        
+
         /// <summary>
         /// ddl_Team control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Team;
-        
+
         /// <summary>
         /// dummy control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dummy;
-        
+
         /// <summary>
         /// btn_ShowTeam control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_ShowTeam;
-        
+
         /// <summary>
         /// btn_CreateTeam control.
         /// </summary>
@@ -173,7 +175,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_CreateTeam;
-        
+
         /// <summary>
         /// lbl_warning control.
         /// </summary>
@@ -182,7 +184,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_warning;
-        
+
         /// <summary>
         /// ModalPopupExtender_Team control.
         /// </summary>
@@ -191,7 +193,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender_Team;
-        
+
         /// <summary>
         /// gridViewPanel control.
         /// </summary>
@@ -200,7 +202,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel gridViewPanel;
-        
+
         /// <summary>
         /// lbl_teamPopupHeader control.
         /// </summary>
@@ -209,7 +211,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_teamPopupHeader;
-        
+
         /// <summary>
         /// gv_selectedTeam control.
         /// </summary>
@@ -218,7 +220,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gv_selectedTeam;
-        
+
         /// <summary>
         /// lbl_Tasks control.
         /// </summary>
@@ -227,7 +229,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Tasks;
-        
+
         /// <summary>
         /// btn_AddMainTask control.
         /// </summary>
@@ -236,7 +238,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_AddMainTask;
-        
+
         /// <summary>
         /// btn_CreateMainTask control.
         /// </summary>
@@ -245,7 +247,7 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_CreateMainTask;
-        
+
         /// <summary>
         /// lb_tasks control.
         /// </summary>
