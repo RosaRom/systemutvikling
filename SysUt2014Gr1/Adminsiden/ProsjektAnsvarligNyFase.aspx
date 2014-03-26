@@ -7,16 +7,31 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <form id="NyFaseForm" runat="server">
-        <br />
-          Fasenavn <asp:TextBox ID="tbPhasename" runat="server" MaxLength="40" Width="298px"></asp:TextBox>
-        <br />
-          Dato <asp:TextBox ID="tbDateFrom" runat="server" TextMode="Date"></asp:TextBox>&nbsp;til&nbsp;
+
+       <div>
+          <asp:Label ID="lbFasenavn" runat="server" Text="Fasenavn"></asp:Label>
+&nbsp;&nbsp; <asp:TextBox ID="tbPhasename" runat="server" MaxLength="40" Width="300px"></asp:TextBox>
+       </div>
+
+
+        <div>
+          <asp:Label ID="lbDate" runat="server" Text="Dato fra"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;<asp:TextBox ID="tbDateFrom" runat="server" TextMode="Date"></asp:TextBox>&nbsp;til&nbsp;
             <asp:TextBox ID="tbDateTo" runat="server" TextMode="Date"></asp:TextBox>
-        <br />
-        Beskrivelse <asp:TextBox ID="tbDescription" runat="server" Height="107px" TextMode="MultiLine" Width="300px"></asp:TextBox>
-        <br />
+        </div>    
+
+
+        <div id="divDescription">
+        <asp:Label ID="lbDescription" runat="server" Text="Beskrivelse"></asp:Label>
+        <asp:TextBox ID="tbDescription" runat="server" Height="107px" TextMode="MultiLine" Width="300px"></asp:TextBox>
+        </div>
+        
+
+        <div style="margin-left: 80px">
         <asp:Button ID="btnSubmit" runat="server" Text="Gjennomfør endringer" Width="212px" OnClick="btnSubmit_Click" />
-        <br />
         <asp:Label ID="lbError" runat="server" ForeColor="Red" style="text-align: center"></asp:Label>
+        </div>
    </form>
+    
 </asp:Content>

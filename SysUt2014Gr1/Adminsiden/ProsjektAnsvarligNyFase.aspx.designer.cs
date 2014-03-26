@@ -22,6 +22,15 @@ namespace Adminsiden {
         protected global::System.Web.UI.HtmlControls.HtmlForm NyFaseForm;
         
         /// <summary>
+        /// lbFasenavn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFasenavn;
+        
+        /// <summary>
         /// tbPhasename control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbPhasename;
+        
+        /// <summary>
+        /// lbDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDate;
         
         /// <summary>
         /// tbDateFrom control.
@@ -47,6 +65,15 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDateTo;
+        
+        /// <summary>
+        /// lbDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDescription;
         
         /// <summary>
         /// tbDescription control.
