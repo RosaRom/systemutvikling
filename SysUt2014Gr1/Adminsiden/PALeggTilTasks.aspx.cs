@@ -49,7 +49,15 @@ namespace Adminsiden
                 if (timerAllokert.Text.Equals(""))
                     hoursAllocated = "NULL";
                 else
-                    hoursAllocated = "'" + timerAllokert.Text + "'";
+                {
+                    int temp;
+                    
+                    if(int.TryParse(timerAllokert.Text, out temp))
+                        hoursAllocated = "'" + timerAllokert.Text + "'";
+                    else
+                        throw new Exception("Antall timer må være et tall eller blankt");
+                }
+                    
 
                 string parentTaskID;
                 if (DropDownSubTask.SelectedValue.ToString().Equals(""))

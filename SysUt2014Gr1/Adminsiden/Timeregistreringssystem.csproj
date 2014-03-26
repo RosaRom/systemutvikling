@@ -113,6 +113,7 @@
     <Content Include="css\Login.css" />
     <Content Include="css\OpprettProsjektStyle.css" />
     <Content Include="css\OpprettTeamStyle.css" />
+    <Content Include="css\PALeggTilTasks.css" />
     <Content Include="css\Profile.css" />
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
@@ -146,6 +147,7 @@
     </Compile>
     <Compile Include="Bootstrap.Master.cs">
       <DependentUpon>Bootstrap.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Bootstrap.Master.designer.cs">
       <DependentUpon>Bootstrap.Master</DependentUpon>
@@ -203,6 +205,7 @@
     </Compile>
     <Compile Include="Profilside.aspx.cs">
       <DependentUpon>Profilside.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Profilside.aspx.designer.cs">
       <DependentUpon>Profilside.aspx</DependentUpon>
@@ -244,6 +247,9 @@
     <Compile Include="Prosjektvalg.aspx.cs">
       <DependentUpon>Prosjektvalg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prosjektvalg.aspx.designer.cs">
+      <DependentUpon>Prosjektvalg.aspx</DependentUpon>
     </Compile>
     <Compile Include="Resources\_ResourceRegistration.cs" />
     <Compile Include="User.cs" />
