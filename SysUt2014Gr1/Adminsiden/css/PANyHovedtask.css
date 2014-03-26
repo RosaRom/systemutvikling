@@ -1,0 +1,12 @@
+﻿body {
+    background-color:lightgray;
+}
+
+#adminLogo {
+    text-align: center;
+    margin-top: 2%;
+}
+
+#lbBeskrivelse{
+    vertical-align:top;
+}

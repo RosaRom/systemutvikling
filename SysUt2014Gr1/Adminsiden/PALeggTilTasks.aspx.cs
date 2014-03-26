@@ -11,7 +11,7 @@ namespace Adminsiden
 {
     public partial class PALeggTilTasks : System.Web.UI.Page
     {
-        private int prosjektID = 2;                                                     //hentes fra forrige side
+        private int prosjektID = 2;                                                     //hentes fra forrige side, nå er det bare et tall for testing
         private DBConnect db = new DBConnect();
         private DataTable table = new DataTable();
 
