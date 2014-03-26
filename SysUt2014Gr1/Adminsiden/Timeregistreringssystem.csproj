@@ -65,9 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.aspx" />
-    <EmbeddedResource Include="MainPage.resx">
-      <DependentUpon>MainPage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\UPARROW.GIF" />
     <EmbeddedResource Include="Resources\DOWNARROW.GIF" />
     <Content Include="css\bootstrap.css" />
