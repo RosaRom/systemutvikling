@@ -13,7 +13,6 @@ namespace Adminsiden
     public partial class OpprettProsjekt : System.Web.UI.Page
     {
         private DBConnect db;
-        private int descriptionMaxLength;
         private int webClientTeamID;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -25,33 +24,14 @@ namespace Adminsiden
                 tb_dateTo.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 getTeams(); //Binder teams fra databasen til DropDownList ddl_Team
                 getMainProjects(); //Binder hovedprosjekt til DropDownList ddl_Hovedprosjekt
-                getColumnLengths(); //Henter maxlength på kolonner i databasen der det er relevant
             }
             else
             {
                 if (ViewState["teamID"] != null)
                     webClientTeamID = (int)ViewState["teamID"];
-                //Hadde problem med å få TextArea countern til å holde på verdien ved server postback
-                //Neste steg: assigne max length til en variabel ved en sql spørring opp mot kolonnen i databasen så man slipper å hardkode 300
-                counter.InnerText = Convert.ToString(descriptionMaxLength - TextArea_ProjectDescription.InnerText.Length);
             }
         }
 
-        private void getColumnLengths()
-        {
-            /*select COLUMN_NAME, CHARACTER_MAXIMUM_LENGTH 
-from information_schema.columns
-where table_schema = DATABASE() AND   -- name of your database
-      table_name = 'turno' AND        -- name of your table
-      COLUMN_NAME = 'nombreTurno'     -- name of the column
-            string descriptionQuery = "SELECT COLUMN_NAME, CHARACTER_MAXIMUM_LENGTH AS maxLength FROM information_chema.columns"
-                + " WHERE table_schema = DATABASE() AND table_name = 'Project' AND COLUMN_NAME = 'projectDescription'";
-            DataTable dtDescription = new DataTable();
-            dtDescription = db.getAll(descriptionQuery);
-            descriptionMaxLength = Convert.ToInt32(dtDescription.Rows[0]["maxLength"]);
-            lbl_warning.Text = Convert.ToString(descriptionMaxLength);
-            lbl_warning.Visible = true;*/
-        }
         private void getTeams()
         {
             string query = "SELECT * FROM Team";
