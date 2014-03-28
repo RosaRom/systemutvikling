@@ -45,6 +45,7 @@
                 }
                 else { objCnt.innerText = maxL - objVal.length; }
             }
+            $('#textAreaCounter').html(objCnt);
             return true;
         }
         /** Metode for å lage document objekt */
@@ -83,7 +84,7 @@
             <asp:CalendarExtender
                 ID="calendarDateFrom"
                 TargetControlID="tb_dateFrom"
-                Format="dd.MM.yyyy"
+                Format="dd-MM-yyyy"
                 PopupPosition="BottomRight"
                 runat="server"
                 CssClass="blue"
@@ -100,7 +101,7 @@
             <asp:CalendarExtender
                 ID="calendarDateTo"
                 TargetControlID="tb_dateTo"
-                Format="dd.MM.yyyy"
+                Format="dd-MM-yyyy"
                 runat="server"
                 CssClass="blue"
                 TodaysDateFormat="dd. MMMM, yyyy">
@@ -113,12 +114,14 @@
             <br />
             <textarea
                 id="TextArea_ProjectDescription"
+                runat="server"
                 style="resize: none"
                 maxlength="300"
                 cols="40"
                 rows="3"
                 onkeydown="return taLimit(this)"
-                onkeyup="return taCount(this, 'counter')"></textarea><br />
+                onkeyup="return taCount(this, 'counter')"></textarea>
+            <br />
             Du har <b><span id="counter">300</span></b> tegn igjen til din beskrivelse...
             <br />
             <br />
