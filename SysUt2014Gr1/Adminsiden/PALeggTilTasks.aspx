@@ -1,18 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PALeggTilTasks.aspx.cs" Inherits="Adminsiden.PALeggTilTasks" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="PALeggTilTasks.aspx.cs" Inherits="Adminsiden.PALeggTilTasks" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
     <title>Legg til ny task</title>
     <link rel="Stylesheet" type="text/css" href="css/PALeggTilTasks.css" />
-</head>
-<body>
+</asp:Content>
 
-    <div id="adminLogo">
-        <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
-    </div>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h1 id="overskrift">Lag nye tasks her</h1>
 
     <form id="PALeggTilTasks" runat="server">
@@ -58,5 +52,4 @@
             <asp:Label ID="beskjed" runat="server"></asp:Label>
         </div>
     </form>
-</body>
-</html>
+</asp:Content>

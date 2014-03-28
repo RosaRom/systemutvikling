@@ -67,8 +67,10 @@ namespace Adminsiden
         protected void btn_addTeamleader_Click(object sender, EventArgs e)
         {
             userID = Convert.ToInt32(ddl_users.SelectedValue);
-            string query = "UPDATE User SET groupID = 2, teamID=" + teamID + " WHERE userID=" + userID;
-            db.InsertDeleteUpdate(query);
+            string query1 = "UPDATE User SET groupID = 1 WHERE groupID = 2 AND teamID =" + teamID;
+            db.InsertDeleteUpdate(query1);
+            string query2 = "UPDATE User SET groupID = 2, teamID=" + teamID + " WHERE userID=" + userID;
+            db.InsertDeleteUpdate(query2);
             fillGridView();
 
             ddl_users.Items.Clear();
