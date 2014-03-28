@@ -43,14 +43,14 @@ namespace Adminsiden
 from information_schema.columns
 where table_schema = DATABASE() AND   -- name of your database
       table_name = 'turno' AND        -- name of your table
-      COLUMN_NAME = 'nombreTurno'     -- name of the column*/
+      COLUMN_NAME = 'nombreTurno'     -- name of the column
             string descriptionQuery = "SELECT COLUMN_NAME, CHARACTER_MAXIMUM_LENGTH AS maxLength FROM information_chema.columns"
                 + " WHERE table_schema = DATABASE() AND table_name = 'Project' AND COLUMN_NAME = 'projectDescription'";
             DataTable dtDescription = new DataTable();
             dtDescription = db.getAll(descriptionQuery);
             descriptionMaxLength = Convert.ToInt32(dtDescription.Rows[0]["maxLength"]);
             lbl_warning.Text = Convert.ToString(descriptionMaxLength);
-            lbl_warning.Visible = true;
+            lbl_warning.Visible = true;*/
         }
         private void getTeams()
         {

@@ -1,14 +1,8 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OpprettProsjekt.aspx.cs" Inherits="Adminsiden.OpprettProsjekt" %>
+<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="OpprettProsjekt.aspx.cs" Inherits="Adminsiden.OpprettProsjekt" %>
 
 <%@ Register TagPrefix="asp" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
-<!-- Kommentar til registrering av AjaxControlToolkit:
-     Ajax er nå kun lagt til i denne webformen, må legges til i Web.Config for å fungere 
-     i hele prosjektet. Ikke funnet ut hvordan dette gjøres - Ari -->
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Opprett prosjekt</title>
     <link rel="Stylesheet" type="text/css" href="css/OpprettProsjektStyle.css" />
 
@@ -62,11 +56,9 @@
 
     </script>
 
-</head>
-<body>
-    <div id="Logo">
-        <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
-    </div>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
 
     <form id="OpprettProsjekt" runat="server">
 
@@ -135,8 +127,7 @@
             <asp:Label
                 ID="lbl_Underprosjekt"
                 runat="server"
-                Text="Gjør til underprosjekt av:">
-            </asp:Label>
+                Text="Gjør til underprosjekt av:"></asp:Label>
             <asp:DropDownList
                 ID="ddl_Hovedprosjekt"
                 runat="server"
@@ -225,5 +216,4 @@
             <asp:ListBox ID="lb_tasks" runat="server" Width="200px"></asp:ListBox>
         </div>
     </form>
-</body>
-</html>
+</asp:Content>
