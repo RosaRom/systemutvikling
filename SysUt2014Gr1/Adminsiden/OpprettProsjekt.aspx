@@ -2,7 +2,6 @@
 
 <%@ Register TagPrefix="asp" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <title>Opprett prosjekt</title>
@@ -119,8 +118,7 @@
                 cols="40"
                 rows="3"
                 onkeydown="return taLimit(this)"
-                onkeyup="return taCount(this, 'counter')">
-            </textarea><br />
+                onkeyup="return taCount(this, 'counter')"></textarea><br />
             Du har <b><span id="counter">300</span></b> tegn igjen til din beskrivelse...
             <br />
             <br />

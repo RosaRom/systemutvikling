@@ -138,7 +138,6 @@
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AjaxControlToolkit.cs" />
     <Compile Include="Bootstrap.Master.cs">
       <DependentUpon>Bootstrap.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
