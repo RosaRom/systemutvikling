@@ -1,14 +1,10 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OpprettProsjekt.aspx.cs" Inherits="Adminsiden.OpprettProsjekt" %>
+<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="OpprettProsjekt.aspx.cs" Inherits="Adminsiden.OpprettProsjekt" %>
 
 <%@ Register TagPrefix="asp" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
-<!-- Kommentar til registrering av AjaxControlToolkit:
-     Ajax er nå kun lagt til i denne webformen, må legges til i Web.Config for å fungere 
-     i hele prosjektet. Ikke funnet ut hvordan dette gjøres - Ari -->
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
     <title>Opprett prosjekt</title>
     <link rel="Stylesheet" type="text/css" href="css/OpprettProsjektStyle.css" />
 
@@ -61,12 +57,9 @@
         }
 
     </script>
+</asp:Content>
 
-</head>
-<body>
-    <div id="Logo">
-        <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
-    </div>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
 
     <form id="OpprettProsjekt" runat="server">
 
@@ -121,15 +114,13 @@
             <br />
             <textarea
                 id="TextArea_ProjectDescription"
-                runat="server"
                 style="resize: none"
                 maxlength="300"
                 cols="40"
                 rows="3"
                 onkeydown="return taLimit(this)"
-                onkeyup="return taCount(this, 'counter')"></textarea>
-            <br />
-            Du har <b><span id="counter" runat="server">300</span></b> tegn igjen til din beskrivelse...
+                onkeyup="return taCount(this, 'counter')"></textarea><br />
+            Du har <b><span id="counter">300</span></b> tegn igjen til din beskrivelse...
             <br />
             <br />
             <asp:Label
@@ -224,6 +215,6 @@
             <br />
             <asp:ListBox ID="lb_tasks" runat="server" Width="200px"></asp:ListBox>
         </div>
+        <br />
     </form>
-</body>
-</html>
+</asp:Content>

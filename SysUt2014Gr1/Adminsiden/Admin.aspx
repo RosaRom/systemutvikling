@@ -1,25 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Admin.Admin" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Admin.Admin" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Administrator</title>
     <link rel="Stylesheet" type="text/css" href="css/AdminStyle.css" />
-</head>
-<body>
+</asp:Content>
 
-    <div id="adminLogo">
-        <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
-    </div>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <form id="Adminform" runat="server">
-
         <div>
             <div id="overskriftInsert">
                 <asp:Label runat="server">Legg til nye brukere</asp:Label>
             </div>
-
             <asp:GridView ID="GridViewInsert"
                 runat="server"
                 AutoGenerateColumns="False"
@@ -60,7 +51,7 @@
             </asp:GridView>
 
             <div id="beskjedTilBruker">
-                <asp:Label ID="beskjed" runat="server">|</asp:Label>
+                <asp:Label ID="beskjed" runat="server"></asp:Label>
             </div>
 
             <div id="søkefelt">
@@ -86,7 +77,7 @@
                 CssClass="gridView" AlternatingRowStyle-CssClass="alt" HeaderStyle-CssClass="gridViewHeader">
 
                 <Columns>
-                    <asp:BoundField DataField="userID" HeaderText="Id" SortExpression="userID" ReadOnly="True" />
+                    <asp:BoundField DataField="userID" HeaderText="Id" SortExpression="userID" ReadOnly="True" ItemStyle-Width="1%" />
                     <asp:BoundField DataField="surname" HeaderText="Etternavn" SortExpression="surname" />
                     <asp:BoundField DataField="firstname" HeaderText="Fornavn" SortExpression="firstname" />
                     <asp:BoundField DataField="username" HeaderText="Brukernavn" SortExpression="username" />
@@ -125,8 +116,9 @@
                 </Columns>
 
             </asp:GridView>
+            <br />
+            <br />
         </div>
 
     </form>
-</body>
-</html>
+</asp:Content>

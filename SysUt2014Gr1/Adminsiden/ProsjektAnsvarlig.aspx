@@ -1,17 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProsjektAnsvarlig.aspx.cs" Inherits="Adminsiden.ProsjektAnsvarlig" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="ProsjektAnsvarlig.aspx.cs" Inherits="Adminsiden.ProsjektAnsvarlig" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Prosjektansvarlig</title>
     <link rel="Stylesheet" type="text/css" href="css/ProsjektAnsvarlig.css" />
-</head>
-<body>
-    <div id="Logo">
-        <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
-                <h3>Rediger prosjekt</h3>
-    </div>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
 
     <form id="form1" runat="server">
         <div id="ProjectForm">
@@ -38,5 +32,5 @@
         </p>
             </div>
     </form>
-</body>
-</html>
+</asp:Content>
+

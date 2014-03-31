@@ -1,18 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProsjektAnsvarligNyBruker.aspx.cs" Inherits="Adminsiden.ProsjektAnsvarligNyBruker" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="ProsjektAnsvarligNyBruker.aspx.cs" Inherits="Adminsiden.ProsjektAnsvarligNyBruker" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Legg til nye brukere</title>
     <link rel="Stylesheet" type="text/css" href="css/ProsjektAnsvarligNyBruker.css" />
-</head>
-<body>
+</asp:Content>
 
-    <div id="adminLogo">
-        <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
-    </div>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <form id="ProsjektAnsvarligNyBruker" runat="server">
     
     <div>
@@ -58,5 +51,5 @@
             </div>
     </div>
     </form>
-</body>
-</html>
+</asp:Content>
+

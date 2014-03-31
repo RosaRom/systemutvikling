@@ -1,16 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Adminsiden.login" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Adminsiden.login" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Administrator</title>
     <link rel="Stylesheet" type="text/css" href="css/Login.css" />
-</head>
-<body>
-     <div id="Logo">
-        <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
-    </div>
+</asp:Content>
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+
     <form id="loginForm" runat="server">
         <h3>
         <asp:Label ID="UsernameLabel" Text="Username"  runat="server" />
@@ -27,5 +24,5 @@
         <br />
         <asp:Label ID="LabelWarning" runat="server" ForeColor="#CC0000" Visible="False"></asp:Label>
     </form>
-</body>
-</html>
+</asp:Content>
+
