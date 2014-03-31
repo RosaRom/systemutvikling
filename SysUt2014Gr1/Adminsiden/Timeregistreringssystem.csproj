@@ -117,6 +117,7 @@
     <Content Include="OpprettProsjekt.aspx" />
     <Content Include="OpprettTeam.aspx" />
     <Content Include="PALeggTilTasks.aspx" />
+    <Content Include="PANyHovedtask.aspx" />
     <Content Include="Profilside.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
     <Content Include="ProsjektAnsvarligNyBruker.aspx" />
@@ -195,6 +196,12 @@
     </Compile>
     <Compile Include="PALeggTilTasks.aspx.designer.cs">
       <DependentUpon>PALeggTilTasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PANyHovedtask.aspx.cs">
+      <DependentUpon>PANyHovedtask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PANyHovedtask.aspx.designer.cs">
+      <DependentUpon>PANyHovedtask.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profilside.aspx.cs">
       <DependentUpon>Profilside.aspx</DependentUpon>
