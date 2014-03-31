@@ -89,22 +89,25 @@ namespace Admin
             if (this.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                cmd.ExecuteNonQuery();
-
+                try {
+                cmd.ExecuteNonQuery();    
+                }
+                 catch(InvalidOperationException e){
+                     Console.WriteLine("An error occurred: '{0}'", e);
+                 }
                 this.CloseConnection();
             }
         }
 
-       public void InsertTimeSheet(string _start, string _stop, int _userID, int _taskID, string _description, int _workplaceID, int _active, int _projectID)
+       public void InsertTimeSheet(string _start, string _stop, int _userID, int _taskID, string _description, int _workplaceID, int _state, int _projectID)
         {
-            string query = "INSERT INTO TimeSheet (start, stop, userID, taskID, description, workplaceID, active, projectID) VALUES('" + _start + "', '" + _stop + "', '" + _userID + "', '" + _taskID + "', '" + _description + "', '" + _workplaceID + "', '" + _active + "', '" + _projectID + "')";
+            string query = "INSERT INTO TimeSheet (start, stop, userID, taskID, description, workplaceID, state, projectID) VALUES('" + _start + "', '" + _stop + "', '" + _userID + "', '" + _taskID + "', '" + _description + "', '" + _workplaceID + "', '" + _state + "', '" + _projectID + "')";
                 
             if (this.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.ExecuteNonQuery();
-
+               
                 this.CloseConnection();
             }
         }

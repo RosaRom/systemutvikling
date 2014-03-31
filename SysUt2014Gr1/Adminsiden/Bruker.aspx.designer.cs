@@ -22,13 +22,31 @@ namespace Bruker {
         protected global::System.Web.UI.HtmlControls.HtmlForm Brukerform;
         
         /// <summary>
-        /// Calendar1 control.
+        /// ToolkitScriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
+        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager;
+        
+        /// <summary>
+        /// TB_Date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TB_Date;
+        
+        /// <summary>
+        /// TB_Date_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender TB_Date_CalendarExtender;
         
         /// <summary>
         /// Label1 control.

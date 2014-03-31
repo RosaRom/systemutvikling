@@ -1,0 +1,35 @@
+﻿body {
+    background-color: lightgray;
+}
+
+#adminLogo {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.leggTilTask{
+    margin-left:42.5%;
+    margin-top:2%;
+}
+
+#divLagre{
+    margin-top:3%;
+    text-align:center;
+}
+
+#BtnLagreTask{
+    width:15%;
+}
+
+#overskrift{
+    margin:5% 40% 3% 42.5%;
+    border-bottom:solid 2px black;
+}
+
+#lbBeskrivelse{
+    vertical-align:top;
+}
+
+#timerAllokert{
+    width:3%;
+}
