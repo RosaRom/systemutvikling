@@ -32,7 +32,8 @@
             <asp:DropDownList ID="DropDownTilFase" runat="server"></asp:DropDownList>
         </div>
 
-        <asp:Button ID="btnLagreHovedtask" runat="server" Text="Lagre hovedtask" />
+        <asp:Button ID="btnLagreHovedtask" runat="server" Text="Lagre hovedtask" /><br />
+        <asp:Label ID="lbBeskjed" runat="server"></asp:Label>
     </form>
 </body>
 </html>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 using Admin;
 
 
@@ -18,13 +19,28 @@ namespace Adminsiden
         {
             if (!Page.IsPostBack)
             {
-                
+                FillDropDownFase();
             }
         }
 
         private void FillDropDownFase()
         {
-            string query = "SELECT ";
+            string query = "SELECT phaseName, phaseID FROM Fase WHERE projectID = " + projectID;
+            DataTable table = new DataTable();
+
+            try
+            {
+                table = db.getAll(query);
+                DropDownFraFase.DataSource = table;
+                DropDownTilFase.DataSource = table;
+
+                DropDownFraFase.DataBind();
+                DropDownTilFase.DataBind();
+            }
+            catch (Exception ex)
+            {
+                lbBeskjed.Text = "Noe gikk galt: " + ex.Message;
+            }
         } 
     }
 }
