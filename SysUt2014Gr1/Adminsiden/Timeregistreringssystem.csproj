@@ -115,6 +115,7 @@
     <Content Include="PALeggTilTasks.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
     <Content Include="ProsjektAnsvarligNyBruker.aspx" />
+    <Content Include="ProsjektAnsvarligNyFase.aspx" />
     <Content Include="ProsjektAnsvarligVisTeam.aspx" />
     <Content Include="Prosjektvalg.aspx" />
     <Content Include="css\ProsjektvalgStyle.css" />
@@ -194,6 +195,13 @@
     </Compile>
     <Compile Include="ProsjektAnsvarligNyBruker.aspx.designer.cs">
       <DependentUpon>ProsjektAnsvarligNyBruker.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProsjektAnsvarligNyFase.aspx.cs">
+      <DependentUpon>ProsjektAnsvarligNyFase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProsjektAnsvarligNyFase.aspx.designer.cs">
+      <DependentUpon>ProsjektAnsvarligNyFase.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProsjektAnsvarligVisTeam.aspx.cs">
       <DependentUpon>ProsjektAnsvarligVisTeam.aspx</DependentUpon>
