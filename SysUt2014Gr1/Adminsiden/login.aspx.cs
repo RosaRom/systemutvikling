@@ -54,6 +54,7 @@ namespace Adminsiden
                         //Server.Transfer("Teamleder.aspx", true);
                           Server.Transfer("Admin.aspx", true);
                         break;
+                        break;
                     case 3:
                         Server.Transfer("ProsjektAnsvarlig.aspx", true);
                         break;

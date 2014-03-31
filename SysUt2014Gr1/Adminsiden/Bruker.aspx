@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="True" CodeBehind="Bruker.aspx.cs" Inherits="Bruker.Bruker" %>
 
+<%@ Register TagPrefix="asp" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title> Brukerside </title>
      <link rel="Stylesheet" type="text/css" href="css/BrukerStyle.css" />
@@ -8,10 +10,23 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
    <form id="Brukerform" runat="server">
     
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager" runat="server"
+            EnableScriptGlobalization="true" EnableScriptLocalization="true">
+    </asp:ToolkitScriptManager>
+
     <h3>Bruker timeregistrering</h3>
+       Velg Dato:<br />
+       <asp:TextBox ID="TB_Date" runat="server"></asp:TextBox>
+       <asp:CalendarExtender 
+           ID="TB_Date_CalendarExtender" 
+           runat="server" 
+           TargetControlID="TB_Date"
+           Format="yyyy-MM-dd"
+           PopupPosition="BottomRight"
+           CssClass="blue"
+           TodaysDateFormat="dd. MMMM, yyyy">
+       </asp:CalendarExtender>
     <br />
-    <br />
-    <asp:Calendar ID="Calendar1"  runat="server" Width="220px"></asp:Calendar>
     <br />
     <asp:Label ID="Label1" runat="server" Text="Arbeid påbegynt:"></asp:Label>
     &nbsp;&nbsp;
@@ -35,7 +50,8 @@
     <asp:DropDownList ID="taskName" runat="server" AppendDataBoundItems="true" Height="20px" Width="220px" OnSelectedIndexChanged="taskName_SelectedIndexChanged">
     </asp:DropDownList>
     <br />
-    <br />
+       <br />
+       Beskrivelse:<br />
     <asp:TextBox id="TxtArea_userComment" TextMode="multiline" Columns="25" Rows="5" runat="server" Height="80px" Width="220px" />
     <br />
     <br />

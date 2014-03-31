@@ -11,7 +11,7 @@ namespace Adminsiden
 {
     public partial class PALeggTilTasks : System.Web.UI.Page
     {
-        private int prosjektID = 2;                                                     //hentes fra forrige side, nå er det bare et tall for testing
+        private int prosjektID = 2;                                                     //hentes fra forrige side
         private DBConnect db = new DBConnect();
         private DataTable table = new DataTable();
 
@@ -49,15 +49,7 @@ namespace Adminsiden
                 if (timerAllokert.Text.Equals(""))
                     hoursAllocated = "NULL";
                 else
-                {
-                    int temp;
-                    
-                    if(int.TryParse(timerAllokert.Text, out temp))
-                        hoursAllocated = "'" + timerAllokert.Text + "'";
-                    else
-                        throw new Exception("Antall timer må være et tall eller blankt");
-                }
-                    
+                    hoursAllocated = "'" + timerAllokert.Text + "'";
 
                 string parentTaskID;
                 if (DropDownSubTask.SelectedValue.ToString().Equals(""))

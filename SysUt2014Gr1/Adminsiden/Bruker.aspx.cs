@@ -93,7 +93,7 @@ namespace Bruker
 
             int tidFra_min = Convert.ToInt32(ddl_min_from.SelectedItem.ToString());
             int tidFra_hour = Convert.ToInt32(ddl_hour_from.SelectedItem.ToString());
-            DateTime dateFrom = Calendar1.SelectedDate;
+            DateTime dateFrom = Convert.ToDateTime(TB_Date.Text);
             TimeSpan timespanFrom = new TimeSpan(tidFra_hour, tidFra_min, 0);
             dateFrom = dateFrom.Add(timespanFrom);
 
@@ -101,7 +101,7 @@ namespace Bruker
 
             int tidTil_min = Convert.ToInt32(ddl_min_to.SelectedItem.ToString());
             int tidTil_hour = Convert.ToInt32(ddl_hour_to.SelectedItem.ToString());
-            DateTime dateTo = Calendar1.SelectedDate;
+            DateTime dateTo = Convert.ToDateTime(TB_Date.Text);
             TimeSpan timespanTo = new TimeSpan(tidTil_hour, tidTil_min, 0);
             dateTo = dateTo.Add(timespanTo);
 

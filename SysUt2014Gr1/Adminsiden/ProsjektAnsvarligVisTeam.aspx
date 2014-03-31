@@ -1,18 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProsjektAnsvarligVisTeam.aspx.cs" Inherits="Adminsiden.ProsjektAnsvarligVisTeam" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="ProsjektAnsvarligVisTeam.aspx.cs" Inherits="Adminsiden.ProsjektAnsvarligVisTeam" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
     <title>Vis Team</title>
     <link rel="Stylesheet" type="text/css" href="css/ProsjektAnsvarligVisTeam.css" />
-</head>
-<body>
+</asp:Content>
 
-    <div id="adminLogo">
-        <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
-    </div>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <form id="ProsjektAnsvarligVisTeam" runat="server">
        
     <div>
@@ -24,18 +18,19 @@
     </div>
         <asp:GridView ID="GridViewTeam" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridViewTeam_RowDeleting" CssClass="gridView" AlternatingRowStyle-CssClass="alt">
             <Columns>
-                <asp:BoundField DataField="userID" HeaderText="Id"/>
+                <asp:BoundField DataField="userID" HeaderText="Id" ItemStyle-Width="1%"/>
                 <asp:BoundField DataField="firstname" HeaderText="Fornavn"/>
                 <asp:BoundField DataField="surname" HeaderText="Etternavn"/>
                 <asp:BoundField DataField="groupName" HeaderText="Brukertype"/>
                 <asp:BoundField DataField="teamName" HeaderText="Team"/>
-                <asp:CommandField ShowDeleteButton="True" DeleteText="Fjern fra team"/>
+                <asp:CommandField ShowDeleteButton="True" DeleteText="Fjern fra team" ItemStyle-Width="10%"/>
             </Columns>
         </asp:GridView>
+        <br />
 
         <asp:GridView ID="GridViewProject" runat="server" AutoGenerateColumns="False" CssClass="gridView" AlternatingRowStyle-CssClass="alt">
             <Columns>
-                <asp:BoundField DataField="projectID" HeaderText="ID"/>
+                <asp:BoundField DataField="projectID" HeaderText="ID" ItemStyle-Width="1%"/>
                 <asp:BoundField DataField="projectName" HeaderText="Prosjekt"/>
                 <asp:BoundField DataField="projectDescription" HeaderText="Beskrivelse"/>
             </Columns>
@@ -50,5 +45,4 @@
             <asp:Button ID="btnOK" runat="server" Text="OK" OnClick="btnOK_Click" />
         </div>
     </form>
-</body>
-</html>
+</asp:Content>
