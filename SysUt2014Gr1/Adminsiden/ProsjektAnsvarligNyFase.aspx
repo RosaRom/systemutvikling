@@ -1,38 +1,37 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProsjektAnsvarligNyFase.aspx.cs" Inherits="Adminsiden.ProsjektAnsvarligNyFase" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/Bootstrap.Master" CodeBehind="ProsjektAnsvarligNyFase.aspx.cs" Inherits="Adminsiden.ProsjektAnsvarligNyFase" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Ny fase</title>
+    <link rel="Stylesheet" type="text/css" href="css/ProsjektAnsvarligNyFase.css" />
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <style type="text/css">
-        #Text2 {
-            margin-bottom: 1px;
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+    <form id="NyFaseForm" runat="server">
+
+       <div>
+          <asp:Label ID="lbFasenavn" runat="server" Text="Fasenavn"></asp:Label>
+&nbsp;&nbsp; <asp:TextBox ID="tbPhasename" runat="server" MaxLength="40" Width="300px"></asp:TextBox>
+       </div>
+
+
+        <div>
+          <asp:Label ID="lbDate" runat="server" Text="Dato fra"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;<asp:TextBox ID="tbDateFrom" runat="server" TextMode="Date"></asp:TextBox>&nbsp;til&nbsp;
+            <asp:TextBox ID="tbDateTo" runat="server" TextMode="Date"></asp:TextBox>
+        </div>    
+
+
+        <div id="divDescription">
+        <asp:Label ID="lbDescription" runat="server" Text="Beskrivelse"></asp:Label>
+        <asp:TextBox ID="tbDescription" runat="server" Height="107px" TextMode="MultiLine" Width="300px"></asp:TextBox>
+        </div>
+        
+
+        <div style="margin-left: 80px">
+        <asp:Button ID="btnSubmit" runat="server" Text="Gjennomfør endringer" Width="212px" OnClick="btnSubmit_Click" />
+        <asp:Label ID="lbError" runat="server" ForeColor="Red" style="text-align: center"></asp:Label>
+        </div>
+   </form>
     
-        <p style="height: 75px; margin-left: 40px">
-            Fasenavn
-            <asp:TextBox ID="tbPhasename" runat="server"></asp:TextBox>
-            <br />
-            <br />
-            Dato
-            <asp:TextBox ID="tbDateFrom" runat="server"></asp:TextBox>
-&nbsp;til
-            <asp:TextBox ID="tbDateTo" runat="server"></asp:TextBox>
-        </p>
-        <p style="margin-left: 40px">
-            Beskrivelse
-            <textarea id="taDescription" cols="20" name="S1" rows="2"></textarea></p>
-    
-    </div>
-        <p style="margin-left: 40px">
-            <asp:Button ID="btnSubmit" runat="server" Text="Gjennomfør endringer" Width="212px" />
-        </p>
-    </form>
-</body>
-</html>
+</asp:Content>

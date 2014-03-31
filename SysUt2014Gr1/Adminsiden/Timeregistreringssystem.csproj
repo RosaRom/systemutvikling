@@ -110,6 +110,7 @@
     <Content Include="css\OpprettTeamStyle.css" />
     <Content Include="css\Profile.css" />
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
+    <Content Include="css\ProsjektAnsvarligNyFase.css" />
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
     <Content Include="DummyPage.aspx" />
     <Content Include="editProject.aspx" />
@@ -173,6 +174,7 @@
     </Compile>
     <Compile Include="EditTask.aspx.cs">
       <DependentUpon>EditTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EditTask.aspx.designer.cs">
       <DependentUpon>EditTask.aspx</DependentUpon>
@@ -207,6 +209,7 @@
     </Compile>
     <Compile Include="PANyHovedtask.aspx.cs">
       <DependentUpon>PANyHovedtask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PANyHovedtask.aspx.designer.cs">
       <DependentUpon>PANyHovedtask.aspx</DependentUpon>
