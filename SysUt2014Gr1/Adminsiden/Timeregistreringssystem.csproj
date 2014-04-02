@@ -116,7 +116,6 @@
     <Content Include="editProject.aspx" />
     <Content Include="EditTask.aspx" />
     <Content Include="login.aspx" />
-    <Content Include="Login.csproj" />
     <Content Include="OpprettProsjekt.aspx" />
     <Content Include="OpprettTeam.aspx" />
     <Content Include="PALeggTilTasks.aspx" />

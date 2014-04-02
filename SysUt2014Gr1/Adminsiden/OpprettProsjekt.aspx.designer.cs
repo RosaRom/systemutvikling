@@ -103,15 +103,6 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.Label lbl_ProjectDesc;
         
         /// <summary>
-        /// TextArea_ProjectDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea TextArea_ProjectDescription;
-        
-        /// <summary>
         /// lbl_Underprosjekt control.
         /// </summary>
         /// <remarks>
