@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Admin.Admin" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Adminsiden.Admin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Administrator</title>
@@ -20,7 +20,7 @@
                 OnRowEditing="GridViewInsert_RowEditing"
                 OnRowUpdating="GridViewInsert_RowUpdating"
                 CssClass="gridView"
-                AlternatingRowStyle-CssClass="alt">
+                AlternatingRowStyle-CssClass="alt" OnSelectedIndexChanged="GridViewInsert_SelectedIndexChanged">
 
                 <AlternatingRowStyle CssClass="alt" />
 
@@ -28,6 +28,10 @@
                     <asp:BoundField DataField="surname" HeaderText="Etternavn" />
                     <asp:BoundField DataField="firstname" HeaderText="Fornavn" />
                     <asp:BoundField DataField="username" HeaderText="Brukernavn" />
+
+                    <asp:BoundField DataField="password" HeaderText="Passord" />
+
+
 
                     <asp:BoundField DataField="phone" HeaderText="Telefon" />
                     <asp:BoundField DataField="mail" HeaderText="Mail" />

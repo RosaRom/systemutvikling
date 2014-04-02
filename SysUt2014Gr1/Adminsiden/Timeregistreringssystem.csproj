@@ -92,9 +92,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin.aspx" />
     <EmbeddedResource Include="Resources\UPARROW.GIF" />
     <EmbeddedResource Include="Resources\DOWNARROW.GIF" />
+    <Content Include="Admin.aspx" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\AdminStyle.css" />
@@ -115,7 +115,7 @@
     <Content Include="DummyPage.aspx" />
     <Content Include="editProject.aspx" />
     <Content Include="EditTask.aspx" />
-    <Content Include="Login.aspx" />
+    <Content Include="login.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
     <Content Include="OpprettTeam.aspx" />
     <Content Include="PALeggTilTasks.aspx" />
@@ -179,12 +179,13 @@
     <Compile Include="EditTask.aspx.designer.cs">
       <DependentUpon>EditTask.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Encryption.cs" />
     <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+      <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+      <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="OpprettProsjekt.aspx.cs">
       <DependentUpon>OpprettProsjekt.aspx</DependentUpon>

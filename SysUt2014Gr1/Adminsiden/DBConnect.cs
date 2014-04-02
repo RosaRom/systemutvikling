@@ -5,7 +5,7 @@ using System.Web;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace Admin
+namespace Adminsiden
 {
     public class DBConnect
     {
