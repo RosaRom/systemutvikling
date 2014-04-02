@@ -8,7 +8,7 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using System.Text;
 
-namespace Admin
+namespace Adminsiden
 {
     public partial class Admin : System.Web.UI.Page
     {

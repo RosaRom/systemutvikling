@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bruker {
+namespace Adminsiden {
     
     
     public partial class Bruker {
