@@ -40,10 +40,6 @@
         <br />
         <br />
         <br />
-        <div style="text-align: center">
-            <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
-        </div>
-
         <asp:ContentPlaceHolder ID="body" runat="server">
             <!--Kode fra .aspx filer kommer hit-->
         </asp:ContentPlaceHolder>
