@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Adminsiden;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -99,6 +100,8 @@ namespace Adminsiden
                 string surname = e.NewValues["surname"].ToString();
                 string firstname = e.NewValues["firstname"].ToString();
                 string username = e.NewValues["username"].ToString();
+                string passwordIn = e.NewValues["password"].ToString();
+                string password = Encryption.Encrypt(passwordIn);
                 string phone = e.NewValues["phone"].ToString();
                 string mail = e.NewValues["mail"].ToString();
 
@@ -108,8 +111,8 @@ namespace Adminsiden
                 int teamID = Convert.ToInt32(team.SelectedValue);
                 int groupID = Convert.ToInt32(group.SelectedValue);
 
-                string query = String.Format("UPDATE User SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
-                surname, firstname, username, phone, mail, teamID, groupID, id);
+                string query = String.Format("UPDATE User SET surname = '{0}', firstname = '{1}', username = '{2}', password = '{8}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
+                surname, firstname, username, phone, mail, teamID, groupID, id, password);
                 db.InsertDeleteUpdate(query);
                 GridViewAdmin.EditIndex = -1;
 
@@ -160,6 +163,8 @@ namespace Adminsiden
                 string surname = e.NewValues["surname"].ToString();
                 string firstname = e.NewValues["firstname"].ToString();
                 string username = e.NewValues["username"].ToString();
+                string passwordIn = e.NewValues["password"].ToString();
+                string password = Encryption.Encrypt(passwordIn);
                 string phone = e.NewValues["phone"].ToString();
                 string mail = e.NewValues["mail"].ToString();
                 DropDownList team = (DropDownList)row.FindControl("dropDownTeam");
@@ -170,13 +175,13 @@ namespace Adminsiden
 
                 if (teamID.Equals("")){
                     query = String.Format("INSERT INTO User (surname, firstname, password, username, phone, mail, groupID, aktiv) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', {6}, {7})",
-                        surname, firstname, "123", username, phone, mail, groupID, "1");
+                        surname, firstname, password, username, phone, mail, groupID, "1");
                 }
 
                 else
                 {
                     query = String.Format("INSERT INTO User (surname, firstname, password, username, phone, mail, teamID, groupID, aktiv) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})",
-                        surname, firstname, "123", username, phone, mail, teamID, groupID, "1");
+                        surname, firstname, password, username, phone, mail, teamID, groupID, "1");
                 }
                     
                 db.InsertDeleteUpdate(query);
@@ -296,7 +301,7 @@ namespace Adminsiden
         //setter inn en tom rad for å kunne legge til en bruker
         private void GridViewInsertEmpty()
         {
-            string query = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE userID = 0 AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
+            string query = "SELECT userID, surname, firstname, username, password, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE userID = 0 AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
             DataTable dt = db.AdminGetAllUsers(query);
             dt.Rows.Add(dt.NewRow());
 
@@ -313,7 +318,7 @@ namespace Adminsiden
             DataTable filterTable = new DataTable(); //Lager en data table for å lagre data fra spørringen
 
             //Henter alle fra User-tabellen med korrekt kolonnenavn / vilkår fra databasen
-            string filterStatement = String.Format("SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE {0} LIKE '%{1}%' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID", FilterSearchDropdown.Text, FilterSearchTerms.Text);
+            string filterStatement = String.Format("SELECT userID, surname, firstname, username, password, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE {0} LIKE '%{1}%' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID", FilterSearchDropdown.Text, FilterSearchTerms.Text);
 
             filterTable = db.AdminGetAllUsers(filterStatement);
 
@@ -353,6 +358,11 @@ namespace Adminsiden
             string query = "SELECT * FROM Team";
 
             return db.AdminGetAllUsers(query);
+        }
+
+        protected void GridViewInsert_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         // FUNKER IKKE ENDA
