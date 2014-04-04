@@ -132,6 +132,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jQuery 2.1.0.min.js" />
     <Content Include="ViewProjectArchive.aspx" />
+    <Content Include="VisFase.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +272,13 @@
     </Compile>
     <Compile Include="ViewProjectArchive.aspx.designer.cs">
       <DependentUpon>ViewProjectArchive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VisFase.aspx.cs">
+      <DependentUpon>VisFase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VisFase.aspx.designer.cs">
+      <DependentUpon>VisFase.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
