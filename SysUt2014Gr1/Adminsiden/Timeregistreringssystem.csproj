@@ -113,6 +113,7 @@
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="css\ProsjektAnsvarligNyFase.css" />
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
+    <Content Include="css\VisFase.css" />
     <Content Include="css\VisProsjektdetaljer.css" />
     <Content Include="css\VisTaskdetaljer.css" />
     <Content Include="DummyPage.aspx" />
