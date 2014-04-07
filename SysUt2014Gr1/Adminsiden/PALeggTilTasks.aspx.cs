@@ -130,7 +130,7 @@ namespace Adminsiden
         {
             string id = DropDownMainTask.SelectedValue.ToString();
             string query = "SELECT productBacklogID FROM TaskCategory WHERE projectID = " + prosjektID + " AND taskCategoryID = " + id;
-            string queryCount = "SELECT COUNT(*) FROM Task WHERE taskCategoryID = " + id;
+            string queryCount = "SELECT COUNT(*) FROM Task WHERE taskCategoryID = " + id + " AND LENGTH(productBacklogID) = 3";
 
             table = db.AdminGetAllUsers(query);
             int count = db.Count(queryCount) + 1;
