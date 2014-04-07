@@ -113,6 +113,8 @@
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="css\ProsjektAnsvarligNyFase.css" />
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
+    <Content Include="css\VisProsjektdetaljer.css" />
+    <Content Include="css\VisTaskdetaljer.css" />
     <Content Include="DummyPage.aspx" />
     <Content Include="EditProject.aspx" />
     <Content Include="EditTask.aspx" />
@@ -134,6 +136,7 @@
     <Content Include="ViewProjectArchive.aspx" />
     <Content Include="VisFase.aspx" />
     <Content Include="VisProsjektdetaljer.aspx" />
+    <Content Include="visTaskdetaljer.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -287,6 +290,13 @@
     </Compile>
     <Compile Include="VisProsjektdetaljer.aspx.designer.cs">
       <DependentUpon>VisProsjektdetaljer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="visTaskdetaljer.aspx.cs">
+      <DependentUpon>visTaskdetaljer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="visTaskdetaljer.aspx.designer.cs">
+      <DependentUpon>visTaskdetaljer.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
