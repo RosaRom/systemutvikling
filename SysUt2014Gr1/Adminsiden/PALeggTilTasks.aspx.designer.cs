@@ -22,6 +22,15 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.DropDownList DropDownMainTask;
         
         /// <summary>
+        /// pbID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox pbID;
+        
+        /// <summary>
         /// taskNavn control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox beskrivelse;
+        
+        /// <summary>
+        /// DropDownFase control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownFase;
         
         /// <summary>
         /// DropDownPrioritering control.

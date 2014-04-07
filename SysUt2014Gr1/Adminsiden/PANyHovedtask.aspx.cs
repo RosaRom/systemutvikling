@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-using Adminsiden;
 
 
 namespace Adminsiden
@@ -41,6 +40,11 @@ namespace Adminsiden
             {
                 lbBeskjed.Text = "Noe gikk galt: " + ex.Message;
             }
+        }
+
+        protected void btnLagreHovedtask_Click(object sender, EventArgs e)
+        {
+
         } 
     }
 }
