@@ -15,25 +15,35 @@
             <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
         </div>
 
-        <div id="divNavn">
-            <label>Navn på hovedtask</label>
+        <h2 class="nyHovedtask">Lag ny kategori</h2>
+
+        <div id="divNavn" class="nyHovedtask">
+            <label>Navn på kategori</label>
             <asp:TextBox ID="hovedtaskNavn" runat="server"></asp:TextBox>
         </div>
 
-        <div id="divBeskrivelse">
+        <div class="nyHovedtask">
+            <label>ID</label>
+            <asp:TextBox ID="id" runat="server"></asp:TextBox>
+        </div>
+
+        <div id="divBeskrivelse" class="nyHovedtask">
             <label id="lbBeskrivelse">Beskrivelse</label>
             <asp:TextBox ID="beskrivelse" runat="server" TextMode="MultiLine"></asp:TextBox>
         </div>
 
-        <div>
+        <div class="nyHovedtask">
             <label>Fra fase</label>
-            <asp:DropDownList ID="DropDownFraFase" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="DropDownFraFase" runat="server" DataValueField="phaseID" DataTextField="phaseName"></asp:DropDownList>
             <label>Til fase</label>
-            <asp:DropDownList ID="DropDownTilFase" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="DropDownTilFase" runat="server" DataValueField="phaseID" DataTextField="phaseName"></asp:DropDownList>
         </div>
 
-        <asp:Button ID="btnLagreHovedtask" runat="server" Text="Lagre hovedtask" /><br />
-        <asp:Label ID="lbBeskjed" runat="server"></asp:Label>
+        <div class="divLagre">
+            <asp:Button ID="btnLagreHovedtask" runat="server" Text="Lagre hovedtask" OnClick="btnLagreHovedtask_Click" /><br />
+            <asp:Label ID="lbBeskjed" runat="server"></asp:Label>
+        </div>
+        
     </form>
 </body>
 </html>

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Adminsiden;
 using System.Data;
 
 namespace Adminsiden
@@ -14,12 +13,14 @@ namespace Adminsiden
         private int prosjektID = 2;                                                     //hentes fra forrige side
         private DBConnect db = new DBConnect();
         private DataTable table = new DataTable();
+        private DataTable categoryTable = new DataTable();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 FillMainTasks();
+                FillDropDownFase();
             }
         }
 
@@ -57,9 +58,12 @@ namespace Adminsiden
                 else
                     parentTaskID = "'" + DropDownSubTask.SelectedValue.ToString() + "'";
 
+                string phaseID = DropDownFase.SelectedValue.ToString();
 
-                string query = String.Format("INSERT INTO Task VALUES(null, '{0}', '{1}', {2}, '{3}', '{4}', {5}, {6})",
-                    taskCategoryID, taskName, description, priority, state, hoursAllocated, parentTaskID);
+                string productBacklogID = pbID.Text;
+
+                string query = String.Format("INSERT INTO Task VALUES(null, '{0}', '{1}', {2}, '{3}', '{4}', '{5}', {6}, {7}, {8}, '{9}')",
+                    taskCategoryID, taskName, description, priority, state, null, hoursAllocated, parentTaskID, phaseID, productBacklogID);
                 db.InsertDeleteUpdate(query);
 
                 beskjed.Text = "Ny task er lagt til";
@@ -71,6 +75,11 @@ namespace Adminsiden
                 beskjed.Text = "Noe gikk galt: " + ex.Message;                              //skriver ut beskjed om noe gikk galt under lagring av task
             }
             
+        }
+
+        protected void BtnNyKategori_Click(object sender, EventArgs e)
+        {
+
         }
 
         //henter ut alle tasks som tilhører en valgt hovedtask, blir oppdatert hver gang hovedtask endres
@@ -94,6 +103,7 @@ namespace Adminsiden
             DropDownMainTask.DataSource = table;
             DropDownMainTask.DataBind();
 
+            SetProductBacklogID(false);
             FillTasks();
         }
 
@@ -103,8 +113,48 @@ namespace Adminsiden
             FillTasks();
             beskjed.Text = "";
             ResetForm();
+            SetProductBacklogID(false);
         }
 
+        //kjøres ved hver forandring av hovedtask, fyller opp tilhørende tasks på nytt
+        protected void DropDownSubTask_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetProductBacklogID(true);
+        }
+
+        /// <summary>
+        /// Her lages en product backlog id automatisk basert på tidligere registrerte tasks og hvilken kategori den ligger under
+        /// </summary>
+        /// <param name="subTask">Settes til true/false basert på om den skal være en subtask eller ikke</param>
+        private void SetProductBacklogID(Boolean subTask)
+        {
+            string id = DropDownMainTask.SelectedValue.ToString();
+            string query = "SELECT productBacklogID FROM TaskCategory WHERE projectID = " + prosjektID + " AND taskCategoryID = " + id;
+            string queryCount = "SELECT COUNT(*) FROM Task WHERE taskCategoryID = " + id;
+
+            table = db.AdminGetAllUsers(query);
+            int count = db.Count(queryCount) + 1;
+
+            string backlogID = table.Rows[0]["productBacklogID"].ToString() + "." + count;
+
+            if (DropDownSubTask.SelectedValue.ToString().Equals(""))
+                subTask = false;
+
+            if (subTask)
+            {
+                query = "SELECT productBacklogID FROM Task WHERE taskID = " + DropDownSubTask.SelectedValue.ToString();
+                table = db.AdminGetAllUsers(query);
+
+                queryCount = String.Format("SELECT COUNT(*) FROM Task WHERE productBacklogID LIKE '{0}%'", table.Rows[0]["productBacklogID"].ToString());
+                count = db.Count(queryCount);
+
+                backlogID = table.Rows[0]["productBacklogID"].ToString() + "." + count;
+            }
+
+            pbID.Text = backlogID;
+        }
+
+        //setter alle verdier tilbake til null
         private void ResetForm()
         {
             taskNavn.Text = "";
@@ -112,6 +162,23 @@ namespace Adminsiden
             DropDownPrioritering.SelectedIndex = 0;
             timerAllokert.Text = "";
             DropDownSubTask.SelectedIndex = 0;
+        }
+
+        private void FillDropDownFase()
+        {
+            string query = "SELECT phaseName, phaseID FROM Fase WHERE projectID = " + prosjektID;
+            DataTable table = new DataTable();
+
+            try
+            {
+                table = db.getAll(query);
+                DropDownFase.DataSource = table;
+                DropDownFase.DataBind();
+            }
+            catch (Exception ex)
+            {
+                beskjed.Text = "Noe gikk galt: " + ex.Message;
+            }
         }
     }
 }

@@ -31,6 +31,15 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.TextBox hovedtaskNavn;
         
         /// <summary>
+        /// id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox id;
+        
+        /// <summary>
         /// beskrivelse control.
         /// </summary>
         /// <remarks>

@@ -35,8 +35,7 @@ Body {
 }
 
 #knapperAktivInaktiv {
-    margin-right: 15%;
-    margin-left: 15%;
+    margin-bottom:2%;
     border-bottom: 1px solid black;
     border-top: 1px solid black;
     padding: 0.5% 0 0.5% 0;
@@ -50,11 +49,9 @@ Body {
     width: 13.5%;
 }
 
-#overskriftInsert {
-    width: 70%;
+#overskriftInsert { 
     margin-top: 5%;
-    margin-right: 15%;
-    margin-left: 15%;
+    margin-bottom:2%;
     border-bottom: 1px solid black;
     border-top: 1px solid black;
     padding: 0.5% 0 0.5% 0;
