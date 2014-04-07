@@ -62,7 +62,7 @@ namespace Adminsiden
 
                 string productBacklogID = pbID.Text;
 
-                string query = String.Format("INSERT INTO Task VALUES(null, '{0}', '{1}', {2}, '{3}', '{4}', '{5}', {6}, {7}, {8}, {9})",
+                string query = String.Format("INSERT INTO Task VALUES(null, '{0}', '{1}', {2}, '{3}', '{4}', '{5}', {6}, {7}, {8}, '{9}')",
                     taskCategoryID, taskName, description, priority, state, null, hoursAllocated, parentTaskID, phaseID, productBacklogID);
                 db.InsertDeleteUpdate(query);
 
@@ -75,6 +75,11 @@ namespace Adminsiden
                 beskjed.Text = "Noe gikk galt: " + ex.Message;                              //skriver ut beskjed om noe gikk galt under lagring av task
             }
             
+        }
+
+        protected void BtnNyKategori_Click(object sender, EventArgs e)
+        {
+
         }
 
         //henter ut alle tasks som tilhører en valgt hovedtask, blir oppdatert hver gang hovedtask endres
@@ -117,6 +122,10 @@ namespace Adminsiden
             SetProductBacklogID(true);
         }
 
+        /// <summary>
+        /// Her lages en product backlog id automatisk basert på tidligere registrerte tasks og hvilken kategori den ligger under
+        /// </summary>
+        /// <param name="subTask">Settes til true/false basert på om den skal være en subtask eller ikke</param>
         private void SetProductBacklogID(Boolean subTask)
         {
             string id = DropDownMainTask.SelectedValue.ToString();
@@ -133,9 +142,13 @@ namespace Adminsiden
 
             if (subTask)
             {
-                queryCount = "SELECT COUNT(*) FROM Task WHERE parentTaskID = " + DropDownSubTask.SelectedValue.ToString();
-                count = db.Count(queryCount) + 1;
-                backlogID += "." + count;
+                query = "SELECT productBacklogID FROM Task WHERE taskID = " + DropDownSubTask.SelectedValue.ToString();
+                table = db.AdminGetAllUsers(query);
+
+                queryCount = String.Format("SELECT COUNT(*) FROM Task WHERE productBacklogID LIKE '{0}%'", table.Rows[0]["productBacklogID"].ToString());
+                count = db.Count(queryCount);
+
+                backlogID = table.Rows[0]["productBacklogID"].ToString() + "." + count;
             }
 
             pbID.Text = backlogID;

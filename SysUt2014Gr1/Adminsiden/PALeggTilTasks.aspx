@@ -15,6 +15,7 @@
             <label>Velg Kategori</label>
             <asp:DropDownList ID="DropDownMainTask" runat="server" DataTextField="taskCategoryName" DataValueField="taskCategoryID" 
                 OnSelectedIndexChanged="DropDownMainTask_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            <asp:Button ID="btnNyKategori" runat="server" Text="Ny Kategori" OnClick="BtnNyKategori_Click"/>
         </div>
 
         <div class="leggTilTask">
