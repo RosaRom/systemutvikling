@@ -10,78 +10,69 @@
 namespace Adminsiden {
     
     
-    public partial class PANyHovedtask {
+    public partial class VisTeam {
         
         /// <summary>
-        /// form1 control.
+        /// MainForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm MainForm;
         
         /// <summary>
-        /// hovedtaskNavn control.
+        /// Label_navn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox hovedtaskNavn;
+        protected global::System.Web.UI.WebControls.Label Label_navn;
         
         /// <summary>
-        /// id control.
+        /// tb_desc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox id;
+        protected global::System.Web.UI.WebControls.TextBox tb_desc;
         
         /// <summary>
-        /// beskrivelse control.
+        /// Label_Prosjektleder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox beskrivelse;
+        protected global::System.Web.UI.WebControls.Label Label_Prosjektleder;
         
         /// <summary>
-        /// DropDownFraFase control.
+        /// Label_warning control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownFraFase;
+        protected global::System.Web.UI.WebControls.Label Label_warning;
         
         /// <summary>
-        /// DropDownTilFase control.
+        /// Label_team control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownTilFase;
+        protected global::System.Web.UI.WebControls.Label Label_team;
         
         /// <summary>
-        /// btnLagreHovedtask control.
+        /// ListView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLagreHovedtask;
-        
-        /// <summary>
-        /// lbBeskjed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbBeskjed;
+        protected global::System.Web.UI.WebControls.ListView ListView1;
     }
 }

@@ -83,6 +83,31 @@ namespace Adminsiden
 
         }
 
+        //Teller antall kolonner og returnere antallet
+        public int Count(string query)
+        {
+            int count = 0;
+
+            try
+            {
+                if (this.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+                return count;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                string message = "Klarte ikke hente data fra databasen!";
+                message += ex.Message;
+                throw new Exception(message);
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+        }
   
         public void InsertDeleteUpdate(string query)
         {
