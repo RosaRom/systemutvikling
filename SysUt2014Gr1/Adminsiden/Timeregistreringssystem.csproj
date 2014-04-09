@@ -109,6 +109,8 @@
     <Content Include="css\Login.css" />
     <Content Include="css\OpprettProsjektStyle.css" />
     <Content Include="css\OpprettTeamStyle.css" />
+    <Content Include="css\PALeggTilTasks.css" />
+    <Content Include="css\PANyHovedtask.css" />
     <Content Include="css\Profile.css" />
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="css\ProsjektAnsvarligNyFase.css" />

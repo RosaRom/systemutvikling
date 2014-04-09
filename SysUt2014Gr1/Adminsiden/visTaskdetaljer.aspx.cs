@@ -27,7 +27,7 @@ namespace Adminsiden
                 int hoursUsed = Convert.ToInt16(dt.Rows[0]["hoursUsed"]);
                 int hoursAllocated = Convert.ToInt16(dt.Rows[0]["hoursAllocated"]);
                 int priority = Convert.ToInt16(dt.Rows[0]["priority"]);
-                progressbar1
+                //progressbar1
 
                 Label_navn.Text = taskname;
                 tb_desc.Text = description;

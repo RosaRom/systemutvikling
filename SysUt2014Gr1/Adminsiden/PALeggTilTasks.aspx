@@ -15,30 +15,31 @@
             <label>Velg Kategori</label>
             <asp:DropDownList ID="DropDownMainTask" runat="server" DataTextField="taskCategoryName" DataValueField="taskCategoryID" 
                 OnSelectedIndexChanged="DropDownMainTask_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-            <asp:Button ID="btnNyKategori" runat="server" Text="Ny Kategori" OnClick="BtnNyKategori_Click"/>
+            <asp:Button CssClass="textbox" ID="btnNyKategori" runat="server" Text="Ny Kategori" OnClick="BtnNyKategori_Click"/>
         </div>
 
         <div class="leggTilTask">
             <label>ID i Product Backlog</label>
-            <asp:TextBox ID="pbID" runat="server"></asp:TextBox>
+            <asp:TextBox CssClass="textbox" ID="pbID" runat="server"></asp:TextBox>
         </div>
 
         <div class="leggTilTask">
             <label>Navn på task</label>
-            <asp:TextBox ID="taskNavn" runat="server"></asp:TextBox>
+            <asp:TextBox CssClass="textbox" ID="taskNavn" runat="server"></asp:TextBox>
         </div>
 
         <div class="leggTilTask">
             <label>Timer allokert</label>
-            <asp:TextBox ID="timerAllokert" runat="server"></asp:TextBox>
+            <asp:TextBox CssClass="textbox" ID="timerAllokert" runat="server"></asp:TextBox>
         </div>
         
         <div class="leggTilTask">
             <label id="lbBeskrivelse">Beskrivelse</label>
-            <asp:TextBox ID="beskrivelse" runat="server" TextMode="MultiLine"></asp:TextBox>
+            <asp:TextBox CssClass="textbox" ID="beskrivelse" runat="server" TextMode="MultiLine"></asp:TextBox>
         </div>
 
         <div class="leggTilTask">
+            <br />
             <label>Fase</label>
             <asp:DropDownList ID="DropDownFase" runat="server" DataValueField="phaseID" DataTextField="phaseName"></asp:DropDownList>
         </div>

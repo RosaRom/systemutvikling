@@ -1,42 +1,37 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PANyHovedtask.aspx.cs" Inherits="Adminsiden.PANyHovedtask" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="PANyHovedtask.aspx.cs" Inherits="Adminsiden.PANyHovedtask" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
     <title>Ny Hovedtask</title>
     <link rel="Stylesheet" type="text/css" href="css/PANyHovedtask.css" />
-</head>
+</asp:Content>
 
-<body>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+
     <form id="form1" runat="server">
 
-        <div id="adminLogo">
-            <asp:Image runat="server" ImageUrl="Resources/MorildData.png" AlternateText="Morild Data BA" />
-        </div>
-
-        <h2 class="nyHovedtask">Lag ny kategori</h2>
+        <h2 id="overskrift" class="nyHovedtask">Lag ny kategori</h2>
 
         <div id="divNavn" class="nyHovedtask">
             <label>Navn på kategori</label>
-            <asp:TextBox ID="hovedtaskNavn" runat="server"></asp:TextBox>
+            <asp:TextBox CssClass="hovedtaskNavn" ID="hovedtaskNavn" runat="server"></asp:TextBox>
         </div>
 
         <div class="nyHovedtask">
-            <label>ID</label>
-            <asp:TextBox ID="id" runat="server"></asp:TextBox>
+            <label>Project Backlog id</label>
+            <asp:TextBox CssClass="id" ID="id" runat="server"></asp:TextBox>
         </div>
 
         <div id="divBeskrivelse" class="nyHovedtask">
             <label id="lbBeskrivelse">Beskrivelse</label>
-            <asp:TextBox ID="beskrivelse" runat="server" TextMode="MultiLine"></asp:TextBox>
+            <asp:TextBox CssClass="beskrivelse" ID="txtBeskrivelse" runat="server" TextMode="MultiLine"></asp:TextBox>
         </div>
 
         <div class="nyHovedtask">
-            <label>Fra fase</label>
-            <asp:DropDownList ID="DropDownFraFase" runat="server" DataValueField="phaseID" DataTextField="phaseName"></asp:DropDownList>
-            <label>Til fase</label>
-            <asp:DropDownList ID="DropDownTilFase" runat="server" DataValueField="phaseID" DataTextField="phaseName"></asp:DropDownList>
+            <br /><br />
+            <label>Velg fase</label>
+            <asp:DropDownList ID="DropDownFase" runat="server" DataValueField="phaseID" DataTextField="phaseName"></asp:DropDownList>
+            <asp:Button CssClass="nyTask" ID="btnNyTask" runat="server" Text="Ny Task" OnClick="BtnNyTask_Click"/>
         </div>
 
         <div class="divLagre">
@@ -45,5 +40,4 @@
         </div>
         
     </form>
-</body>
-</html>
+</asp:Content>
