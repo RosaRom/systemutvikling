@@ -58,6 +58,8 @@
         <br />
         <asp:TextBox ID="tbState" runat="server"></asp:TextBox>
         <br />
+        <br />
+        <br />
         <asp:Label ID="Label9" runat="server" Text="BacklogID"></asp:Label>
         <br />
         <asp:TextBox ID="tbBacklog" runat="server"></asp:TextBox>
@@ -75,6 +77,9 @@
         <br />
         <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Lagre endringer" />
         <br />
+        <br />
+        <br />
+        <asp:Button ID="Button1" runat="server" Text="Del opp task" />
     </form>
 
     
