@@ -115,6 +115,7 @@
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="css\ProsjektAnsvarligNyFase.css" />
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
+    <Content Include="css\Teamleder.css" />
     <Content Include="css\VisFase.css" />
     <Content Include="css\VisProsjektdetaljer.css" />
     <Content Include="css\VisTaskdetaljer.css" />
@@ -137,6 +138,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jQuery 2.1.0.min.js" />
+    <Content Include="Teamleder.aspx" />
     <Content Include="ViewProjectArchive.aspx" />
     <Content Include="VisFase.aspx" />
     <Content Include="VisProsjektdetaljer.aspx" />
@@ -280,6 +282,13 @@
       <DependentUpon>Prosjektvalg.aspx</DependentUpon>
     </Compile>
     <Compile Include="Resources\_ResourceRegistration.cs" />
+    <Compile Include="Teamleder.aspx.cs">
+      <DependentUpon>Teamleder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teamleder.aspx.designer.cs">
+      <DependentUpon>Teamleder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <Compile Include="ViewProjectArchive.aspx.cs">
       <DependentUpon>ViewProjectArchive.aspx</DependentUpon>
