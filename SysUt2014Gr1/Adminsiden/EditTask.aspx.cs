@@ -9,15 +9,20 @@ using System.Web.UI.WebControls;
 
 namespace Adminsiden
 {
+    /**Har metode SetProductBacklogID nederst, men får ikke brukt den for å sette korrekt backlogID. Slik
+     * det er nå, blir ID satt fra textbox **/
     public partial class EditTask : System.Web.UI.Page
     {
         private DBConnect db;
-        private string query, userQuery, saveQuery, taskQuery;
+        private int prosjektID = 2; //bare satt en verdi
+        private string query, userQuery, saveQuery, taskQuery, backlogQuery;
         private DataTable dataTable = new DataTable();
         private DataTable userTable = new DataTable();
         private DataTable taskTable = new DataTable();
+        private DataTable backlogTable = new DataTable();
+        private string backlogID;
 
-        private int taskID = 12;
+        private int taskID = 12; //bare satt en verdi
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,7 +30,7 @@ namespace Adminsiden
 
             if (!Page.IsPostBack)
             {
-                taskID = 12; // Convert.ToInt32(Request.QueryString["taskID"]);
+                taskID = 12;
                 Query();
             }         
         }
@@ -37,7 +42,9 @@ namespace Adminsiden
             userQuery = "SELECT * FROM User WHERE aktiv = 1";
             userTable = db.getAll(userQuery);
             taskQuery = "SELECT * FROM Task";
-            taskTable = db.getAll(taskQuery);
+            taskTable = db.getAll(taskQuery);     
+            taskTable.Rows.InsertAt(taskTable.NewRow(), 0); //setter inn tom rad øverst
+            //her blir alle verdier i textbokser satt
             try
             {
                 tbTaskName.Text = dataTable.Rows[0]["taskName"].ToString();
@@ -45,7 +52,6 @@ namespace Adminsiden
                 tbAllocatedTime.Text = dataTable.Rows[0]["hoursAllocated"].ToString();
                 tbPhase.Text = dataTable.Rows[0]["phaseID"].ToString();
                 tbState.Text = dataTable.Rows[0]["state"].ToString();
-                tbBacklog.Text = dataTable.Rows[0]["productBacklogID"].ToString();
                 //endring her medfører rapportinnsending //NB!! Må legges til
                 tbPriority.Text = dataTable.Rows[0]["priority"].ToString();
 
@@ -59,6 +65,17 @@ namespace Adminsiden
                 ddlDependency.DataSource = taskTable;
                 ddlDependency.DataBind();
 
+                ddlParentTask.DataTextField = "taskName";
+                ddlParentTask.DataValueField = "taskID";
+                ddlParentTask.DataSource = taskTable;
+                ddlParentTask.DataBind();
+
+                string backlogStart = dataTable.Rows[0]["productBacklogID"].ToString();
+                tbBacklog.Text = dataTable.Rows[0]["productBacklogID"].ToString();
+                if(tbBacklog.Text != backlogStart)
+                    SetProductBacklogID(true, dataTable.Rows[0]["taskID"].ToString());
+
+
             }
             catch (IndexOutOfRangeException e)
             {
@@ -67,7 +84,8 @@ namespace Adminsiden
  
         }
 
-
+        /**
+         * Sender inn oppdaterte verdier **/
         protected void btnSave_Click(object sender, EventArgs e)
         {
            saveQuery = String.Format("UPDATE Task SET taskName = '{0}', description = '{1}', priority = {2}, state = {3}, hoursAllocated = {4}, phaseID ={5}, productBacklogID = {6} WHERE taskID = {7}",
@@ -75,16 +93,34 @@ namespace Adminsiden
             db.InsertDeleteUpdate(saveQuery);
         }
 
-    
-        /*
-        private void GetTasks()
+        private void SetProductBacklogID(Boolean subTask, String _id)
         {
-            query = String.Format("SELECT * FROM Task WHERE taskID = '{0}'", taskID);
-            taskName.DataSource = db.getAll(query);
-            taskName.DataValueField = "taskID";
-            taskName.DataTextField = "taskName";
-            taskName.Items.Insert(0, new ListItem("<Velg task>", "0"));
-            taskName.DataBind();
-        }*/
+            string id = _id;
+            string query = "SELECT productBacklogID FROM TaskCategory WHERE projectID = " + prosjektID + " AND taskCategoryID = 13"; //dummy
+            string queryCount = "SELECT COUNT(*) FROM Task WHERE taskCategoryID = 13 AND LENGTH(productBacklogID) = 3";
+
+            backlogTable = db.AdminGetAllUsers(query);
+            int count = db.Count(queryCount) + 1;
+
+            backlogID = backlogTable.Rows[0]["productBacklogID"].ToString() + "." + count;
+
+            if (ddlParentTask.SelectedValue.ToString().Equals(""))
+                subTask = false;
+
+            //denne slår inn om den skal være en subtask av en annen task under samme kategori
+            if (subTask)
+            {
+                string parentID = ddlParentTask.SelectedValue.ToString();
+                backlogQuery = "SELECT productBacklogID FROM Task WHERE taskID = " + parentID;
+                backlogTable = db.AdminGetAllUsers(query);
+
+                queryCount = String.Format("SELECT COUNT(*) FROM Task WHERE productBacklogID LIKE '{0}%'", backlogTable.Rows[0]["productBacklogID"].ToString());
+                count = db.Count(queryCount);
+
+                backlogID = backlogTable.Rows[0]["productBacklogID"].ToString() + "." + count;
+            }
+            tbBacklog.Text = backlogID;
+        }
+
     }
 }
