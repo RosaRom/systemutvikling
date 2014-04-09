@@ -5,7 +5,7 @@
 
     <title></title>
 
-    <link rel="Stylesheet" type="text/css" href="css/OpprettProsjektStyle.css" />
+    <link rel="Stylesheet" type="text/css" href="css/EditTask.css" />
 
     <style type="text/css">
         #form1 {

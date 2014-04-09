@@ -106,6 +106,7 @@
     <None Include="Resources\grd_alt.png" />
     <None Include="Resources\grd_head.png" />
     <Content Include="css\BrukerStyle.css" />
+    <Content Include="css\EditTask.css" />
     <Content Include="css\Login.css" />
     <Content Include="css\OpprettProsjektStyle.css" />
     <Content Include="css\OpprettTeamStyle.css" />
