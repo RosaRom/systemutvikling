@@ -106,9 +106,11 @@
     <None Include="Resources\grd_alt.png" />
     <None Include="Resources\grd_head.png" />
     <Content Include="css\BrukerStyle.css" />
+    <Content Include="css\EditTask.css" />
     <Content Include="css\Login.css" />
     <Content Include="css\OpprettProsjektStyle.css" />
     <Content Include="css\OpprettTeamStyle.css" />
+    <Content Include="css\PAAdministrerBrukere.css" />
     <Content Include="css\PALeggTilTasks.css" />
     <Content Include="css\PANyHovedtask.css" />
     <Content Include="css\Profile.css" />
@@ -121,6 +123,7 @@
     <Content Include="css\VisTaskdetaljer.css" />
     <Content Include="DummyPage.aspx" />
     <Content Include="EditProject.aspx" />
+    <Content Include="PAAdministrerBrukere.aspx" />
     <Content Include="PAEditTask.aspx" />
     <Content Include="EditTask.aspx" />
     <Content Include="Login.aspx" />
@@ -182,6 +185,13 @@
     </Compile>
     <Compile Include="EditProject.aspx.designer.cs">
       <DependentUpon>EditProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PAAdministrerBrukere.aspx.cs">
+      <DependentUpon>PAAdministrerBrukere.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PAAdministrerBrukere.aspx.designer.cs">
+      <DependentUpon>PAAdministrerBrukere.aspx</DependentUpon>
     </Compile>
     <Compile Include="PAEditTask.aspx.cs">
       <DependentUpon>PAEditTask.aspx</DependentUpon>

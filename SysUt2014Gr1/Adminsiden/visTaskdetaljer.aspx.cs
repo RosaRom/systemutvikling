@@ -12,25 +12,51 @@ namespace Adminsiden
     {
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
+        DataTable dt_project = new DataTable();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            int taskID = 3;
+            //int taskID = 3; //Denne skal byttes ut med Session["taskID"] når sidene henger sammen
+            int taskID = Convert.ToInt16(Request.QueryString["taskID"]);
 
-            string query = "SELECT * FROM Task WHERE taskID = " + taskID;
+            string query = "SELECT * FROM Task, Fase WHERE taskID = " + taskID + " AND Fase.phaseID = Task.phaseID";
             dt = db.getAll(query);
+
+            int projectID = Convert.ToInt16(dt.Rows[0]["projectID"]);
+
+            string query1 = "SELECT projectName FROM Project WHERE projectID =" + projectID;
+            dt_project = db.getAll(query1);
+
+            Session["projectID"] = projectID; //Lager session for redirect til prosjektdetaljer
 
             if (dt != null && dt.Rows.Count > 0)
             {
+                //task info
                 string taskname = Convert.ToString(dt.Rows[0]["taskName"]);
-                string description = Convert.ToString(dt.Rows[0]["description"]);
+                string taskDescription = Convert.ToString(dt.Rows[0]["description"]);
                 int hoursUsed = Convert.ToInt16(dt.Rows[0]["hoursUsed"]);
                 int hoursAllocated = Convert.ToInt16(dt.Rows[0]["hoursAllocated"]);
                 int priority = Convert.ToInt16(dt.Rows[0]["priority"]);
-               
+                string backlogID = Convert.ToString(dt.Rows[0]["productBacklogID"]);
+                int parentTaskID = Convert.ToInt16(dt.Rows[0]["parentTaskID"]);
+                int status = Convert.ToInt16(dt.Rows[0]["state"]);
+
+                if (parentTaskID != 0)
+                {
+                    Session["taskID"] = parentTaskID;
+                    Link_task.Text = "" + parentTaskID;
+                }
+                else
+                    Label_undertask.Text = "Ingen foreldretask";
 
                 Label_navn.Text = taskname;
-                tb_desc.Text = description;
+                tb_desc.Text = taskDescription;
+                Label_backlogID.Text = backlogID;                
+                
+                Label_progress.Text = hoursUsed + " timer / " + hoursAllocated + " timer";
+
+                int tidsavvik = hoursAllocated - hoursUsed;
+                Label_tidsavvik.Text = "avvik fra estimert tid: " + tidsavvik + " timer";
 
                 switch (priority)
                 {
@@ -44,7 +70,37 @@ namespace Adminsiden
                         break;
                 }
 
+                switch(status)
+                {
+                    case 0: Label_status.Text = "Inaktiv";
+                        Label_status.BackColor = System.Drawing.Color.White;
+                        break;
+                    case 1: Label_status.Text = "Aktiv";
+                        Label_status.BackColor = System.Drawing.Color.Yellow;
+                        break;
+                    case 2: Label_status.Text = "Ferdig";
+                        Label_status.BackColor = System.Drawing.Color.Green;
+                        break;
+                    default: Label_status.Text = "test";
+                        break;
+                }
 
+                //fase info
+                string fasename = Convert.ToString(dt.Rows[0]["phaseName"]);
+                string faseDescription = Convert.ToString(dt.Rows[0]["phaseDescription"]);
+                DateTime faseFrom = Convert.ToDateTime(dt.Rows[0]["phaseFromDate"]);
+                DateTime faseTo = Convert.ToDateTime(dt.Rows[0]["phaseToDate"]);
+
+                String faseFromFormated = faseFrom.ToString("dd-MMMM-yyyy");
+                String faseToFormated = faseTo.ToString("dd-MMMM-yyyy");
+
+                Label_faseNavn.Text = fasename;
+                tb_faseDesc.Text = faseDescription;
+                Label_faseTid.Text = "<b>fra:</b> " + faseFromFormated + "<br /><b>Til: </b>" + faseToFormated;
+
+                //prosjekt info
+                string projectName = Convert.ToString(dt_project.Rows[0]["projectName"]);
+                Link_pro.Text = projectName;
             }
             else
             {

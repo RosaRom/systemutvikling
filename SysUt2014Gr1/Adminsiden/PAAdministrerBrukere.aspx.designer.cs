@@ -10,78 +10,96 @@
 namespace Adminsiden {
     
     
-    public partial class VisTeam {
+    public partial class PAAdministrerBrukere {
         
         /// <summary>
-        /// MainForm control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm MainForm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Label_navn control.
+        /// GridViewInsert control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_navn;
+        protected global::System.Web.UI.WebControls.GridView GridViewInsert;
         
         /// <summary>
-        /// tb_desc control.
+        /// beskjed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_desc;
+        protected global::System.Web.UI.WebControls.Label beskjed;
         
         /// <summary>
-        /// Label_Prosjektleder control.
+        /// FilterSearchTerms control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_Prosjektleder;
+        protected global::System.Web.UI.WebControls.TextBox FilterSearchTerms;
         
         /// <summary>
-        /// Label_warning control.
+        /// FilterSearchDropdown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_warning;
+        protected global::System.Web.UI.WebControls.DropDownList FilterSearchDropdown;
         
         /// <summary>
-        /// Label_team control.
+        /// btnFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_team;
+        protected global::System.Web.UI.WebControls.Button btnFilter;
         
         /// <summary>
-        /// ListView_team control.
+        /// btnFjernFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView_team;
+        protected global::System.Web.UI.WebControls.Button btnFjernFilter;
         
         /// <summary>
-        /// Listview_task control.
+        /// btnDeaktiverte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView Listview_task;
+        protected global::System.Web.UI.WebControls.Button btnDeaktiverte;
+        
+        /// <summary>
+        /// btnAktiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAktiv;
+        
+        /// <summary>
+        /// GridViewAdmin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewAdmin;
     }
 }

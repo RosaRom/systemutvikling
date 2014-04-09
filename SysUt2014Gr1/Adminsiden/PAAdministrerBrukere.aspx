@@ -1,15 +1,16 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Adminsiden.Admin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PAAdministrerBrukere.aspx.cs" Inherits="Adminsiden.PAAdministrerBrukere" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Administrator</title>
-    <link rel="Stylesheet" type="text/css" href="css/AdminStyle.css" />
-</asp:Content>
+<!DOCTYPE html>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-
-    <form id="Adminform" runat="server">
-        <div>
-            <div id="overskriftInsert">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link rel="Stylesheet" type="text/css" href="css/PAAdministrerBrukere.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    
+        <div id="overskriftInsert">
                 <asp:Label runat="server">Legg til nye brukere</asp:Label>
             </div>
             <asp:GridView ID="GridViewInsert"
@@ -47,8 +48,9 @@
 
                     <asp:TemplateField HeaderText="Brukertype">
                         <EditItemTemplate>
-                            <asp:DropDownList ID="dropDownGroup" DataSource="<%# DropDownBoxGroup() %>"
-                                DataTextField="groupName" DataValueField="groupID" runat="server">
+                            <asp:DropDownList ID="dropDownBruker" runat="server">
+                                <asp:ListItem Text="Bruker" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Teamleder" Value="2"></asp:ListItem>
                             </asp:DropDownList>
                         </EditItemTemplate>
                     </asp:TemplateField>
@@ -97,7 +99,7 @@
                         </ItemTemplate>
 
                         <EditItemTemplate>
-                            <asp:DropDownList ID="dropDownTeamUsers" DataSource="<%# DropDownBoxTeamExistingUsers() %>"
+                            <asp:DropDownList ID="dropDownTeamUsers" DataSource="<%# DropDownBoxTeam() %>"
                                 DataTextField="teamName" DataValueField="teamID" runat="server">
                             </asp:DropDownList>
                         </EditItemTemplate>
@@ -110,8 +112,9 @@
                         </ItemTemplate>
 
                         <EditItemTemplate>
-                            <asp:DropDownList ID="dropDownGroupUsers" DataSource="<%# DropDownBoxGroup() %>"
-                                DataTextField="groupName" DataValueField="groupID" runat="server">
+                            <asp:DropDownList ID="dropDownBruker" runat="server">
+                                <asp:ListItem Text="Bruker" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Teamleder" Value="2"></asp:ListItem>
                             </asp:DropDownList>
                         </EditItemTemplate>
 
@@ -121,9 +124,7 @@
                 </Columns>
 
             </asp:GridView>
-            <br />
-            <br />
-        </div>
 
     </form>
-</asp:Content>
+</body>
+</html>

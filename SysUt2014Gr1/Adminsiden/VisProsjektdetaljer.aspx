@@ -13,7 +13,7 @@
         
         <div="width: 100%;">
 
-           <div id="left" class="panel panel-primary" style="float: left; width: 33%;">
+           <div id="left" class="panel panel-primary" style="float: left; width:267px;">
               <div class="panel-heading"><h4>Prosjekt informasjon</h4></div>
               <div class="panel-body">
                 <b>Navn: </b><asp:Label ID="Label_navn" runat="server"></asp:Label><br /><br />
@@ -27,24 +27,31 @@
                </div>
             </div>
 
-            <div id="middle" class="panel panel-primary" style="float: left; width: 33%;">
+            <div id="middle" class="panel panel-primary" style="float: left; width:267px; margin-left: 10px;">
               <div class="panel-heading"><h4>Team informasjon</h4></div>
                  <div class="panel-body">
                     <b>Navn: </b><asp:Label ID="Label_team" runat="server"></asp:Label><br /><br />
-                      <asp:ListView ID="ListView1" runat="server">
+                      <asp:ListView ID="ListView_team" runat="server">
                          <itemtemplate> <li><%# Eval("FullName") %> </li> </itemtemplate>
                       </asp:ListView><br />
                  </div>
             </div>
 
-            <div id="right" class="panel panel-primary" style="float: left; width: 33%;">
+            <div id="right" class="panel panel-primary" style="float: left; width:267px; margin-left: 10px;">
                 <div class="panel-heading"><h4>Task informasjon</h4></div>
                  <div class="panel-body">
-                    <b>Info skal komme her </b><br /><br />
-                     <a>Task1</a> - x/y timer<br />
-                     <a>Task2</a> - x/y timer<br />
-                     <a>Task3</a> - x/y timer<br />
-                     <a>Task4</a> - x/y timer<br />
+                     <asp:ListView ID="Listview_task" runat="server">
+                           <LayoutTemplate> <table border="1"> <thead> <tr> <th>Navn</th> <th>timer brukt</th> </tr> </thead> 
+                                <tbody> <asp:PlaceHolder runat="server" ID="itemPlaceholder" /> </tbody> </table>
+                           </LayoutTemplate> 
+                         
+                         <ItemTemplate><tr><td>
+                                <asp:HyperLink runat="server" ID="hl" NavigateUrl='<%# "visTaskdetaljer.aspx?taskID="+ Eval("taskID") %>' Text='<%# Eval("taskName") %>'></asp:HyperLink></td><td><%# Eval("hoursUsed") %> / <%# Eval("hoursAllocated") %> timer</td></tr>
+                         </ItemTemplate>
+
+                     </asp:ListView>
+                    
+                     <br />
                 </div>
             </div>
         </div>
