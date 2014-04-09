@@ -1,0 +1,13 @@
+﻿Body{
+    background-color:lightgray;
+}
+
+#VisFaseForm{
+    text-align:center;
+    margin-top:3%;
+}
+
+#gvTaskList {
+    margin-left: auto;
+    margin-right: auto;
+}

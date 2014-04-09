@@ -1,42 +1,36 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VisFase.aspx.cs" Inherits="Adminsiden.VisFase" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/Bootstrap.Master" CodeBehind="VisFase.aspx.cs" Inherits="Adminsiden.VisFase" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Vis Fase</title>
+    <link rel="Stylesheet" type="text/css" href="css/VisFase.css" />
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-        <asp:Label ID="lbPhaseName" runat="server" Text="FASENAVN"></asp:Label>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+    <form id="VisFaseForm" runat="server">
+        <div>
+            <asp:Label ID="lbPhaseName" runat="server" Text="Fasenavn"></asp:Label>        
+            <br />
+        </div>
         <br />
-    
-    </div>
-        <asp:Label ID="lbDateFrom" runat="server" Text="fraDato"></asp:Label>
-&nbsp;-
-        <asp:Label ID="lbDateTo" runat="server" Text="tilDato"></asp:Label>
-        <br />
-        <br />
-        <asp:Label ID="lbDescription" runat="server" Text="Beskrivelse"></asp:Label>
-        <br />
-        <br />
-        <asp:Label ID="lbHoursUsed" runat="server" Text="Totale timer brukt"></asp:Label>
-&nbsp;/
-        <asp:Label ID="lbHoursAllocated" runat="server" Text="totale timer allokert"></asp:Label>
-        <br />
-        <br />
-        <asp:Label ID="lbFinishedTasks" runat="server" Text="Ferdige tasks:"></asp:Label>
-&nbsp;<asp:Label ID="lbFinishedTaskNum" runat="server" Text="x"></asp:Label>
-        <br />
-        <br />
-        <asp:Label ID="lbUnfinishedTasks" runat="server" Text="Uferdige tasks:"></asp:Label>
-&nbsp;<asp:Label ID="lbUnfinishedTaskNum" runat="server" Text="y"></asp:Label>
-        <br />
-        <br />
-        <asp:GridView ID="gvTaskList" runat="server">
-        </asp:GridView>
-    </form>
-</body>
-</html>
+        <div>
+            <asp:Label ID="lbDateFrom" runat="server" Text="Dato Fra"></asp:Label> - 
+            <asp:Label ID="lbDateTo" runat="server" Text="tilDato"></asp:Label>
+        </div>
+        <div>
+            <asp:Label ID="lbDescription" runat="server" Text="Beskrivelse"></asp:Label>
+        </div>
+        <div>
+            <asp:Label ID="lbHoursUsed" runat="server" Text="Totale timer brukt"></asp:Label> /         
+            <asp:Label ID="lbHoursAllocated" runat="server" Text="totale timer allokert"></asp:Label>
+        </div>
+        <div>
+            <asp:Label ID="lbFinishedTasks" runat="server" Text="Ferdige tasks: "></asp:Label>
+            <asp:Label ID="lbFinishedTaskNum" runat="server" Text="tall"></asp:Label>
+        </div>
+        <div>
+            <asp:Label ID="lbUnfinishedTasks" runat="server" Text="Uferdige tasks: "></asp:Label>
+            <asp:Label ID="lbUnfinishedTaskNum" runat="server" Text="tall"></asp:Label>
+        </div>        
+            <asp:GridView ID="gvTaskList" runat="server"></asp:GridView>        
+   </form>    
+</asp:Content>

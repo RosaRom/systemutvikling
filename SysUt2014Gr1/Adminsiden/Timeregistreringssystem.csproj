@@ -115,10 +115,12 @@
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
     <Content Include="css\ProsjektAnsvarligNyFase.css" />
     <Content Include="css\ProsjektAnsvarligVisTeam.css" />
+    <Content Include="css\VisFase.css" />
     <Content Include="css\VisProsjektdetaljer.css" />
     <Content Include="css\VisTaskdetaljer.css" />
     <Content Include="DummyPage.aspx" />
     <Content Include="EditProject.aspx" />
+    <Content Include="PAEditTask.aspx" />
     <Content Include="EditTask.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
@@ -178,6 +180,13 @@
     </Compile>
     <Compile Include="EditProject.aspx.designer.cs">
       <DependentUpon>EditProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PAEditTask.aspx.cs">
+      <DependentUpon>PAEditTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PAEditTask.aspx.designer.cs">
+      <DependentUpon>PAEditTask.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditTask.aspx.cs">
       <DependentUpon>EditTask.aspx</DependentUpon>
