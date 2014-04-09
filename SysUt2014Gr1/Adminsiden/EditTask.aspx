@@ -1,18 +1,24 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditTask.aspx.cs" Inherits="Adminsiden.EditTask" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="EditTask.aspx.cs" Inherits="Adminsiden.EditTask" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+
     <title></title>
+
+    <link rel="Stylesheet" type="text/css" href="css/OpprettProsjektStyle.css" />
+
     <style type="text/css">
         #form1 {
             height: 1032px;
             width: 1543px;
         }
     </style>
-</head>
-<body>
+
+    
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+
+
     <form id="form1" runat="server">
     <div>
     
@@ -70,5 +76,6 @@
         <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Lagre endringer" />
         <br />
     </form>
-</body>
-</html>
+
+    
+</asp:Content>
