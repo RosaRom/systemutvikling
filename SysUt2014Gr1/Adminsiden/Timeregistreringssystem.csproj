@@ -118,7 +118,8 @@
     <Content Include="css\VisTaskdetaljer.css" />
     <Content Include="DummyPage.aspx" />
     <Content Include="EditProject.aspx" />
-    <Content Include="TLEditTask.aspx" />
+    <Content Include="PAEditTask.aspx" />
+    <Content Include="EditTask.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
     <Content Include="OpprettTeam.aspx" />
@@ -178,12 +179,19 @@
     <Compile Include="EditProject.aspx.designer.cs">
       <DependentUpon>EditProject.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TLEditTask.aspx.cs">
-      <DependentUpon>TLEditTask.aspx</DependentUpon>
+    <Compile Include="PAEditTask.aspx.cs">
+      <DependentUpon>PAEditTask.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TLEditTask.aspx.designer.cs">
-      <DependentUpon>TLEditTask.aspx</DependentUpon>
+    <Compile Include="PAEditTask.aspx.designer.cs">
+      <DependentUpon>PAEditTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditTask.aspx.cs">
+      <DependentUpon>EditTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditTask.aspx.designer.cs">
+      <DependentUpon>EditTask.aspx</DependentUpon>
     </Compile>
     <Compile Include="Encryption.cs" />
     <Compile Include="Login.aspx.cs">
