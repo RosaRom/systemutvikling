@@ -79,7 +79,7 @@ namespace Adminsiden
 
         protected void BtnNyKategori_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("PANyHovedtask.aspx");
         }
 
         //henter ut alle tasks som tilhører en valgt hovedtask, blir oppdatert hver gang hovedtask endres
@@ -140,6 +140,7 @@ namespace Adminsiden
             if (DropDownSubTask.SelectedValue.ToString().Equals(""))
                 subTask = false;
 
+            //denne slår inn om den skal være en subtask av en annen task under samme kategori
             if (subTask)
             {
                 query = "SELECT productBacklogID FROM Task WHERE taskID = " + DropDownSubTask.SelectedValue.ToString();
@@ -150,7 +151,6 @@ namespace Adminsiden
 
                 backlogID = table.Rows[0]["productBacklogID"].ToString() + "." + count;
             }
-
             pbID.Text = backlogID;
         }
 
@@ -164,6 +164,7 @@ namespace Adminsiden
             DropDownSubTask.SelectedIndex = 0;
         }
 
+        //henter ut alle faser til et gitt prosjekt
         private void FillDropDownFase()
         {
             string query = "SELECT phaseName, phaseID FROM Fase WHERE projectID = " + prosjektID;

@@ -10,7 +10,7 @@
 namespace Adminsiden {
     
     
-    public partial class EditTask {
+    public partial class PAAdministrerBrukere {
         
         /// <summary>
         /// form1 control.
@@ -22,84 +22,84 @@ namespace Adminsiden {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// tbTaskName control.
+        /// GridViewInsert control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbTaskName;
+        protected global::System.Web.UI.WebControls.GridView GridViewInsert;
         
         /// <summary>
-        /// ddlAddUser control.
+        /// beskjed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAddUser;
+        protected global::System.Web.UI.WebControls.Label beskjed;
         
         /// <summary>
-        /// tbAllocatedTime control.
+        /// FilterSearchTerms control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbAllocatedTime;
+        protected global::System.Web.UI.WebControls.TextBox FilterSearchTerms;
         
         /// <summary>
-        /// tbPriority control.
+        /// FilterSearchDropdown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPriority;
+        protected global::System.Web.UI.WebControls.DropDownList FilterSearchDropdown;
         
         /// <summary>
-        /// tbDescription control.
+        /// btnFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDescription;
+        protected global::System.Web.UI.WebControls.Button btnFilter;
         
         /// <summary>
-        /// Label1 control.
+        /// btnFjernFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Button btnFjernFilter;
         
         /// <summary>
-        /// ddlDependency control.
+        /// btnDeaktiverte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDependency;
+        protected global::System.Web.UI.WebControls.Button btnDeaktiverte;
         
         /// <summary>
-        /// btnDependency control.
+        /// btnAktiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDependency;
+        protected global::System.Web.UI.WebControls.Button btnAktiv;
         
         /// <summary>
-        /// btnSave control.
+        /// GridViewAdmin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.GridView GridViewAdmin;
     }
 }

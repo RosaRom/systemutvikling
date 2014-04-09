@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="EditTask.aspx.cs" Inherits="Adminsiden.EditTask" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="PAEditTask.aspx.cs" Inherits="Adminsiden.PAEditTask" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 

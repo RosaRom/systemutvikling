@@ -11,7 +11,7 @@ namespace Adminsiden
 {
     /**Har metode SetProductBacklogID nederst, men får ikke brukt den for å sette korrekt backlogID. Slik
      * det er nå, blir ID satt fra textbox **/
-    public partial class EditTask : System.Web.UI.Page
+    public partial class PAEditTask : System.Web.UI.Page
     {
         private DBConnect db;
         private int prosjektID = 2; //bare satt en verdi
@@ -32,7 +32,7 @@ namespace Adminsiden
             {
                 taskID = 12;
                 Query();
-            }         
+            }
         }
         private void Query()
         {
@@ -42,7 +42,7 @@ namespace Adminsiden
             userQuery = "SELECT * FROM User WHERE aktiv = 1";
             userTable = db.getAll(userQuery);
             taskQuery = "SELECT * FROM Task";
-            taskTable = db.getAll(taskQuery);     
+            taskTable = db.getAll(taskQuery);
             taskTable.Rows.InsertAt(taskTable.NewRow(), 0); //setter inn tom rad øverst
             //her blir alle verdier i textbokser satt
             try
@@ -72,7 +72,7 @@ namespace Adminsiden
 
                 string backlogStart = dataTable.Rows[0]["productBacklogID"].ToString();
                 tbBacklog.Text = dataTable.Rows[0]["productBacklogID"].ToString();
-                if(tbBacklog.Text != backlogStart)
+                if (tbBacklog.Text != backlogStart)
                     SetProductBacklogID(true, dataTable.Rows[0]["taskID"].ToString());
 
 
@@ -81,15 +81,15 @@ namespace Adminsiden
             {
                 Console.WriteLine("An error occurred: '{0}'", e);
             }
- 
+
         }
 
         /**
          * Sender inn oppdaterte verdier **/
         protected void btnSave_Click(object sender, EventArgs e)
         {
-           saveQuery = String.Format("UPDATE Task SET taskName = '{0}', description = '{1}', priority = {2}, state = {3}, hoursAllocated = {4}, phaseID ={5}, productBacklogID = {6} WHERE taskID = {7}",
-               tbTaskName.Text, tbDescription.Text, tbPriority.Text, tbState.Text, tbAllocatedTime.Text, tbPhase.Text, tbBacklog.Text, taskID);
+            saveQuery = String.Format("UPDATE Task SET taskName = '{0}', description = '{1}', priority = {2}, state = {3}, hoursAllocated = {4}, phaseID ={5}, productBacklogID = {6} WHERE taskID = {7}",
+                tbTaskName.Text, tbDescription.Text, tbPriority.Text, tbState.Text, tbAllocatedTime.Text, tbPhase.Text, tbBacklog.Text, taskID);
             db.InsertDeleteUpdate(saveQuery);
         }
 

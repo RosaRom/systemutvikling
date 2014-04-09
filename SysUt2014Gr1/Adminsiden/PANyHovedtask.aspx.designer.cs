@@ -40,31 +40,31 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.TextBox id;
         
         /// <summary>
-        /// beskrivelse control.
+        /// txtBeskrivelse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox beskrivelse;
+        protected global::System.Web.UI.WebControls.TextBox txtBeskrivelse;
         
         /// <summary>
-        /// DropDownFraFase control.
+        /// DropDownFase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownFraFase;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownFase;
         
         /// <summary>
-        /// DropDownTilFase control.
+        /// btnNyTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownTilFase;
+        protected global::System.Web.UI.WebControls.Button btnNyTask;
         
         /// <summary>
         /// btnLagreHovedtask control.
