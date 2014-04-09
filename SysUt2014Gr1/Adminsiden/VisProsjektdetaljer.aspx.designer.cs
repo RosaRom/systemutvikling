@@ -67,12 +67,21 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.Label Label_team;
         
         /// <summary>
-        /// ListView1 control.
+        /// ListView_team control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView1;
+        protected global::System.Web.UI.WebControls.ListView ListView_team;
+        
+        /// <summary>
+        /// Listview_task control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView Listview_task;
     }
 }
