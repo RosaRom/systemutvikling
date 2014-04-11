@@ -28,12 +28,12 @@
                 <Columns>
                     <asp:BoundField DataField="surname" HeaderText="Etternavn" />
                     <asp:BoundField DataField="firstname" HeaderText="Fornavn" />
-                    <asp:BoundField DataField="username" HeaderText="Brukernavn" />
-
-                    <asp:BoundField DataField="password" HeaderText="Passord" />
-
-
-
+                    <asp:BoundField DataField="username" HeaderText="Brukernavn" /> 
+                        <asp:TemplateField HeaderText="password">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="password" runat="server" TextMode="Password" Text='<%# Bind("password") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
                     <asp:BoundField DataField="phone" HeaderText="Telefon" />
                     <asp:BoundField DataField="mail" HeaderText="Mail" />
 

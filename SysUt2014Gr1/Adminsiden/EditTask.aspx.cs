@@ -22,7 +22,7 @@ namespace Adminsiden
         private DataTable backlogTable = new DataTable();
         private string backlogID;
 
-        private int taskID = 12; //bare satt en verdi
+        private int taskID = 2; //bare satt en verdi for debug
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,9 +30,14 @@ namespace Adminsiden
 
             if (!Page.IsPostBack)
             {
-                taskID = 12;
+                taskID = 2;
                 Query();
-            }         
+            }
+
+            if (ViewState["name"] != null)
+            {
+                backlogID = (string)ViewState["backlogID"];
+            }
         }
         private void Query()
         {
@@ -72,9 +77,8 @@ namespace Adminsiden
 
                 string backlogStart = dataTable.Rows[0]["productBacklogID"].ToString();
                 tbBacklog.Text = dataTable.Rows[0]["productBacklogID"].ToString();
-                if(tbBacklog.Text != backlogStart)
-                    SetProductBacklogID(true, dataTable.Rows[0]["taskID"].ToString());
 
+                ViewState["taskID"] = dataTable.Rows[0]["taskID"].ToString();
 
             }
             catch (IndexOutOfRangeException e)
@@ -88,15 +92,17 @@ namespace Adminsiden
          * Sender inn oppdaterte verdier **/
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            SetProductBacklogID(true, (string)ViewState["taskID"]);
+
            saveQuery = String.Format("UPDATE Task SET taskName = '{0}', description = '{1}', priority = {2}, state = {3}, hoursAllocated = {4}, phaseID ={5}, productBacklogID = {6} WHERE taskID = {7}",
-               tbTaskName.Text, tbDescription.Text, tbPriority.Text, tbState.Text, tbAllocatedTime.Text, tbPhase.Text, tbBacklog.Text, taskID);
+               tbTaskName.Text, tbDescription.Text, tbPriority.Text, tbState.Text, tbAllocatedTime.Text, tbPhase.Text, (string)ViewState["backlogID"], taskID);
             db.InsertDeleteUpdate(saveQuery);
         }
 
         private void SetProductBacklogID(Boolean subTask, String _id)
         {
             string id = _id;
-            string query = "SELECT productBacklogID FROM TaskCategory WHERE projectID = " + prosjektID + " AND taskCategoryID = 13"; //dummy
+            string query = "SELECT productBacklogID FROM TaskCategory WHERE projectID = " + prosjektID + " AND taskCategoryID = 4"; //dummy
             string queryCount = "SELECT COUNT(*) FROM Task WHERE taskCategoryID = 13 AND LENGTH(productBacklogID) = 3";
 
             backlogTable = db.AdminGetAllUsers(query);
@@ -118,6 +124,9 @@ namespace Adminsiden
                 count = db.Count(queryCount);
 
                 backlogID = backlogTable.Rows[0]["productBacklogID"].ToString() + "." + count;
+
+                ViewState["backlogID"] = backlogID;
+
             }
             tbBacklog.Text = backlogID;
         }
