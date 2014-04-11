@@ -7,6 +7,7 @@
 
     <link rel="Stylesheet" type="text/css" href="css/EditTask.css" />
 
+
     <style type="text/css">
         #form1 {
             height: 1032px;
@@ -20,7 +21,7 @@
 
 
     <form id="form1" runat="server">
-    <div>
+    <div class="TaskClass">
     
         <br />
     
@@ -36,7 +37,7 @@
         <asp:DropDownList ID="ddlAddUser" runat="server">
         </asp:DropDownList>
     
-    </div>
+  
         <br />
         <br />
         <asp:Label ID="Label5" runat="server" Text="Allokert tid"></asp:Label>
@@ -73,10 +74,10 @@
         <br />
         <asp:Label ID="Label9" runat="server" Text="BacklogID"></asp:Label>
         &nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="tbBacklog" runat="server"></asp:TextBox>
+        <asp:TextBox ID="tbBacklog" class="form-textbox" runat="server"></asp:TextBox>
         <br />
         <br />
-        <br />
+        <br /> 
         <asp:Label ID="Label1" runat="server" Text="Gjør avhengig av"></asp:Label>
         &nbsp;&nbsp;
         <asp:DropDownList ID="ddlDependency" runat="server">
@@ -84,13 +85,15 @@
         <br />
         <br />
         <br />
-        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Lagre endringer" />
+        <asp:Button class="btn btn-primary" runat="server" OnClick="btnSave_Click" Text="Lagre endringer" />
         <br />
         <br />
         <br />
         <br />
         <br />
         <br />
+
+          </div>
     </form>
 
     
