@@ -30,7 +30,10 @@
         <div>
             <asp:Label ID="lbUnfinishedTasks" runat="server" Text="Uferdige tasks: "></asp:Label>
             <asp:Label ID="lbUnfinishedTaskNum" runat="server" Text="tall"></asp:Label>
-        </div>        
+        </div>     
+        <div>   
             <asp:GridView ID="gvTaskList" runat="server"></asp:GridView>        
-   </form>    
+        </div>
+
+    </form>    
 </asp:Content>
