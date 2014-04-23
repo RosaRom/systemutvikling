@@ -70,10 +70,10 @@ namespace Adminsiden
                 ddlDependency.DataSource = taskTable;
                 ddlDependency.DataBind();
 
-                ddlParentTask.DataTextField = "taskName";
-                ddlParentTask.DataValueField = "taskID";
-                ddlParentTask.DataSource = taskTable;
-                ddlParentTask.DataBind();
+//                ddlParentTask.DataTextField = "taskName";
+//                ddlParentTask.DataValueField = "taskID";
+//                ddlParentTask.DataSource = taskTable;
+//                ddlParentTask.DataBind();
 
                 string backlogStart = dataTable.Rows[0]["productBacklogID"].ToString();
                 tbBacklog.Text = dataTable.Rows[0]["productBacklogID"].ToString();
@@ -110,14 +110,14 @@ namespace Adminsiden
 
             backlogID = backlogTable.Rows[0]["productBacklogID"].ToString() + "." + count;
 
-            if (ddlParentTask.SelectedValue.ToString().Equals(""))
+//            if (ddlParentTask.SelectedValue.ToString().Equals(""))
                 subTask = false;
 
             //denne slår inn om den skal være en subtask av en annen task under samme kategori
             if (subTask)
             {
-                string parentID = ddlParentTask.SelectedValue.ToString();
-                backlogQuery = "SELECT productBacklogID FROM Task WHERE taskID = " + parentID;
+//                string parentID = ddlParentTask.SelectedValue.ToString();
+//                backlogQuery = "SELECT productBacklogID FROM Task WHERE taskID = " + parentID;
                 backlogTable = db.AdminGetAllUsers(query);
 
                 queryCount = String.Format("SELECT COUNT(*) FROM Task WHERE productBacklogID LIKE '{0}%'", backlogTable.Rows[0]["productBacklogID"].ToString());

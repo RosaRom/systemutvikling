@@ -33,6 +33,21 @@
         </div>     
         <div>   
             <asp:GridView ID="gvTaskList" runat="server"></asp:GridView>        
+            <br />
+            <asp:Chart ID="phaseChart" runat="server" Width="800px" BackColor="LightGray" Height="350px">
+                <Series>
+                    <asp:Series ChartType="Line" Name="Brukte timer" YValuesPerPoint="2">
+                    </asp:Series>
+                    <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Allokerte timer" YValuesPerPoint="2">
+                    </asp:Series>
+                </Series>
+                <ChartAreas>
+                    <asp:ChartArea Name="ChartArea1">
+                        <AxisY Title="Timer">
+                        </AxisY>
+                    </asp:ChartArea>
+                </ChartAreas>
+            </asp:Chart>            
         </div>
 
     </form>    
