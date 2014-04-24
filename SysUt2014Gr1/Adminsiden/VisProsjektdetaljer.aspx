@@ -51,10 +51,24 @@
 
                      </asp:ListView>
                     
-                     <br />
-                </div>
-            </div>
+                     <br />               
         </div>
+                </div>
+                <asp:Chart ID="projectChart" runat="server" Height="400px" Width="800px" BackColor="LightGray">
+                    <Series>
+                        <asp:Series ChartType="Line" Name="Brukte timer">
+                        </asp:Series>
+                        <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Allokerte timer">
+                        </asp:Series>
+                    </Series>
+                    <ChartAreas>
+                        <asp:ChartArea Name="ChartArea1">
+                            <AxisY Title="Timer">
+                            </AxisY>
+                        </asp:ChartArea>
+                    </ChartAreas>
+                </asp:Chart>
+            </div>
     </form>
 
 </asp:Content>
