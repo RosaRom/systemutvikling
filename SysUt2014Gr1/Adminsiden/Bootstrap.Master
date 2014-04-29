@@ -26,12 +26,12 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="admin.aspx">Administrer brukere</a></li>
-                    <li><a href="ProsjektAnsvarlig.aspx">Behandle prosjekter</a></li>
-                    <li><a href="PALeggTilTasks.aspx">Legg til task</a></li>
-                    <li><a href="Prosjektvalg.aspx">Registrer timer</a></li>
+                    <li><a href="admin.aspx">Brukere</a></li>
+                    <li><a href="ProsjektAnsvarlig.aspx">Prosjekter</a></li>
+                    <li><a href="PALeggTilTasks.aspx">Ny task</a></li>
+                    <li><a href="Prosjektvalg.aspx">Timeregisteringr</a></li>
                     <li><a href="VisFase.aspx">Vis fase</a></li>
-                    <li><a href="Profilside.aspx">Din profil</a></li>
+                    <li><a href="Profilside.aspx">Profil</a></li>
                     <li><a href="LogOut.aspx">Logg ut</a></li>
                 </ul>
             </div>
@@ -39,6 +39,10 @@
         </div>
     </div>
     <div class="container">
+        <br />
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <br />

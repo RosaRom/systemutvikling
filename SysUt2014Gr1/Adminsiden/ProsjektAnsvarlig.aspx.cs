@@ -18,22 +18,31 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = new DBConnect();
 
-
-            if (!Page.IsPostBack)
+            if (Session["userLoggedIn"] == "projectManager")
             {
-                FillProjectList();
+                db = new DBConnect();
+
+                if (!Page.IsPostBack)
+                {
+                    FillProjectList();
+                }
+                else
+                {
+                    if (ViewState["projectID"] != null)
+                    {
+                        projectID = (int)ViewState["projectID"];
+                        Session["valg"] = projectID;
+                    }
+
+                }
             }
             else
             {
-                if (ViewState["projectID"] != null)
-                {
-                    projectID = (int)ViewState["projectID"];
-                    Session["valg"] = projectID;
-                }
+                Server.Transfer("Login.aspx", true);
 
             }
+
        
         }
 

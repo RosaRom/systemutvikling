@@ -17,7 +17,15 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            getUserInfo();
+            if (Session["userLoggedIn"] == "teamMember" || Session["userLoggedIn"] == "teamLeader" || Session["userLoggedIn"] == "projectManager")
+            { 
+                getUserInfo();
+            }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+
+            }
         }
         public void getUserInfo()
         {
