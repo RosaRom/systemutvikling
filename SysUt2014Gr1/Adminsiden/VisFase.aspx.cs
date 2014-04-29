@@ -25,10 +25,23 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            PopulateBasicInfo();
-            PopulateHoursAndFinishedTasks();
-            FillGridView();
-            PopulateChart();
+
+            if (Session["userLoggedIn"] == "teamMember" || Session["userLoggedIn"] == "teamLeader" || Session["userLoggedIn"] == "projectManager")
+            {
+                if (!Page.IsPostBack)
+                {
+                    PopulateBasicInfo();
+                    PopulateHoursAndFinishedTasks();
+                    FillGridView();
+                    PopulateChart();
+                }
+            }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+
+            }
+         
         }
 
         public void PopulateChart()
