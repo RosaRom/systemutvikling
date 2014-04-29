@@ -127,6 +127,7 @@
     <Content Include="EditProject.aspx" />
     <Content Include="LogOut.aspx" />
     <Content Include="PAAdministrerBrukere.aspx" />
+    <Content Include="PAEditHovedtask.aspx" />
     <Content Include="PAEditTask.aspx" />
     <Content Include="EditTask.aspx" />
     <Content Include="Login.aspx" />
@@ -134,6 +135,7 @@
     <Content Include="OpprettTeam.aspx" />
     <Content Include="PALeggTilTasks.aspx" />
     <Content Include="PANyHovedtask.aspx" />
+    <Content Include="PAVisHovedtask.aspx" />
     <Content Include="Profilside.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
     <Content Include="ProsjektAnsvarligNyBruker.aspx" />
@@ -203,6 +205,13 @@
     <Compile Include="PAAdministrerBrukere.aspx.designer.cs">
       <DependentUpon>PAAdministrerBrukere.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PAEditHovedtask.aspx.cs">
+      <DependentUpon>PAEditHovedtask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PAEditHovedtask.aspx.designer.cs">
+      <DependentUpon>PAEditHovedtask.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PAEditTask.aspx.cs">
       <DependentUpon>PAEditTask.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -252,6 +261,13 @@
     </Compile>
     <Compile Include="PANyHovedtask.aspx.designer.cs">
       <DependentUpon>PANyHovedtask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PAVisHovedtask.aspx.cs">
+      <DependentUpon>PAVisHovedtask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PAVisHovedtask.aspx.designer.cs">
+      <DependentUpon>PAVisHovedtask.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profilside.aspx.cs">
       <DependentUpon>Profilside.aspx</DependentUpon>
