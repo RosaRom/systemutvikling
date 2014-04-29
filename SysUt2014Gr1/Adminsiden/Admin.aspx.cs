@@ -26,7 +26,7 @@ namespace Adminsiden
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {   //sjekker om bruker har rettigheter til å vise siden
             if (Session["userLoggedIn"] == loggedInAsAdmin)
             {
                 db = new DBConnect();
@@ -42,6 +42,11 @@ namespace Adminsiden
                     table = (DataTable)ViewState["table"];
                     beskjed.Text = "|";
                 }
+            }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+
             }
         }
 

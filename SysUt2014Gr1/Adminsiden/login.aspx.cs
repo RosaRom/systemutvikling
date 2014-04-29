@@ -47,6 +47,7 @@ namespace Adminsiden
                         Server.Transfer("Prosjektvalg.aspx", true);
                         break;
                     case 2:
+                        Session["userLoggedIn"] = "teamLeader";
                         //Her skal det sendes videre til teamleder siden
                         //Server.Transfer("Teamleder.aspx", true);
                           Server.Transfer("Admin.aspx", true);
