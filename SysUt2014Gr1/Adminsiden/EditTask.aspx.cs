@@ -15,7 +15,7 @@ namespace Adminsiden
     {
         private DBConnect db;
         private int prosjektID = 2; //bare satt en verdi
-        private string query, userQuery, saveQuery, taskQuery, backlogQuery;
+        private string query, userQuery, saveQuery, taskQuery;
         private DataTable dataTable = new DataTable();
         private DataTable userTable = new DataTable();
         private DataTable taskTable = new DataTable();
