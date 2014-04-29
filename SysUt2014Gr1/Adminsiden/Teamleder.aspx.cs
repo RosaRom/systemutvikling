@@ -23,8 +23,7 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["userLoggedIn"] == "teamLeader")
-            {
+           
                 if (!Page.IsPostBack)
                 {
                     GetTasks();
@@ -32,12 +31,9 @@ namespace Adminsiden
                     fillTimeSelectDDL();
                     PopulateTeams();
                 }
-            }
-            else
-            {
-                Server.Transfer("Login.aspx", true);
-
-            }
+           
+        
+          
             
         }
         //Fyller dropdownlister med timer og minutter
