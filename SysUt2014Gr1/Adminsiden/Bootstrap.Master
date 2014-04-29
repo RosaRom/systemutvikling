@@ -31,6 +31,7 @@
                     <li><a href="PALeggTilTasks.aspx">Legg til task</a></li>
                     <li><a href="Prosjektvalg.aspx">Registrer timer</a></li>
                     <li><a href="Profilside.aspx">Din profil</a></li>
+                    <li><a href="LogOut.aspx">Logg ut</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->

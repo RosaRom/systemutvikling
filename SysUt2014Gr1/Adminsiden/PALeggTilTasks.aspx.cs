@@ -17,11 +17,20 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (Session["userLoggedIn"] == "projectManager")
             {
-                FillMainTasks();
-                FillDropDownFase();
+                if (!Page.IsPostBack)
+                {
+                    FillMainTasks();
+                    FillDropDownFase();
+                }
             }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+
+            }
+         
         }
 
         //lagrer en ny task i databasen

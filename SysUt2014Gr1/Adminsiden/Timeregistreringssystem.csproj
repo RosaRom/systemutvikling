@@ -125,6 +125,7 @@
     <Content Include="css\VisTaskdetaljer.css" />
     <Content Include="DummyPage.aspx" />
     <Content Include="EditProject.aspx" />
+    <Content Include="LogOut.aspx" />
     <Content Include="PAAdministrerBrukere.aspx" />
     <Content Include="PAEditTask.aspx" />
     <Content Include="EditTask.aspx" />
@@ -187,6 +188,13 @@
     </Compile>
     <Compile Include="EditProject.aspx.designer.cs">
       <DependentUpon>EditProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogOut.aspx.cs">
+      <DependentUpon>LogOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogOut.aspx.designer.cs">
+      <DependentUpon>LogOut.aspx</DependentUpon>
     </Compile>
     <Compile Include="PAAdministrerBrukere.aspx.cs">
       <DependentUpon>PAAdministrerBrukere.aspx</DependentUpon>
