@@ -35,12 +35,15 @@ namespace Adminsiden
                 int groupID = Convert.ToInt16(dt.Rows[0]["groupID"]);
                 Session["userID"] = userID;
 
+               
+
                 if (passwordIn == userPW)
                 {
 
                 switch (groupID)
                 {
                     case 1:
+                        Session["userLoggedIn"] = "teamMember";
                         Server.Transfer("Prosjektvalg.aspx", true);
                         break;
                     case 2:
@@ -49,9 +52,11 @@ namespace Adminsiden
                           Server.Transfer("Admin.aspx", true);
                         break;
                     case 3:
+                        Session["userLoggedIn"] = "projectManager";
                         Server.Transfer("ProsjektAnsvarlig.aspx", true);
                         break;
                     case 4:
+                        Session["userLoggedIn"] = "admin";
                         Server.Transfer("Admin.aspx", true);
                         break;
                 }

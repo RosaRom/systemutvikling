@@ -16,6 +16,7 @@ namespace Adminsiden
         private DBConnect db;
         private Boolean active = true;
         private DataTable table = new DataTable();
+        private string loggedInAsAdmin = "admin";
 
         // Brukes i forhold til sorting og for å lagre view states når det er flere spørringer opp mot websiden
         private string GridViewSortDirection
@@ -26,18 +27,21 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = new DBConnect();
-            if (!Page.IsPostBack)
+            if (Session["userLoggedIn"] == loggedInAsAdmin)
             {
-                ViewState["active"] = active;
-                GetAllUsersReset();
-                GridViewInsertEmpty();
-            }
-            else
-            {
-                active = (Boolean)ViewState["active"];                  //sørger for å ta vare på booleanverdien til active mellom postback
-                table = (DataTable)ViewState["table"];
-                beskjed.Text = "|";
+                db = new DBConnect();
+                if (!Page.IsPostBack)
+                {
+                    ViewState["active"] = active;
+                    GetAllUsersReset();
+                    GridViewInsertEmpty();
+                }
+                else
+                {
+                    active = (Boolean)ViewState["active"];                  //sørger for å ta vare på booleanverdien til active mellom postback
+                    table = (DataTable)ViewState["table"];
+                    beskjed.Text = "|";
+                }
             }
         }
 
