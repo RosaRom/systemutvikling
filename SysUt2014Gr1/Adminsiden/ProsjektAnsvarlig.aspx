@@ -21,7 +21,7 @@
             <asp:Button ID="btnShowProject" runat="server" Text="Vis" />
         </p>
         <p>
-            <asp:Button ID="btnNewProject" runat="server" Height="35px" Text="Opprett prosjekt" Width="236px" />
+            <asp:Button ID="btnNewProject" runat="server" Height="35px" Text="Opprett prosjekt" Width="236px" OnClick="btnNewProject_Click" />
         </p>
         <p>
             &nbsp;</p>
