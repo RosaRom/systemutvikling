@@ -13,6 +13,7 @@ namespace Adminsiden
     public partial class OpprettProsjekt : System.Web.UI.Page
     {
         private DBConnect db;
+
         //private int textAreaCounter = 300;
         private int webClientTeamID;
 
@@ -89,5 +90,24 @@ namespace Adminsiden
         }
 
         #endregion
+
+        protected void btn_AddMainTask_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btn_CreateMainTask_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAddProject_Click(object sender, EventArgs e)
+        {
+           // string query = String.Format("INSERT INTO Project (surname, firstname, password, username, phone, mail, teamID, groupID, aktiv) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})",
+             //           surname, firstname, password, username, phone, mail, teamID, groupID, "1");
+                 
+                
+            //db.InsertDeleteUpdate(query);
+        }
     }
 }

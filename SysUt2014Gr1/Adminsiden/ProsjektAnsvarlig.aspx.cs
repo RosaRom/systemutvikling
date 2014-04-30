@@ -32,7 +32,7 @@ namespace Adminsiden
                     if (ViewState["projectID"] != null)
                     {
                         projectID = (int)ViewState["projectID"];
-                        Session["valg"] = projectID;
+                        Session["valgtID"] = projectID;
                     }
 
                 }
@@ -78,9 +78,14 @@ namespace Adminsiden
             projectID = Convert.ToInt32(projectList.SelectedValue);
 
             query = String.Format("UPDATE Project SET projectState = 0 WHERE projectID = '{0}'",
-                projectID);
+                Session["valgtID"]);
             db.InsertDeleteUpdate(query);
 
+        }
+
+        protected void btnNewProject_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("OpprettProsjekt.aspx", true);
         }
 
      
