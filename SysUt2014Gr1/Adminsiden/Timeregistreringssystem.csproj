@@ -114,6 +114,7 @@
     <Content Include="css\OpprettTeamStyle.css" />
     <Content Include="css\PAAdministrerBrukere.css" />
     <Content Include="css\PALeggTilTasks.css" />
+    <Content Include="css\PAMottaRapporter.css" />
     <Content Include="css\PANyHovedtask.css" />
     <Content Include="css\Profile.css" />
     <Content Include="css\ProsjektAnsvarligNyBruker.css" />
@@ -134,6 +135,7 @@
     <Content Include="OpprettProsjekt.aspx" />
     <Content Include="OpprettTeam.aspx" />
     <Content Include="PALeggTilTasks.aspx" />
+    <Content Include="PAMottaRapporter.aspx" />
     <Content Include="PANyHovedtask.aspx" />
     <Content Include="PAVisHovedtask.aspx" />
     <Content Include="Profilside.aspx" />
@@ -254,6 +256,13 @@
     </Compile>
     <Compile Include="PALeggTilTasks.aspx.designer.cs">
       <DependentUpon>PALeggTilTasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PAMottaRapporter.aspx.cs">
+      <DependentUpon>PAMottaRapporter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PAMottaRapporter.aspx.designer.cs">
+      <DependentUpon>PAMottaRapporter.aspx</DependentUpon>
     </Compile>
     <Compile Include="PANyHovedtask.aspx.cs">
       <DependentUpon>PANyHovedtask.aspx</DependentUpon>

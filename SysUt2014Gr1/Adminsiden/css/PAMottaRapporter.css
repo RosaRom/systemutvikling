@@ -1,0 +1,57 @@
+﻿body {
+    background-color:lightgray;
+}
+#rapporter{
+    margin-left:15%;
+    margin-top:10%;
+    float:left;
+    width:30%;
+}
+#klager{
+    margin-right:15%;
+    margin-top:10%;
+    float:right;
+    width:30%;
+}
+#gvRapporter{
+    width:100%;
+}
+#gvKlager{
+    width:100%;
+}
+#informasjon{ 
+    margin-top:2%;
+    width:100%;
+}
+#tekstboks{
+    width:30%;
+    float:left;
+    margin-top:10%;
+    margin-left:15%;
+}
+#tekstbokslabel{
+    margin-bottom:1%;
+    
+}
+.buttons{
+    float:right;
+}
+.border{
+    width:100%;
+    padding:1% 0 1% 0;
+    border-bottom:solid 1px black;
+    border-top:solid 1px black;
+}
+.gridView th {
+    background: url(../Resources/grd_head.png) repeat-x top;
+    background-size: 100%;
+    color: white;
+    border-color: black;
+}
+.gridView .alt {
+    background: url(../Resources/grd_alt.png) repeat-x top;
+    background-size: 100%;
+}
+.gridViewHeader a {
+    color: black;
+}
