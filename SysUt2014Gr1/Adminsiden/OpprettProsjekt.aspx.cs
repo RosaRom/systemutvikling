@@ -1,4 +1,4 @@
-using Admin;
+using Adminsiden;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,7 +13,7 @@ namespace Adminsiden
     public partial class OpprettProsjekt : System.Web.UI.Page
     {
         private DBConnect db;
-        private int textAreaCounter = 300;
+        //private int textAreaCounter = 300;
         private int webClientTeamID;
 
         protected void Page_Load(object sender, EventArgs e)

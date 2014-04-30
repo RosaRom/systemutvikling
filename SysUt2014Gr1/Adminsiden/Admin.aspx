@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Admin.Admin" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Adminsiden.Admin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Administrator</title>
@@ -6,6 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+
     <form id="Adminform" runat="server">
         <div>
             <div id="overskriftInsert">
@@ -20,15 +21,19 @@
                 OnRowEditing="GridViewInsert_RowEditing"
                 OnRowUpdating="GridViewInsert_RowUpdating"
                 CssClass="gridView"
-                AlternatingRowStyle-CssClass="alt">
+                AlternatingRowStyle-CssClass="alt" OnSelectedIndexChanged="GridViewInsert_SelectedIndexChanged">
 
                 <AlternatingRowStyle CssClass="alt" />
 
                 <Columns>
                     <asp:BoundField DataField="surname" HeaderText="Etternavn" />
                     <asp:BoundField DataField="firstname" HeaderText="Fornavn" />
-                    <asp:BoundField DataField="username" HeaderText="Brukernavn" />
-
+                    <asp:BoundField DataField="username" HeaderText="Brukernavn" /> 
+                        <asp:TemplateField HeaderText="password">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="password" runat="server" TextMode="Password" Text='<%# Bind("password") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
                     <asp:BoundField DataField="phone" HeaderText="Telefon" />
                     <asp:BoundField DataField="mail" HeaderText="Mail" />
 

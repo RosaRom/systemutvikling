@@ -1,4 +1,4 @@
-﻿using Admin;
+﻿using Adminsiden;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,12 +17,20 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            getUserInfo();
+            if (Session["userLoggedIn"] == "teamMember" || Session["userLoggedIn"] == "teamLeader" || Session["userLoggedIn"] == "projectManager")
+            { 
+                getUserInfo();
+            }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+
+            }
         }
         public void getUserInfo()
         {
             
-            string query = "SELECT *, CONCAT (firstname, ' ',  surname) AS FullName FROM User, UserGroup WHERE userID = 14 AND User.groupID = UserGroup.groupID";// + Session["userID"];
+            string query = String.Format("SELECT *, CONCAT (firstname, ' ',  surname) AS FullName FROM User, UserGroup WHERE userID = {0} AND User.groupID = UserGroup.groupID", Session["userID"]);// + Session["userID"];
             dt = db.getAll(query);
             userID = Convert.ToInt16(dt.Rows[0]["userID"]);
             string fullname = Convert.ToString(dt.Rows[0]["FullName"]);

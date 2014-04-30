@@ -1,4 +1,4 @@
-﻿using Admin;
+﻿using Adminsiden;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using MySql.Data.MySqlClient;
 
-namespace Bruker
+namespace Adminsiden
 {
     public partial class Bruker : System.Web.UI.Page
     {
@@ -21,12 +21,21 @@ namespace Bruker
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (Session["userLoggedIn"] == "teamMember" || Session["userLoggedIn"] == "teamLeader" || Session["userLoggedIn"] == "projectManager")
             {
-                GetTasks();
-                getWorkplace();
-                fillTimeSelectDDL();
+                if (!Page.IsPostBack)
+                {
+                    GetTasks();
+                    getWorkplace();
+                    fillTimeSelectDDL();
+                }
             }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+
+            }
+           
         }
         //Fyller dropdownlister med timer og minutter
         private void fillTimeSelectDDL()

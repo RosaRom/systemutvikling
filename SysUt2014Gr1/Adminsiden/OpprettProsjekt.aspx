@@ -114,6 +114,7 @@
             <br />
             <textarea
                 id="TextArea_ProjectDescription"
+                runat="server"
                 style="resize: none"
                 maxlength="300"
                 cols="40"
