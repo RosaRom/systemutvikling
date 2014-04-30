@@ -71,7 +71,7 @@ namespace Adminsiden
 
                 string productBacklogID = pbID.Text;
 
-                string query = String.Format("INSERT INTO Task VALUES(null, '{0}', '{1}', {2}, '{3}', '{4}', '{5}', {6}, {7}, {8}, '{9}')",
+                string query = String.Format("INSERT INTO Task VALUES(null, '{0}', '{1}', {2}, '{3}', '{4}', '{5}', {6}, {7}, {8}, '{9}', null)",
                     taskCategoryID, taskName, description, priority, state, null, hoursAllocated, parentTaskID, phaseID, productBacklogID);
                 db.InsertDeleteUpdate(query);
 
