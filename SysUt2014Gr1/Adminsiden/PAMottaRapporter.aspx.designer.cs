@@ -13,6 +13,15 @@ namespace Adminsiden {
     public partial class PAMottaRapporter {
         
         /// <summary>
+        /// informasjon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox informasjon;
+        
+        /// <summary>
         /// lbAvvik control.
         /// </summary>
         /// <remarks>
@@ -101,14 +110,5 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvKlager;
-        
-        /// <summary>
-        /// informasjon control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox informasjon;
     }
 }

@@ -3,13 +3,13 @@
 }
 #rapporter{
     margin-left:15%;
-    margin-top:10%;
+    margin-top:5%;
     float:left;
     width:30%;
 }
 #klager{
     margin-right:15%;
-    margin-top:10%;
+    margin-top:5%;
     float:right;
     width:30%;
 }
@@ -25,7 +25,6 @@
 }
 #tekstboks{
     width:30%;
-    float:left;
     margin-top:10%;
     margin-left:15%;
 }
@@ -35,6 +34,7 @@
 }
 .buttons{
     float:right;
+    padding-bottom:0,5%;
 }
 .border{
     width:100%;
