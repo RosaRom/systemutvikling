@@ -39,7 +39,7 @@
 
             <div id="right" class="panel panel-primary" style="float: left; width:267px; margin-left: 10px;">
                 <div class="panel-heading"><h4>Task informasjon</h4></div>
-                 <div class="panel-body">
+                <div class="panel-body">
                      <asp:ListView ID="Listview_task" runat="server">
                            <LayoutTemplate> <table border="1"> <thead> <tr> <th>Navn</th> <th>timer brukt</th> </tr> </thead> 
                                 <tbody> <asp:PlaceHolder runat="server" ID="itemPlaceholder" /> </tbody> </table>
@@ -48,13 +48,16 @@
                          <ItemTemplate><tr><td>
                                 <asp:HyperLink runat="server" ID="hl" NavigateUrl='<%# "visTaskdetaljer.aspx?taskID="+ Eval("taskID") %>' Text='<%# Eval("taskName") %>'></asp:HyperLink></td><td><%# Eval("hoursUsed") %> / <%# Eval("hoursAllocated") %> timer</td></tr>
                          </ItemTemplate>
-
                      </asp:ListView>
-                    
                      <br />               
+                 </div>
+            </div>
         </div>
-                </div>
-                <asp:Chart ID="projectChart" runat="server" Height="400px" Width="800px" BackColor="LightGray">
+
+        <div id="chart" class="panel panel-primary" style="width:835px; margin-left: 100px;">
+            <div class="panel-heading"><h4>grafisk fremstilling</h4></div>
+            <div class="panel-body">
+            <asp:Chart ID="projectChart" runat="server" Height="400px" Width="800px" BackColor="LightGray">
                     <Series>
                         <asp:Series ChartType="Line" Name="Brukte timer">
                         </asp:Series>
@@ -68,6 +71,7 @@
                         </asp:ChartArea>
                     </ChartAreas>
                 </asp:Chart>
+                </div>
             </div>
     </form>
 
