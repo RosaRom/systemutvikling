@@ -10,14 +10,20 @@
 <body>
     <form id="PAMottaRapporter" runat="server">
     <div>
+            
+        <div id="tekstboks">
+            <label id="tekstbokslabel" class="border">Beskrivelse av rapporten</label><br />    
+            <asp:TextBox ID="informasjon" runat="server" TextMode="MultiLine" Rows="5" Columns="30"></asp:TextBox>
+        </div>
+        
         <div id="rapporter">
             <div class="border">
                 <asp:Label ID="lbAvvik" runat="server" Text="Avviksrapporter: "></asp:Label>
                 <asp:Label ID="lbAntallNyeRapporter" runat="server" Text="0 nye"></asp:Label>
             
                 <div class="buttons">
-                    <asp:Button ID="btnNyeRapporter" runat="server" Text="Vis Nye" />
-                    <asp:Button ID="btnAlleRapporter" runat="server" Text="Vis Alle" />
+                    <asp:Button ID="btnNyeRapporter" runat="server" Text="Vis Nye" OnClick="btnNyeRapporter_Click" />
+                    <asp:Button ID="btnAlleRapporter" runat="server" Text="Vis Alle" OnClick="btnAlleRapporter_Click" />
                 </div>
             </div>
             
@@ -44,8 +50,8 @@
                 <asp:Label ID="lbAntallNyeKlager" runat="server" Text="0 nye"></asp:Label>
             
                 <div class="buttons">
-                    <asp:Button ID="btnNyeKlager" runat="server" Text="Vis Nye" />
-                    <asp:Button ID="btnAlleKlager" runat="server" Text="Vis Alle" />
+                    <asp:Button ID="btnNyeKlager" runat="server" Text="Vis Nye" OnClick="btnNyeKlager_Click" />
+                    <asp:Button ID="btnAlleKlager" runat="server" Text="Vis Alle" OnClick="btnAlleKlager_Click" />
                 </div>
             </div>
             <br />
@@ -63,11 +69,6 @@
                     <asp:BoundField DataField="deviationTitle" HeaderText="Overskrift" />
                 </Columns>
             </asp:GridView>
-        </div>
-            
-        <div id="tekstboks">
-            <label id="tekstbokslabel" class="border">Beskrivelse av rapporten</label><br />    
-            <asp:TextBox ID="informasjon" runat="server" TextMode="MultiLine" Rows="5" Columns="30"></asp:TextBox>
         </div>
         
     </div>
