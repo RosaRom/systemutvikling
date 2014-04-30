@@ -21,6 +21,7 @@ namespace Adminsiden
         private DataTable taskTable = new DataTable();
         private DataTable backlogTable = new DataTable();
         private string backlogID;
+        private string hoursAllocated = "0"; // brukes for å overføre orginale timer mellom metoder
 
         private int taskID = 12; //bare satt en verdi
 
@@ -49,11 +50,11 @@ namespace Adminsiden
             {
                 tbTaskName.Text = dataTable.Rows[0]["taskName"].ToString();
                 tbDescription.Text = dataTable.Rows[0]["description"].ToString();
-                tbAllocatedTime.Text = dataTable.Rows[0]["hoursAllocated"].ToString();
+                hoursAllocated = dataTable.Rows[0]["hoursAllocated"].ToString();
+                tbAllocatedTime.Text = hoursAllocated;
                 tbPhase.Text = dataTable.Rows[0]["phaseID"].ToString();
-                tbState.Text = dataTable.Rows[0]["state"].ToString();
-                //endring her medfører rapportinnsending //NB!! Må legges til
-                tbPriority.Text = dataTable.Rows[0]["priority"].ToString();
+                tbState.Text = dataTable.Rows[0]["state"].ToString();                
+                tbPriority.Text = dataTable.Rows[0]["priority"].ToString();                              
 
                 ddlAddUser.DataTextField = "username";
                 ddlAddUser.DataValueField = "userID";
@@ -88,9 +89,26 @@ namespace Adminsiden
          * Sender inn oppdaterte verdier **/
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            saveQuery = String.Format("UPDATE Task SET taskName = '{0}', description = '{1}', priority = {2}, state = {3}, hoursAllocated = {4}, phaseID ={5}, productBacklogID = {6} WHERE taskID = {7}",
-                tbTaskName.Text, tbDescription.Text, tbPriority.Text, tbState.Text, tbAllocatedTime.Text, tbPhase.Text, tbBacklog.Text, taskID);
-            db.InsertDeleteUpdate(saveQuery);
+            dataTable.Clear();
+            dataTable = db.getAll(String.Format("SELECT * FROM Task WHERE taskID = {0}", taskID));
+            int hoursExtra = Convert.ToInt32(dataTable.Rows[0]["hoursExtra"].ToString());
+            int temp2 = Convert.ToInt32(dataTable.Rows[0]["hoursAllocated"].ToString());
+            int temp1 = Convert.ToInt32(tbAllocatedTime.Text);
+            
+            if (temp1 == temp2)
+            {
+                saveQuery = String.Format("UPDATE Task SET taskName = '{0}', description = '{1}', priority = {2}, state = {3}, hoursAllocated = {4}, phaseID ={5}, productBacklogID = '{6}', hoursExtra = {8}  WHERE taskID = {7}",
+                tbTaskName.Text, tbDescription.Text, tbPriority.Text, tbState.Text, tbAllocatedTime.Text, tbPhase.Text, tbBacklog.Text, taskID, hoursExtra);
+                db.InsertDeleteUpdate(saveQuery);
+            }
+            else
+            {
+                int temp3 = temp1 - temp2;
+
+                saveQuery = String.Format("UPDATE Task SET taskName = '{0}', description = '{1}', priority = {2}, state = {3}, hoursAllocated = {4}, phaseID ={5}, productBacklogID = '{6}', hoursExtra = {8} WHERE taskID = {7}",
+                tbTaskName.Text, tbDescription.Text, tbPriority.Text, tbState.Text, temp2, tbPhase.Text, tbBacklog.Text, taskID, temp3);
+                db.InsertDeleteUpdate(saveQuery);
+            }
         }
 
         private void SetProductBacklogID(Boolean subTask, String _id)
