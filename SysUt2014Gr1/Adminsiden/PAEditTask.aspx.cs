@@ -20,8 +20,7 @@ namespace Adminsiden
         private DataTable userTable = new DataTable();
         private DataTable taskTable = new DataTable();
         private DataTable backlogTable = new DataTable();
-        private string backlogID;
-        private string hoursAllocated = "0"; // brukes for å overføre orginale timer mellom metoder
+        private string backlogID;        
 
         private int taskID = 12; //bare satt en verdi
 
@@ -108,6 +107,11 @@ namespace Adminsiden
                 saveQuery = String.Format("UPDATE Task SET taskName = '{0}', description = '{1}', priority = {2}, state = {3}, hoursAllocated = {4}, phaseID ={5}, productBacklogID = '{6}', hoursExtra = {8} WHERE taskID = {7}",
                 tbTaskName.Text, tbDescription.Text, tbPriority.Text, tbState.Text, temp2, tbPhase.Text, tbBacklog.Text, taskID, temp3);
                 db.InsertDeleteUpdate(saveQuery);
+
+                // her kan en deviationrapport om at allocatedHours har blitt forandret genereres
+                // temp1 = nye allokerte timer
+                // temp2 = orginale allokerte timer
+                // temp3 = forskjellen mellom dem (150 nytt estimat - 100 orginlt estimat = 50 ekstra timer)
             }
         }
 
