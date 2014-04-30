@@ -80,7 +80,7 @@ namespace Adminsiden
             string id = gvKlager.DataKeys[e.RowIndex]["deviationID"].ToString();
 
             string query = "UPDATE deviationReport SET deviationState = 1 WHERE deviationID = " + id;
-            //db.InsertDeleteUpdate(query);
+            db.InsertDeleteUpdate(query);
             HentBeskrivelse(id);
         }
 
@@ -89,7 +89,7 @@ namespace Adminsiden
             string id = gvRapporter.DataKeys[e.RowIndex]["deviationID"].ToString();
 
             string query = "UPDATE deviationReport SET deviationState = 1 WHERE deviationID = " + id;
-            //db.InsertDeleteUpdate(query);
+            db.InsertDeleteUpdate(query);
             HentBeskrivelse(id);
         }
     }

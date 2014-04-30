@@ -111,6 +111,9 @@ namespace Adminsiden
                 // temp1 = nye allokerte timer
                 // temp2 = orginale allokerte timer
                 // temp3 = forskjellen mellom dem (150 nytt estimat - 100 orginlt estimat = 50 ekstra timer)
+
+                string queryDeviationReport = String.Format("INSERT INTO deviationReport VALUES(null, 'Timeforandring på task', 'Timeantallet på task: \"{0}\" forandres fra {1} timer til {2} timer', 0, 0)", tbTaskName.Text, temp2, temp1);
+                db.InsertDeleteUpdate(queryDeviationReport);
             }
         }
 
