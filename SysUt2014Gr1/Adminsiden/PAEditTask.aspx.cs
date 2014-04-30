@@ -49,8 +49,7 @@ namespace Adminsiden
             {
                 tbTaskName.Text = dataTable.Rows[0]["taskName"].ToString();
                 tbDescription.Text = dataTable.Rows[0]["description"].ToString();
-                hoursAllocated = dataTable.Rows[0]["hoursAllocated"].ToString();
-                tbAllocatedTime.Text = hoursAllocated;
+                tbAllocatedTime.Text = dataTable.Rows[0]["hoursAllocated"].ToString();                
                 tbPhase.Text = dataTable.Rows[0]["phaseID"].ToString();
                 tbState.Text = dataTable.Rows[0]["state"].ToString();                
                 tbPriority.Text = dataTable.Rows[0]["priority"].ToString();                              
