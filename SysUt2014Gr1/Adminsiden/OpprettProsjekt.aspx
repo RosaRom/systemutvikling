@@ -211,10 +211,13 @@
             <br />
             <asp:Label ID="lbl_Tasks" runat="server" Text="Hovedtasks"></asp:Label>
             &nbsp;
-            <asp:Button ID="btn_AddMainTask" runat="server" Text="Legg til" />
-            <asp:Button ID="btn_CreateMainTask" runat="server" Text="Opprett hovedtask" />
+            <asp:Button ID="btn_AddMainTask" runat="server" Text="Legg til" OnClick="btn_AddMainTask_Click" />
+            <asp:Button ID="btn_CreateMainTask" runat="server" Text="Opprett hovedtask" OnClick="btn_CreateMainTask_Click" />
             <br />
             <asp:ListBox ID="lb_tasks" runat="server" Width="200px"></asp:ListBox>
+            <br />
+            <br />
+            <asp:Button ID="btnAddProject" runat="server" OnClick="btnAddProject_Click" Text="Opprett prosjektet" />
         </div>
         <br />
     </form>
