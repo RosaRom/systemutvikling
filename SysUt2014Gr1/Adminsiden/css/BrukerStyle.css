@@ -2,10 +2,9 @@
     background-color:lightgray;
 }
 
-#Brukerform{
+#Timeregistrering{
     align-items:center;
     text-align:center;
-    margin-top:3%;
 }
 .blue .ajax__calendar_container {
     width: 190px;

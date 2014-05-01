@@ -8,21 +8,17 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
 
-    <form id="loginForm" runat="server">
-        <h3>
-        <asp:Label ID="UsernameLabel" Text="Username"  runat="server" />
-        </h3>
-        <h3>
-        <asp:TextBox ID="tbUsername" runat="server" />
-        </h3>
-        <h3>
-        <asp:Label ID="PasswordLabel" Text="Password" runat="server" />
-        </h3>
-        <asp:TextBox ID="tbPassword" TextMode="Password" runat="server" />
-        <br /><br />
-        <asp:Button ID="submit" Text="Submit" runat="server" OnClick="submit_Click" />
-        <br />
-        <asp:Label ID="LabelWarning" runat="server" ForeColor="#CC0000" Visible="False"></asp:Label>
-    </form>
+
+      <div class="container">
+
+          <form class="form-signin" role="form" runat="server">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <asp:TextBox ID="tbUsername" type="text" class="form-control" placeholder="Brukernavn" runat="server" />
+            <asp:TextBox ID="tbPassword" type="password" class="form-control" placeholder="Password" runat="server" />
+            <asp:Button  ID="submit" type="submit" OnClick="submit_Click" Text="Logg inn" class="btn btn-lg btn-primary btn-block" runat="server" />
+            <asp:Label ID="LabelWarning" runat="server" ForeColor="#CC0000" Visible="False"></asp:Label>
+
+          </form>
+    </div> <!-- /container -->
 </asp:Content>
 

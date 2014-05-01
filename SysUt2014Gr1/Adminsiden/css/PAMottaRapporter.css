@@ -2,16 +2,16 @@
     background-color:lightgray;
 }
 #rapporter{
-    margin-left:15%;
-    margin-top:10%;
+    margin-left:2%;
+    margin-top:5%;
     float:left;
-    width:30%;
+    width:35%;
 }
 #klager{
-    margin-right:15%;
-    margin-top:10%;
-    float:right;
-    width:30%;
+    margin-left:20%;
+    margin-top:5%;
+    float:left;
+    width:35%;
 }
 #gvRapporter{
     width:100%;
@@ -25,9 +25,8 @@
 }
 #tekstboks{
     width:30%;
-    float:left;
-    margin-top:10%;
-    margin-left:15%;
+    margin-top:3%;
+    margin-left:2%;
 }
 #tekstbokslabel{
     margin-bottom:1%;
@@ -35,6 +34,7 @@
 }
 .buttons{
     float:right;
+    padding-bottom:0,5%;
 }
 .border{
     width:100%;

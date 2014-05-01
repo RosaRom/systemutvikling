@@ -22,7 +22,10 @@ namespace Adminsiden
                 TellNye();
             }
         }
-
+        
+        /// <summary>
+        /// Henter ut bare nye klager
+        /// </summary>
         private void VisNyeKlager()
         {
             string query = "SELECT deviationID, deviationTitle FROM deviationReport WHERE deviationType = 1 AND deviationState = 0";
@@ -30,6 +33,9 @@ namespace Adminsiden
             gvKlager.DataBind();
         }
         
+        /// <summary>
+        /// Henter ut bare nye rapporter
+        /// </summary>
         private void VisNyeRapporter()
         {
             string query = "SELECT deviationID, deviationTitle FROM deviationReport WHERE deviationType = 0 AND deviationState = 0";
@@ -37,6 +43,9 @@ namespace Adminsiden
             gvRapporter.DataBind();
         }
 
+        /// <summary>
+        /// Henter ut alle klagene
+        /// </summary>
         private void VisAlleKlager()
         {
             string query = "SELECT deviationID, deviationTitle FROM deviationReport WHERE deviationType = 1 ORDER BY deviationState DESC";
@@ -44,6 +53,9 @@ namespace Adminsiden
             gvKlager.DataBind();
         }
 
+        /// <summary>
+        /// henter ut alle rapportene
+        /// </summary>
         private void VisAlleRapporter()
         {
             string query = "SELECT deviationID, deviationTitle FROM deviationReport WHERE deviationType = 0 ORDER BY deviationState DESC";
@@ -51,6 +63,9 @@ namespace Adminsiden
             gvRapporter.DataBind();
         }
 
+        /// <summary>
+        /// Teller antall nye rapporter og oppdaterer labelene
+        /// </summary>
         private void TellNye()
         {
             string queryKlager = "SELECT COUNT(*) FROM deviationReport WHERE deviationType = 1 AND deviationState = 0";
@@ -67,7 +82,10 @@ namespace Adminsiden
                 lbAntallNyeRapporter.Text = db.Count(queryRapporter) + " nye";
         }
 
-
+        /// <summary>
+        /// Henter ut beskrivelsen til en rapport og legger teksten til i tekstboksen
+        /// </summary>
+        /// <param name="_id"></param>
         private void HentBeskrivelse(string _id)
         {
             string query = "SELECT deviationDescription FROM deviationReport WHERE deviationID = " + _id;
@@ -75,22 +93,59 @@ namespace Adminsiden
             informasjon.Text = table.Rows[0]["deviationDescription"].ToString();
         }
 
+        /// <summary>
+        /// Oppdaterer rapporten som blir lest som lest i databasen, oppdaterer også antall nye rapporter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvKlager_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string id = gvKlager.DataKeys[e.RowIndex]["deviationID"].ToString();
 
             string query = "UPDATE deviationReport SET deviationState = 1 WHERE deviationID = " + id;
-            //db.InsertDeleteUpdate(query);
+            db.InsertDeleteUpdate(query);
             HentBeskrivelse(id);
+            this.TellNye();
         }
 
+        /// <summary>
+        /// Oppdaterer rapporten som blir lest som lest i databasen, oppdaterer også antall nye rapporter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvRapporter_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string id = gvRapporter.DataKeys[e.RowIndex]["deviationID"].ToString();
 
             string query = "UPDATE deviationReport SET deviationState = 1 WHERE deviationID = " + id;
-            //db.InsertDeleteUpdate(query);
+            db.InsertDeleteUpdate(query);
             HentBeskrivelse(id);
+            this.TellNye();
+        }
+
+        /// <summary>
+        /// Metoder for de 4 knappene som er på siden, tar i bruk hver sin metode
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnNyeRapporter_Click(object sender, EventArgs e)
+        {
+            this.VisNyeRapporter();
+        }
+
+        protected void btnAlleRapporter_Click(object sender, EventArgs e)
+        {
+            this.VisAlleRapporter();
+        }
+
+        protected void btnNyeKlager_Click(object sender, EventArgs e)
+        {
+            this.VisNyeKlager();
+        }
+
+        protected void btnAlleKlager_Click(object sender, EventArgs e)
+        {
+            this.VisAlleKlager();
         }
     }
 }
