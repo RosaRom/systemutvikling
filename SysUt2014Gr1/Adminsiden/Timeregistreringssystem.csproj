@@ -134,6 +134,7 @@
     <Content Include="Login.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
     <Content Include="OpprettTeam.aspx" />
+    <Content Include="PAGodkjennEkstraTid.aspx" />
     <Content Include="PALeggTilTasks.aspx" />
     <Content Include="PAMottaRapporter.aspx" />
     <Content Include="PANyHovedtask.aspx" />
@@ -249,6 +250,13 @@
     </Compile>
     <Compile Include="OpprettTeam.aspx.designer.cs">
       <DependentUpon>OpprettTeam.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PAGodkjennEkstraTid.aspx.cs">
+      <DependentUpon>PAGodkjennEkstraTid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PAGodkjennEkstraTid.aspx.designer.cs">
+      <DependentUpon>PAGodkjennEkstraTid.aspx</DependentUpon>
     </Compile>
     <Compile Include="PALeggTilTasks.aspx.cs">
       <DependentUpon>PALeggTilTasks.aspx</DependentUpon>
