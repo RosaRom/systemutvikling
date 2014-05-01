@@ -10,6 +10,12 @@
     <form id="form1" runat="server">
     <div>
     
+        <asp:Label ID="label1" runat="server" Text="Forespørsler om ekstra tid på tasks"></asp:Label>
+        <br />
+    
+        <asp:GridView ID="gvTaskList" runat="server">
+        </asp:GridView>      
+    
     </div>
     </form>
 </body>
