@@ -30,8 +30,8 @@
                         <asp:BoundField DataField="Brukte timer" HeaderText="Brukte timer"/>
                         <asp:BoundField DataField="Allokerte timer" HeaderText="Allokerte timer"/>
                         <asp:BoundField DataField="Ekstra timer" HeaderText="Ekstra timer"/>
-                        <asp:buttonfield buttontype="Button" text="Godkjenn" ItemStyle-Width="1%"/>
-                        <asp:buttonfield buttontype="Button" text="Ikke godkjenn" ItemStyle-Width="1%"/>
+                        <asp:buttonfield buttontype="Button" text="Godkjenn" CommandName="godkjenn" ItemStyle-Width="1%"/>
+                        <asp:buttonfield buttontype="Button" text="Ikke godkjenn" CommandName="ikkegodkjenn" ItemStyle-Width="1%"/>
                     </Columns>
                 </asp:GridView>   
     </div>
