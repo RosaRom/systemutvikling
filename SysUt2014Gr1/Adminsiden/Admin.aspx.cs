@@ -16,7 +16,7 @@ namespace Adminsiden
         private DBConnect db;
         private Boolean active = true;
         private DataTable table = new DataTable();
-        private string loggedInAsAdmin = "admin";
+        
 
         // Brukes i forhold til sorting og for å lagre view states når det er flere spørringer opp mot websiden
         private string GridViewSortDirection
@@ -27,7 +27,9 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {   //sjekker om bruker har rettigheter til å vise siden
-            if (Session["userLoggedIn"] == loggedInAsAdmin)
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "admin")
             {
                 db = new DBConnect();
                 if (!Page.IsPostBack)

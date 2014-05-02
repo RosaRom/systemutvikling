@@ -26,18 +26,27 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = new DBConnect();
+            string session = (string)Session["userLoggedIn"];
 
-            if (!Page.IsPostBack)
+            if (session == "teamMember" || session == "teamLeader" || session == "projectManager")
             {
-                taskID = 2;
-                Query();
-            }
+                db = new DBConnect();
 
-            if (ViewState["name"] != null)
-            {
-                backlogID = (string)ViewState["backlogID"];
+                if (!Page.IsPostBack)
+                {
+                    taskID = 2;
+                    Query();
+                }
+
+                if (ViewState["name"] != null)
+                {
+                    backlogID = (string)ViewState["backlogID"];
+                }
             }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+            }      
         }
         private void Query()
         {

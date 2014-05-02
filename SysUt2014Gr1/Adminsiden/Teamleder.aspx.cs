@@ -23,7 +23,9 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["userLoggedIn"] == "teamLeader")
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "teamLeader")
             {
                 if (!Page.IsPostBack)
                 {
