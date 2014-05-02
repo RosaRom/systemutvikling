@@ -9,7 +9,6 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
         <!--Kode fra .aspx filer kommer hit-->
     </asp:ContentPlaceHolder>
-
 </head>
 
 <body>
