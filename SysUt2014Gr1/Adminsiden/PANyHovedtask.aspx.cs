@@ -16,11 +16,22 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "projectManager")
             {
-                FillDropDownFase();
-                ProductBacklogID();
+                if (!Page.IsPostBack)
+                {
+                    FillDropDownFase();
+                    ProductBacklogID();
+                }
+
             }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+            } 
+           
         }
 
         private void FillDropDownFase()

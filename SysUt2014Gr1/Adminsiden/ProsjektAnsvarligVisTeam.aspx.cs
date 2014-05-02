@@ -17,13 +17,24 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = new DBConnect();
-            table = new DataTable();
+            string session = (string)Session["userLoggedIn"];
 
-            if (!Page.IsPostBack)
+            if (session == "projectManager")
             {
-                GetTeam();
+                db = new DBConnect();
+                table = new DataTable();
+
+                if (!Page.IsPostBack)
+                {
+                    GetTeam();
+                }
+
             }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+            } 
+           
         }
 
         //skal fjerne et medlem fra team/prosjekt

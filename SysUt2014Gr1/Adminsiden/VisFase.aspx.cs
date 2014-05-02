@@ -26,14 +26,16 @@ namespace Adminsiden
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (Session["userLoggedIn"] == "teamMember" || Session["userLoggedIn"] == "teamLeader" || Session["userLoggedIn"] == "projectManager")
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "teamMember" || session == "teamLeader" || session == "projectManager")
             {
                 if (!Page.IsPostBack)
                 {
                     PopulateBasicInfo();
                     PopulateHoursAndFinishedTasks();
                     FillGridView();
-                    PopulateChart();
+                   // PopulateChart();
                 }
             }
             else

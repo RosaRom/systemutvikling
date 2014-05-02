@@ -12,8 +12,8 @@ namespace Adminsiden
     public partial class VisTeam : System.Web.UI.Page
     {
         //int projectID = Convert.ToInt16(Session["projectID"]);
-        int projectID = 1; // må refereres via session
-        
+        int projectID = 2;
+
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
         DataTable dt_users = new DataTable();
@@ -44,11 +44,11 @@ namespace Adminsiden
             this.projectChart.Legends["Legend"].Enabled = true;
 
             //queries + datatable-assignment
-            string query = String.Format("SELECT * FROM TimeSheet WHERE projectID = {0}", projectID);
+            string query = String.Format("SELECT * FROM TimeSheet WHERE projectID = 1");
             chartTable = db.getAll(query);
-            string query2 = String.Format("SELECT phaseFromDate, phaseToDate FROM Fase WHERE projectID = {0}", projectID);
+            string query2 = String.Format("SELECT phaseFromDate, phaseToDate FROM Fase WHERE projectID = 1");
             phaseDateToFromTable = db.getAll(query2);
-            string query3 = String.Format("SELECT hoursAllocated FROM Task WHERE phaseID IN (SELECT phaseID FROM Fase WHERE projectID = {0})", projectID);
+            string query3 = String.Format("SELECT hoursAllocated FROM Task WHERE phaseID IN (SELECT phaseID FROM Fase WHERE projectID = 1)");
             yAxis2Table = db.getAll(query3);
 
             // counts allocated hours from all the tasks from this project
@@ -99,7 +99,11 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            PopulateChart(); // populates the chart            
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "teamLeader")
+            {
+                  PopulateChart(); // populates the chart            
 
             string query = "SELECT * FROM Project, Team WHERE Project.projectID = " + projectID + " AND Team.teamID = Project.teamID";
             dt = db.getAll(query);
@@ -130,6 +134,14 @@ namespace Adminsiden
             else
             {
                 Label_warning.Text = "Noe har gått gale, vennligst velg prosjekt igjen.";
+            }
+        
+    
+            }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+
             }
         }
     }

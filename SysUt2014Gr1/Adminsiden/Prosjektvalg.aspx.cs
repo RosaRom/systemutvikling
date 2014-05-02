@@ -14,10 +14,21 @@ namespace Adminsiden
         private DBConnect db = new DBConnect();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "teamMember" || session == "teamLeader" || session == "projectManager")
             {
-                GetProject();
-            }        
+                if (!Page.IsPostBack)
+                {
+                    GetProject();
+                }        
+            }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+
+            }
+           
         }
         private void GetProject()
         {

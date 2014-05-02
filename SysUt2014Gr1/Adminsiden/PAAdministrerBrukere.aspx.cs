@@ -23,19 +23,30 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = new DBConnect();
-            if (!Page.IsPostBack)
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "projectManager")
             {
-                ViewState["active"] = active;
-                GetAllUsersReset();
-                GridViewInsertEmpty();
+                db = new DBConnect();
+                if (!Page.IsPostBack)
+                {
+                    ViewState["active"] = active;
+                    GetAllUsersReset();
+                    GridViewInsertEmpty();
+                }
+                else
+                {
+                    active = (Boolean)ViewState["active"];                  //sørger for å ta vare på booleanverdien til active mellom postback
+                    table = (DataTable)ViewState["table"];
+                    beskjed.Text = "|";
+                }
             }
             else
             {
-                active = (Boolean)ViewState["active"];                  //sørger for å ta vare på booleanverdien til active mellom postback
-                table = (DataTable)ViewState["table"];
-                beskjed.Text = "|";
+                Server.Transfer("Login.aspx", true);
+
             }
+            
         }
 
         //her hentes alle aktive brukere ut og vises i gridview
