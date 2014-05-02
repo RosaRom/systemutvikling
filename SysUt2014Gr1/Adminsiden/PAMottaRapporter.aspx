@@ -40,6 +40,7 @@
                             <asp:CommandField ShowDeleteButton="true" DeleteText="Les" />
                             <asp:BoundField DataField="deviationid" HeaderText="ID" />
                             <asp:BoundField DataField="deviationTitle" HeaderText="Overskrift" />
+                            <asp:BoundField DataField="timeAndDate" HeaderText="Dato og Tid" />
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -68,6 +69,7 @@
                             <asp:CommandField ShowDeleteButton="true" DeleteText="Les" />
                             <asp:BoundField DataField="deviationid" HeaderText="ID" />
                             <asp:BoundField DataField="deviationTitle" HeaderText="Overskrift" />
+                            <asp:BoundField DataField="timeAndDate" HeaderText="Dato og Tid" />
                         </Columns>
                     </asp:GridView>
                 </div> 
