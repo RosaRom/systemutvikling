@@ -17,7 +17,9 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["userLoggedIn"] == "projectManager")
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "projectManager")
             {
                 if (!Page.IsPostBack)
                 {

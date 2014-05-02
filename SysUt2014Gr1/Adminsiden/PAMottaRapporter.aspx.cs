@@ -14,10 +14,24 @@ namespace Adminsiden
         DataTable table = new DataTable();
 
         protected void Page_Load(object sender, EventArgs e)
-        { 
-            VisNyeKlager();
-            VisNyeRapporter();
-            TellNye();
+        {
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "projectManager")
+            {
+                if (!Page.IsPostBack)
+                {
+                    VisNyeKlager();
+                    VisNyeRapporter();
+                    TellNye();
+                }
+
+            }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+            } 
+          
         }
         
         /// <summary>
@@ -25,7 +39,7 @@ namespace Adminsiden
         /// </summary>
         private void VisNyeKlager()
         {
-            string query = "SELECT deviationID, deviationTitle, timeAndDate FROM deviationReport WHERE deviationType = 1 AND deviationState = 0 ORDER BY timeAndDate DESC";
+            string query = "SELECT deviationID, deviationTitle FROM deviationReport WHERE deviationType = 1 AND deviationState = 0";
             gvKlager.DataSource = db.AdminGetAllUsers(query);
             gvKlager.DataBind();
         }
@@ -35,7 +49,7 @@ namespace Adminsiden
         /// </summary>
         private void VisNyeRapporter()
         {
-            string query = "SELECT deviationID, deviationTitle, timeAndDate FROM deviationReport WHERE deviationType = 0 AND deviationState = 0 ORDER BY timeAndDate DESC";
+            string query = "SELECT deviationID, deviationTitle FROM deviationReport WHERE deviationType = 0 AND deviationState = 0";
             gvRapporter.DataSource = db.AdminGetAllUsers(query);
             gvRapporter.DataBind();
         }
@@ -45,7 +59,7 @@ namespace Adminsiden
         /// </summary>
         private void VisAlleKlager()
         {
-            string query = "SELECT deviationID, deviationTitle, timeAndDate FROM deviationReport WHERE deviationType = 1 ORDER BY timeAndDate DESC";
+            string query = "SELECT deviationID, deviationTitle FROM deviationReport WHERE deviationType = 1 ORDER BY deviationState DESC";
             gvKlager.DataSource = db.AdminGetAllUsers(query);
             gvKlager.DataBind();
         }
@@ -55,7 +69,7 @@ namespace Adminsiden
         /// </summary>
         private void VisAlleRapporter()
         {
-            string query = "SELECT deviationID, deviationTitle, timeAndDate FROM deviationReport WHERE deviationType = 0 ORDER BY timeAndDate DESC";
+            string query = "SELECT deviationID, deviationTitle FROM deviationReport WHERE deviationType = 0 ORDER BY deviationState DESC";
             gvRapporter.DataSource = db.AdminGetAllUsers(query);
             gvRapporter.DataBind();
         }

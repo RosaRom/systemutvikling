@@ -13,7 +13,7 @@ namespace Adminsiden
     {
         //int projectID = Convert.ToInt16(Session["projectID"]);
         int projectID = 2;
-        
+
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
         DataTable dt_users = new DataTable();
@@ -99,7 +99,11 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            PopulateChart(); // populates the chart            
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "teamLeader")
+            {
+                  PopulateChart(); // populates the chart            
 
             string query = "SELECT * FROM Project, Team WHERE Project.projectID = " + projectID + " AND Team.teamID = Project.teamID";
             dt = db.getAll(query);
@@ -130,6 +134,14 @@ namespace Adminsiden
             else
             {
                 Label_warning.Text = "Noe har gått gale, vennligst velg prosjekt igjen.";
+            }
+        
+    
+            }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+
             }
         }
     }

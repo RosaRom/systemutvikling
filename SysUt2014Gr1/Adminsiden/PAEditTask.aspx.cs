@@ -26,13 +26,22 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = new DBConnect();
+            string session = (string)Session["userLoggedIn"];
 
-            if (!Page.IsPostBack)
+            if (session == "projectManager")
             {
-                taskID = 12;
-                Query();
+                db = new DBConnect();
+
+                if (!Page.IsPostBack)
+                {
+                    taskID = 12;
+                    Query();
+                }
             }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+            } 
         }
         private void Query()
         {

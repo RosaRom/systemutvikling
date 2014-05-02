@@ -19,21 +19,31 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = new DBConnect();
-            calendarDateTo.StartDate = DateTime.Now;
-            if (!IsPostBack)
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "projectManager")
             {
-                tb_dateFrom.Text = DateTime.Today.ToString("dd-MM-yyyy");
-                tb_dateTo.Text = DateTime.Today.ToString("dd-MM-yyyy");
-                getTeams(); //Binder teams fra databasen til DropDownList ddl_Team
-                getMainProjects(); //Binder hovedprosjekt til DropDownList ddl_Hovedprosjekt
+                db = new DBConnect();
+                calendarDateTo.StartDate = DateTime.Now;
+                if (!IsPostBack)
+                {
+                    tb_dateFrom.Text = DateTime.Today.ToString("dd-MM-yyyy");
+                    tb_dateTo.Text = DateTime.Today.ToString("dd-MM-yyyy");
+                    getTeams(); //Binder teams fra databasen til DropDownList ddl_Team
+                    getMainProjects(); //Binder hovedprosjekt til DropDownList ddl_Hovedprosjekt
+                }
+                else
+                {
+                    if (ViewState["teamID"] != null)
+                        webClientTeamID = (int)ViewState["teamID"];
+                }
             }
             else
             {
-                if (ViewState["teamID"] != null)
-                    webClientTeamID = (int)ViewState["teamID"];
+                Server.Transfer("Login.aspx", true);
 
             }
+           
         }
 
         private void getTeams()

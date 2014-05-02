@@ -1,28 +1,26 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Adminsiden.login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Adminsiden.login" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <title>Administrator</title>
     <link rel="Stylesheet" type="text/css" href="css/Login.css" />
-</asp:Content>
 
-
-<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-
-    <form id="loginForm" runat="server">
-        <h3>
-        <asp:Label ID="UsernameLabel" Text="Username"  runat="server" />
-        </h3>
-        <h3>
-        <asp:TextBox ID="tbUsername" runat="server" />
-        </h3>
-        <h3>
-        <asp:Label ID="PasswordLabel" Text="Password" runat="server" />
-        </h3>
-        <asp:TextBox ID="tbPassword" TextMode="Password" runat="server" />
-        <br /><br />
-        <asp:Button ID="submit" Text="Submit" runat="server" OnClick="submit_Click" />
-        <br />
-        <asp:Label ID="LabelWarning" runat="server" ForeColor="#CC0000" Visible="False"></asp:Label>
-    </form>
-</asp:Content>
-
+</head>
+<body>
+      <div class="container">
+          <form class="form-signin" role="form" runat="server">
+            <div id="login">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <asp:TextBox ID="tbUsername" type="text" class="form-control" placeholder="Brukernavn" runat="server" />
+                <asp:TextBox ID="tbPassword" type="password" class="form-control" placeholder="Password" runat="server" />
+                <asp:Button  ID="submit" type="submit" OnClick="submit_Click" Text="Logg inn" class="btn btn-lg btn-primary btn-block" runat="server" />
+                <asp:Label ID="LabelWarning" runat="server" ForeColor="#CC0000" Visible="False"></asp:Label>
+            </div>
+          </form>
+       </div> <!-- /container -->
+</body>
+</html>

@@ -20,19 +20,30 @@ namespace Adminsiden
         {
             db = new DBConnect();
 
-            if (!Page.IsPostBack)
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "teamLeader" || session == "projectManager")
             {
-                projectID = Convert.ToInt32(Request.QueryString["id"]);
-                Refresh();
+                if (!Page.IsPostBack)
+                {
+                    projectID = Convert.ToInt32(Request.QueryString["id"]);
+                    Refresh();
+                }
+                else
+                {
+                    if (ViewState["name"] != null)
+                    {
+                        name = (string)ViewState["name"];
+                    }
+
+                }
             }
             else
             {
-                if (ViewState["name"] != null)
-                {
-                    name = (string)ViewState["name"];
-                }
+                Server.Transfer("Login.aspx", true);
 
             }
+            
          
 
         }
