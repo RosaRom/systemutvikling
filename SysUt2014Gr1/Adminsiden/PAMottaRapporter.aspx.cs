@@ -15,12 +15,23 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "projectManager")
             {
-                VisNyeKlager();
-                VisNyeRapporter();
-                TellNye();
+                if (!Page.IsPostBack)
+                {
+                    VisNyeKlager();
+                    VisNyeRapporter();
+                    TellNye();
+                }
+
             }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+            } 
+          
         }
         
         /// <summary>

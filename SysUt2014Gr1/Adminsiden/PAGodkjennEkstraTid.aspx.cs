@@ -17,7 +17,17 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Populate();
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "projectManager")
+            {
+                Populate();
+
+            }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+            } 
         }
 
         public void Populate()

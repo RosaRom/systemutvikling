@@ -18,8 +18,18 @@ namespace Adminsiden
         private DataTable dt = new DataTable();
 
         protected void Page_Load(object sender, EventArgs e)
-        {           
+        {
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "projectManager")
+            {
                 PopulateFields();            
+
+            }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+            } 
         }
 
         public void PopulateFields()
