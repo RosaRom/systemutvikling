@@ -28,7 +28,7 @@ namespace Adminsiden
         {
             string session = (string)Session["userLoggedIn"];
 
-            if (session == "teamMember" || session == "teamLeader" || session == "projectManager")
+            if (session == "teamLeader" || session == "projectManager")
             {
                 db = new DBConnect();
 

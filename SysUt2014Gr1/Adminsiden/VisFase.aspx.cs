@@ -35,7 +35,7 @@ namespace Adminsiden
                     PopulateBasicInfo();
                     PopulateHoursAndFinishedTasks();
                     FillGridView();
-                    PopulateChart();
+                   // PopulateChart();
                 }
             }
             else
