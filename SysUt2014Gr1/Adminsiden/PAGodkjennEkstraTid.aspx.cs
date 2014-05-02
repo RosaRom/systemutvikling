@@ -30,7 +30,9 @@ namespace Adminsiden
             ViewState["table"] = dt;
 
             gvTaskList.DataSource = dt;
-            gvTaskList.DataBind();       
+            gvTaskList.DataBind();
+       
+
                                            
             
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -50,6 +52,11 @@ namespace Adminsiden
                         break;
                 }
             }
+        }
+
+        protected void gvTaskList_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument.ToString());
         }
     }
 }
