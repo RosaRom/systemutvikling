@@ -6,13 +6,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-// har et problem, siden refresher ikke når man har gjort en forandring
-
 namespace Adminsiden
 {
     public partial class PAGodkjennEkstraTid : System.Web.UI.Page
     {
-        int projectID = 1;
+        int projectID = 1; // hardkodet, må referres
         
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
@@ -20,16 +18,16 @@ namespace Adminsiden
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];
-
+            
             if (session == "projectManager")
-            {
-                Populate();
+                {
+                    Populate();
+                }
+            else
+                {
+                    Server.Transfer("Login.aspx", true);
+                } 
             }
-           else
-            {
-                Server.Transfer("Login.aspx", true);
-            } 
-        }
 
         public void Populate()
         {
@@ -67,6 +65,7 @@ namespace Adminsiden
         {
             int index = Convert.ToInt32(e.CommandArgument.ToString());
             
+            // kjører om en "Godkjenn"-knapp blir trykket på
             if (e.CommandName == "godkjenn")
             {
                 int taskID = Convert.ToInt32(dt.Rows[index]["taskID"].ToString());
@@ -75,13 +74,18 @@ namespace Adminsiden
                 int newHoursAllocated = hoursAllocated + hoursExtra;
                 string query = String.Format("UPDATE Task SET hoursAllocated = {0}, hoursExtra = 0  WHERE taskID = {1}", newHoursAllocated, taskID);
                 db.InsertDeleteUpdate(query);
+                Populate();
             }
 
+            // kjører om en "Ikke godkjenn"-knapp blir trykket på
             if (e.CommandName == "ikkegodkjenn")
             {
                 int taskID = Convert.ToInt32(dt.Rows[index]["taskID"].ToString());
                 string query = String.Format("UPDATE Task SET hoursExtra = 0 WHERE taskID = {0}", taskID);
-                db.InsertDeleteUpdate(query); 
+                db.InsertDeleteUpdate(query);
+                Populate();
+ 
+                // send report til TL om at ønskede timer ikke ble godkjent
             }            
         }
     }
