@@ -16,6 +16,7 @@ namespace Adminsiden
         private DBConnect db;
         private Boolean active = true;
         private DataTable table = new DataTable();
+        DataTable tableNull = new DataTable();
         
 
         // Brukes i forhold til sorting og for å lagre view states når det er flere spørringer opp mot websiden
@@ -29,7 +30,7 @@ namespace Adminsiden
         {   //sjekker om bruker har rettigheter til å vise siden
             string session = (string)Session["userLoggedIn"];
 
-            if (session == "admin")
+            //if (session == "admin")
             {
                 db = new DBConnect();
                 if (!Page.IsPostBack)
@@ -45,9 +46,9 @@ namespace Adminsiden
                     beskjed.Text = "|";
                 }
             }
-            else
+            //else
             {
-                Server.Transfer("Login.aspx", true);
+            //    Server.Transfer("Login.aspx", true);
 
             }
         }
@@ -56,8 +57,13 @@ namespace Adminsiden
         private void GetAllUsersReset()
         {
             string queryActive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '1' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
-            
+
+            string queryNull = "SELECT userID, surname, firstname, username, phone, mail, teamID \"teamName\", groupName FROM User, UserGroup WHERE aktiv =  '1' AND User.teamID IS NULL  AND User.groupID = UserGroup.groupID";
+            tableNull = db.AdminGetAllUsers(queryNull);
+
             table = db.AdminGetAllUsers(queryActive);
+            table.Merge(tableNull, true, MissingSchemaAction.Ignore);
+
             ViewState["table"] = table;
 
             GridViewAdmin.DataSource = table;
@@ -75,6 +81,12 @@ namespace Adminsiden
         {
             string queryInactive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '0' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
             table = db.AdminGetAllUsers(queryInactive);
+
+            string queryNull = "SELECT userID, surname, firstname, username, phone, mail, teamID \"teamName\", groupName FROM User, UserGroup WHERE aktiv =  '0' AND User.teamID IS NULL  AND User.groupID = UserGroup.groupID";
+            tableNull = db.AdminGetAllUsers(queryNull);
+
+            table.Merge(tableNull, true, MissingSchemaAction.Ignore);
+
             ViewState["table"] = table;
 
             GridViewAdmin.DataSource = table;
@@ -332,6 +344,12 @@ namespace Adminsiden
             string filterStatement = String.Format("SELECT userID, surname, firstname, username, password, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE {0} LIKE '%{1}%' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID", FilterSearchDropdown.Text, FilterSearchTerms.Text);
 
             filterTable = db.AdminGetAllUsers(filterStatement);
+
+            //Henter ut brukere som ikke tilhører et team og merger tabellene
+            string queryNull = String.Format("SELECT userID, surname, firstname, username, phone, mail, teamID \"teamName\", groupName FROM User, UserGroup WHERE {0} LIKE '%{1}%' AND User.teamID IS NULL  AND User.groupID = UserGroup.groupID", FilterSearchDropdown.Text, FilterSearchTerms.Text);
+            tableNull = db.AdminGetAllUsers(queryNull);
+
+            filterTable.Merge(tableNull, true, MissingSchemaAction.Ignore);
 
             if (filterTable.Rows.Count > 0) //Hvis søkevilkåret gir resultater
             {
