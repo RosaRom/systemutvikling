@@ -101,7 +101,10 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\AdminStyle.css" />
     <Content Include="Bruker.aspx" />
-    <Content Include="Bootstrap.Master" />
+    <Content Include="Masterpages\Teamleder.Master" />
+    <Content Include="Masterpages\Bruker.Master" />
+    <Content Include="Masterpages\Prosjektansvarlig.Master" />
+    <Content Include="Masterpages\Admin.Master" />
     <None Include="Properties\PublishProfiles\SysUt.pubxml" />
     <None Include="Properties\PublishProfiles\tord.pubxml" />
     <None Include="Resources\MorildData.png" />
@@ -164,12 +167,33 @@
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Bootstrap.Master.cs">
-      <DependentUpon>Bootstrap.Master</DependentUpon>
+    <Compile Include="Masterpages\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Bootstrap.Master.designer.cs">
-      <DependentUpon>Bootstrap.Master</DependentUpon>
+    <Compile Include="Masterpages\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Masterpages\Prosjektansvarlig.Master.cs">
+      <DependentUpon>Prosjektansvarlig.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Masterpages\Prosjektansvarlig.Master.designer.cs">
+      <DependentUpon>Prosjektansvarlig.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Masterpages\Bruker.Master.cs">
+      <DependentUpon>Bruker.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Masterpages\Bruker.Master.designer.cs">
+      <DependentUpon>Bruker.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Masterpages\Teamleder.Master.cs">
+      <DependentUpon>Teamleder.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Masterpages\Teamleder.Master.designer.cs">
+      <DependentUpon>Teamleder.Master</DependentUpon>
     </Compile>
     <Compile Include="Bruker.aspx.cs">
       <DependentUpon>Bruker.aspx</DependentUpon>
