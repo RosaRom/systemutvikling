@@ -12,6 +12,20 @@ namespace Adminsiden
     public partial class Prosjektvalg : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            String userLoggedIn = (String)Session["userLoggedIn"];
+
+            if(userLoggedIn == "teamMember")
+                this.MasterPageFile = "~/Masterpages/Bruker.Master";
+
+            else if (userLoggedIn == "teamLeader")
+                this.MasterPageFile = "~/Masterpages/Teamleder.Master";
+
+            else
+                this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];

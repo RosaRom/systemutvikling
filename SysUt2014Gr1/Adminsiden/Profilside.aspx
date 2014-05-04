@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Profilside.aspx.cs" Inherits="Adminsiden.Profilside" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Masterpages/Bruker.Master" AutoEventWireup="true" CodeBehind="Profilside.aspx.cs" Inherits="Adminsiden.Profilside" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
