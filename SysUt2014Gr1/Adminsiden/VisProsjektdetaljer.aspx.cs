@@ -11,6 +11,24 @@ namespace Adminsiden
 {
     public partial class VisTeam : System.Web.UI.Page
     {
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            String userLoggedIn = (String)Session["userLoggedIn"];
+
+            if (userLoggedIn == "teamMember")
+                this.MasterPageFile = "~/Masterpages/Bruker.Master";
+
+            else if (userLoggedIn == "teamLeader")
+                this.MasterPageFile = "~/Masterpages/Teamleder.Master";
+
+            else if (userLoggedIn == "admin")
+                this.MasterPageFile = "~/Masterpages/Admin.Master";
+
+            else
+                this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
+        }
+
         //int projectID = Convert.ToInt16(Session["projectID"]);
         int projectID = 2;
 
@@ -101,7 +119,7 @@ namespace Adminsiden
         {
             string session = (string)Session["userLoggedIn"];
 
-            if (session == "teamLeader")
+            if (session == "teamMember" || session == "teamLeader" || session == "projectManager")
             {
                   PopulateChart(); // populates the chart            
 

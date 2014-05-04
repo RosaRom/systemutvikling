@@ -12,6 +12,7 @@ namespace Adminsiden
     public partial class Prosjektvalg : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
+        string session;
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -23,12 +24,16 @@ namespace Adminsiden
             else if (userLoggedIn == "teamLeader")
                 this.MasterPageFile = "~/Masterpages/Teamleder.Master";
 
+            else if (userLoggedIn == "admin")
+                this.MasterPageFile = "~/Masterpages/Admin.Master";
+
             else
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            string session = (string)Session["userLoggedIn"];
+
+            session = (string)Session["userLoggedIn"];
 
             if (session == "teamMember" || session == "teamLeader" || session == "projectManager")
             {
@@ -40,13 +45,10 @@ namespace Adminsiden
             else
             {
                 Server.Transfer("Login.aspx", true);
-
             }
-           
         }
         private void GetProject()
         {
-            
             string query = "SELECT projectID, projectName, projectDescription FROM Project";
             GridViewProject.DataSource = db.getAll(query);
             GridViewProject.DataBind();
@@ -56,7 +58,12 @@ namespace Adminsiden
             int index = Convert.ToInt32(e.CommandArgument.ToString());
             int projectID = Convert.ToInt32(GridViewProject.Rows[index].Cells[1].Text);
             Session["projectID"] = projectID;
-            Server.Transfer("Bruker.aspx", true);
+
+            if (session == "teamMember" || session == "projectManager")
+                Server.Transfer("Bruker.aspx", true);
+
+            else
+                Server.Transfer("Teamleder.aspx", true);
         }
   
     }

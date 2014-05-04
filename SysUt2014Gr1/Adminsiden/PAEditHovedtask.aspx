@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="PAEditHovedtask.aspx.cs" Inherits="Adminsiden.PAEditHovedtask" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PAEditHovedtask.aspx.cs" Inherits="Adminsiden.PAEditHovedtask" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Rediger task</title>

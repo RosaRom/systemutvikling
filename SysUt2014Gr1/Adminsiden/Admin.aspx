@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/Masterpages/Bruker.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Adminsiden.Admin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Adminsiden.Admin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Administrator</title>

@@ -16,7 +16,23 @@ namespace Adminsiden
         private DBConnect db;
         private Boolean active = true;
         private DataTable table = new DataTable();
-        
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            String userLoggedIn = (String)Session["userLoggedIn"];
+
+            if (userLoggedIn == "teamMember")
+                this.MasterPageFile = "~/Masterpages/Bruker.Master";
+
+            else if (userLoggedIn == "teamLeader")
+                this.MasterPageFile = "~/Masterpages/Teamleder.Master";
+
+            else if (userLoggedIn == "admin")
+                this.MasterPageFile = "~/Masterpages/Admin.Master";
+
+            else
+                this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
+        }
 
         // Brukes i forhold til sorting og for å lagre view states når det er flere spørringer opp mot websiden
         private string GridViewSortDirection
