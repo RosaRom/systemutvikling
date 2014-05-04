@@ -26,13 +26,22 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = new DBConnect();
+            string session = (string)Session["userLoggedIn"];
 
-            if (!Page.IsPostBack)
+            if (session == "projectManager")
             {
-                taskID = 12;
-                Query();
+                db = new DBConnect();
+
+                if (!Page.IsPostBack)
+                {
+                    taskID = 12;
+                    Query();
+                }
             }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+            } 
         }
         private void Query()
         {
@@ -112,7 +121,7 @@ namespace Adminsiden
                 // temp2 = orginale allokerte timer
                 // temp3 = forskjellen mellom dem (150 nytt estimat - 100 orginlt estimat = 50 ekstra timer)
 
-                string queryDeviationReport = String.Format("INSERT INTO deviationReport VALUES(null, 'Timeforandring på task', 'Timeantallet på task: \"{0}\" forandres fra {1} timer til {2} timer', 0, 0)", tbTaskName.Text, temp2, temp1);
+                string queryDeviationReport = String.Format("INSERT INTO deviationReport VALUES(null, 'Timeforandring på task', 'Timeantallet på task: \"{0}\" forandres fra {1} timer til {2} timer', 0, 0, now())", tbTaskName.Text, temp2, temp1);
                 db.InsertDeleteUpdate(queryDeviationReport);
             }
         }

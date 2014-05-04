@@ -19,10 +19,20 @@ namespace Adminsiden
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "projectManager")
             {
-                PopulateFields();
+                if (!Page.IsPostBack)
+                {
+                    PopulateFields();
+                }   
             }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+            }
+          
         }
 
         public void PopulateFields()

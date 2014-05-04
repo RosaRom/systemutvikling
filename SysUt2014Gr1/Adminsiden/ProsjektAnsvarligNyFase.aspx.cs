@@ -30,38 +30,49 @@ namespace Adminsiden
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            lbError.Text = ""; // resetter error msg
-            String dateFrom = tbDateFrom.Text;
-            String dateTo = tbDateTo.Text;
+            string session = (string)Session["userLoggedIn"];
 
-            try
+            if (session == "projectManager")
             {
-                // sjekker om noen inputfelt (med unntak av tbDescription) er tomme       
-                if (tbPhasename.Text != "" && tbDateFrom.Text != "" && tbDateTo.Text != "")
+                lbError.Text = ""; // resetter error msg
+                String dateFrom = tbDateFrom.Text;
+                String dateTo = tbDateTo.Text;
+
+                try
                 {
-                    phaseDateFrom = Convert.ToDateTime(dateFrom);
-                    phaseDateTo = Convert.ToDateTime(dateTo);
-
-                    // sjekk for om phaseDateTo < phaseDateFrom (så du ikke kan sette sluttdato tidligere enn startdato)
-                    if (phaseDateFrom < phaseDateTo)
+                    // sjekker om noen inputfelt (med unntak av tbDescription) er tomme       
+                    if (tbPhasename.Text != "" && tbDateFrom.Text != "" && tbDateTo.Text != "")
                     {
-                        // sjekker om tbDescription er tom, og varierer input til WriteData() ettersom phaseDescription skal kunne være NULL
-                        if (tbDescription.Text == "")
-                            WriteData(tbPhasename.Text, phaseDateFrom, phaseDateTo, "");
+                        phaseDateFrom = Convert.ToDateTime(dateFrom);
+                        phaseDateTo = Convert.ToDateTime(dateTo);
 
+                        // sjekk for om phaseDateTo < phaseDateFrom (så du ikke kan sette sluttdato tidligere enn startdato)
+                        if (phaseDateFrom < phaseDateTo)
+                        {
+                            // sjekker om tbDescription er tom, og varierer input til WriteData() ettersom phaseDescription skal kunne være NULL
+                            if (tbDescription.Text == "")
+                                WriteData(tbPhasename.Text, phaseDateFrom, phaseDateTo, "");
+
+                            else
+                                WriteData(tbPhasename.Text, phaseDateFrom, phaseDateTo, tbDescription.Text);
+                        }
                         else
-                            WriteData(tbPhasename.Text, phaseDateFrom, phaseDateTo, tbDescription.Text);
+                            throw new Exception("Til-dato kan ikke være før fra-dato.");
                     }
                     else
-                        throw new Exception("Til-dato kan ikke være før fra-dato.");
+                        throw new Exception("En fase må ha Fasenavn, fra- og til-dato.");
                 }
-                else
-                    throw new Exception("En fase må ha Fasenavn, fra- og til-dato.");
+                catch (Exception ex)
+                {
+                    lbError.Text = "" + ex.Message;
+                }
+             
             }
-            catch (Exception ex)
+            else
             {
-                lbError.Text = "" + ex.Message;
-            }
+                Server.Transfer("Login.aspx", true);
+            } 
+            
         }
         /*
                 protected void Disabled_DayRender(object sender, DayRenderEventArgs e)

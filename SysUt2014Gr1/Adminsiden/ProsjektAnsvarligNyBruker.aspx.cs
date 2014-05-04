@@ -16,14 +16,25 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = new DBConnect();
+            string session = (string)Session["userLoggedIn"];
 
-            if (!Page.IsPostBack)
+            if (session == "projectManager")
             {
-                GridViewInsertEmpty();
+                db = new DBConnect();
+
+                if (!Page.IsPostBack)
+                {
+                    GridViewInsertEmpty();
+                }
+                else
+                    beskjed.Text = "";
+
             }
             else
-                beskjed.Text = "";
+            {
+                Server.Transfer("Login.aspx", true);
+            } 
+          
         }
 
         protected DataTable DropDownBoxTeam()

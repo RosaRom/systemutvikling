@@ -16,17 +16,28 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "projectManager")
             {
-                getUsers();
-                getTeams();
-                fillGridView();
+                if (!Page.IsPostBack)
+                {
+                    getUsers();
+                    getTeams();
+                    fillGridView();
+                }
+                else
+                {
+                    if (ViewState["teamID"] != null)
+                        teamID = (int)ViewState["teamID"];
+                }
             }
             else
             {
-                if (ViewState["teamID"] != null)
-                teamID = (int)ViewState["teamID"];
+                Server.Transfer("Login.aspx", true);
+
             }
+           
         }
         private void getTeams()
         {

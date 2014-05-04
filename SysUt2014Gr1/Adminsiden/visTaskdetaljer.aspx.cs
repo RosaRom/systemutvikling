@@ -16,7 +16,13 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //int taskID = 3; //Denne skal byttes ut med Session["taskID"] når sidene henger sammen
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "teamMember" || session == "teamLeader" || session == "projectManager")
+            {
+                if (!Page.IsPostBack)
+                {
+                    //int taskID = 3; //Denne skal byttes ut med Session["taskID"] når sidene henger sammen
             int taskID = Convert.ToInt16(Request.QueryString["taskID"]);
 
             string query = "SELECT * FROM Task, Fase WHERE taskID = " + taskID + " AND Fase.phaseID = Task.phaseID";
@@ -106,6 +112,16 @@ namespace Adminsiden
             {
                 //Label_warning.Text = "Noe har gått gale, vennligst velg prosjekt igjen.";
             }
+        
+
+                }
+            }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+
+            }
+
         }
     }
 }
