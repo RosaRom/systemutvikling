@@ -30,7 +30,7 @@ namespace Adminsiden
         {   //sjekker om bruker har rettigheter til å vise siden
             string session = (string)Session["userLoggedIn"];
 
-            //if (session == "admin")
+            if (session == "admin")
             {
                 db = new DBConnect();
                 if (!Page.IsPostBack)
@@ -46,9 +46,9 @@ namespace Adminsiden
                     beskjed.Text = "|";
                 }
             }
-            //else
+            else
             {
-            //    Server.Transfer("Login.aspx", true);
+                Server.Transfer("Login.aspx", true);
 
             }
         }
