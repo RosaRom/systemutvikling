@@ -12,7 +12,7 @@ namespace Adminsiden
     {
         DBConnect db = new DBConnect();
         DataTable table = new DataTable();
-
+        
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -29,12 +29,12 @@ namespace Adminsiden
             else
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];
 
-            if (session == "projectManager")
+            //if (session == "projectManager")
             {
                 if (!Page.IsPostBack)
                 {
@@ -44,9 +44,9 @@ namespace Adminsiden
                 }
 
             }
-            else
+            //else
             {
-                Server.Transfer("Login.aspx", true);
+              //  Server.Transfer("Login.aspx", true);
             } 
           
         }
@@ -113,7 +113,7 @@ namespace Adminsiden
         /// <summary>
         /// Henter ut beskrivelsen til en rapport og legger teksten til i tekstboksen
         /// </summary>
-        /// <param name="_id"></param>
+        /// <param name="_id">Henter ut beskrivelse basert på id som kommer inn</param>
         private void HentBeskrivelse(string _id)
         {
             string query = "SELECT deviationDescription FROM deviationReport WHERE deviationID = " + _id;
