@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="OpprettProsjekt.aspx.cs" Inherits="Adminsiden.OpprettProsjekt" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OpprettProsjekt.aspx.cs" Inherits="Adminsiden.OpprettProsjekt" %>
 
 <%@ Register TagPrefix="asp" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 
@@ -64,7 +64,7 @@
     <form id="OpprettProsjekt" runat="server">
 
     <div id="regbruker" class="panel panel-primary" style="width:45%;">
-        <div class="panel-heading"><h4>Legg til bruker</h4></div>
+        <div class="panel-heading"><h4>Opprett prosjekt</h4></div>
         <div class="panel-body">
             <div id="textbox">
                 <asp:ToolkitScriptManager ID="ToolkitScriptManager" runat="server"

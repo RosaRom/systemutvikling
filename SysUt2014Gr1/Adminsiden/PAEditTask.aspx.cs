@@ -24,6 +24,23 @@ namespace Adminsiden
 
         private int taskID = 12; //bare satt en verdi
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            String userLoggedIn = (String)Session["userLoggedIn"];
+
+            if (userLoggedIn == "teamMember")
+                this.MasterPageFile = "~/Masterpages/Bruker.Master";
+
+            else if (userLoggedIn == "teamLeader")
+                this.MasterPageFile = "~/Masterpages/Teamleder.Master";
+
+            else if (userLoggedIn == "admin")
+                this.MasterPageFile = "~/Masterpages/Admin.Master";
+
+            else
+                this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];
@@ -121,7 +138,7 @@ namespace Adminsiden
                 // temp2 = orginale allokerte timer
                 // temp3 = forskjellen mellom dem (150 nytt estimat - 100 orginlt estimat = 50 ekstra timer)
 
-                string queryDeviationReport = String.Format("INSERT INTO deviationReport VALUES(null, 'Timeforandring på task', 'Timeantallet på task: \"{0}\" forandres fra {1} timer til {2} timer', 0, 0)", tbTaskName.Text, temp2, temp1);
+                string queryDeviationReport = String.Format("INSERT INTO deviationReport VALUES(null, 'Timeforandring på task', 'Timeantallet på task: \"{0}\" forandres fra {1} timer til {2} timer', 0, 0, now())", tbTaskName.Text, temp2, temp1);
                 db.InsertDeleteUpdate(queryDeviationReport);
             }
         }

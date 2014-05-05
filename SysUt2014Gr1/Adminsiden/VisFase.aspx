@@ -1,4 +1,4 @@
-﻿<%@d  Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/Bootstrap.Master" CodeBehind="VisFase.aspx.cs" Inherits="Adminsiden.VisFase" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeBehind="VisFase.aspx.cs" Inherits="Adminsiden.VisFase" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Vis Fase</title>

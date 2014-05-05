@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="ProsjektAnsvarligNyBruker.aspx.cs" Inherits="Adminsiden.ProsjektAnsvarligNyBruker" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProsjektAnsvarligNyBruker.aspx.cs" Inherits="Adminsiden.ProsjektAnsvarligNyBruker" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Legg til nye brukere</title>

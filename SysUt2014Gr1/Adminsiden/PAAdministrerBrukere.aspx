@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="PAAdministrerBrukere.aspx.cs" Inherits="Adminsiden.PAAdministrerBrukere" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PAAdministrerBrukere.aspx.cs" Inherits="Adminsiden.PAAdministrerBrukere" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Administrer brukere</title>

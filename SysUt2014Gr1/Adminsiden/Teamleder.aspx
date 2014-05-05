@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="True" CodeBehind="TeamLeder.aspx.cs" Inherits="Adminsiden.Teamleder" %>
+﻿<%@ Page Language="C#" AutoEventWireup="True" CodeBehind="TeamLeder.aspx.cs" Inherits="Adminsiden.Teamleder" %>
 
 <%@ Register TagPrefix="asp" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 

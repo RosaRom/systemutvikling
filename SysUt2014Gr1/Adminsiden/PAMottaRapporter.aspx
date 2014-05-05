@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="PAMottaRapporter.aspx.cs" Inherits="Adminsiden.PAMottaRapporter" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PAMottaRapporter.aspx.cs" Inherits="Adminsiden.PAMottaRapporter" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Avviksrapporter og Klager</title>
@@ -40,6 +40,7 @@
                             <asp:CommandField ShowDeleteButton="true" DeleteText="Les" />
                             <asp:BoundField DataField="deviationid" HeaderText="ID" />
                             <asp:BoundField DataField="deviationTitle" HeaderText="Overskrift" />
+                            <asp:BoundField DataField="timeAndDate" HeaderText="Dato og Tid" />
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -68,6 +69,7 @@
                             <asp:CommandField ShowDeleteButton="true" DeleteText="Les" />
                             <asp:BoundField DataField="deviationid" HeaderText="ID" />
                             <asp:BoundField DataField="deviationTitle" HeaderText="Overskrift" />
+                            <asp:BoundField DataField="timeAndDate" HeaderText="Dato og Tid" />
                         </Columns>
                     </asp:GridView>
                 </div> 

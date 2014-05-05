@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="OpprettTeam.aspx.cs" Inherits="Adminsiden.OpprettTeam" %>
+﻿<%@ Page Language="C#"   AutoEventWireup="true" CodeBehind="OpprettTeam.aspx.cs" Inherits="Adminsiden.OpprettTeam" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Opprett team</title>

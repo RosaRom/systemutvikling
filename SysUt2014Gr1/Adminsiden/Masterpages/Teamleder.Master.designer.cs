@@ -10,7 +10,7 @@
 namespace Adminsiden {
     
     
-    public partial class Bootstrap {
+    public partial class BootstrapTL {
         
         /// <summary>
         /// head control.
