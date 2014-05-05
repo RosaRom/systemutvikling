@@ -13,6 +13,7 @@ namespace Adminsiden
         private DBConnect db;
         private Boolean active = true;
         private DataTable table = new DataTable();
+        private DataTable tableNull = new DataTable();
 
         // Brukes i forhold til sorting og for å lagre view states når det er flere spørringer opp mot websiden
         private string GridViewSortDirection
@@ -71,6 +72,12 @@ namespace Adminsiden
         {
             string queryActive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '1' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID AND (User.groupID = 1 OR User.groupID = 2)";
 
+            string queryNull = "SELECT userID, surname, firstname, username, phone, mail, teamID \"teamName\", groupName FROM User, UserGroup WHERE aktiv =  '1' AND User.teamID IS NULL  AND User.groupID = UserGroup.groupID AND (User.groupID = 1 OR User.groupID = 2)";
+            tableNull = db.AdminGetAllUsers(queryNull);
+
+            table = db.AdminGetAllUsers(queryActive);
+            table.Merge(tableNull, true, MissingSchemaAction.Ignore);
+
             table = db.AdminGetAllUsers(queryActive);
             ViewState["table"] = table;
 
@@ -89,6 +96,11 @@ namespace Adminsiden
         {
             string queryInactive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '0' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID AND (User.groupID = 1 OR User.groupID = 2)";
             table = db.AdminGetAllUsers(queryInactive);
+
+            string queryNull = "SELECT userID, surname, firstname, username, phone, mail, teamID \"teamName\", groupName FROM User, UserGroup WHERE aktiv =  '0' AND User.teamID IS NULL  AND User.groupID = UserGroup.groupID AND (User.groupID = 1 OR User.groupID = 2)";
+            tableNull = db.AdminGetAllUsers(queryNull);
+
+            table.Merge(tableNull, true, MissingSchemaAction.Ignore);
             ViewState["table"] = table;
 
             GridViewAdmin.DataSource = table;

@@ -16,7 +16,7 @@ namespace Adminsiden
         private DBConnect db;
         private Boolean active = true;
         private DataTable table = new DataTable();
-        DataTable tableNull = new DataTable();
+        private DataTable tableNull = new DataTable();
         
 
         // Brukes i forhold til sorting og for å lagre view states når det er flere spørringer opp mot websiden
