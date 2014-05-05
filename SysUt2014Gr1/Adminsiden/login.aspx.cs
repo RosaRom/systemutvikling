@@ -43,7 +43,7 @@ namespace Adminsiden
                 switch (groupID)
                 {
                     case 1:
-                        Session["userLoggedIn"] = "teamMember";
+                        Session["userLoggedIn"] = "teamMember"; //testkommentar
                         Server.Transfer("Prosjektvalg.aspx", true);
                         break;
                     case 2:
