@@ -13,7 +13,7 @@ namespace Adminsiden
     public partial class Bruker : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
-        private int active = 0; //Denne må sittes under login, noe som ikke er skrevet enda. Hardkodet inntil videre.
+        private int active = 1; //Denne må sittes under login, noe som ikke er skrevet enda. Hardkodet inntil videre.
         private int TaskID;
         private int WorkplaceID;
 

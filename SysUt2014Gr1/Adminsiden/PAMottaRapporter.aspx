@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <form id="PAMottaRapporter" runat="server">
-        <div id="regbruker" class="panel panel-primary" style="width:50%;">
+        <div id="regbruker" class="panel panel-primary" style="width:90%;">
            <div class="panel-heading"><h4>Rapporter</h4></div>
             <div class="panel-body">
                 <div id="tekstboks">
@@ -21,7 +21,6 @@
                         <asp:Label ID="lbAntallNyeRapporter" runat="server" Text="0 nye"></asp:Label>
             
                         <div class="buttons">
-                            <br />
                             <asp:Button ID="btnNyeRapporter" runat="server" Text="Vis Nye" OnClick="btnNyeRapporter_Click" />
                             <asp:Button ID="btnAlleRapporter" runat="server" Text="Vis Alle" OnClick="btnAlleRapporter_Click" />
                         </div>
@@ -51,7 +50,6 @@
                         <asp:Label ID="lbAntallNyeKlager" runat="server" Text="0 nye"></asp:Label>
             
                         <div class="buttons">
-                            <br />
                             <asp:Button ID="btnNyeKlager" runat="server" Text="Vis Nye" OnClick="btnNyeKlager_Click" />
                             <asp:Button ID="btnAlleKlager" runat="server" Text="Vis Alle" OnClick="btnAlleKlager_Click" />
                         </div>

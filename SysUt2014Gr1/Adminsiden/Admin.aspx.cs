@@ -16,7 +16,15 @@ namespace Adminsiden
         private DBConnect db;
         private Boolean active = true;
         private DataTable table = new DataTable();
-        private DataTable tableNull = new DataTable();
+        DataTable tableNull = new DataTable();
+        
+
+        // Brukes i forhold til sorting og for å lagre view states når det er flere spørringer opp mot websiden
+        private string GridViewSortDirection
+        {
+            get { return ViewState["SortDirection"] as string ?? "DESC"; }
+            set { ViewState["SortDirection"] = value; }
+        }
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -33,13 +41,6 @@ namespace Adminsiden
 
             else
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
-        }
-
-        // Brukes i forhold til sorting og for å lagre view states når det er flere spørringer opp mot websiden
-        private string GridViewSortDirection
-        {
-            get { return ViewState["SortDirection"] as string ?? "DESC"; }
-            set { ViewState["SortDirection"] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e)

@@ -22,7 +22,7 @@
 
     <form id="form1" runat="server">
         <div id="regbruker" class="panel panel-primary" style="width:25%;">
-           <div class="panel-heading"><h4>Legg til bruker</h4></div>
+           <div class="panel-heading"><h4>Rediger task</h4></div>
             <div class="panel-body">
                     <br />
                     <asp:Label ID="Label3" runat="server" Text="Tasknavn"></asp:Label>
