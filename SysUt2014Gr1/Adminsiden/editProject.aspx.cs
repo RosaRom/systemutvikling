@@ -15,7 +15,7 @@ namespace Adminsiden
         private string query;
         private DataTable dataTable = new DataTable();
         private int projectID;
-        private string name = "test";
+        private string name = "test"; //hm
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
