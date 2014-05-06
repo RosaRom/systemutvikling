@@ -62,7 +62,8 @@
             </div>
             
             <div id="brukergrid" class="panel panel-primary" style="width:100%;">
-                <div class="panel-heading"><h4>Oversikt over alle brukere</h4></div>
+                <div class="panel-heading"><h4>Oversikt over alle brukere</h4><asp:Label ID="aktiveEllerDeaktiv" runat="server"></asp:Label></div>
+                
                 <div class="panel-body">
 
                     <div id="søkefelt">

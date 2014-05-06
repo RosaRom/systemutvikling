@@ -48,6 +48,7 @@ namespace Adminsiden
                 db = new DBConnect();
                 if (!Page.IsPostBack)
                 {
+                    aktiveEllerDeaktiv.Text = "Aktive brukere";
                     ViewState["active"] = active;
                     GetAllUsersReset();
                     GridViewInsertEmpty();
@@ -255,6 +256,7 @@ namespace Adminsiden
         //viser alle deaktiverte brukere
         protected void btnDeaktiverte_Click(object sender, EventArgs e)
         {
+            aktiveEllerDeaktiv.Text = "Deaktiverte brukere";
             active = false;
             ViewState["active"] = active;
             GetInactiveUsersReset();
@@ -263,6 +265,7 @@ namespace Adminsiden
         //viser aktive brukere
         protected void btnAktiv_Click(object sender, EventArgs e)
         {
+            aktiveEllerDeaktiv.Text = "Aktive brukere";
             active = true;
             ViewState["active"] = active;
             GetAllUsersReset();
