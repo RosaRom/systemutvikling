@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -38,7 +38,6 @@
                         <li><a href="PALeggTilTasks.aspx">Task</a></li>
                         <li><a href="PANyHovedtask.aspx">Hovedtask</a></li>
                         <li><a href="ProsjektAnsvarligNyBruker.aspx">Bruker</a></li>
-                        <li><a href="ProsjektAnsvarligNyFase.aspx">Fase</a></li>
                       </ul>
                     </li>
                     <li class="dropdown">
@@ -58,7 +57,12 @@
                         <li><a href="ProsjektAnsvarligVisTeam.aspx">Team</a></li>
                       </ul>
                     </li>
-                    <li><a href="LogOut.aspx">Logg ut</a></li>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="LogOut.aspx">Logg ut</a></</li>
+                    </ul>
+                    <br />
+                    <li><a href="Prosjektvalg.aspx">Prosjekt: <span class="label label-default"><asp:Label ID="Label_prosjekt" runat="server"></asp:Label></span></a></li>
+                    <li><a href="#">Fase: <span class="label label-default"><asp:Label ID="Label1" runat="server" Text="Temp Fase"></asp:Label></span></a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->

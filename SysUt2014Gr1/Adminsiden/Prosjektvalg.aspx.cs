@@ -14,22 +14,6 @@ namespace Adminsiden
         private DBConnect db = new DBConnect();
         string session;
 
-        protected void Page_PreInit(object sender, EventArgs e)
-        {
-            String userLoggedIn = (String)Session["userLoggedIn"];
-
-            if(userLoggedIn == "teamMember")
-                this.MasterPageFile = "~/Masterpages/Bruker.Master";
-
-            else if (userLoggedIn == "teamLeader")
-                this.MasterPageFile = "~/Masterpages/Teamleder.Master";
-
-            else if (userLoggedIn == "admin")
-                this.MasterPageFile = "~/Masterpages/Admin.Master";
-
-            else
-                this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
-        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -57,10 +41,16 @@ namespace Adminsiden
         {
             int index = Convert.ToInt32(e.CommandArgument.ToString());
             int projectID = Convert.ToInt32(GridViewProject.Rows[index].Cells[1].Text);
+            string projectNavn = Convert.ToString(GridViewProject.Rows[index].Cells[2].Text);
             Session["projectID"] = projectID;
+            Session["projectNavn"] = projectNavn;
+            
 
-            if (session == "teamMember" || session == "projectManager")
+            if (session == "teamMember")
                 Server.Transfer("Bruker.aspx", true);
+
+            else if (session == "projectManager")
+                Server.Transfer("PAAdministrerBrukere.aspx", true);
 
             else
                 Server.Transfer("Teamleder.aspx", true);
