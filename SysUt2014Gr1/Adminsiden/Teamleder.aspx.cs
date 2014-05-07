@@ -13,7 +13,7 @@ namespace Adminsiden
     public partial class Teamleder : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
-        private int active = 0; //Denne må sittes under login, noe som ikke er skrevet enda. Hardkodet inntil videre.
+        private int active = 1; //Denne må sittes under login, noe som ikke er skrevet enda. Hardkodet inntil videre.
         private int TaskID;
         private int WorkplaceID;
         private int userID = 19; // denne refererer til hvilken bruker som er logget inn (er hardkodet til 19, Ari for øyeblikket)
@@ -193,8 +193,6 @@ namespace Adminsiden
             lbTeamlederTransferred.Text = "Teamlederstatus overført";
 
             // kode for å tvangsutlogge bruker her
-            Session["userLoggedIn"] = "";
-            Server.Transfer("Login.aspx", true);
         }
     }
 }

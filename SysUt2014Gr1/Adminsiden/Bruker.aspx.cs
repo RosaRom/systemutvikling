@@ -13,10 +13,8 @@ namespace Adminsiden
     public partial class Bruker : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
-        private int active = 0; //Denne må sittes under login, noe som ikke er skrevet enda. Hardkodet inntil videre.
         private int TaskID;
         private int WorkplaceID;
-
         List<String> projectList = new List<string>();
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -137,6 +135,9 @@ namespace Adminsiden
 
             int projectID = Convert.ToInt32(Session["projectID"]);
             int userID = Convert.ToInt32(Session["userID"]);
+
+            int active = Convert.ToInt16(Session["aktiv"]);
+
 
             if (dateFromFormated != null && dateToFormated != null && userID != 0 && TaskID != 0 && WorkplaceID != 0 && active != 0 && projectID != 0)
             {

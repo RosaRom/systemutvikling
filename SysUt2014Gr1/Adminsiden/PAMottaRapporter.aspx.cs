@@ -12,7 +12,8 @@ namespace Adminsiden
     {
         DBConnect db = new DBConnect();
         DataTable table = new DataTable();
-
+        DataTable tempTable = new DataTable();
+        
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -29,7 +30,7 @@ namespace Adminsiden
             else
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];
@@ -38,6 +39,7 @@ namespace Adminsiden
             {
                 if (!Page.IsPostBack)
                 {
+                    //SjekkFaser();
                     VisNyeKlager();
                     VisNyeRapporter();
                     TellNye();
@@ -113,12 +115,40 @@ namespace Adminsiden
         /// <summary>
         /// Henter ut beskrivelsen til en rapport og legger teksten til i tekstboksen
         /// </summary>
-        /// <param name="_id"></param>
+        /// <param name="_id">Henter ut beskrivelse basert på id som kommer inn</param>
         private void HentBeskrivelse(string _id)
         {
             string query = "SELECT deviationDescription FROM deviationReport WHERE deviationID = " + _id;
             table = db.AdminGetAllUsers(query);
             informasjon.Text = table.Rows[0]["deviationDescription"].ToString();
+        }
+        
+        /// <summary>
+        /// Utkast til automatisk generering av rapport ved endt fase, ikke ferdig ennå
+        /// </summary>
+        private void SjekkFaser()
+        {
+            string query = "SELECT * FROM Fase";
+            table = db.AdminGetAllUsers(query);
+
+            foreach (DataRow row in table.Rows)
+            {
+                if ((DateTime.Now - Convert.ToDateTime(row["phaseToDate"].ToString())).TotalHours < 72 && (DateTime.Now - Convert.ToDateTime(row["phaseToDate"].ToString())).TotalHours > 0)
+                {
+                    string queryProsjekt = "SELECT projectName WHERE projectID = " + row["projectID"].ToString();
+                    tempTable = db.AdminGetAllUsers(queryProsjekt);
+
+                    string sjekkOverskrift = row["phaseName"].ToString() + " fra prosjekt " + tempTable.Rows[0]["projectName"].ToString();
+                    string querySjekkOverskrift = String.Format("SELECT COUNT(*) FROM deviationReport WHERE deviationTitle LIKE '{0}'", sjekkOverskrift);
+
+                    if (db.Count(querySjekkOverskrift) == 0)
+                    {
+
+
+                        string queryNyRapport = String.Format("INSERT INTO deviationReport VALUES(NULL, '{0}', '{1}', 0, 0)", sjekkOverskrift);
+                    }
+                }
+            }
         }
 
         /// <summary>

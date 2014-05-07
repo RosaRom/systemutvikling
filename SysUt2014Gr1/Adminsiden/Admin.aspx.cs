@@ -26,6 +26,23 @@ namespace Adminsiden
             set { ViewState["SortDirection"] = value; }
         }
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            String userLoggedIn = (String)Session["userLoggedIn"];
+
+            if (userLoggedIn == "teamMember")
+                this.MasterPageFile = "~/Masterpages/Bruker.Master";
+
+            else if (userLoggedIn == "teamLeader")
+                this.MasterPageFile = "~/Masterpages/Teamleder.Master";
+
+            else if (userLoggedIn == "admin")
+                this.MasterPageFile = "~/Masterpages/Admin.Master";
+
+            else
+                this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {   //sjekker om bruker har rettigheter til å vise siden
             string session = (string)Session["userLoggedIn"];
@@ -35,6 +52,7 @@ namespace Adminsiden
                 db = new DBConnect();
                 if (!Page.IsPostBack)
                 {
+                    aktiveEllerDeaktiv.Text = "Aktive brukere";
                     ViewState["active"] = active;
                     GetAllUsersReset();
                     GridViewInsertEmpty();
@@ -243,6 +261,7 @@ namespace Adminsiden
         //viser alle deaktiverte brukere
         protected void btnDeaktiverte_Click(object sender, EventArgs e)
         {
+            aktiveEllerDeaktiv.Text = "Deaktiverte brukere";
             active = false;
             ViewState["active"] = active;
             GetInactiveUsersReset();
@@ -251,6 +270,7 @@ namespace Adminsiden
         //viser aktive brukere
         protected void btnAktiv_Click(object sender, EventArgs e)
         {
+            aktiveEllerDeaktiv.Text = "Aktive brukere";
             active = true;
             ViewState["active"] = active;
             GetAllUsersReset();
