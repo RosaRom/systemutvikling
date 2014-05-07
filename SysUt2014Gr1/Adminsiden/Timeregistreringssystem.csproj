@@ -141,6 +141,7 @@
     <Content Include="PAMottaRapporter.aspx" />
     <Content Include="PANyHovedtask.aspx" />
     <Content Include="PAVisHovedtask.aspx" />
+    <Content Include="PickTask.aspx" />
     <Content Include="Profilside.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
     <Content Include="ProsjektAnsvarligNyBruker.aspx" />
@@ -301,6 +302,13 @@
     </Compile>
     <Compile Include="PAVisHovedtask.aspx.designer.cs">
       <DependentUpon>PAVisHovedtask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PickTask.aspx.cs">
+      <DependentUpon>PickTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PickTask.aspx.designer.cs">
+      <DependentUpon>PickTask.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profilside.aspx.cs">
       <DependentUpon>Profilside.aspx</DependentUpon>
