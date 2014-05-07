@@ -52,7 +52,7 @@ namespace Adminsiden
                         break;
                     case 3:
                         Session["userLoggedIn"] = "projectManager";
-                        Server.Transfer("ProsjektAnsvarlig.aspx", true);
+                        Server.Transfer("Prosjektvalg.aspx", true);
                         break;
                     case 4:
                         Session["userLoggedIn"] = "admin";

@@ -1,13 +1,17 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Prosjektvalg.aspx.cs" Inherits="Adminsiden.Prosjektvalg" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="Stylesheet" type="text/css" href="css/ProsjektvalgStyle.css" />
-</asp:Content>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+<head runat="server">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <title>Prosjektvalg</title>
+    <link rel="Stylesheet" type="text/css" href="css/ProsjektvalgStyle.css" />
+</head>
+<body>
     <form id="prosjektvalgForm" runat="server">
 
-        <div id="prosjektvalg" class="panel panel-primary" style="width:100%;">
+        <div id="prosjektvalg" class="panel panel-primary">
            <div class="panel-heading"><h4>Velg prosjekt</h4></div>
             <div class="panel-body">
                 <asp:GridView ID="GridViewProject" 
@@ -29,4 +33,5 @@
             </div>
         </div>
     </form>
-</asp:Content>
+</body>
+</html>
