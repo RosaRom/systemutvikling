@@ -127,7 +127,6 @@
     <Content Include="css\VisFase.css" />
     <Content Include="css\VisProsjektdetaljer.css" />
     <Content Include="css\VisTaskdetaljer.css" />
-    <Content Include="DummyPage.aspx" />
     <Content Include="EditProject.aspx" />
     <Content Include="LogOut.aspx" />
     <Content Include="PAAdministrerBrukere.aspx" />
@@ -204,13 +203,6 @@
     </Compile>
     <Compile Include="Bruker.cs" />
     <Compile Include="DBConnect.cs" />
-    <Compile Include="DummyPage.aspx.cs">
-      <DependentUpon>DummyPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DummyPage.aspx.designer.cs">
-      <DependentUpon>DummyPage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EditProject.aspx.cs">
       <DependentUpon>EditProject.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
