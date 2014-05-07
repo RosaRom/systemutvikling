@@ -102,7 +102,6 @@
     <Content Include="css\AdminStyle.css" />
     <Content Include="Bruker.aspx" />
     <Content Include="Masterpages\Teamleder.Master" />
-    <Content Include="Masterpages\Bruker.Master" />
     <Content Include="Masterpages\Prosjektansvarlig.Master" />
     <Content Include="Masterpages\Admin.Master" />
     <None Include="Properties\PublishProfiles\SysUt.pubxml" />
@@ -180,13 +179,6 @@
     </Compile>
     <Compile Include="Masterpages\Prosjektansvarlig.Master.designer.cs">
       <DependentUpon>Prosjektansvarlig.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Masterpages\Bruker.Master.cs">
-      <DependentUpon>Bruker.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Masterpages\Bruker.Master.designer.cs">
-      <DependentUpon>Bruker.Master</DependentUpon>
     </Compile>
     <Compile Include="Masterpages\Teamleder.Master.cs">
       <DependentUpon>Teamleder.Master</DependentUpon>
