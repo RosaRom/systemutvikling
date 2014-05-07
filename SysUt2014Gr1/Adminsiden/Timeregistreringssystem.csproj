@@ -132,7 +132,6 @@
     <Content Include="LogOut.aspx" />
     <Content Include="PAAdministrerBrukere.aspx" />
     <Content Include="PAEditHovedtask.aspx" />
-    <Content Include="PAEditTask.aspx" />
     <Content Include="EditTask.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
@@ -239,13 +238,6 @@
     </Compile>
     <Compile Include="PAEditHovedtask.aspx.designer.cs">
       <DependentUpon>PAEditHovedtask.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PAEditTask.aspx.cs">
-      <DependentUpon>PAEditTask.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PAEditTask.aspx.designer.cs">
-      <DependentUpon>PAEditTask.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditTask.aspx.cs">
       <DependentUpon>EditTask.aspx</DependentUpon>

@@ -12,6 +12,16 @@ namespace Adminsiden
     public partial class VisTeam : System.Web.UI.Page
     {
 
+        DBConnect db = new DBConnect();
+        DataTable dt = new DataTable();
+        DataTable dt_users = new DataTable();
+        DataTable dt_tasks = new DataTable();
+
+        // datatables for chart
+        DataTable chartTable = new DataTable();
+        DataTable phaseDateToFromTable = new DataTable();
+        DataTable yAxis2Table = new DataTable();
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -29,18 +39,7 @@ namespace Adminsiden
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
 
-        //int projectID = Convert.ToInt16(Session["projectID"]);
-        int projectID = 2;
 
-        DBConnect db = new DBConnect();
-        DataTable dt = new DataTable();
-        DataTable dt_users = new DataTable();
-        DataTable dt_tasks = new DataTable();
-
-        // datatables for chart
-        DataTable chartTable = new DataTable();
-        DataTable phaseDateToFromTable = new DataTable();
-        DataTable yAxis2Table = new DataTable();
 
         // har to problemer: 1) Viser ikke startdato på chart, kun dato for søndagen. 2) brukte timer er 1 dag forskjøvet
         public void PopulateChart()
@@ -117,6 +116,8 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            int projectID = Convert.ToInt16(Session["projectID"]);
+
             string session = (string)Session["userLoggedIn"];
 
             if (session == "teamMember" || session == "teamLeader" || session == "projectManager")
