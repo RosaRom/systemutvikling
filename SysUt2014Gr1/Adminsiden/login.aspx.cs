@@ -25,7 +25,7 @@ namespace Adminsiden
             string password = tbPassword.Text;
             string passwordIn = Encryption.Encrypt(password);
 
-            string query = String.Format("SELECT userID, password, groupID FROM User WHERE username = '{0}'", username);
+            string query = String.Format("SELECT userID, password, groupID, aktiv FROM User WHERE username = '{0}'", username);
             dt = db.getAll(query);
 
             if(dt != null && dt.Rows.Count > 0)
@@ -33,6 +33,8 @@ namespace Adminsiden
                 int userID = Convert.ToInt16(dt.Rows[0]["userID"]);
                 string userPW = Convert.ToString(dt.Rows[0]["password"]);
                 int groupID = Convert.ToInt16(dt.Rows[0]["groupID"]);
+                Session["aktiv"] = Convert.ToInt16(dt.Rows[0]["aktiv"]); //for å sjekke om brukeren er aktiv
+
                 Session["userID"] = userID;
 
                
@@ -40,10 +42,10 @@ namespace Adminsiden
                 if (passwordIn == userPW)
                 {
 
-                switch (groupID)
+                switch (groupID) //sjekker brukertype, for så å sende videre til rett form
                 {
                     case 1:
-                        Session["userLoggedIn"] = "teamMember"; //testkommentar
+                        Session["userLoggedIn"] = "teamMember"; 
                         Server.Transfer("Prosjektvalg.aspx", true);
                         break;
                     case 2:

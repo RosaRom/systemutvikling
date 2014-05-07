@@ -49,10 +49,11 @@ namespace Adminsiden
             {
                 if (!Page.IsPostBack)
                 {
-                    PopulateBasicInfo();
-                    PopulateHoursAndFinishedTasks();
-                    FillGridView();
-                    PopulateChart();
+//                    PopulateBasicInfo();
+//                    PopulateHoursAndFinishedTasks();
+//                    FillGridView();
+//                    PopulateChart();
+                    PopulateFaseValg();
                 }
             }
             else
@@ -63,6 +64,28 @@ namespace Adminsiden
          
         }
 
+        // populates combobox with phase selection
+        public void PopulateFaseValg()
+        {
+            string query = String.Format("SELECT * FROM Fase WHERE projectID = {0}", projectID);
+            ddlFaseValg.DataSource = db.getAll(query);
+            ddlFaseValg.DataTextField = "phaseName";
+            ddlFaseValg.DataValueField = "PhaseID";
+            ddlFaseValg.Items.Insert(0, new ListItem("<Velg fase>", "0"));
+            ddlFaseValg.DataBind();            
+        }
+
+        protected void ddlTeam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(ddlFaseValg.SelectedValue) != 0)
+                phaseID = Convert.ToInt32(ddlFaseValg.SelectedValue);
+
+            PopulateBasicInfo();
+            PopulateHoursAndFinishedTasks();
+            FillGridView();
+            PopulateChart();
+        }
+        
         public void PopulateChart()
         {            
             double usedHours = 0;

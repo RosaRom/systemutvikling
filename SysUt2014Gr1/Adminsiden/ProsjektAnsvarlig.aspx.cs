@@ -80,17 +80,14 @@ namespace Adminsiden
         {
             ViewState["projectID"] = Convert.ToInt32(projectList.SelectedValue);
             projectID = Convert.ToInt32(projectList.SelectedValue);
-
-            Response.Redirect(String.Format("editProject.aspx?id={0}", projectID));
+            Session["projectID"] = projectID;
+            Server.Transfer("EditProject.aspx", true);
         }
 
         protected void projectList_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
 
-        protected void btnOK_Click(object sender, EventArgs e)
-        {
-        }
 
         protected void btnArchiveProject_Click(object sender, EventArgs e)
         {
@@ -105,6 +102,12 @@ namespace Adminsiden
         protected void btnNewProject_Click(object sender, EventArgs e)
         {
             Server.Transfer("OpprettProsjekt.aspx", true);
+        }
+
+        protected void btnShowArchive_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("ViewProjectArchive.aspx", true);
+
         }
 
      
