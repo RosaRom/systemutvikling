@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Adminsiden
 {
-    public partial class ProsjektAnsvarlig : System.Web.UI.Page
+    public partial class TLEditProject : System.Web.UI.Page
     {
         string query;
         private DBConnect db;
@@ -61,10 +61,7 @@ namespace Adminsiden
                 Server.Transfer("Login.aspx", true);
 
             }
-
-       
         }
-
         private void FillProjectList()
         {
             query = "SELECT * FROM Project WHERE projectState = 1";
@@ -87,31 +84,5 @@ namespace Adminsiden
         protected void projectList_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
-
-
-        protected void btnArchiveProject_Click(object sender, EventArgs e)
-        {
-            projectID = Convert.ToInt32(projectList.SelectedValue);
-
-            query = String.Format("UPDATE Project SET projectState = 0 WHERE projectID = '{0}'",
-                Session["valgtID"]);
-            db.InsertDeleteUpdate(query);
-
-        }
-
-        protected void btnNewProject_Click(object sender, EventArgs e)
-        {
-            Server.Transfer("OpprettProsjekt.aspx", true);
-        }
-
-        protected void btnShowArchive_Click(object sender, EventArgs e)
-        {
-            Server.Transfer("ViewProjectArchive.aspx", true);
-
-        }
-
-     
-
-     
     }
 }

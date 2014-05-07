@@ -97,6 +97,7 @@
     <EmbeddedResource Include="Resources\UPARROW.GIF" />
     <EmbeddedResource Include="Resources\DOWNARROW.GIF" />
     <Content Include="Admin.aspx" />
+    <Content Include="BrukerBeOmExtraTimer.aspx" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\AdminStyle.css" />
@@ -141,6 +142,7 @@
     <Content Include="PAMottaRapporter.aspx" />
     <Content Include="PANyHovedtask.aspx" />
     <Content Include="PAVisHovedtask.aspx" />
+    <Content Include="PickTask.aspx" />
     <Content Include="Profilside.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
     <Content Include="ProsjektAnsvarligNyBruker.aspx" />
@@ -152,6 +154,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jQuery 2.1.0.min.js" />
     <Content Include="Teamleder.aspx" />
+    <Content Include="TLEditProject.aspx" />
     <Content Include="ViewProjectArchive.aspx" />
     <Content Include="VisFase.aspx" />
     <Content Include="VisProsjektdetaljer.aspx" />
@@ -165,6 +168,13 @@
     </Compile>
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BrukerBeOmExtraTimer.aspx.cs">
+      <DependentUpon>BrukerBeOmExtraTimer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrukerBeOmExtraTimer.aspx.designer.cs">
+      <DependentUpon>BrukerBeOmExtraTimer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Masterpages\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
@@ -301,6 +311,13 @@
     <Compile Include="PAVisHovedtask.aspx.designer.cs">
       <DependentUpon>PAVisHovedtask.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PickTask.aspx.cs">
+      <DependentUpon>PickTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PickTask.aspx.designer.cs">
+      <DependentUpon>PickTask.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Profilside.aspx.cs">
       <DependentUpon>Profilside.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -356,6 +373,13 @@
     </Compile>
     <Compile Include="Teamleder.aspx.designer.cs">
       <DependentUpon>Teamleder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TLEditProject.aspx.cs">
+      <DependentUpon>TLEditProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TLEditProject.aspx.designer.cs">
+      <DependentUpon>TLEditProject.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="ViewProjectArchive.aspx.cs">
