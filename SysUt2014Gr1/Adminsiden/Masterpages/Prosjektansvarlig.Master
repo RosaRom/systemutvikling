@@ -27,7 +27,6 @@
                 <ul class="nav navbar-nav">
                     <li><a href="Profilside.aspx">Profil</a></li>
                     <li><a href="PAAdministrerBrukere.aspx">Administrer brukere</a></li>
-                    <li><a href="PAGodkjennEkstraTid.aspx">Godkjenninger</a></li>
                     <li><a href="PAMottaRapporter.aspx">Rapporter</a></li>
                     <li><a href="ProsjektAnsvarlig.aspx">Prosjektansvarlig</a></li>
                     <li class="dropdown">
