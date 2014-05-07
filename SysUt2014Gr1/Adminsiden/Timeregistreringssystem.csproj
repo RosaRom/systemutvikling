@@ -152,6 +152,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jQuery 2.1.0.min.js" />
     <Content Include="Teamleder.aspx" />
+    <Content Include="TLEditProject.aspx" />
     <Content Include="ViewProjectArchive.aspx" />
     <Content Include="VisFase.aspx" />
     <Content Include="VisProsjektdetaljer.aspx" />
@@ -357,6 +358,13 @@
     </Compile>
     <Compile Include="Teamleder.aspx.designer.cs">
       <DependentUpon>Teamleder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TLEditProject.aspx.cs">
+      <DependentUpon>TLEditProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TLEditProject.aspx.designer.cs">
+      <DependentUpon>TLEditProject.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="ViewProjectArchive.aspx.cs">
