@@ -222,6 +222,8 @@
                 <br />
                 <asp:Button ID="btnAddProject" runat="server" OnClick="btnAddProject_Click" Text="Opprett prosjektet" />
                 <br />
+                <asp:Label ID="lblMessageOK" runat="server" Text=""></asp:Label>
+
             </div>
         </div>
     </div>
