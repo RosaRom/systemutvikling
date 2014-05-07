@@ -12,8 +12,9 @@ namespace Adminsiden
     public partial class PANyHovedtask : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
-        private string projectID = "2";                       //hentes fra tidligere side, muligens cookie
-
+        private int projectID;
+            
+           
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -53,6 +54,8 @@ namespace Adminsiden
 
         private void FillDropDownFase()
         {
+            projectID = Convert.ToInt16(Session["projectID"]);
+
             string query = "SELECT phaseName, phaseID FROM Fase WHERE projectID = " + projectID;
             DataTable table = new DataTable();
 
@@ -70,6 +73,8 @@ namespace Adminsiden
 
         protected void btnLagreHovedtask_Click(object sender, EventArgs e)
         {
+            projectID = Convert.ToInt16(Session["projectID"]);
+
             try{
                 string kategoriNavn = hovedtaskNavn.Text;
                 string productBacklogId = id.Text;
@@ -98,6 +103,8 @@ namespace Adminsiden
 
         private void ProductBacklogID()
         {
+            projectID = Convert.ToInt16(Session["projectID"]);
+
             string query = "SELECT COUNT(*) FROM TaskCategory WHERE projectID = " + projectID;
             int count = db.Count(query);
 

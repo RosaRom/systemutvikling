@@ -10,7 +10,7 @@ namespace Adminsiden
 {
     public partial class PALeggTilTasks : System.Web.UI.Page
     {
-        private int prosjektID = 2;                                                     //hentes fra forrige side
+        private int projectID;
         private DBConnect db = new DBConnect();
         private DataTable table = new DataTable();
         private DataTable categoryTable = new DataTable();
@@ -125,7 +125,9 @@ namespace Adminsiden
         //kjøres ved oppstart av siden, henter ut alle hovedtasks til en gitt projectID
         private void FillMainTasks()
         {
-            string queryMainTask = "SELECT taskCategoryID, taskCategoryName FROM TaskCategory WHERE projectID = " + prosjektID;
+            projectID = Convert.ToInt16(Session["projectID"]);
+
+            string queryMainTask = "SELECT taskCategoryID, taskCategoryName FROM TaskCategory WHERE projectID = " + projectID;
             table = db.AdminGetAllUsers(queryMainTask);
 
             DropDownMainTask.DataSource = table;
@@ -156,8 +158,10 @@ namespace Adminsiden
         /// <param name="subTask">Settes til true/false basert på om den skal være en subtask eller ikke</param>
         private void SetProductBacklogID(Boolean subTask)
         {
+            projectID = Convert.ToInt16(Session["projectID"]);
+
             string id = DropDownMainTask.SelectedValue.ToString();
-            string query = "SELECT productBacklogID FROM TaskCategory WHERE projectID = " + prosjektID + " AND taskCategoryID = " + id;
+            string query = "SELECT productBacklogID FROM TaskCategory WHERE projectID = " + projectID + " AND taskCategoryID = " + id;
             string queryCount = "SELECT COUNT(*) FROM Task WHERE taskCategoryID = " + id + " AND LENGTH(productBacklogID) = 3";
 
             table = db.AdminGetAllUsers(query);
@@ -195,7 +199,9 @@ namespace Adminsiden
         //henter ut alle faser til et gitt prosjekt
         private void FillDropDownFase()
         {
-            string query = "SELECT phaseName, phaseID FROM Fase WHERE projectID = " + prosjektID;
+            projectID = Convert.ToInt16(Session["projectID"]);
+
+            string query = "SELECT phaseName, phaseID FROM Fase WHERE projectID = " + projectID;
             DataTable table = new DataTable();
 
             try

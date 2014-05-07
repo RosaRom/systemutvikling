@@ -11,9 +11,9 @@ namespace Adminsiden
 {
     public partial class ProsjektAnsvarligVisTeam : System.Web.UI.Page
     {
-        DBConnect db;
-        int prosjektId = 2;                         //skal egentlig hentes fra valgt prosjekt på forrige side
-        DataTable table;
+        private DBConnect db;
+        private int projectID;
+        private DataTable table;
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -63,7 +63,9 @@ namespace Adminsiden
         //henter ut all teammedlemmer som tilhører et gitt prosjekt
         private void GetTeam()
         {
-            string query = String.Format("SELECT userID, firstname, surname, groupName, teamName FROM User, Team, Project, UserGroup WHERE User.groupID = UserGroup.groupID AND User.teamID = Team.teamID AND Project.teamID = Team.teamID AND projectID = {0} ORDER BY groupName DESC", prosjektId);
+            projectID = Convert.ToInt16(Session["projectID"]);
+
+            string query = String.Format("SELECT userID, firstname, surname, groupName, teamName FROM User, Team, Project, UserGroup WHERE User.groupID = UserGroup.groupID AND User.teamID = Team.teamID AND Project.teamID = Team.teamID AND projectID = {0} ORDER BY groupName DESC", projectID);
             table = db.AdminGetAllUsers(query);
 
             GridViewTeam.DataSource = table;

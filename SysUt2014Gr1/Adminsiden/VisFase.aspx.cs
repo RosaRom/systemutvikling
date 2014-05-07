@@ -12,7 +12,7 @@ namespace Adminsiden
     public partial class VisFase : System.Web.UI.Page
     {
         private int phaseID = 1; // hardcoded phase id, needs to be referred
-        private int projectID = 1; // hardcoded phase id, needs to be referred
+        private int projectID;
 
         private DBConnect db = new DBConnect();
         private DataTable dataTable = new DataTable();
@@ -67,6 +67,8 @@ namespace Adminsiden
         // populates combobox with phase selection
         public void PopulateFaseValg()
         {
+            projectID = Convert.ToInt16(Session["projectID"]);
+
             string query = String.Format("SELECT * FROM Fase WHERE projectID = {0}", projectID);
             ddlFaseValg.DataSource = db.getAll(query);
             ddlFaseValg.DataTextField = "phaseName";
@@ -102,6 +104,7 @@ namespace Adminsiden
             this.phaseChart.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = false;
             this.phaseChart.Legends.Add(new Legend("Legend"));
             this.phaseChart.Legends["Legend"].Enabled = true;
+            projectID = Convert.ToInt16(Session["projectID"]);
 
             //queries + datatables
             string query = String.Format("SELECT * FROM TimeSheet WHERE projectID = {0} AND state = 1", projectID);
@@ -175,7 +178,9 @@ namespace Adminsiden
 
         // fills lbHoursUsed, lbHoursAllocated, lbFinishedTaskNum and lbUnfinishedTaskNum
         public void PopulateHoursAndFinishedTasks()
-        {                    
+        {
+            projectID = Convert.ToInt16(Session["projectID"]);
+
             String query = String.Format("SELECT * FROM Task WHERE Task.phaseID IN (SELECT phaseID from Fase WHERE Fase.projectID = {1}) AND Task.PhaseID = {0}", phaseID, projectID);
             String countRowsQuery = String.Format("SELECT COUNT(*) FROM Task WHERE Task.phaseID IN (SELECT phaseID from Fase WHERE Fase.projectID = {1}) AND Task.PhaseID = {0} AND Task.state != 0", phaseID, projectID);
             String countCompletedRowsQuery = String.Format("SELECT COUNT(*) FROM Task WHERE Task.phaseID IN (SELECT phaseID from Fase WHERE Fase.projectID = {1}) AND Task.PhaseID = {0} AND Task.state = 2", phaseID, projectID);
@@ -218,6 +223,8 @@ namespace Adminsiden
 
         public void FillGridView()
         {
+            projectID = Convert.ToInt16(Session["projectID"]);
+
             string queryActive = String.Format("SELECT productBacklogID \"BacklogID\", taskName \"Tasknavn\", priority \"Prioritet\", description \"Beskrivelse\"," +
                 " hoursUsed \"Brukte timer\", hoursAllocated \"Allokerte timer\", state \"Status\"" +
                 " FROM Task WHERE Task.phaseID IN (SELECT phaseID from Fase WHERE Fase.projectID = {1}) AND Task.PhaseID = {0} AND Task.state != 0", phaseID, projectID);
