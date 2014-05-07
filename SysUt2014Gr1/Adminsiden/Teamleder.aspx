@@ -15,7 +15,7 @@
     </asp:ToolkitScriptManager>
 
     <div id="regbruker" class="panel panel-primary" style="width:50%;">
-        <div class="panel-heading"><h4>Teamleder timeregistrering</h4></div>
+        <div class="panel-heading"><h4>Timeregistrering</h4></div>
         <div class="panel-body">
                 Velg Dato:<br />
                 <asp:TextBox ID="TB_Date" runat="server"></asp:TextBox>

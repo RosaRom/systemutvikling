@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,7 +16,9 @@ namespace Adminsiden
         private string query;
         private DataTable dataTable = new DataTable();
         private int projectID;
-        private string name = "test"; //hm
+        private string projectDescription;
+        private string name;
+        private string state;
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -44,7 +47,10 @@ namespace Adminsiden
             {
                 if (!Page.IsPostBack)
                 {
-                    projectID = Convert.ToInt32(Request.QueryString["id"]);
+                    state = tbState.Text;
+                    name = tbProjectName.Text;
+                    projectDescription = tbProjectDescription.Text;
+                    projectID = Convert.ToInt16(Session["projectID"]);
                     Refresh();
                 }
                 else
@@ -52,18 +58,15 @@ namespace Adminsiden
                     if (ViewState["name"] != null)
                     {
                         name = (string)ViewState["name"];
+                        projectDescription = (string)ViewState["projectDescription"];
                     }
-
                 }
             }
             else
             {
                 Server.Transfer("Login.aspx", true);
-
             }
-            
-         
-
+          
         }
         private void EditProject()
         {
@@ -71,24 +74,32 @@ namespace Adminsiden
             query = String.Format("UPDATE Project SET projectName = '{0}', projectDescription = '{1}', projectState = '{2}', parentProjectID = '{3}' WHERE projectID = '{4}')",
                 tbProjectName.Text, tbProjectDescription.Text, "1", "0", "2");
              * */
-            
+            name = tbProjectName.Text;
+            projectID = Convert.ToInt16(Session["projectID"]);
+            projectDescription = tbProjectDescription.Text;
+            state = tbState.Text;
 
-             query = String.Format("UPDATE Project SET projectName = '{0}' WHERE projectID = '{1}'",
-                name, projectID);
+
+             query = String.Format("UPDATE Project SET projectName = '{0}', projectDescription = '{1}', projectState = '{2}' WHERE projectID = '{3}'",
+                name, projectDescription, state, projectID);
             db.InsertDeleteUpdate(query);
+            lblMessageOK.ForeColor = Color.Green;
+            lblMessageOK.Text = "Prosjekt endret, OK!";
 
         }
         private void Refresh()
         {
-            query = String.Format("SELECT * FROM Project WHERE projectID = '{0}'", projectID);// +listRef;
+            query = String.Format("SELECT * FROM Project WHERE projectID = '{0}'", projectID);
             dataTable = db.getAll(query);
 
             try
             {
                 tbProjectName.Text = dataTable.Rows[0]["projectName"].ToString();
                 tbProjectDescription.Text = dataTable.Rows[0]["projectDescription"].ToString();
-                ViewState["name"] = "teamTest";
-                ViewState["description"] = tbProjectDescription.Text;
+                ViewState["name"] = dataTable.Rows[0]["projectName"].ToString();
+                tbState.Text = dataTable.Rows[0]["projectState"].ToString();
+                ViewState["description"] = dataTable.Rows[0]["projectDescription"].ToString();
+                tbState.Text = dataTable.Rows[0]["projectState"].ToString();
             }
             catch (IndexOutOfRangeException e)
             {

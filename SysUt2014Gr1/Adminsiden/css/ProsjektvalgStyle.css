@@ -3,9 +3,10 @@ Body{
     background-color:lightgray;
 }
 
-#Logo{
-    text-align:center;
-    margin-top:2%;
+#prosjektvalg{
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 #GridViewProject {
     align-items:center;
@@ -15,7 +16,4 @@ Body{
     border-bottom-style: solid;
     background-color: white;
     width: 70%;
-}
-#header {
-    text-align:center;
 }

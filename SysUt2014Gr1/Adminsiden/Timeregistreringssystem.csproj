@@ -103,9 +103,9 @@
     <Content Include="css\AdminStyle.css" />
     <Content Include="Bruker.aspx" />
     <Content Include="Masterpages\Teamleder.Master" />
-    <Content Include="Masterpages\Bruker.Master" />
     <Content Include="Masterpages\Prosjektansvarlig.Master" />
     <Content Include="Masterpages\Admin.Master" />
+    <Content Include="Masterpages\Bruker.Master" />
     <None Include="Properties\PublishProfiles\SysUt.pubxml" />
     <None Include="Properties\PublishProfiles\tord.pubxml" />
     <None Include="Resources\MorildData.png" />
@@ -153,6 +153,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jQuery 2.1.0.min.js" />
     <Content Include="Teamleder.aspx" />
+    <Content Include="TLEditProject.aspx" />
     <Content Include="ViewProjectArchive.aspx" />
     <Content Include="VisFase.aspx" />
     <Content Include="VisProsjektdetaljer.aspx" />
@@ -181,19 +182,18 @@
     <Compile Include="Masterpages\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
+    <Compile Include="Masterpages\Bruker.Master.cs">
+      <DependentUpon>Bruker.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Masterpages\Bruker.Master.designer.cs">
+      <DependentUpon>Bruker.Master</DependentUpon>
+    </Compile>
     <Compile Include="Masterpages\Prosjektansvarlig.Master.cs">
       <DependentUpon>Prosjektansvarlig.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Masterpages\Prosjektansvarlig.Master.designer.cs">
       <DependentUpon>Prosjektansvarlig.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Masterpages\Bruker.Master.cs">
-      <DependentUpon>Bruker.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Masterpages\Bruker.Master.designer.cs">
-      <DependentUpon>Bruker.Master</DependentUpon>
     </Compile>
     <Compile Include="Masterpages\Teamleder.Master.cs">
       <DependentUpon>Teamleder.Master</DependentUpon>
@@ -365,6 +365,13 @@
     </Compile>
     <Compile Include="Teamleder.aspx.designer.cs">
       <DependentUpon>Teamleder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TLEditProject.aspx.cs">
+      <DependentUpon>TLEditProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TLEditProject.aspx.designer.cs">
+      <DependentUpon>TLEditProject.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="ViewProjectArchive.aspx.cs">
