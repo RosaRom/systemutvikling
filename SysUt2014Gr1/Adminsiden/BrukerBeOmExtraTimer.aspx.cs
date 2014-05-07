@@ -16,6 +16,23 @@ namespace Adminsiden
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            String userLoggedIn = (String)Session["userLoggedIn"];
+
+            if (userLoggedIn == "teamMember")
+                this.MasterPageFile = "~/Masterpages/Bruker.Master";
+
+            else if (userLoggedIn == "teamLeader")
+                this.MasterPageFile = "~/Masterpages/Teamleder.Master";
+
+            else if (userLoggedIn == "admin")
+                this.MasterPageFile = "~/Masterpages/Admin.Master";
+
+            else
+                this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             PopulateFaseValg();

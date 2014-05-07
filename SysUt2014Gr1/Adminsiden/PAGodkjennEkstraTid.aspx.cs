@@ -36,7 +36,7 @@ namespace Adminsiden
         {
             string session = (string)Session["userLoggedIn"];
             
-            if (session == "projectManager")
+            if (session == "teamLeader")
                 {
                     Populate();
                 }

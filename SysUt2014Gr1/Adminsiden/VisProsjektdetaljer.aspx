@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <div id="chart" class="panel panel-primary" style="width:835px; margin-left:16%" >
+        <div id="chart" class="panel panel-primary" style="width:835px; margin-left:8%" >
             <div class="panel-heading"><h4>grafisk fremstilling</h4></div>
             <div class="panel-body">
             <asp:Chart ID="projectChart" runat="server" Height="400px" Width="800px" BackColor="LightGray">
