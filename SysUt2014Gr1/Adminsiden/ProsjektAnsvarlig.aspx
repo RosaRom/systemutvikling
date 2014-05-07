@@ -17,12 +17,11 @@
                 </asp:DropDownList>
                 </p>
                 <p>
-                    <asp:Button ID="btnEditProject" runat="server" Text="Endre" Width="66px" OnClick="btnEditProject_Click" />
-                    <asp:Button ID="btnArchiveProject" runat="server" Text="Arkiver" Width="81px" OnClick="btnArchiveProject_Click" />
-                    <asp:Button ID="btnShowArchive" runat="server" Text="Vis arkiv" Width="90px" />
+                    <asp:Button ID="btnEditProject" runat="server" Text="Endre" Width="99px" OnClick="btnEditProject_Click" />
+                    <asp:Button ID="btnShowArchive" runat="server" Text="Vis arkiv" Width="101px" OnClick="btnShowArchive_Click" />
                 </p>
                 <p>
-                    <asp:Button ID="btnNewProject" runat="server" Height="35px" Text="Opprett prosjekt" Width="236px" OnClick="btnNewProject_Click" />
+                    <asp:Button ID="btnNewProject" runat="server" Height="35px" Text="Opprett prosjekt" Width="201px" OnClick="btnNewProject_Click" />
                 </p>
                 <p>
                     &nbsp;</p>
