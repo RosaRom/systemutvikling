@@ -11,6 +11,9 @@
            <div class="panel-heading"><h4>Fase informasjon</h4></div>
             <div class="panel-body">
                 <div>
+                    <asp:DropDownList ID="ddlFaseValg" runat="server" AppendDataBoundItems="True" AutoPostBack="True" OnSelectedIndexChanged="ddlTeam_SelectedIndexChanged"></asp:DropDownList>
+                </div>
+                <div>
                     <asp:Label ID="lbPhaseName" runat="server" Text="Fasenavn"></asp:Label>        
                     <br />
                 </div>
