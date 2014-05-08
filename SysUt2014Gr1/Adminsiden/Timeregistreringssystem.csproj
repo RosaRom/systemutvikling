@@ -98,6 +98,7 @@
     <EmbeddedResource Include="Resources\DOWNARROW.GIF" />
     <Content Include="Admin.aspx" />
     <Content Include="BrukerBeOmExtraTimer.aspx" />
+    <Content Include="BrukerVisTimeregistreringer.aspx" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\AdminStyle.css" />
@@ -174,6 +175,13 @@
     </Compile>
     <Compile Include="BrukerBeOmExtraTimer.aspx.designer.cs">
       <DependentUpon>BrukerBeOmExtraTimer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BrukerVisTimeregistreringer.aspx.cs">
+      <DependentUpon>BrukerVisTimeregistreringer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrukerVisTimeregistreringer.aspx.designer.cs">
+      <DependentUpon>BrukerVisTimeregistreringer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Masterpages\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
