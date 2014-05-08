@@ -133,7 +133,6 @@
     <Content Include="LogOut.aspx" />
     <Content Include="PAAdministrerBrukere.aspx" />
     <Content Include="PAEditHovedtask.aspx" />
-    <Content Include="PAEditTask.aspx" />
     <Content Include="EditTask.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
@@ -143,6 +142,7 @@
     <Content Include="PAMottaRapporter.aspx" />
     <Content Include="PANyHovedtask.aspx" />
     <Content Include="PAVisHovedtask.aspx" />
+    <Content Include="PickTask.aspx" />
     <Content Include="Profilside.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
     <Content Include="ProsjektAnsvarligNyBruker.aspx" />
@@ -247,13 +247,6 @@
     <Compile Include="PAEditHovedtask.aspx.designer.cs">
       <DependentUpon>PAEditHovedtask.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PAEditTask.aspx.cs">
-      <DependentUpon>PAEditTask.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PAEditTask.aspx.designer.cs">
-      <DependentUpon>PAEditTask.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EditTask.aspx.cs">
       <DependentUpon>EditTask.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -317,6 +310,13 @@
     </Compile>
     <Compile Include="PAVisHovedtask.aspx.designer.cs">
       <DependentUpon>PAVisHovedtask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PickTask.aspx.cs">
+      <DependentUpon>PickTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PickTask.aspx.designer.cs">
+      <DependentUpon>PickTask.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profilside.aspx.cs">
       <DependentUpon>Profilside.aspx</DependentUpon>

@@ -14,15 +14,14 @@ namespace Adminsiden
     public partial class EditTask : System.Web.UI.Page
     {
         private DBConnect db;
-        private int prosjektID = 2; //bare satt en verdi
         private string query, userQuery, saveQuery, taskQuery;
         private DataTable dataTable = new DataTable();
         private DataTable userTable = new DataTable();
         private DataTable taskTable = new DataTable();
         private DataTable backlogTable = new DataTable();
         private string backlogID;
+        private int taskID;
 
-        private int taskID = 2; //bare satt en verdi for debug
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -45,13 +44,13 @@ namespace Adminsiden
         {
             string session = (string)Session["userLoggedIn"];
 
-            if (session == "teamLeader")
+            if (session == "teamLeader" || session == "projectManager")
             {
                 db = new DBConnect();
 
                 if (!Page.IsPostBack)
                 {
-                    taskID = 2;
+                    taskID = Convert.ToInt16(Session["taskID"]);
                     Query();
                 }
 
@@ -67,6 +66,8 @@ namespace Adminsiden
         }
         private void Query()
         {
+            taskID = Convert.ToInt16(Session["taskID"]);
+
             query = String.Format("SELECT * FROM Task WHERE taskID = '{0}'", taskID);
             dataTable = db.getAll(query);
 
@@ -121,14 +122,17 @@ namespace Adminsiden
             SetProductBacklogID(true, (string)ViewState["taskID"]);
 
            saveQuery = String.Format("UPDATE Task SET taskName = '{0}', description = '{1}', priority = {2}, state = {3}, hoursAllocated = {4}, phaseID ={5}, productBacklogID = {6} WHERE taskID = {7}",
-               tbTaskName.Text, tbDescription.Text, tbPriority.Text, tbState.Text, tbAllocatedTime.Text, tbPhase.Text, (string)ViewState["backlogID"], taskID);
+               tbTaskName.Text, tbDescription.Text, tbPriority.Text, tbState.Text, tbAllocatedTime.Text, tbPhase.Text, (string)ViewState["backlogID"], Convert.ToInt16(Session["taskID"]));
             db.InsertDeleteUpdate(saveQuery);
         }
 
         private void SetProductBacklogID(Boolean subTask, String _id)
         {
             string id = _id;
-            string query = "SELECT productBacklogID FROM TaskCategory WHERE projectID = " + prosjektID + " AND taskCategoryID = 4"; //dummy
+            taskID = Convert.ToInt16(Session["taskID"]);
+            int projectID = Convert.ToInt16(Session["projectID"]);
+
+            string query = "SELECT productBacklogID FROM TaskCategory WHERE projectID = " + projectID + " AND taskCategoryID = 4"; //dummy
             string queryCount = "SELECT COUNT(*) FROM Task WHERE taskCategoryID = 13 AND LENGTH(productBacklogID) = 3";
 
             backlogTable = db.AdminGetAllUsers(query);
