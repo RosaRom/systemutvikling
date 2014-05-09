@@ -124,9 +124,9 @@ namespace Adminsiden
             }
         }
 
-       public void InsertTimeSheet(string _start, string _stop, int _userID, int _taskID, string _description, int _workplaceID, int _state, int _projectID)
+       public void InsertTimeSheet(string _start, string _stop, int _userID, int _taskID, string _description, int _workplaceID, int _state, int _projectID, int _permissionState)
         {
-            string query = "INSERT INTO TimeSheet (start, stop, userID, taskID, description, workplaceID, state, projectID) VALUES('" + _start + "', '" + _stop + "', '" + _userID + "', '" + _taskID + "', '" + _description + "', '" + _workplaceID + "', '" + _state + "', '" + _projectID + "')";
+            string query = "INSERT INTO TimeSheet (start, stop, userID, taskID, description, workplaceID, state, projectID, permissionState) VALUES('" + _start + "', '" + _stop + "', '" + _userID + "', '" + _taskID + "', '" + _description + "', '" + _workplaceID + "', '" + _state + "', '" + _projectID +"','" + _permissionState + "')";
                 
             if (this.OpenConnection() == true)
             {

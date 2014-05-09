@@ -47,7 +47,7 @@
                     </ul>
                     <br />
                     <li><a href="Prosjektvalg.aspx">Prosjekt: <span class="label label-default"><asp:Label ID="Label_prosjekt" runat="server"></asp:Label></span></a></li>
-                    <li><a href="#">Fase: <span class="label label-default"><asp:Label ID="Label1" runat="server" Text="Temp Fase"></asp:Label></span></a></li>
+                    <li><a href="#">Fase: <span class="label label-default"><asp:Label ID="Label_fase" runat="server" Text="Temp Fase"></asp:Label></span></a></li>
                 </ul> 
             </div>
             <!--/.nav-collapse -->

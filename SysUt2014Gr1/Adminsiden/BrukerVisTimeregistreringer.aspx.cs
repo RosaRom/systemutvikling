@@ -10,7 +10,8 @@ namespace Adminsiden
 {
     public partial class BrukerVisTimeregistreringer : System.Web.UI.Page
     {
-        private int userID = 44; //hardkodet, trenger session
+        private int userID;
+        private string session;
 
         private bool showActive = true;
         string query = "";        
@@ -18,12 +19,40 @@ namespace Adminsiden
         private DBConnect db = new DBConnect();
         private DataTable dt = new DataTable();
         private DataTable dtBacklog = new DataTable();
-        private DataTable dtTaskName = new DataTable();        
+        private DataTable dtTaskName = new DataTable();
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            String userLoggedIn = (String)Session["userLoggedIn"];
+
+            if (userLoggedIn == "teamMember")
+                this.MasterPageFile = "~/Masterpages/Bruker.Master";
+
+            else if (userLoggedIn == "teamLeader")
+                this.MasterPageFile = "~/Masterpages/Teamleder.Master";
+
+            else if (userLoggedIn == "admin")
+                this.MasterPageFile = "~/Masterpages/Admin.Master";
+
+            else
+                this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            lbWhatIsShowing.Text = "Aktive timeregistreringer";
-            Populate();
+            session = (string)Session["userLoggedIn"];
+
+            if (session == "teamMember")
+            {
+                userID = Convert.ToInt16(Session["userID"]);
+                lbWhatIsShowing.Text = "Aktive timeregistreringer";
+                Populate();
+            }
+            else
+            {
+                Server.Transfer("Login.aspx", true);
+            }
+
         }
         
         public void Populate()
