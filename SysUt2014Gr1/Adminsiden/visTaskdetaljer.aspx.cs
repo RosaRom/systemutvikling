@@ -40,17 +40,22 @@ namespace Adminsiden
                 if (!Page.IsPostBack)
                 {
                     //int taskID = 3; //Denne skal byttes ut med Session["taskID"] når sidene henger sammen
-            int taskID = Convert.ToInt16(Request.QueryString["taskID"]);
+                    int taskID = Convert.ToInt16(Request.QueryString["taskID"]);
+                    
+                    if(taskID == 0)
+                        taskID = Convert.ToInt16(Session["taskID"]);
+
+            //int taskID = Convert.ToInt16(Session["taskID"]);
 
             string query = "SELECT * FROM Task, Fase WHERE taskID = " + taskID + " AND Fase.phaseID = Task.phaseID";
             dt = db.getAll(query);
 
-            int projectID = Convert.ToInt16(dt.Rows[0]["projectID"]);
+            int projectID = Convert.ToInt16(Session["projectID"]);
 
             string query1 = "SELECT projectName FROM Project WHERE projectID =" + projectID;
             dt_project = db.getAll(query1);
 
-            Session["projectID"] = projectID; //Lager session for redirect til prosjektdetaljer
+            //Session["projectID"] = projectID; //Lager session for redirect til prosjektdetaljer
 
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -123,7 +128,6 @@ namespace Adminsiden
 
                 //prosjekt info
                 string projectName = Convert.ToString(dt_project.Rows[0]["projectName"]);
-                Link_pro.Text = projectName;
             }
             else
             {

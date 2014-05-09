@@ -42,10 +42,6 @@
                     <br />
                     <asp:Label ID="Label_faseTid" runat="server"></asp:Label><br />
                     <br />
-                    <br />
-                    <b>Tilhører prosjektet: </b><asp:linkbutton id="Link_pro" onclientclick="NavigateProject()" runat="Server" />
-                    <br />
-
                 </div>
             </div>    
         </div>

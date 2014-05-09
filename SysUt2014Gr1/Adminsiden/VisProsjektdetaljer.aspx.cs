@@ -127,9 +127,10 @@ namespace Adminsiden
             string query = "SELECT * FROM Project, Team WHERE Project.projectID = " + projectID + " AND Team.teamID = Project.teamID";
             dt = db.getAll(query);
             int teamID = Convert.ToInt16(dt.Rows[0]["teamID"]);
-
-            string query1 = "SELECT taskID, taskName, hoursUsed, HoursAllocated FROM Task WHERE TaskCategoryID IN (SELECT TaskCategoryID FROM TaskCategory WHERE ProjectID = " + projectID + ")";
-            dt_tasks = db.getAll(query1);
+            int phaseID = Convert.ToInt16(Session["phaseID"]);
+            //string query1 = "SELECT taskID, taskName, hoursUsed, HoursAllocated FROM Task WHERE TaskCategoryID IN (SELECT TaskCategoryID FROM TaskCategory WHERE ProjectID = " + projectID + ")";
+            string query3 = "SELECT taskID, taskName, hoursUsed, HoursAllocated FROM Task WHERE phaseID =" + phaseID;
+            dt_tasks = db.getAll(query3);
 
             string query2 = "SELECT  CONCAT (firstname, ' ',  surname) AS FullName FROM User WHERE teamID =" + teamID;
             dt_users = db.getAll(query2);
