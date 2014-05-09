@@ -19,7 +19,7 @@
                 <asp:Label ID="lbTaskCategoryName" runat="server" Text="Label"></asp:Label>
                 <br /><br />
                 <b>Beskrivelse</b><br />
-                <asp:TextBox id="taTaskCategoryDesc" TextMode="multiline" Columns="50" Rows="5" runat="server" />
+                <asp:TextBox id="taTaskCategoryDesc" TextMode="multiline" Columns="48" Rows="5" runat="server" />
             </div>
         </div>
     </form>

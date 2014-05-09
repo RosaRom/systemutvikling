@@ -147,7 +147,7 @@ namespace Adminsiden
 
                 // Denne må gjøres om slik at det er hvis en bruker registrerer for dager som er før den 
                 // gjeldende dato
-               if (TB_Date. > 1)
+                if (dateTo.Day > 1)
                 {
                     string query = String.Format("UPDATE TimeSheet SET permissionState = 1 WHERE userID = {0}", userID);
                     db.InsertDeleteUpdate(query);
