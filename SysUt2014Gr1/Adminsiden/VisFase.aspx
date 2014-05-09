@@ -11,21 +11,25 @@
            <div class="panel-heading"><h4>Fase informasjon</h4></div>
             <div class="panel-body">
                 <div>
+                    <asp:Label ID="Label5" runat="server" Text="Velg fase: "></asp:Label>
                     <asp:DropDownList ID="ddlFaseValg" runat="server" AppendDataBoundItems="True" AutoPostBack="True" OnSelectedIndexChanged="ddlTeam_SelectedIndexChanged"></asp:DropDownList>
                 </div>
                 <div>
-                    <asp:Label ID="lbPhaseName" runat="server" Text="Fasenavn"></asp:Label>        
                     <br />
+                    <asp:Label ID="lbPhaseName" runat="server" Text="Fasenavn"></asp:Label>
                 </div>
                 <br />
                 <div>
+                    <asp:Label ID="Label4" runat="server" Text="Uferdige tasks: "></asp:Label>
                     <asp:Label ID="lbDateFrom" runat="server" Text="Dato Fra"></asp:Label> - 
                     <asp:Label ID="lbDateTo" runat="server" Text="tilDato"></asp:Label>
                 </div>
                 <div>
+                    <asp:Label ID="Label3" runat="server" Text="Beskrivelse: "></asp:Label>
                     <asp:Label ID="lbDescription" runat="server" Text="Beskrivelse"></asp:Label>
                 </div>
                 <div>
+                    <asp:Label ID="Label2" runat="server" Text="Totale timer: "></asp:Label>
                     <asp:Label ID="lbHoursUsed" runat="server" Text="Totale timer brukt"></asp:Label> /         
                     <asp:Label ID="lbHoursAllocated" runat="server" Text="totale timer allokert"></asp:Label>
                 </div>
@@ -35,8 +39,9 @@
                 </div>
                 <div>
                     <asp:Label ID="lbUnfinishedTasks" runat="server" Text="Uferdige tasks: "></asp:Label>
-                    <asp:Label ID="lbUnfinishedTaskNum" runat="server" Text="tall"></asp:Label>
-                </div>     
+                    <asp:Label ID="lbUnfinishedTaskNum" runat="server" Text="tall"></asp:Label>                    
+                </div>
+                <br />     
                 <div>   
                     <asp:GridView ID="gvTaskList" runat="server"></asp:GridView>     
                 </div>

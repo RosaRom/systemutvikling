@@ -49,17 +49,20 @@ namespace Adminsiden
             {
                 if (!Page.IsPostBack)
                 {
-//                    PopulateBasicInfo();
-//                    PopulateHoursAndFinishedTasks();
-//                    FillGridView();
-//                    PopulateChart();
                     PopulateFaseValg();
+                    ddlFaseValg.SelectedIndex = 0;
+                    phaseID = Convert.ToInt32(ddlFaseValg.SelectedValue);
+                    
+                    PopulateBasicInfo();
+                    PopulateHoursAndFinishedTasks();
+                    FillGridView();
+                    PopulateChart();
+
                 }
             }
             else
             {
                 Server.Transfer("Login.aspx", true);
-
             }
          
         }
@@ -73,7 +76,7 @@ namespace Adminsiden
             ddlFaseValg.DataSource = db.getAll(query);
             ddlFaseValg.DataTextField = "phaseName";
             ddlFaseValg.DataValueField = "PhaseID";
-            ddlFaseValg.Items.Insert(0, new ListItem("<Velg fase>", "0"));
+//            ddlFaseValg.Items.Insert(0, new ListItem("<Velg fase>", "0"));
             ddlFaseValg.DataBind();            
         }
 

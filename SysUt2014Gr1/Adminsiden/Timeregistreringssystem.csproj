@@ -155,6 +155,7 @@
     <Content Include="Scripts\jQuery 2.1.0.min.js" />
     <Content Include="Teamleder.aspx" />
     <Content Include="TLEditProject.aspx" />
+    <Content Include="TL_godkjenning_av_timeregistreringer.aspx" />
     <Content Include="ViewProjectArchive.aspx" />
     <Content Include="VisFase.aspx" />
     <Content Include="VisProsjektdetaljer.aspx" />
@@ -192,6 +193,7 @@
     </Compile>
     <Compile Include="Masterpages\Bruker.Master.cs">
       <DependentUpon>Bruker.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Masterpages\Bruker.Master.designer.cs">
       <DependentUpon>Bruker.Master</DependentUpon>
@@ -380,6 +382,13 @@
     </Compile>
     <Compile Include="TLEditProject.aspx.designer.cs">
       <DependentUpon>TLEditProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TL_godkjenning_av_timeregistreringer.aspx.cs">
+      <DependentUpon>TL_godkjenning_av_timeregistreringer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TL_godkjenning_av_timeregistreringer.aspx.designer.cs">
+      <DependentUpon>TL_godkjenning_av_timeregistreringer.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="ViewProjectArchive.aspx.cs">

@@ -26,7 +26,7 @@
 
                 <div id="divBeskrivelse" class="nyHovedtask">
                     <label id="lbBeskrivelse">Beskrivelse</label>
-                    <asp:TextBox CssClass="beskrivelse" ID="txtBeskrivelse" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    <asp:TextBox CssClass="beskrivelse" ID="txtBeskrivelse" runat="server" TextMode="MultiLine" Columns="48" Rows="5"></asp:TextBox>
                 </div>
 
                 <div class="nyHovedtask">
