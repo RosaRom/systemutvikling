@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Adminsiden
 {
-    public partial class DummyPage : System.Web.UI.Page
+    public partial class BootstrapBruker : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

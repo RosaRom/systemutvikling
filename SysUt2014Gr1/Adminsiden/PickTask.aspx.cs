@@ -8,11 +8,13 @@ using System.Web.UI.WebControls;
 
 namespace Adminsiden
 {
-    public partial class ViewProjectArchive : System.Web.UI.Page
+    public partial class PickTask : System.Web.UI.Page
     {
 
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
+        DataTable dtTest = new DataTable();
+
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -47,28 +49,29 @@ namespace Adminsiden
 
         public void Populate()
         {
-            string query = "SELECT projectID, projectName \"Prosjektnavn\", projectDescription \"Beskrivelse\", projectState \"State\"," +
-              " parentProjectID \"Foreldre-ID\", teamID FROM Project WHERE projectState = 0";
+            int projectID = Convert.ToInt16(Session["projectID"]);
 
-            dt = db.getAll(query);
-            ViewState["table"] = dt;
+                string query = "SELECT taskID, taskCategoryID, taskName, description FROM Task";
 
-            gvTaskList.DataSource = dt;
-            gvTaskList.DataBind();
+                dt = db.getAll(query);
+                ViewState["table"] = dt;
 
+                gvTaskList.DataSource = dt;
+                gvTaskList.DataBind();
         }
 
         protected void gvTaskList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument.ToString());
 
-            //kjører når "Gjør aktiv" blir trykket for en item
-            if (e.CommandName == "aktiver")
+            //kjører når "Endre" blir trykket for en task
+            if (e.CommandName == "endre")
             {
-                int projectID = Convert.ToInt32(dt.Rows[index]["projectID"].ToString());
-                string query = String.Format("UPDATE Project SET projectState = 1 WHERE projectID = {0}",  projectID);
-                db.InsertDeleteUpdate(query);
-                Populate();        
+                int taskID = Convert.ToInt32(dt.Rows[index]["taskID"].ToString());
+
+                Session["taskID"] = taskID;
+                Server.Transfer("EditTask.aspx", true);
+              
             }
         }
     }

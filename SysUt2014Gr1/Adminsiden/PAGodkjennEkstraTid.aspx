@@ -12,7 +12,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <form id="form1" runat="server">
     <div id="prosjektvalg" class="panel panel-primary" style="width:100%;">
-           <div class="panel-heading"><h4>Velg prosjekt</h4></div>
+           <div class="panel-heading"><h4>Godkjenn timer</h4></div>
             <div class="panel-body">
                 <asp:Label ID="label1" runat="server" Text="Forespørsler om ekstra tid på tasks"></asp:Label>
                 <br />

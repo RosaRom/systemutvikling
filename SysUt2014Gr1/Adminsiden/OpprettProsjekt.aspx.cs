@@ -2,6 +2,7 @@ using Adminsiden;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -130,11 +131,14 @@ namespace Adminsiden
 
         protected void btnAddProject_Click(object sender, EventArgs e)
         {
-           // string query = String.Format("INSERT INTO Project (surname, firstname, password, username, phone, mail, teamID, groupID, aktiv) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})",
-             //           surname, firstname, password, username, phone, mail, teamID, groupID, "1");
+            string query = String.Format("INSERT INTO Project (projectName, projectDescription, projectState, parentProjectID, teamID) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')",
+                        tb_projectName.Text, "Beskrivelse", 1, 0, 16); //team og beskrivelse hardkodet
                  
                 
-            //db.InsertDeleteUpdate(query);
+            db.InsertDeleteUpdate(query);
+
+            lblMessageOK.ForeColor = Color.Green;
+            lblMessageOK.Text = "Prosjekt endret, OK!";
         }
     }
 }

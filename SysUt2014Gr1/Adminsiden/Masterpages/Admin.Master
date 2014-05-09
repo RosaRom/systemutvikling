@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -45,6 +45,6 @@
 
     </div>
     <script src="../Scripts/jQuery 2.1.0.min.js"></script>
-    <script src="../css/bootstrap.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
 </body>
 </html>

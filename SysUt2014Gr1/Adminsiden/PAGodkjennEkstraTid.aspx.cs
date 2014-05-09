@@ -10,7 +10,7 @@ namespace Adminsiden
 {
     public partial class PAGodkjennEkstraTid : System.Web.UI.Page
     {
-        int projectID = 1; // hardkodet, må referres
+        private int projectID;
         
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
@@ -36,7 +36,7 @@ namespace Adminsiden
         {
             string session = (string)Session["userLoggedIn"];
             
-            if (session == "projectManager")
+            if (session == "teamLeader")
                 {
                     Populate();
                 }
@@ -48,6 +48,8 @@ namespace Adminsiden
 
         public void Populate()
         {
+            projectID = Convert.ToInt16(Session["projectID"]);
+
             string query = String.Format("SELECT productBacklogID \"BacklogID\", taskName \"Tasknavn\", priority \"Prioritet\", description \"Beskrivelse\"," +
                 " hoursUsed \"Brukte timer\", hoursAllocated \"Allokerte timer\", hoursExtra \"Ekstra timer\", taskID, hoursAllocated, hoursExtra" + 
                 " FROM Task WHERE hoursExtra != 0 AND phaseID IN (SELECT phaseID FROM Fase WHERE projectID = {0})", projectID);

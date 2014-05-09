@@ -6,7 +6,7 @@
 <head runat="server">
 
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <title>Administrator</title>
+    <title>Login</title>
     <link rel="Stylesheet" type="text/css" href="css/Login.css" />
 
 </head>
@@ -14,7 +14,6 @@
       <div class="container">
           <form class="form-signin" role="form" runat="server">
             <div id="login">
-                <h2 class="form-signin-heading">Please sign in</h2>
                 <asp:TextBox ID="tbUsername" type="text" class="form-control" placeholder="Brukernavn" runat="server" />
                 <asp:TextBox ID="tbPassword" type="password" class="form-control" placeholder="Password" runat="server" />
                 <asp:Button  ID="submit" type="submit" OnClick="submit_Click" Text="Logg inn" class="btn btn-lg btn-primary btn-block" runat="server" />

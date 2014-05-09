@@ -97,14 +97,16 @@
     <EmbeddedResource Include="Resources\UPARROW.GIF" />
     <EmbeddedResource Include="Resources\DOWNARROW.GIF" />
     <Content Include="Admin.aspx" />
+    <Content Include="BrukerBeOmExtraTimer.aspx" />
+    <Content Include="BrukerVisTimeregistreringer.aspx" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\AdminStyle.css" />
     <Content Include="Bruker.aspx" />
     <Content Include="Masterpages\Teamleder.Master" />
-    <Content Include="Masterpages\Bruker.Master" />
     <Content Include="Masterpages\Prosjektansvarlig.Master" />
     <Content Include="Masterpages\Admin.Master" />
+    <Content Include="Masterpages\Bruker.Master" />
     <None Include="Properties\PublishProfiles\SysUt.pubxml" />
     <None Include="Properties\PublishProfiles\tord.pubxml" />
     <None Include="Resources\MorildData.png" />
@@ -127,12 +129,10 @@
     <Content Include="css\VisFase.css" />
     <Content Include="css\VisProsjektdetaljer.css" />
     <Content Include="css\VisTaskdetaljer.css" />
-    <Content Include="DummyPage.aspx" />
     <Content Include="EditProject.aspx" />
     <Content Include="LogOut.aspx" />
     <Content Include="PAAdministrerBrukere.aspx" />
     <Content Include="PAEditHovedtask.aspx" />
-    <Content Include="PAEditTask.aspx" />
     <Content Include="EditTask.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="OpprettProsjekt.aspx" />
@@ -142,6 +142,7 @@
     <Content Include="PAMottaRapporter.aspx" />
     <Content Include="PANyHovedtask.aspx" />
     <Content Include="PAVisHovedtask.aspx" />
+    <Content Include="PickTask.aspx" />
     <Content Include="Profilside.aspx" />
     <Content Include="ProsjektAnsvarlig.aspx" />
     <Content Include="ProsjektAnsvarligNyBruker.aspx" />
@@ -153,6 +154,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jQuery 2.1.0.min.js" />
     <Content Include="Teamleder.aspx" />
+    <Content Include="TLEditProject.aspx" />
     <Content Include="ViewProjectArchive.aspx" />
     <Content Include="VisFase.aspx" />
     <Content Include="VisProsjektdetaljer.aspx" />
@@ -167,6 +169,20 @@
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BrukerBeOmExtraTimer.aspx.cs">
+      <DependentUpon>BrukerBeOmExtraTimer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrukerBeOmExtraTimer.aspx.designer.cs">
+      <DependentUpon>BrukerBeOmExtraTimer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BrukerVisTimeregistreringer.aspx.cs">
+      <DependentUpon>BrukerVisTimeregistreringer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrukerVisTimeregistreringer.aspx.designer.cs">
+      <DependentUpon>BrukerVisTimeregistreringer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Masterpages\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -174,19 +190,19 @@
     <Compile Include="Masterpages\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
-    <Compile Include="Masterpages\Prosjektansvarlig.Master.cs">
-      <DependentUpon>Prosjektansvarlig.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Masterpages\Prosjektansvarlig.Master.designer.cs">
-      <DependentUpon>Prosjektansvarlig.Master</DependentUpon>
-    </Compile>
     <Compile Include="Masterpages\Bruker.Master.cs">
       <DependentUpon>Bruker.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Masterpages\Bruker.Master.designer.cs">
       <DependentUpon>Bruker.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Masterpages\Prosjektansvarlig.Master.cs">
+      <DependentUpon>Prosjektansvarlig.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Masterpages\Prosjektansvarlig.Master.designer.cs">
+      <DependentUpon>Prosjektansvarlig.Master</DependentUpon>
     </Compile>
     <Compile Include="Masterpages\Teamleder.Master.cs">
       <DependentUpon>Teamleder.Master</DependentUpon>
@@ -204,13 +220,6 @@
     </Compile>
     <Compile Include="Bruker.cs" />
     <Compile Include="DBConnect.cs" />
-    <Compile Include="DummyPage.aspx.cs">
-      <DependentUpon>DummyPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DummyPage.aspx.designer.cs">
-      <DependentUpon>DummyPage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EditProject.aspx.cs">
       <DependentUpon>EditProject.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -238,13 +247,6 @@
     </Compile>
     <Compile Include="PAEditHovedtask.aspx.designer.cs">
       <DependentUpon>PAEditHovedtask.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PAEditTask.aspx.cs">
-      <DependentUpon>PAEditTask.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PAEditTask.aspx.designer.cs">
-      <DependentUpon>PAEditTask.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditTask.aspx.cs">
       <DependentUpon>EditTask.aspx</DependentUpon>
@@ -310,6 +312,13 @@
     <Compile Include="PAVisHovedtask.aspx.designer.cs">
       <DependentUpon>PAVisHovedtask.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PickTask.aspx.cs">
+      <DependentUpon>PickTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PickTask.aspx.designer.cs">
+      <DependentUpon>PickTask.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Profilside.aspx.cs">
       <DependentUpon>Profilside.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -365,6 +374,13 @@
     </Compile>
     <Compile Include="Teamleder.aspx.designer.cs">
       <DependentUpon>Teamleder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TLEditProject.aspx.cs">
+      <DependentUpon>TLEditProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TLEditProject.aspx.designer.cs">
+      <DependentUpon>TLEditProject.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="ViewProjectArchive.aspx.cs">

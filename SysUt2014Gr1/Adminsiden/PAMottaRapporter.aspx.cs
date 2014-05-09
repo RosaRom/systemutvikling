@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Text;
 
 namespace Adminsiden
 {
@@ -12,7 +13,8 @@ namespace Adminsiden
     {
         DBConnect db = new DBConnect();
         DataTable table = new DataTable();
-
+        DataTable tempTable = new DataTable();
+        
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -29,7 +31,7 @@ namespace Adminsiden
             else
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];
@@ -38,6 +40,7 @@ namespace Adminsiden
             {
                 if (!Page.IsPostBack)
                 {
+                    SjekkFaser();
                     VisNyeKlager();
                     VisNyeRapporter();
                     TellNye();
@@ -113,12 +116,54 @@ namespace Adminsiden
         /// <summary>
         /// Henter ut beskrivelsen til en rapport og legger teksten til i tekstboksen
         /// </summary>
-        /// <param name="_id"></param>
+        /// <param name="_id">Henter ut beskrivelse basert på id som kommer inn</param>
         private void HentBeskrivelse(string _id)
         {
             string query = "SELECT deviationDescription FROM deviationReport WHERE deviationID = " + _id;
             table = db.AdminGetAllUsers(query);
             informasjon.Text = table.Rows[0]["deviationDescription"].ToString();
+        }
+
+        /// <summary>
+        /// Automatisk generering av rapport ved endt fase, sjekker alle som er ferdig for mindre enn 3 dager siden.
+        /// Sjekker om det allerede eksisterer en rapport, om ikke en finnes genereres en med alle uferdige tasks som var i fasen.
+        /// </summary>
+        private void SjekkFaser()
+        {
+            string query = "SELECT * FROM Fase";
+            table = db.AdminGetAllUsers(query);
+
+            foreach (DataRow row in table.Rows)
+            {
+                if ((DateTime.Now - Convert.ToDateTime(row["phaseToDate"].ToString())).TotalHours < 72 && (DateTime.Now - Convert.ToDateTime(row["phaseToDate"].ToString())).TotalHours > 1)
+                {
+                    string queryProsjekt = "SELECT projectName FROM Project WHERE projectID = " + row["projectID"].ToString();
+                    tempTable = db.AdminGetAllUsers(queryProsjekt);
+
+                    string sjekkOverskrift = row["phaseName"].ToString() + " i " + tempTable.Rows[0]["projectName"].ToString();
+                    string querySjekkOverskrift = String.Format("SELECT COUNT(*) FROM deviationReport WHERE deviationTitle LIKE '{0}'", sjekkOverskrift);
+
+                    if (db.Count(querySjekkOverskrift) == 0)
+                    {
+                        string uferdigeTasksQuery = String.Format("SELECT taskName FROM Task WHERE phaseID = {0} AND (state = 0 OR state = 1)", row["phaseID"]);
+                        tempTable = db.AdminGetAllUsers(uferdigeTasksQuery);
+
+                        StringBuilder tasks = new StringBuilder();
+                        tasks.Append("Uferdige tasks er: ");
+
+                        foreach (DataRow r in tempTable.Rows)
+                        {
+                            tasks.Append(r["taskName"].ToString() + ", ");
+                        }
+
+                        if (!tasks.ToString().Equals("Uferdige tasks er: "))
+                        {
+                            string queryNyRapport = String.Format("INSERT INTO deviationReport VALUES(null, '{0}', '{1}', 0, 0, now())", sjekkOverskrift, tasks.ToString());
+                            db.InsertDeleteUpdate(queryNyRapport);
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>

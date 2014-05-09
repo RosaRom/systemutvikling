@@ -11,7 +11,7 @@ namespace Adminsiden
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Label_prosjekt.Text = (string)Session["projectNavn"];
         }
     }
 }

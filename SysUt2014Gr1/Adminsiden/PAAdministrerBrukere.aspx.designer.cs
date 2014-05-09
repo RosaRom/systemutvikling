@@ -40,6 +40,15 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.Label beskjed;
         
         /// <summary>
+        /// aktiveEllerDeaktiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label aktiveEllerDeaktiv;
+        
+        /// <summary>
         /// FilterSearchTerms control.
         /// </summary>
         /// <remarks>
