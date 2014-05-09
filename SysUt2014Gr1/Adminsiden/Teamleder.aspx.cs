@@ -194,5 +194,10 @@ namespace Adminsiden
 
             // kode for å tvangsutlogge bruker her
         }
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+
+            Server.Transfer("TL_godkjenning_av_timeregistreringer.aspx", true);
+        }
     }
 }
