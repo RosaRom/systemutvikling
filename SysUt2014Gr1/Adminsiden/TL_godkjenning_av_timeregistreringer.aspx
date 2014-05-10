@@ -21,7 +21,19 @@
         <p style="margin-left : 520px">
             &nbsp;</p>
 
-        <asp:GridView ID="GridView1" runat="server" Height="229px" Width="1565px" AutoGenerateColumns="False">
+         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Tilbake" />
+
+        <asp:GridView ID="GridView1"  
+                    Height="229px" 
+                    Width="1565px"  
+                    AllowPaging="True" 
+                    AutoGenerateColumns="False"
+                    CssClass="gridView" 
+                    AlternatingRowStyle-CssClass="alt" 
+                    HeaderStyle-CssClass="gridViewHeader" 
+                    HorizontalAlign="Left"
+                    OnRowCommand="GridView1_RowCommand"
+                    runat="server" >
             <Columns>
                  <asp:BoundField DataField ="start" HeaderText="Start" />
                 <asp:BoundField DataField="stop" HeaderText="Slutt" />
@@ -38,7 +50,10 @@
         <br />
         <br />
         <br />
-         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Tilbake" />
+         <p>
+             &nbsp;</p>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>
