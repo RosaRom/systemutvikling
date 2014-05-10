@@ -232,16 +232,6 @@ namespace Adminsiden
                 label_result.Text = "Registreringen ble fullført";
                 label_result.Visible = true;
 
-                // Denne må gjøres om slik at det er hvis en bruker registrerer for dager som er før den 
-                // gjeldende dato
-                if (dateTo.Day > 1)
-                {
-                    string query = String.Format("UPDATE TimeSheet SET permissionState = 1 WHERE userID = {0}", userID);
-                    db.InsertDeleteUpdate(query);
-                    label_result.Text = "Du har sendt inn for mange timer. Timeantallet er under godkjenning";
-                    label_result.Visible = true;
-                    
-                }
             }
             else
             {
