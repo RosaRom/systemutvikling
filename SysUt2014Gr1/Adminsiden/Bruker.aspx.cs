@@ -232,11 +232,11 @@ namespace Adminsiden
                 else
                 {
                     permissionState = 2;
-
-                    db.InsertTimeSheet(dateFromFormated, dateToFormated, userID, TaskID, userDescription, WorkplaceID, state, projectID, permissionState);
                     label_result.Text = "Registreringen ble fullført";
                     label_result.Visible = true;
                 }
+
+                db.InsertTimeSheet(dateFromFormated, dateToFormated, userID, TaskID, userDescription, WorkplaceID, state, projectID, permissionState);
 
                 // Denne må gjøres om slik at det er hvis en bruker registrerer for dager som er før den 
                 // gjeldende dato
