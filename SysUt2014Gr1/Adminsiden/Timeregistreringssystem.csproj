@@ -141,7 +141,6 @@
     <Content Include="PALeggTilTasks.aspx" />
     <Content Include="PAMottaRapporter.aspx" />
     <Content Include="PANyHovedtask.aspx" />
-    <Content Include="PARedigerFase.aspx" />
     <Content Include="PAVisHovedtask.aspx" />
     <Content Include="PickTask.aspx" />
     <Content Include="Profilside.aspx" />
@@ -156,6 +155,7 @@
     <Content Include="Scripts\jQuery 2.1.0.min.js" />
     <Content Include="Teamleder.aspx" />
     <Content Include="TLEditProject.aspx" />
+    <Content Include="TL_godkjenning_av_timeregistreringer.aspx" />
     <Content Include="ViewProjectArchive.aspx" />
     <Content Include="VisFase.aspx" />
     <Content Include="VisProsjektdetaljer.aspx" />
@@ -306,13 +306,6 @@
     <Compile Include="PANyHovedtask.aspx.designer.cs">
       <DependentUpon>PANyHovedtask.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PARedigerFase.aspx.cs">
-      <DependentUpon>PARedigerFase.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PARedigerFase.aspx.designer.cs">
-      <DependentUpon>PARedigerFase.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PAVisHovedtask.aspx.cs">
       <DependentUpon>PAVisHovedtask.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -389,6 +382,13 @@
     </Compile>
     <Compile Include="TLEditProject.aspx.designer.cs">
       <DependentUpon>TLEditProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TL_godkjenning_av_timeregistreringer.aspx.cs">
+      <DependentUpon>TL_godkjenning_av_timeregistreringer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TL_godkjenning_av_timeregistreringer.aspx.designer.cs">
+      <DependentUpon>TL_godkjenning_av_timeregistreringer.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="ViewProjectArchive.aspx.cs">

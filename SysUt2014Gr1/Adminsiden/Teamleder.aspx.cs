@@ -13,11 +13,12 @@ namespace Adminsiden
     public partial class Teamleder : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
-        private int active = 1; //Denne må sittes under login, noe som ikke er skrevet enda. Hardkodet inntil videre.
         private int TaskID;
         private int WorkplaceID;
-        private int userID = 19; // denne refererer til hvilken bruker som er logget inn (er hardkodet til 19, Ari for øyeblikket)
         private string userType = "Teamleder";
+
+        private int projectID;
+        private int userID;
 
         List<String> projectList = new List<string>();
 
@@ -42,8 +43,13 @@ namespace Adminsiden
         {
             string session = (string)Session["userLoggedIn"];
 
+
             if (session == "teamLeader")
             {
+                if (Page.IsPostBack && ddl_hour_from.SelectedValue != "00")
+                {
+                    fillTimeToSelectDLL();
+                }
                 if (!Page.IsPostBack)
                 {
                     GetTasks();
@@ -62,17 +68,16 @@ namespace Adminsiden
         //Fyller dropdownlister med timer og minutter
         private void fillTimeSelectDDL()
         {
+            //Fyller timer og minutter i "fra" dropdowns
             if (ddl_hour_from.Items.Count == 0)
             {
                 for (int i = 0; i < 10; i++)
                 {
                     ddl_hour_from.Items.Add("0" + i);
-                    ddl_hour_to.Items.Add("0" + i);
                 }
                 for (int i = 10; i < 24; i++)
                 {
                     ddl_hour_from.Items.Add("" + i);
-                    ddl_hour_to.Items.Add("" + i);
                 }
             }
             if (ddl_min_from.Items.Count == 0)
@@ -80,19 +85,95 @@ namespace Adminsiden
                 for (int i = 0; i < 10; i += 15)
                 {
                     ddl_min_from.Items.Add("0" + i);
-                    ddl_min_to.Items.Add("0" + i);
                 }
                 for (int i = 15; i < 60; i += 15)
                 {
                     ddl_min_from.Items.Add("" + i);
-                    ddl_min_to.Items.Add("" + i);
                 }
+            }
+        }
+
+        private void fillTimeToSelectDLL()
+        {
+            //Denne metoden blir kjørt først når både starttime og minutter er valgt
+
+            int from = 1;
+            int hourTo = 0;
+            int minTo = 0;
+
+            //tar vare på registrerte til-klokkeslett
+            if (ddl_hour_to.Items.Count != 0)
+            {
+                from = Convert.ToInt16(ddl_hour_from.SelectedValue);
+                hourTo = Convert.ToInt16(ddl_hour_to.SelectedValue);
+                minTo = Convert.ToInt16(ddl_min_to.SelectedValue);
+
+                ddl_min_to.Items.Clear();
+                ddl_hour_to.Items.Clear();
+            }
+
+            int hourFrom = Convert.ToInt16(ddl_hour_from.Text);
+
+            //Fyller timer dropdown
+            int i;
+
+            for (i = hourFrom; i < 10; i++)
+            {
+                ddl_hour_to.Items.Add("0" + i);
+            }
+            for (int k = i; k >= 9 && k < 24; k++)
+            {
+                ddl_hour_to.Items.Add("" + k);
+            }
+
+            //Fyller minutter dropdown
+            for (int j = 0; j < 10; j += 15)
+            {
+                ddl_min_to.Items.Add("0" + j);
+            }
+            for (int j = 15; j < 60; j += 15)
+            {
+                ddl_min_to.Items.Add("" + j);
+            }
+
+            /*bestemmer om registeret til-tid kan brukes, 
+             eller om dette blir ugyldig med den nye ny fra-tiden*/
+            if (from >= hourTo)
+            {
+                ddl_hour_to.SelectedValue = ddl_hour_from.SelectedValue;
+                ddl_min_to.SelectedValue = ddl_min_from.SelectedValue;
+            }
+            else
+            {
+                if (hourTo < 10)
+                    ddl_hour_to.SelectedValue = Convert.ToString("0" + hourTo);
+                else
+                    ddl_hour_to.SelectedValue = Convert.ToString(hourTo);
+
+                if (minTo < 10)
+                    ddl_min_to.SelectedValue = Convert.ToString("0" + minTo);
+                else
+                    ddl_min_to.SelectedValue = Convert.ToString(minTo);
             }
         }
         //Fyller dropdown med tasks
         private void GetTasks()
         {
-            string query = "SELECT * FROM Task";
+            DataTable dt = new DataTable();
+            int phaseID = 0;
+            int projectID = Convert.ToInt16(Session["projectID"]);
+            string query1 = "SELECT * FROM Fase WHERE projectID =" + projectID;
+            dt = db.getAll(query1);
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (Convert.ToDateTime(dt.Rows[i][3]) < DateTime.Now && Convert.ToDateTime(dt.Rows[i][4]) > DateTime.Now)
+                {
+                    phaseID = Convert.ToInt16(dt.Rows[i][0]);
+                }
+            }
+
+            string query = "SELECT * FROM Task WHERE phaseID =" + phaseID;
             taskName.DataSource = db.getAll(query);
             taskName.DataValueField = "taskID";
             taskName.DataTextField = "taskName";
@@ -138,14 +219,30 @@ namespace Adminsiden
 
             string dateToFormated = dateTo.ToString("yyyy-MM-dd HH:mm:ss");
 
-            int projectID = Convert.ToInt32(Session["projectID"]);
-            int userID = Convert.ToInt32(Session["userID"]);
+            projectID = Convert.ToInt32(Session["projectID"]);
+            userID = Convert.ToInt32(Session["userID"]);
+            int state = 1;
 
-            if (dateFromFormated != null && dateToFormated != null && userID != 0 && TaskID != 0 && WorkplaceID != 0 && active != 0 && projectID != 0)
+            if (dateFromFormated != null && dateToFormated != null && userID != 0 && TaskID != 0 && WorkplaceID != 0 && projectID != 0)
             {
-                db.InsertTimeSheet(dateFromFormated, dateToFormated, userID, TaskID, userDescription, WorkplaceID, active, projectID);
-                label_result.Text = "Registreringen ble fullført";
-                label_result.Visible = true;
+                int permissionState;
+
+                if (dateFrom > DateTime.Now.AddDays(1) || dateFrom < DateTime.Now.AddDays(-1))
+                {
+                    permissionState = 1;
+                    label_result.Text = "Du har sendt inn for mange timer. Timeantallet er under godkjenning";
+                    label_result.Visible = true;
+                }
+
+                else
+                {
+                    permissionState = 2;
+                    label_result.Text = "Registreringen ble fullført";
+                    label_result.Visible = true;
+                }
+
+                db.InsertTimeSheet(dateFromFormated, dateToFormated, userID, TaskID, userDescription, WorkplaceID, state, projectID, permissionState);
+                
             }
             else
             {
@@ -157,6 +254,7 @@ namespace Adminsiden
         // populater ddlTeams med team innlogget bruker er teamleder av
         public void PopulateTeams()
         {
+            userID = Convert.ToInt16(Session["userID"]);
             string query = String.Format("SELECT * FROM Team WHERE teamID IN (SELECT teamID from User WHERE groupID IN (SELECT groupID from UserGroup WHERE groupName = \"{1}\") AND userID = {0})", userID, userType);
             ddlTeam.DataSource = db.getAll(query);
             ddlTeam.DataTextField = "teamName";
@@ -193,6 +291,9 @@ namespace Adminsiden
             lbTeamlederTransferred.Text = "Teamlederstatus overført";
 
             // kode for å tvangsutlogge bruker her
+            Session["userLoggedIn"] = "";
+            Server.Transfer("Login.aspx", true);
         }
+     
     }
 }

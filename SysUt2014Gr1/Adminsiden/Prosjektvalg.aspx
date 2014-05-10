@@ -22,7 +22,7 @@
                     HeaderStyle-CssClass="gridViewHeader" 
                     HorizontalAlign="Left"
                     OnRowCommand="GridViewProject_RowCommand"
-                    runat="server" >
+                    runat="server" OnSelectedIndexChanged="GridViewProject_SelectedIndexChanged" >
                     <Columns>
                         <asp:buttonfield buttontype="Button" text="Velg prosjekt" ItemStyle-Width="1%"/>
                         <asp:BoundField DataField="projectID" HeaderText="ID" ItemStyle-Width="5%"/>

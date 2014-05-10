@@ -55,6 +55,11 @@ namespace Adminsiden
             else
                 Server.Transfer("Teamleder.aspx", true);
         }
+
+        protected void GridViewProject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
   
     }
 }

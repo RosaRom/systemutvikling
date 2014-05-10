@@ -75,8 +75,13 @@ namespace Adminsiden
             }
 
             // gets startdate and enddate of the project
-            var startDate = Convert.ToDateTime(phaseDateToFromTable.Rows[0]["phaseFromDate"]);
-            var endDate = Convert.ToDateTime(phaseDateToFromTable.Rows[phaseDateToFromTable.Rows.Count - 1]["phaseToDate"]);
+            DataView dv = phaseDateToFromTable.DefaultView;
+            dv.Sort = "phaseFromDate desc";
+            DataTable sortedDT = dv.ToTable();
+            var startDate = Convert.ToDateTime(sortedDT.Rows[0]["phaseFromDate"]);
+            dv.Sort = "phaseToDate desc";
+            sortedDT = dv.ToTable();
+            var endDate = Convert.ToDateTime(sortedDT.Rows[sortedDT.Rows.Count - 1]["phaseToDate"]);
 
             // generates a list of DateTime objects, from startDate - endDate of the phase
             List<DateTime> range = Enumerable.Range(0, (endDate - startDate).Days + 1)
@@ -118,6 +123,8 @@ namespace Adminsiden
         {
             int projectID = Convert.ToInt16(Session["projectID"]);
 
+            getFromToDateProject();
+
             string session = (string)Session["userLoggedIn"];
 
             if (session == "teamMember" || session == "teamLeader" || session == "projectManager")
@@ -127,9 +134,10 @@ namespace Adminsiden
             string query = "SELECT * FROM Project, Team WHERE Project.projectID = " + projectID + " AND Team.teamID = Project.teamID";
             dt = db.getAll(query);
             int teamID = Convert.ToInt16(dt.Rows[0]["teamID"]);
-
-            string query1 = "SELECT taskID, taskName, hoursUsed, HoursAllocated FROM Task WHERE TaskCategoryID IN (SELECT TaskCategoryID FROM TaskCategory WHERE ProjectID = " + projectID + ")";
-            dt_tasks = db.getAll(query1);
+            int phaseID = Convert.ToInt16(Session["phaseID"]);
+            //string query1 = "SELECT taskID, taskName, hoursUsed, HoursAllocated FROM Task WHERE TaskCategoryID IN (SELECT TaskCategoryID FROM TaskCategory WHERE ProjectID = " + projectID + ")";
+            string query3 = "SELECT taskID, taskName, hoursUsed, HoursAllocated FROM Task WHERE phaseID =" + phaseID;
+            dt_tasks = db.getAll(query3);
 
             string query2 = "SELECT  CONCAT (firstname, ' ',  surname) AS FullName FROM User WHERE teamID =" + teamID;
             dt_users = db.getAll(query2);
@@ -162,6 +170,33 @@ namespace Adminsiden
                 Server.Transfer("Login.aspx", true);
 
             }
+        }
+        void getFromToDateProject()
+        {
+            DataTable dt = new DataTable();
+            int projectID = Convert.ToInt16(Session["projectID"]);
+            string query = "SELECT * FROM Fase WHERE projectID =" + projectID;
+            dt = db.getAll(query);
+
+            DateTime LavesteDato = DateTime.Now;
+            DateTime HøyesteDato= DateTime.Now;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (Convert.ToDateTime(dt.Rows[i][3]) < LavesteDato)
+                {
+                    LavesteDato = Convert.ToDateTime(dt.Rows[i][3]);
+                }
+                if(Convert.ToDateTime(dt.Rows[i][4]) > HøyesteDato)
+                {
+                    HøyesteDato = Convert.ToDateTime(dt.Rows[i][4]);
+                }
+            }
+
+
+           Label_tidFra.Text = LavesteDato.ToString("dd-MMMM-yyyy");
+           Label_tilTid.Text = HøyesteDato.ToString("dd-MMMM-yyyy");
+            
         }
     }
 }

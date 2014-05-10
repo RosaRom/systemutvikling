@@ -22,7 +22,7 @@
                 <asp:TextBox ID="tbTaskCategoryName" runat="server"></asp:TextBox>
                 <br /><br />
                 <asp:Label ID="lbDescription" runat="server" Text="Beskrivelse"></asp:Label><br />
-                <asp:TextBox id="taTaskCategoryDesc" TextMode="multiline" Columns="50" Rows="5" runat="server" />
+                <asp:TextBox id="taTaskCategoryDesc" TextMode="multiline" Columns="48" Rows="5" runat="server" />
                 <br />
                 <asp:Button ID="btnCommit" runat="server" OnClick="Button1_Click" Text="Lagre endringer" />
                 <br />
