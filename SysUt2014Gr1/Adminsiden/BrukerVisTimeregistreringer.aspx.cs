@@ -112,10 +112,10 @@ namespace Adminsiden
             string updateQuery = "";
 
             // kjører om en "deaktiver"-knapp blir trykket på
-            if (e.CommandName == "deaktiver" && showActive)
+            if (e.CommandName == "deaktiver" && showActive == true)
             {                
                 int timeID = Convert.ToInt32(dt.Rows[index]["timeID"].ToString());                
-                updateQuery = String.Format("UPDATE TimeSheet SET state = 0, permissionState = 1 WHERE timeID = {0}", timeID);
+                updateQuery = String.Format("UPDATE TimeSheet SET state = 0 WHERE timeID = {0}", timeID);              
 /*                
                 if (Convert.ToInt32(dt.Rows[index]["state"]) == 0)
                 {
@@ -135,6 +135,7 @@ namespace Adminsiden
         {
             showActive = true;
             lbWhatIsShowing.Text = "Aktive timeregistreringer";
+            gvTaskList.Columns[6].Visible = true;
             Populate();
         }
 
@@ -142,6 +143,7 @@ namespace Adminsiden
         {
             showActive = false;
             lbWhatIsShowing.Text = "Inaktive timeregistreringer";
+            gvTaskList.Columns[6].Visible = false;
             Populate();
         }
     }

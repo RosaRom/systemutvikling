@@ -30,7 +30,7 @@
                         <asp:BoundField DataField="start" HeaderText="Fra-dato"/>
                         <asp:BoundField DataField="stop" HeaderText="Til-dato"/>
                         <asp:BoundField DataField="description" HeaderText="Beskrivelse"/>
-                        <asp:BoundField DataField="state" HeaderText="Status"/>                        
+                        <asp:BoundField DataField="state" HeaderText="Status" ItemStyle-Width="1%"/>                        
                         <asp:buttonfield buttontype="Button" text="Deaktiver" CommandName="deaktiver" ItemStyle-Width="1%"/>                        
                     </Columns>
                 </asp:GridView>   
