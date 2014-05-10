@@ -81,8 +81,7 @@ namespace Adminsiden
                 switch (prioritet)
                 {
                     case 0:
-                        gvTaskList.Rows[i].Cells[5].Text = "Inaktiv";
-                        
+                        gvTaskList.Rows[i].Cells[5].Text = "Inaktiv";                        
                         break;
                     case 1:
                         gvTaskList.Rows[i].Cells[5].Text = "Aktiv";

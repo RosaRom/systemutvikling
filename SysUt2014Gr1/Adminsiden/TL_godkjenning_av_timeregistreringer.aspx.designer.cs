@@ -13,15 +13,6 @@ namespace Adminsiden {
     public partial class TL_godkjenning_av_timeregistreringer {
         
         /// <summary>
-        /// Head1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
-        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -37,6 +28,7 @@ namespace Adminsiden {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+<<<<<<< HEAD
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
@@ -46,6 +38,8 @@ namespace Adminsiden {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+=======
+>>>>>>> 87fa85ba219a49638e436cdc5d373e9c9add3922
         protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

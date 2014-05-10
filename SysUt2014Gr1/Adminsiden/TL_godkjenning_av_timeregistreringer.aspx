@@ -1,19 +1,18 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TL_godkjenning_av_timeregistreringer.aspx.cs" Inherits="Adminsiden.TL_godkjenning_av_timeregistreringer" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Godkjenning av timereg</title>
+    <style type="text/css">
+       Body{
+            background-color:lightgray;
+        }
+    </style>
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <title></title>
-</head>
-<body>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+
     <form id="form1" runat="server">
-    <div>
-    
-        <p>
-            <h1 style="margin-left: 520px">GODKJENNING AV TIMEREGISTRERINGER</h1></p>
-    
-    </div>
+
         <p style="margin-left : 520px">
             &nbsp;</p>
         <p style="margin-left : 520px">
@@ -21,6 +20,7 @@
         <p style="margin-left : 520px">
             &nbsp;</p>
 
+<<<<<<< HEAD
          <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Tilbake" />
 
         <asp:GridView ID="GridView1"  
@@ -54,6 +54,26 @@
              &nbsp;</p>
         <p>
             &nbsp;</p>
+=======
+        <div id="prosjektvalg" class="panel panel-primary">
+           <div class="panel-heading"><h4>Godkjenning av timeregistreringer</h4></div>
+            <div class="panel-body">
+                <asp:GridView ID="GridView1" runat="server" Height="229px" Width="100%" AutoGenerateColumns="False">
+                    <Columns>
+                         <asp:BoundField DataField ="start" HeaderText="Start"  />
+                        <asp:BoundField DataField="stop" HeaderText="Slutt" />
+                        <asp:BoundField DataField="username" HeaderText="Brukernavn" />
+                        <asp:BoundField DataField="taskName" HeaderText="Task" />
+                        <asp:BoundField DataField="workplace" HeaderText="Sted" />
+                        <asp:BoundField DataField="description" HeaderText="Beskrivelse" />
+                        <asp:BoundField DataField="priority" HeaderText="Prioritet" />
+                        <asp:ButtonField ButtonType="Button" CommandName="godkjent" HeaderText="Godkjenn" Text="OK" ItemStyle-Width="1%" />
+                        <asp:ButtonField ButtonType="Button" CommandName="ikkeGodkjent" HeaderText="Ikke godkjenn" Text="Avslå" ItemStyle-Width="1%" />
+                    </Columns>
+                </asp:GridView>
+            </div>
+        </div>
+>>>>>>> 87fa85ba219a49638e436cdc5d373e9c9add3922
     </form>
-</body>
-</html>
+</asp:Content>
+
