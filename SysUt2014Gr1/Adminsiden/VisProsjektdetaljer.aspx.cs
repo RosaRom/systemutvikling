@@ -75,8 +75,13 @@ namespace Adminsiden
             }
 
             // gets startdate and enddate of the project
-            var startDate = Convert.ToDateTime(phaseDateToFromTable.Rows[0]["phaseFromDate"]);
-            var endDate = Convert.ToDateTime(phaseDateToFromTable.Rows[phaseDateToFromTable.Rows.Count - 1]["phaseToDate"]);
+            DataView dv = phaseDateToFromTable.DefaultView;
+            dv.Sort = "phaseFromDate desc";
+            DataTable sortedDT = dv.ToTable();
+            var startDate = Convert.ToDateTime(sortedDT.Rows[0]["phaseFromDate"]);
+            dv.Sort = "phaseToDate desc";
+            sortedDT = dv.ToTable();
+            var endDate = Convert.ToDateTime(sortedDT.Rows[sortedDT.Rows.Count - 1]["phaseToDate"]);
 
             // generates a list of DateTime objects, from startDate - endDate of the phase
             List<DateTime> range = Enumerable.Range(0, (endDate - startDate).Days + 1)
