@@ -284,6 +284,8 @@ namespace Adminsiden
             lbTeamlederTransferred.Text = "Teamlederstatus overført";
 
             // kode for å tvangsutlogge bruker her
+            Session["userLoggedIn"] = "";
+            Server.Transfer("Login.aspx", true);
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
