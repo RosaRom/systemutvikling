@@ -247,6 +247,7 @@ namespace Adminsiden
         // populater ddlTeams med team innlogget bruker er teamleder av
         public void PopulateTeams()
         {
+            userID = Convert.ToInt16(Session["userID"]);
             string query = String.Format("SELECT * FROM Team WHERE teamID IN (SELECT teamID from User WHERE groupID IN (SELECT groupID from UserGroup WHERE groupName = \"{1}\") AND userID = {0})", userID, userType);
             ddlTeam.DataSource = db.getAll(query);
             ddlTeam.DataTextField = "teamName";
