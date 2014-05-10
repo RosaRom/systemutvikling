@@ -19,7 +19,7 @@
                 <b>Navn: </b><asp:Label ID="Label_navn" runat="server"></asp:Label><br /><br />
                 <b>Beskrivelse: </b><br />
                   <asp:TextBox id="tb_desc" rows="3" TextMode="multiline" runat="server" ReadOnly="True" Width="235px" /><br /><br />
-                <b>Tidsperiode: </b> Fra - til dato</><br /><br />            
+                  <b>Tidsperiode: </b></br> Fra:<asp:Label ID="Label_tidFra" runat="server" Text="Label"></asp:Label> Til: <asp:Label ID="Label_tilTid" runat="server" Text="Label"></asp:Label></><br /><br />            
                   <asp:Label ID="Label_warning" runat="server" ForeColor="Red"></asp:Label>
                </div>
             </div>

@@ -46,8 +46,8 @@ namespace Adminsiden
         }
         public void FillGridView()
         {
-            string query = String.Format("SELECT start \"start\", stop \"stop\", username \"username\", taskName \"taskName\", workplace \"workplace\", Task.description \"description\", priority \"priority\"" +
-            "FROM User, TimeSheet, Task, Workplace WHERE User.userID = TimeSheet.userID AND TimeSheet.taskID = Task.taskID AND TimeSheet.workplaceID = Workplace.workplaceID AND Task.taskID IN (SELECT taskID FROM TimeSheet WHERE permissionState = 1)");
+            string query = String.Format("SELECT timeID, start \"start\", stop \"stop\", username \"username\", taskName \"taskName\", workplace \"workplace\", Task.description \"description\", priority \"priority\"" +
+            "FROM User, TimeSheet, Task, Workplace WHERE User.userID = TimeSheet.userID AND TimeSheet.projectID = 1 AND TimeSheet.taskID = Task.taskID AND TimeSheet.workplaceID = Workplace.workplaceID AND TimeSheet.permissionState = 1");
             
             dt = db.getAll(query);
             ViewState["table"] = dt;
@@ -79,15 +79,22 @@ namespace Adminsiden
              int index = Convert.ToInt32(e.CommandArgument.ToString());
 
              if (e.CommandName == "godkjent")
-             { 
-                
-             
+             {
+                 int timeID = Convert.ToInt32(dt.Rows[index]["timeID"].ToString());
+                 string query = String.Format("UPDATE TimeSheet SET permissionState = 2 WHERE timeID = {0}", timeID);
+                 db.InsertDeleteUpdate(query);
+                 FillGridView();
+                 Button1.Text = ("Det gikk 1");
+                 
              }
 
              if (e.CommandName == "ikkeGodkjent")
-             { 
-                
-             
+             {
+                 int timeID = Convert.ToInt32(dt.Rows[index]["timeID"].ToString());
+                 string query = String.Format("UPDATE TimeSheet SET permissionState = 0 WHERE timeID = {0}", timeID);
+                 db.InsertDeleteUpdate(query);
+                 FillGridView();
+                 Button1.Text = ("Det gikk");
              }
           
          }

@@ -118,6 +118,8 @@ namespace Adminsiden
         {
             int projectID = Convert.ToInt16(Session["projectID"]);
 
+            getFromToDateProject();
+
             string session = (string)Session["userLoggedIn"];
 
             if (session == "teamMember" || session == "teamLeader" || session == "projectManager")
@@ -163,6 +165,33 @@ namespace Adminsiden
                 Server.Transfer("Login.aspx", true);
 
             }
+        }
+        void getFromToDateProject()
+        {
+            DataTable dt = new DataTable();
+            int projectID = Convert.ToInt16(Session["projectID"]);
+            string query = "SELECT * FROM Fase WHERE projectID =" + projectID;
+            dt = db.getAll(query);
+
+            DateTime LavesteDato = DateTime.Now;
+            DateTime HøyesteDato= DateTime.Now;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (Convert.ToDateTime(dt.Rows[i][3]) < LavesteDato)
+                {
+                    LavesteDato = Convert.ToDateTime(dt.Rows[i][3]);
+                }
+                if(Convert.ToDateTime(dt.Rows[i][4]) > HøyesteDato)
+                {
+                    HøyesteDato = Convert.ToDateTime(dt.Rows[i][4]);
+                }
+            }
+
+
+           Label_tidFra.Text = LavesteDato.ToString("dd-MMMM-yyyy");
+           Label_tilTid.Text = HøyesteDato.ToString("dd-MMMM-yyyy");
+            
         }
     }
 }
