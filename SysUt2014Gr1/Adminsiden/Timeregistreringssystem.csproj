@@ -141,6 +141,7 @@
     <Content Include="PALeggTilTasks.aspx" />
     <Content Include="PAMottaRapporter.aspx" />
     <Content Include="PANyHovedtask.aspx" />
+    <Content Include="PARedigerFase.aspx" />
     <Content Include="PAVisHovedtask.aspx" />
     <Content Include="PickTask.aspx" />
     <Content Include="Profilside.aspx" />
@@ -192,6 +193,7 @@
     </Compile>
     <Compile Include="Masterpages\Bruker.Master.cs">
       <DependentUpon>Bruker.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Masterpages\Bruker.Master.designer.cs">
       <DependentUpon>Bruker.Master</DependentUpon>
@@ -303,6 +305,13 @@
     </Compile>
     <Compile Include="PANyHovedtask.aspx.designer.cs">
       <DependentUpon>PANyHovedtask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PARedigerFase.aspx.cs">
+      <DependentUpon>PARedigerFase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PARedigerFase.aspx.designer.cs">
+      <DependentUpon>PARedigerFase.aspx</DependentUpon>
     </Compile>
     <Compile Include="PAVisHovedtask.aspx.cs">
       <DependentUpon>PAVisHovedtask.aspx</DependentUpon>
