@@ -84,7 +84,7 @@ namespace Adminsiden
                  string query = String.Format("UPDATE TimeSheet SET permissionState = 2 WHERE timeID = {0}", timeID);
                  db.InsertDeleteUpdate(query);
                  FillGridView();
-                 Button1.Text = ("Det gikk 1");
+               
                  
              }
 
@@ -94,7 +94,7 @@ namespace Adminsiden
                  string query = String.Format("UPDATE TimeSheet SET permissionState = 0 WHERE timeID = {0}", timeID);
                  db.InsertDeleteUpdate(query);
                  FillGridView();
-                 Button1.Text = ("Det gikk");
+              
              }
           
          }
