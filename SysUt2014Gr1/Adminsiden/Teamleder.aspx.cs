@@ -294,10 +294,6 @@ namespace Adminsiden
             Session["userLoggedIn"] = "";
             Server.Transfer("Login.aspx", true);
         }
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-
-            Server.Transfer("TL_godkjenning_av_timeregistreringer.aspx", true);
-        }
+     
     }
 }

@@ -10,142 +10,160 @@
 namespace Adminsiden {
     
     
-    public partial class Teamleder {
+    public partial class NyttProsjekt {
         
         /// <summary>
-        /// Brukerform control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm Brukerform;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ToolkitScriptManager control.
+        /// lbProjectName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager;
+        protected global::System.Web.UI.WebControls.Label lbProjectName;
         
         /// <summary>
-        /// TB_Date control.
+        /// tbProjectName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TB_Date;
+        protected global::System.Web.UI.WebControls.TextBox tbProjectName;
         
         /// <summary>
-        /// TB_Date_CalendarExtender control.
+        /// lbSelectStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender TB_Date_CalendarExtender;
+        protected global::System.Web.UI.WebControls.Label lbSelectStartDate;
         
         /// <summary>
-        /// Label1 control.
+        /// tbStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox tbStartDate;
         
         /// <summary>
-        /// Label2 control.
+        /// lbEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lbEndDate;
         
         /// <summary>
-        /// ddl_hour_from control.
+        /// tbEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_hour_from;
+        protected global::System.Web.UI.WebControls.TextBox tbEndDate;
         
         /// <summary>
-        /// ddl_min_from control.
+        /// lbSelectNumberOfPhases control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_min_from;
+        protected global::System.Web.UI.WebControls.Label lbSelectNumberOfPhases;
         
         /// <summary>
-        /// ddl_hour_to control.
+        /// tbSelectNumberOfPhases control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_hour_to;
+        protected global::System.Web.UI.WebControls.TextBox tbSelectNumberOfPhases;
         
         /// <summary>
-        /// ddl_min_to control.
+        /// lbSelectLengthOfPhase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_min_to;
+        protected global::System.Web.UI.WebControls.Label lbSelectLengthOfPhase;
         
         /// <summary>
-        /// workPlace control.
+        /// tbSelectNumberOfDaysPerPhase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList workPlace;
+        protected global::System.Web.UI.WebControls.TextBox tbSelectNumberOfDaysPerPhase;
         
         /// <summary>
-        /// taskName control.
+        /// lbDays control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList taskName;
+        protected global::System.Web.UI.WebControls.Label lbDays;
         
         /// <summary>
-        /// TxtArea_userComment control.
+        /// lbDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtArea_userComment;
+        protected global::System.Web.UI.WebControls.Label lbDescription;
         
         /// <summary>
-        /// btn_ok control.
+        /// tbDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_ok;
+        protected global::System.Web.UI.WebControls.TextBox tbDescription;
         
         /// <summary>
-        /// label_result control.
+        /// lbMakeSubproject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label_result;
+        protected global::System.Web.UI.WebControls.Label lbMakeSubproject;
+        
+        /// <summary>
+        /// ddlSubProject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubProject;
+        
+        /// <summary>
+        /// lbAddTeam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbAddTeam;
         
         /// <summary>
         /// ddlTeam control.
@@ -157,30 +175,66 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.DropDownList ddlTeam;
         
         /// <summary>
-        /// ddlBruker control.
+        /// lbAddTaskCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBruker;
+        protected global::System.Web.UI.WebControls.Label lbAddTaskCategory;
         
         /// <summary>
-        /// Button1 control.
+        /// ddlTaskCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTaskCategory;
         
         /// <summary>
-        /// lbTeamlederTransferred control.
+        /// btnAddTaskCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTeamlederTransferred;
+        protected global::System.Web.UI.WebControls.Button btnAddTaskCategory;
+        
+        /// <summary>
+        /// lbTaskCategoryError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTaskCategoryError;
+        
+        /// <summary>
+        /// taskCategoryList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox taskCategoryList;
+        
+        /// <summary>
+        /// btnCreateProject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateProject;
+        
+        /// <summary>
+        /// lbError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbError;
     }
 }

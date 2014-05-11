@@ -63,9 +63,8 @@
             <asp:Label ID="label_result" runat="server" Visible="False"></asp:Label>
                 <br />
                 <br />
-             <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Godkjenning av timeregistreringer" Width="270px" />
-                <br />
-                <br />
+            
+              
                 <asp:DropDownList ID="ddlTeam" runat="server" AppendDataBoundItems="True" AutoPostBack="True" OnSelectedIndexChanged="ddlTeam_SelectedIndexChanged">
                 </asp:DropDownList>
         &nbsp;<asp:DropDownList ID="ddlBruker" runat="server" AppendDataBoundItems="True">
