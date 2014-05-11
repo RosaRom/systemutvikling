@@ -16,7 +16,7 @@ namespace Adminsiden
         private DBConnect db = new DBConnect();        
         private DateTime startDate = new DateTime();
         private DateTime endDate = new DateTime();
-        private bool datesOK = false;
+        //private bool datesOK = false;
         private List<String> taskCategoryIDs = new List<String>(); // lagrer ingenting
         private List<String> taskCategories = new List<String>();
 
@@ -88,7 +88,9 @@ namespace Adminsiden
                     startDate = Convert.ToDateTime(tbStartDate.Text);
                     endDate = startDate.AddDays(Convert.ToInt32(tbSelectNumberOfPhases.Text) * Convert.ToInt32(tbSelectNumberOfDaysPerPhase.Text));
                     tbEndDate.Text = endDate.ToString("yyyy-MM-dd");
-                    datesOK = true;
+
+                    ViewState["dateOK"] = true;
+                    //datesOK = true;
             }
         }
 
@@ -141,7 +143,7 @@ namespace Adminsiden
                 query = string.Format("INSERT INTO Project (projectName, projectDescription, projectState, teamID, latestProject) VALUES ('{0}', '{1}', {2}, {3}, {4})", tbProjectName.Text, tbDescription.Text, 0, ddlTeam.SelectedValue, 1);
             }
             
-            if (tbProjectName.Text != "" && datesOK == true && ddlTeam.SelectedIndex != 0)
+            if (tbProjectName.Text != "" && (bool)ViewState["dateOK"] == true && ddlTeam.SelectedIndex != 0)
             {
                 DataTable dt = new DataTable();
                 db.InsertDeleteUpdate(query);

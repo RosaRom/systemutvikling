@@ -45,6 +45,7 @@
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rediger... <b class="caret"></b></a>
                       <ul class="dropdown-menu">
                         <li><a href="EditProject.aspx">Prosjekt</a></li>
+                          <li><a href="PARedigerFase.aspx">Fase</a></li>
                         <li><a href="PickTask.aspx">Task</a></li>
                         <li><a href="PAEditHovedtask.aspx">Hovedtask</a></li>
                       </ul>
