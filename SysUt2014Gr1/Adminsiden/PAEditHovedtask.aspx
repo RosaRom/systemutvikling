@@ -17,7 +17,9 @@
     <form id="form1" runat="server">
         <div id="regbruker" class="panel panel-primary" style="width:31%;">
            <div class="panel-heading"><h4>Rediger hovedtask</h4></div>
-            <div class="panel-body">
+            <div class="panel-body">                
+                <asp:DropDownList ID="ddlTaskCategory" runat="server" AppendDataBoundItems="True" Height="20px" Width="200px" OnSelectedIndexChanged="ddlTaskCategory_SelectedIndexChanged"></asp:DropDownList>
+                
                 <asp:Label ID="lbTaskCategoryName" runat="server" Text="Tasknavn"></asp:Label>
                 <asp:TextBox ID="tbTaskCategoryName" runat="server"></asp:TextBox>
                 <br /><br />

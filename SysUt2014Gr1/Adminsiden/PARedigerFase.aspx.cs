@@ -99,13 +99,8 @@ namespace Adminsiden
         /// <param name="e"></param>
         protected void VelgFase_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (velgFase.SelectedIndex == 0)
-                ResetFields();
-            else
-            {
                 PopulateFields();
-                lbPAError.Text = "";
-            }
+                lbPAError.Text = "";            
         }
 
         /// <summary>
