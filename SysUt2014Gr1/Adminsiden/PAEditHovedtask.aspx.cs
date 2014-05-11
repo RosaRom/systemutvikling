@@ -15,7 +15,7 @@ namespace Adminsiden
         private int taskCategoryID = 1; // hardkodet, må byttes ut
 
         private DBConnect db = new DBConnect();
-        private DataTable dt = new DataTable();
+        private DataTable dt = new DataTable();        
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -42,7 +42,7 @@ namespace Adminsiden
             {
                 if (!Page.IsPostBack)
                 {
-                    PopulateFields();
+                    GetTaskCategories();                    
                 }   
             }
             else
@@ -52,12 +52,27 @@ namespace Adminsiden
           
         }
 
+        private void GetTaskCategories()
+        {
+            string query = "SELECT * FROM TaskCategory";
+            ddlTaskCategory.DataSource = db.getAll(query);
+            ddlTaskCategory.DataTextField = "taskCategoryName";
+            ddlTaskCategory.DataValueField = "taskCategoryID";
+            ddlTaskCategory.Items.Insert(0, new ListItem("<Velg hovedtask>", "0")); //OBS! AppendDataBoundItems="true" i asp-kodene om dette skal funke!
+            ddlTaskCategory.DataBind();
+        }
+
         public void PopulateFields()
         {
-            string query = String.Format("SELECT * FROM TaskCategory WHERE taskCategoryID = {0}", taskCategoryID);
+            string query = String.Format("SELECT * FROM TaskCategory WHERE taskCategoryID = {0}", ddlTaskCategory.SelectedValue);
             dt = db.getAll(query);
             tbTaskCategoryName.Text = dt.Rows[0]["taskCategoryName"].ToString();
             taTaskCategoryDesc.Text = dt.Rows[0]["taskCategoryDescription"].ToString();            
+        }
+
+        protected void ddlTaskCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateFields();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
