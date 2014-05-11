@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Text;
 
 namespace Adminsiden
 {
@@ -39,7 +40,7 @@ namespace Adminsiden
             {
                 if (!Page.IsPostBack)
                 {
-                    //SjekkFaser();
+                    SjekkFaser();
                     VisNyeKlager();
                     VisNyeRapporter();
                     TellNye();
@@ -122,9 +123,10 @@ namespace Adminsiden
             table = db.AdminGetAllUsers(query);
             informasjon.Text = table.Rows[0]["deviationDescription"].ToString();
         }
-        
+
         /// <summary>
-        /// Utkast til automatisk generering av rapport ved endt fase, ikke ferdig ennå
+        /// Automatisk generering av rapport ved endt fase, sjekker alle som er ferdig for mindre enn 3 dager siden.
+        /// Sjekker om det allerede eksisterer en rapport, om ikke en finnes genereres en med alle uferdige tasks som var i fasen.
         /// </summary>
         private void SjekkFaser()
         {
@@ -133,19 +135,32 @@ namespace Adminsiden
 
             foreach (DataRow row in table.Rows)
             {
-                if ((DateTime.Now - Convert.ToDateTime(row["phaseToDate"].ToString())).TotalHours < 72 && (DateTime.Now - Convert.ToDateTime(row["phaseToDate"].ToString())).TotalHours > 0)
+                if ((DateTime.Now - Convert.ToDateTime(row["phaseToDate"].ToString())).TotalHours < 72 && (DateTime.Now - Convert.ToDateTime(row["phaseToDate"].ToString())).TotalHours > 1)
                 {
-                    string queryProsjekt = "SELECT projectName WHERE projectID = " + row["projectID"].ToString();
+                    string queryProsjekt = "SELECT projectName FROM Project WHERE projectID = " + row["projectID"].ToString();
                     tempTable = db.AdminGetAllUsers(queryProsjekt);
 
-                    string sjekkOverskrift = row["phaseName"].ToString() + " fra prosjekt " + tempTable.Rows[0]["projectName"].ToString();
+                    string sjekkOverskrift = row["phaseName"].ToString() + " i " + tempTable.Rows[0]["projectName"].ToString();
                     string querySjekkOverskrift = String.Format("SELECT COUNT(*) FROM deviationReport WHERE deviationTitle LIKE '{0}'", sjekkOverskrift);
 
                     if (db.Count(querySjekkOverskrift) == 0)
                     {
+                        string uferdigeTasksQuery = String.Format("SELECT taskName FROM Task WHERE phaseID = {0} AND (state = 0 OR state = 1)", row["phaseID"]);
+                        tempTable = db.AdminGetAllUsers(uferdigeTasksQuery);
 
+                        StringBuilder tasks = new StringBuilder();
+                        tasks.Append("Uferdige tasks er: ");
 
-                        string queryNyRapport = String.Format("INSERT INTO deviationReport VALUES(NULL, '{0}', '{1}', 0, 0)", sjekkOverskrift);
+                        foreach (DataRow r in tempTable.Rows)
+                        {
+                            tasks.Append(r["taskName"].ToString() + ", ");
+                        }
+
+                        if (!tasks.ToString().Equals("Uferdige tasks er: "))
+                        {
+                            string queryNyRapport = String.Format("INSERT INTO deviationReport VALUES(null, '{0}', '{1}', 0, 0, now())", sjekkOverskrift, tasks.ToString());
+                            db.InsertDeleteUpdate(queryNyRapport);
+                        }
                     }
                 }
             }

@@ -10,96 +10,105 @@
 namespace Adminsiden {
     
     
-    public partial class VisTeam {
+    public partial class PARedigerFase {
         
         /// <summary>
-        /// MainForm control.
+        /// RedigerFaseForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm MainForm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm RedigerFaseForm;
         
         /// <summary>
-        /// Label_navn control.
+        /// velgFase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_navn;
+        protected global::System.Web.UI.WebControls.DropDownList velgFase;
         
         /// <summary>
-        /// tb_desc control.
+        /// lbPAFasenavn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_desc;
+        protected global::System.Web.UI.WebControls.Label lbPAFasenavn;
         
         /// <summary>
-        /// Label_tidFra control.
+        /// tbPAPhasename control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_tidFra;
+        protected global::System.Web.UI.WebControls.TextBox tbPAPhasename;
         
         /// <summary>
-        /// Label_tilTid control.
+        /// lbPADate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_tilTid;
+        protected global::System.Web.UI.WebControls.Label lbPADate;
         
         /// <summary>
-        /// Label_warning control.
+        /// tbPADateFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_warning;
+        protected global::System.Web.UI.WebControls.TextBox tbPADateFrom;
         
         /// <summary>
-        /// Label_team control.
+        /// tbPADateTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_team;
+        protected global::System.Web.UI.WebControls.TextBox tbPADateTo;
         
         /// <summary>
-        /// ListView_team control.
+        /// lbPADescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView_team;
+        protected global::System.Web.UI.WebControls.Label lbPADescription;
         
         /// <summary>
-        /// Listview_task control.
+        /// tbPADescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView Listview_task;
+        protected global::System.Web.UI.WebControls.TextBox tbPADescription;
         
         /// <summary>
-        /// projectChart control.
+        /// btnPASubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart projectChart;
+        protected global::System.Web.UI.WebControls.Button btnPASubmit;
+        
+        /// <summary>
+        /// lbPAError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPAError;
     }
 }

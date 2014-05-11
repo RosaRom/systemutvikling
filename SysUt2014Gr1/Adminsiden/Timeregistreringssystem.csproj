@@ -98,6 +98,7 @@
     <EmbeddedResource Include="Resources\DOWNARROW.GIF" />
     <Content Include="Admin.aspx" />
     <Content Include="BrukerBeOmExtraTimer.aspx" />
+    <Content Include="BrukerVisTimeregistreringer.aspx" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\AdminStyle.css" />
@@ -130,6 +131,7 @@
     <Content Include="css\VisTaskdetaljer.css" />
     <Content Include="EditProject.aspx" />
     <Content Include="LogOut.aspx" />
+    <Content Include="NyttProsjekt.aspx" />
     <Content Include="PAAdministrerBrukere.aspx" />
     <Content Include="PAEditHovedtask.aspx" />
     <Content Include="EditTask.aspx" />
@@ -154,6 +156,7 @@
     <Content Include="Scripts\jQuery 2.1.0.min.js" />
     <Content Include="Teamleder.aspx" />
     <Content Include="TLEditProject.aspx" />
+    <Content Include="TL_godkjenning_av_timeregistreringer.aspx" />
     <Content Include="ViewProjectArchive.aspx" />
     <Content Include="VisFase.aspx" />
     <Content Include="VisProsjektdetaljer.aspx" />
@@ -175,6 +178,13 @@
     <Compile Include="BrukerBeOmExtraTimer.aspx.designer.cs">
       <DependentUpon>BrukerBeOmExtraTimer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BrukerVisTimeregistreringer.aspx.cs">
+      <DependentUpon>BrukerVisTimeregistreringer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrukerVisTimeregistreringer.aspx.designer.cs">
+      <DependentUpon>BrukerVisTimeregistreringer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Masterpages\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -184,6 +194,7 @@
     </Compile>
     <Compile Include="Masterpages\Bruker.Master.cs">
       <DependentUpon>Bruker.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Masterpages\Bruker.Master.designer.cs">
       <DependentUpon>Bruker.Master</DependentUpon>
@@ -224,6 +235,13 @@
     </Compile>
     <Compile Include="LogOut.aspx.designer.cs">
       <DependentUpon>LogOut.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NyttProsjekt.aspx.cs">
+      <DependentUpon>NyttProsjekt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NyttProsjekt.aspx.designer.cs">
+      <DependentUpon>NyttProsjekt.aspx</DependentUpon>
     </Compile>
     <Compile Include="PAAdministrerBrukere.aspx.cs">
       <DependentUpon>PAAdministrerBrukere.aspx</DependentUpon>
@@ -372,6 +390,13 @@
     </Compile>
     <Compile Include="TLEditProject.aspx.designer.cs">
       <DependentUpon>TLEditProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TL_godkjenning_av_timeregistreringer.aspx.cs">
+      <DependentUpon>TL_godkjenning_av_timeregistreringer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TL_godkjenning_av_timeregistreringer.aspx.designer.cs">
+      <DependentUpon>TL_godkjenning_av_timeregistreringer.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="ViewProjectArchive.aspx.cs">

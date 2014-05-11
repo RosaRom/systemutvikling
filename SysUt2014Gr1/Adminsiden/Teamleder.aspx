@@ -34,7 +34,7 @@
             &nbsp;&nbsp;
             <asp:Label ID="Label2" runat="server" Text="Arbeid avsluttet:"></asp:Label>
             <br />
-            <asp:DropDownList ID="ddl_hour_from" runat="server" Height="20px" Width="50px">
+            <asp:DropDownList ID="ddl_hour_from" runat="server" AutoPostBack="True" Height="20px" Width="50px">
             </asp:DropDownList>
             <asp:DropDownList ID="ddl_min_from" runat="server" Height="20px" style="margin-bottom: 0px" Width="50px">
             </asp:DropDownList>
@@ -63,6 +63,8 @@
             <asp:Label ID="label_result" runat="server" Visible="False"></asp:Label>
                 <br />
                 <br />
+            
+              
                 <asp:DropDownList ID="ddlTeam" runat="server" AppendDataBoundItems="True" AutoPostBack="True" OnSelectedIndexChanged="ddlTeam_SelectedIndexChanged">
                 </asp:DropDownList>
         &nbsp;<asp:DropDownList ID="ddlBruker" runat="server" AppendDataBoundItems="True">

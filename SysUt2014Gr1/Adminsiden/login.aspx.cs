@@ -33,13 +33,13 @@ namespace Adminsiden
                 int userID = Convert.ToInt16(dt.Rows[0]["userID"]);
                 string userPW = Convert.ToString(dt.Rows[0]["password"]);
                 int groupID = Convert.ToInt16(dt.Rows[0]["groupID"]);
-                Session["aktiv"] = Convert.ToInt16(dt.Rows[0]["aktiv"]); //for å sjekke om brukeren er aktiv
+                int aktiv = Convert.ToInt16(dt.Rows[0]["aktiv"]); //for å sjekke om brukeren er aktiv
 
                 Session["userID"] = userID;
 
                
 
-                if (passwordIn == userPW)
+                if (passwordIn == userPW && aktiv != 0)
                 {
 
                 switch (groupID) //sjekker brukertype, for så å sende videre til rett form

@@ -51,7 +51,7 @@ namespace Adminsiden
         {
             int projectID = Convert.ToInt16(Session["projectID"]);
 
-                string query = "SELECT taskID, taskCategoryID, taskName, description FROM Task";
+            string query = String.Format("SELECT taskID, taskCategoryID, taskName, description FROM Task WHERE phaseID IN (SELECT phaseID FROM Fase WHERE projectID IN (SELECT projectID from Project WHERE projectID = {0}))", projectID);
 
                 dt = db.getAll(query);
                 ViewState["table"] = dt;

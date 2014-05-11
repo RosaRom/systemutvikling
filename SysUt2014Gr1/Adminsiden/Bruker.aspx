@@ -35,7 +35,7 @@
             &nbsp;&nbsp;
             <asp:Label ID="Label2" runat="server" Text="Arbeid avsluttet:"></asp:Label>
             <br />
-            <asp:DropDownList ID="ddl_hour_from" runat="server" Height="20px" Width="50px">
+            <asp:DropDownList ID="ddl_hour_from" runat="server" Height="20px" AutoPostBack="True" Width="50px">
             </asp:DropDownList>
             <asp:DropDownList ID="ddl_min_from" runat="server" Height="20px" style="margin-bottom: 0px" Width="50px">
             </asp:DropDownList>

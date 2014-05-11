@@ -10,42 +10,51 @@
 namespace Adminsiden {
     
     
-    public partial class BootstrapPA {
+    public partial class BrukerVisTimeregistreringer {
         
         /// <summary>
-        /// head control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Label_prosjekt control.
+        /// lbWhatIsShowing control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_prosjekt;
+        protected global::System.Web.UI.WebControls.Label lbWhatIsShowing;
         
         /// <summary>
-        /// Label_fase control.
+        /// btShowActiveRegistrations control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_fase;
+        protected global::System.Web.UI.WebControls.Button btShowActiveRegistrations;
         
         /// <summary>
-        /// body control.
+        /// btShowInactiveRegistrations control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder body;
+        protected global::System.Web.UI.WebControls.Button btShowInactiveRegistrations;
+        
+        /// <summary>
+        /// gvTaskList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTaskList;
     }
 }
