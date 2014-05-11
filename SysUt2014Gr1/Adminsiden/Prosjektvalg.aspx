@@ -14,6 +14,7 @@
         <div id="prosjektvalg" class="panel panel-primary">
            <div class="panel-heading"><h4>Velg prosjekt</h4></div>
             <div class="panel-body">
+                <asp:Label ID="Label_ingenProsjekt" runat="server" visible="false"></asp:Label>
                 <asp:GridView ID="GridViewProject" 
                     AllowPaging="True" 
                     AutoGenerateColumns="False"

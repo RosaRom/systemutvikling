@@ -48,7 +48,7 @@ namespace Adminsiden
         public void Populate()
         {
             string query = "SELECT projectID, projectName \"Prosjektnavn\", projectDescription \"Beskrivelse\", projectState \"State\"," +
-              " parentProjectID \"Foreldre-ID\", teamID FROM Project WHERE projectState = 0";
+              " parentProjectID \"Foreldre-ID\", teamID FROM Project WHERE projectState = 2";
 
             dt = db.getAll(query);
             ViewState["table"] = dt;
