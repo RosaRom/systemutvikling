@@ -11,7 +11,7 @@ namespace Adminsiden
     public partial class BrukerBeOmExtraTimer : System.Web.UI.Page
     {
         int userID = 44; // hardkodet, trenger session
-        int taskID = 0;
+//        int taskID = 0;
 
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
@@ -42,7 +42,7 @@ namespace Adminsiden
         {
             if (Convert.ToInt32(ddlTaskValg.SelectedValue.ToString()) != 0)
             {
-                string query = string.Format("SELECT * FROM Task WHERE taskID = {0}", taskID);
+                string query = string.Format("SELECT * FROM Task WHERE taskID = {0}", ViewState["taskID"]);
                 dt = db.getAll(query);
                 tbEkstraTimer.Text = dt.Rows[0]["hoursExtra"].ToString();
                 string allocated = dt.Rows[0]["hoursAllocated"].ToString();
@@ -69,7 +69,7 @@ namespace Adminsiden
         {
             if (Convert.ToInt32(ddlTaskValg.SelectedValue.ToString()) != 0)
             {
-                taskID = Convert.ToInt32(ddlTaskValg.SelectedValue.ToString());
+                ViewState["taskID"] = Convert.ToInt32(ddlTaskValg.SelectedValue.ToString());
                 Populate();
             }
         }
