@@ -10,7 +10,7 @@ namespace Adminsiden
 {
     public partial class PAAdministrerBrukere : System.Web.UI.Page
     {
-        private DBConnect db;
+        private DBConnect db = new DBConnect();
         private Boolean active = true;
         private DataTable table = new DataTable();
         private DataTable tableNull = new DataTable();
@@ -45,7 +45,6 @@ namespace Adminsiden
 
             if (session == "projectManager")
             {
-                db = new DBConnect();
                 if (!Page.IsPostBack)
                 {
                     aktiveEllerDeaktiv.Text = "Aktive brukere";
@@ -79,7 +78,7 @@ namespace Adminsiden
             table = db.AdminGetAllUsers(queryActive);
             table.Merge(tableNull, true, MissingSchemaAction.Ignore);
 
-            table = db.AdminGetAllUsers(queryActive);
+           // table = db.AdminGetAllUsers(queryActive);
             ViewState["table"] = table;
 
             GridViewAdmin.DataSource = table;
