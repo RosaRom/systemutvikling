@@ -13,12 +13,11 @@ namespace Adminsiden
     public partial class editProject : System.Web.UI.Page
     {
         private DBConnect db;
-        private string query;
-        private DataTable dataTable = new DataTable();
+        private DataTable table = new DataTable();
+        private DataTable tableProjectNames = new DataTable();
+        private DataTable tableTeamNames = new DataTable();
         private int projectID;
-        private string projectDescription;
-        private string name;
-        private string state;
+        private string queryUpdate;
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -40,82 +39,78 @@ namespace Adminsiden
         protected void Page_Load(object sender, EventArgs e)
         {
             db = new DBConnect();
+            projectID = 1;//Convert.ToInt16(Session["projectID"]);
 
             string session = (string)Session["userLoggedIn"];
 
-            if (session == "teamLeader" || session == "projectManager")
+            //if (session == "teamLeader" || session == "projectManager")
             {
                 if (!Page.IsPostBack)
                 {
-                    state = tbState.Text;
-                    name = tbProjectName.Text;
-                    projectDescription = tbProjectDescription.Text;
-                    projectID = Convert.ToInt16(Session["projectID"]);
-                    Refresh();
+                    GetProjectDetails();
                 }
                 else
                 {
-                    if (ViewState["name"] != null)
-                    {
-                        name = (string)ViewState["name"];
-                        projectDescription = (string)ViewState["projectDescription"];
-                    }
+                    table = (DataTable)ViewState["table"];
                 }
             }
-            else
+            //else
             {
-                Server.Transfer("Login.aspx", true);
+              //  Server.Transfer("Login.aspx", true);
             }
           
         }
-        private void EditProject()
+
+        private void GetProjectDetails()
         {
-            /*
-            query = String.Format("UPDATE Project SET projectName = '{0}', projectDescription = '{1}', projectState = '{2}', parentProjectID = '{3}' WHERE projectID = '{4}')",
-                tbProjectName.Text, tbProjectDescription.Text, "1", "0", "2");
-             * */
-            name = tbProjectName.Text;
-            projectID = Convert.ToInt16(Session["projectID"]);
-            projectDescription = tbProjectDescription.Text;
-            state = tbState.Text;
+            string queryProject = "SELECT * FROM Project WHERE projectID = " + projectID;
+            table = db.AdminGetAllUsers(queryProject);
+            ViewState["table"] = table;
 
+            tbProjectName.Text = table.Rows[0]["projectName"].ToString();
+            tbProjectDescription.Text = table.Rows[0]["projectDescription"].ToString();
+            dropDownState.Items.FindByValue(table.Rows[0]["projectState"].ToString()).Selected = true;
 
-             query = String.Format("UPDATE Project SET projectName = '{0}', projectDescription = '{1}', projectState = '{2}' WHERE projectID = '{3}'",
-                name, projectDescription, state, projectID);
-            db.InsertDeleteUpdate(query);
-            lblMessageOK.ForeColor = Color.Green;
-            lblMessageOK.Text = "Prosjekt endret, OK!";
+            string queryProjectNames = "SELECT projectID, projectName FROM Project";
+            tableProjectNames = db.AdminGetAllUsers(queryProjectNames);
+            tableProjectNames.Rows.InsertAt(tableProjectNames.NewRow(), 0);
+            ddlSubProject.DataSource = tableProjectNames;
+            ddlSubProject.DataBind();
 
-        }
-        private void Refresh()
-        {
-            query = String.Format("SELECT * FROM Project WHERE projectID = '{0}'", projectID);
-            dataTable = db.getAll(query);
-
-            try
+            if (!table.Rows[0]["parentProjectID"].ToString().Equals(""))
             {
-                tbProjectName.Text = dataTable.Rows[0]["projectName"].ToString();
-                tbProjectDescription.Text = dataTable.Rows[0]["projectDescription"].ToString();
-                ViewState["name"] = dataTable.Rows[0]["projectName"].ToString();
-                tbState.Text = dataTable.Rows[0]["projectState"].ToString();
-                ViewState["description"] = dataTable.Rows[0]["projectDescription"].ToString();
-                tbState.Text = dataTable.Rows[0]["projectState"].ToString();
+                if (Convert.ToInt32(table.Rows[0]["parentProjectID"].ToString()) != 0)
+                    ddlSubProject.Items.FindByValue(table.Rows[0]["parentProjectID"].ToString()).Selected = true;
             }
-            catch (IndexOutOfRangeException e)
+
+            string queryTeams = "SELECT teamName, teamID FROM Team";
+            tableTeamNames = db.AdminGetAllUsers(queryTeams);
+            ddlTeam.DataSource = tableTeamNames;
+            ddlTeam.DataBind();
+
+            if (!table.Rows[0]["teamID"].ToString().Equals(""))
             {
-                Console.WriteLine("An error occurred: '{0}'", e);
+                ddlTeam.Items.FindByValue(table.Rows[0]["teamID"].ToString()).Selected = true;
             }
- 
         }
 
         protected void btnUpdateQuery_Click(object sender, EventArgs e)
         {
-            EditProject();
-        }
+            try
+            {
+                if (ddlSubProject.SelectedIndex == 0)
+                    queryUpdate = String.Format("UPDATE Project SET projectName = '{0}', projectDescription = '{1}', projectState = {2}, parentProjectID = 0, teamID = {3} WHERE projectID = {4}", tbProjectName.Text, tbProjectDescription.Text, dropDownState.SelectedValue, ddlTeam.SelectedValue, table.Rows[0]["projectID"].ToString());
+                else
+                    queryUpdate = String.Format("UPDATE Project SET projectName = '{0}', projectDescription = '{1}', projectState = {2}, parentProjectID = {3}, teamID = {4} WHERE projectID = {5}", tbProjectName.Text, tbProjectDescription.Text, dropDownState.SelectedValue, ddlSubProject.SelectedValue, ddlTeam.SelectedValue, table.Rows[0]["projectID"].ToString());
 
-        protected void btnRefresh_Click(object sender, EventArgs e)
-        {
-            Refresh();
+                db.InsertDeleteUpdate(queryUpdate);
+                lblMessageOK.Text = "Prosjektet er oppdatert";
+            }
+            catch (Exception ex)
+            {
+                lblMessageOK.Text = "Noe gikk galt: " + ex.Message;
+            }
         }
+        
     }
 }
