@@ -39,11 +39,11 @@ namespace Adminsiden
         protected void Page_Load(object sender, EventArgs e)
         {
             db = new DBConnect();
-            projectID = 1;//Convert.ToInt16(Session["projectID"]);
+            projectID = Convert.ToInt16(Session["projectID"]);
 
             string session = (string)Session["userLoggedIn"];
 
-            //if (session == "teamLeader" || session == "projectManager")
+            if (session == "teamLeader" || session == "projectManager")
             {
                 if (!Page.IsPostBack)
                 {
@@ -54,9 +54,9 @@ namespace Adminsiden
                     table = (DataTable)ViewState["table"];
                 }
             }
-            //else
+            else
             {
-              //  Server.Transfer("Login.aspx", true);
+                Server.Transfer("Login.aspx", true);
             }
           
         }
