@@ -11,7 +11,7 @@ namespace Adminsiden
 {
     public partial class VisTeam : System.Web.UI.Page
     {
-
+        int projectID;
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
         DataTable dt_users = new DataTable();
@@ -61,11 +61,11 @@ namespace Adminsiden
             this.projectChart.Legends["Legend"].Enabled = true;
 
             //queries + datatable-assignment
-            string query = String.Format("SELECT * FROM TimeSheet WHERE projectID = 1");
+            string query = String.Format("SELECT * FROM TimeSheet WHERE projectID = {0}", projectID);
             chartTable = db.getAll(query);
-            string query2 = String.Format("SELECT phaseFromDate, phaseToDate FROM Fase WHERE projectID = 1");
+            string query2 = String.Format("SELECT phaseFromDate, phaseToDate FROM Fase WHERE projectID = {0}", projectID);
             phaseDateToFromTable = db.getAll(query2);
-            string query3 = String.Format("SELECT hoursAllocated FROM Task WHERE phaseID IN (SELECT phaseID FROM Fase WHERE projectID = 1)");
+            string query3 = String.Format("SELECT hoursAllocated FROM Task WHERE phaseID IN (SELECT phaseID FROM Fase WHERE projectID = {0})", projectID);
             yAxis2Table = db.getAll(query3);
 
             // counts allocated hours from all the tasks from this project
@@ -76,10 +76,10 @@ namespace Adminsiden
 
             // gets startdate and enddate of the project
             DataView dv = phaseDateToFromTable.DefaultView;
-            dv.Sort = "phaseFromDate desc";
+            dv.Sort = "phaseFromDate ASC";
             DataTable sortedDT = dv.ToTable();
             var startDate = Convert.ToDateTime(sortedDT.Rows[0]["phaseFromDate"]);
-            dv.Sort = "phaseToDate desc";
+            dv.Sort = "phaseToDate ASC";
             sortedDT = dv.ToTable();
             var endDate = Convert.ToDateTime(sortedDT.Rows[sortedDT.Rows.Count - 1]["phaseToDate"]);
 
@@ -121,7 +121,7 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            int projectID = Convert.ToInt16(Session["projectID"]);
+            projectID = Convert.ToInt16(Session["projectID"]);
 
             getFromToDateProject();
 
