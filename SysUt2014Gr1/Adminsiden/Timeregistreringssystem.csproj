@@ -103,6 +103,7 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\AdminStyle.css" />
     <Content Include="Bruker.aspx" />
+    <Content Include="css\navbar-fixed-top.css" />
     <Content Include="Masterpages\Teamleder.Master" />
     <Content Include="Masterpages\Prosjektansvarlig.Master" />
     <Content Include="Masterpages\Admin.Master" />
@@ -155,6 +156,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jQuery 2.1.0.min.js" />
     <Content Include="Teamleder.aspx" />
+    <Content Include="Testing.aspx" />
     <Content Include="TLEditProject.aspx" />
     <Content Include="TL_godkjenning_av_timeregistreringer.aspx" />
     <Content Include="ViewProjectArchive.aspx" />
@@ -383,6 +385,13 @@
     </Compile>
     <Compile Include="Teamleder.aspx.designer.cs">
       <DependentUpon>Teamleder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Testing.aspx.cs">
+      <DependentUpon>Testing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Testing.aspx.designer.cs">
+      <DependentUpon>Testing.aspx</DependentUpon>
     </Compile>
     <Compile Include="TLEditProject.aspx.cs">
       <DependentUpon>TLEditProject.aspx</DependentUpon>

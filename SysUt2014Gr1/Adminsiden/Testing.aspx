@@ -1,14 +1,11 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Prosjektansvarlig.Master.cs" Inherits="Adminsiden.BootstrapPA" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Testing.aspx.cs" Inherits="Adminsiden.Testing" %>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head runat="server">
-    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="../css/navbar-fixed-top.css" rel="stylesheet"/>
-
-    <asp:ContentPlaceHolder ID="head" runat="server">
-        <!--Kode fra .aspx filer kommer hit-->
-    </asp:ContentPlaceHolder>
 </head>
 
 <body>
@@ -26,10 +23,10 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="Profilside.aspx">Profil</a></li>
-                    <li><a href="PAAdministrerBrukere.aspx">Administrer brukere</a></li> 
+                    <li><a href="PAAdministrerBrukere.aspx">Administrer brukere</a></li>
                     <li><a href="PAMottaRapporter.aspx">Rapporter</a></li>
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opprett... <b class="caret"></b></a>
+                      <a href="Testing.aspx" class="dropdown-toggle" data-toggle="dropdown">Opprett... <b class="caret"></b></a>
                       <ul class="dropdown-menu">
                         <li><a href="OpprettProsjekt.aspx">Prosjekt</a></li>
                         <li><a href="OpprettTeam.aspx">Team</a></li>
@@ -66,18 +63,7 @@
             <!--/.nav-collapse -->
         </div>
     </div>
-    <div class="container">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <asp:ContentPlaceHolder ID="body" runat="server">
-            <!--Kode fra .aspx filer kommer hit-->
-        </asp:ContentPlaceHolder>
-    </div>
+    
     <script src="../Scripts/jQuery 2.1.0.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
 </body>
