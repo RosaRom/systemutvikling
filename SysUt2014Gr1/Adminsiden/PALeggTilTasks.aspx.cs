@@ -72,7 +72,7 @@ namespace Adminsiden
                     description = "'" + beskrivelse.Text + "'";
 
                 string priority = DropDownPrioritering.SelectedValue.ToString();
-                string state = "0";
+                string state = "1";
 
                 string hoursAllocated;
                 if (timerAllokert.Text.Equals(""))
