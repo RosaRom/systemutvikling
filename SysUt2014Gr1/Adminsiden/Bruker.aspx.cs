@@ -161,7 +161,7 @@ namespace Adminsiden
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (Convert.ToDateTime(dt.Rows[i][3]) < DateTime.Now && Convert.ToDateTime(dt.Rows[i][4]) > DateTime.Now)
+                if (Convert.ToDateTime(dt.Rows[i][3]) <= DateTime.Today && Convert.ToDateTime(dt.Rows[i][4]) >= DateTime.Today)
                 {
                     phaseID = Convert.ToInt16(dt.Rows[i][0]);
                 }

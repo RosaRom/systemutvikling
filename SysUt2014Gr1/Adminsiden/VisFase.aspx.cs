@@ -11,8 +11,9 @@ namespace Adminsiden
 {
     public partial class VisFase : System.Web.UI.Page
     {
-        private int phaseID = 1; // hardcoded phase id, needs to be referred
+        private int phaseID;
         private int projectID;
+                    
 
         private DBConnect db = new DBConnect();
         private DataTable dataTable = new DataTable();
@@ -49,6 +50,7 @@ namespace Adminsiden
             {
                 if (!Page.IsPostBack)
                 {
+
                     PopulateFaseValg();
                     ddlFaseValg.SelectedIndex = 0;
                     phaseID = Convert.ToInt32(ddlFaseValg.SelectedValue);
@@ -70,7 +72,10 @@ namespace Adminsiden
         // populates combobox with phase selection
         public void PopulateFaseValg()
         {
+
+            phaseID = Convert.ToInt16(Session["phaseID"]);
             projectID = Convert.ToInt16(Session["projectID"]);
+
 
             string query = String.Format("SELECT * FROM Fase WHERE projectID = {0}", projectID);
             ddlFaseValg.DataSource = db.getAll(query);
@@ -97,6 +102,9 @@ namespace Adminsiden
             double allocatedHours = 0;
             DateTime dateFrom = new DateTime();
             DateTime dateTo = new DateTime();
+
+            phaseID = Convert.ToInt16(Session["phaseID"]);
+            projectID = Convert.ToInt16(Session["projectID"]);
 
             // chart-properties
             this.phaseChart.ChartAreas["ChartArea1"].AxisX.Interval = 1; // makes sure each point has a label
@@ -165,7 +173,10 @@ namespace Adminsiden
 
         // fills lbPhaseName, lbDateFrom, lbDateTo, lbDescription
         public void PopulateBasicInfo()
-        {            
+        {
+            phaseID = Convert.ToInt16(Session["phaseID"]);
+            projectID = Convert.ToInt16(Session["projectID"]);
+
             String query = String.Format("SELECT * FROM Fase WHERE phaseID = '{0}'", phaseID);
             dataTable = db.getAll(query);
             String phaseName = Convert.ToString(dataTable.Rows[0]["phaseName"]);            
@@ -182,6 +193,7 @@ namespace Adminsiden
         // fills lbHoursUsed, lbHoursAllocated, lbFinishedTaskNum and lbUnfinishedTaskNum
         public void PopulateHoursAndFinishedTasks()
         {
+            phaseID = Convert.ToInt16(Session["phaseID"]);
             projectID = Convert.ToInt16(Session["projectID"]);
 
             String query = String.Format("SELECT * FROM Task WHERE Task.phaseID IN (SELECT phaseID from Fase WHERE Fase.projectID = {1}) AND Task.PhaseID = {0}", phaseID, projectID);
@@ -226,6 +238,7 @@ namespace Adminsiden
 
         public void FillGridView()
         {
+            phaseID = Convert.ToInt16(Session["phaseID"]);
             projectID = Convert.ToInt16(Session["projectID"]);
 
             string queryActive = String.Format("SELECT productBacklogID \"BacklogID\", taskName \"Tasknavn\", priority \"Prioritet\", description \"Beskrivelse\"," +
