@@ -31,7 +31,7 @@
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opprett... <b class="caret"></b></a>
                       <ul class="dropdown-menu">
-                        <li><a href="OpprettProsjekt.aspx">Prosjekt</a></li>
+                        <li><a href="NyttProsjekt.aspx">Prosjekt</a></li>
                         <li><a href="OpprettTeam.aspx">Team</a></li>
                         <li><a href="PALeggTilTasks.aspx">Task</a></li>
                         <li><a href="PANyHovedtask.aspx">Hovedtask</a></li>
@@ -41,7 +41,7 @@
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rediger... <b class="caret"></b></a>
                       <ul class="dropdown-menu">
-                        <li><a href="ProsjektAnsvarlig.aspx">Prosjekt</a></li>
+                        <li><a href="EditProject.aspx">Prosjekt</a></li>
                         <li><a href="PickTask.aspx">Task</a></li>
                         <li><a href="PAEditHovedtask.aspx">Hovedtask</a></li>
                       </ul>
@@ -50,6 +50,7 @@
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vis... <b class="caret"></b></a>
                       <ul class="dropdown-menu">
                         <li><a href="VisProsjektdetaljer.aspx">Prosjektdetaljer</a></li>
+                        <li><a href="ViewProjectArchive.aspx">Prosjektarkiv</a></li>
                         <li><a href="VisFase.aspx">Fasedetaljer</a></li>
                         <li><a href="PAVisHovedtask.aspx">Hovedtask</a></li>
                         <li><a href="ProsjektAnsvarligVisTeam.aspx">Team</a></li>

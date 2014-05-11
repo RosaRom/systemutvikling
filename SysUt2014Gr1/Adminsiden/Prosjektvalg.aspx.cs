@@ -33,10 +33,30 @@ namespace Adminsiden
         }
         private void GetProject()
         {
+            session = (string)Session["userLoggedIn"];
+
+            DataTable dt = new DataTable();
             string query = "SELECT projectID, projectName, projectDescription FROM Project";
-            GridViewProject.DataSource = db.getAll(query);
-            GridViewProject.DataBind();
+            dt = db.getAll(query);
+            if(dt.Rows.Count == 0)
+            {
+                if (session == "teamMember" || session == "teamLeader")
+                {
+                    Label_ingenProsjekt.Text = "Det er ingen prosjekter å registrere timer på.";
+                }
+                else
+                {
+                    Server.Transfer("NyttProsjekt.aspx", true);
+                }
+            }
+            else
+            {
+                GridViewProject.DataSource = dt;
+                GridViewProject.DataBind();
+            }
+            
         }
+
         protected void GridViewProject_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument.ToString());
