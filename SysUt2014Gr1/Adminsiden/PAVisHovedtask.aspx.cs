@@ -12,10 +12,10 @@ namespace Adminsiden
 {
     public partial class PAVisHovedtask : System.Web.UI.Page
     {
-        private int taskCategoryID = 1; // hardkodet, må byttes ut
+//        private int taskCategoryID = 19; // hardkodet, må byttes ut
+        int projectID;
         
-        private DBConnect db = new DBConnect();
-        private DataTable dt = new DataTable();
+        private DBConnect db = new DBConnect();        
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -40,8 +40,7 @@ namespace Adminsiden
 
             if (session == "projectManager")
             {
-                PopulateFields();            
-
+                GetTaskCategories();
             }
             else
             {
@@ -49,12 +48,30 @@ namespace Adminsiden
             } 
         }
 
+        private void GetTaskCategories()
+        {
+            projectID = Convert.ToInt16(Session["projectID"]);
+            string query = string.Format("SELECT * FROM TaskCategory WHERE projectID = {0}", projectID);
+            ddlTaskCategory.DataSource = db.getAll(query);
+            ddlTaskCategory.DataTextField = "taskCategoryName";
+            ddlTaskCategory.DataValueField = "taskCategoryID";
+            ddlTaskCategory.Items.Insert(0, new ListItem("<Velg hovedtask>", "0")); //OBS! AppendDataBoundItems="true" i asp-kodene om dette skal funke!
+            ddlTaskCategory.DataBind();
+        }
+
         public void PopulateFields()
         {
-            string query = String.Format("SELECT * FROM TaskCategory WHERE taskCategoryID = {0}", taskCategoryID);
+            projectID = Convert.ToInt16(Session["projectID"]);
+            string query = String.Format("SELECT * FROM TaskCategory WHERE taskCategoryID = {0} AND projectID = {1}", ddlTaskCategory.SelectedValue, projectID);
+            DataTable dt = new DataTable();
             dt = db.getAll(query);
-            lbTaskCategoryName.Text = dt.Rows[0]["taskCategoryName"].ToString().ToUpper();
+            lbTaskCategoryName.Text = dt.Rows[0]["taskCategoryName"].ToString();
             taTaskCategoryDesc.Text = dt.Rows[0]["taskCategoryDescription"].ToString();
+        }
+
+        protected void ddlTaskCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateFields();
         }
     }
 }

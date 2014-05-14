@@ -225,7 +225,7 @@ namespace Adminsiden
                 if (dateFrom > DateTime.Now.AddDays(1) || dateFrom < DateTime.Now.AddDays(-1))
                 {
                     permissionState = 1;
-                    label_result.Text = "Du har sendt inn for mange timer. Timeantallet er under godkjenning";
+                    label_result.Text = "Du har sendt prøvd å registrere timer utenfor +- 24t. Timeantallet er under godkjenning";
                     label_result.Visible = true;
                 }
 
@@ -237,7 +237,7 @@ namespace Adminsiden
                 }
 
                 db.InsertTimeSheet(dateFromFormated, dateToFormated, userID, TaskID, userDescription, WorkplaceID, state, projectID, permissionState);
-
+                
                 // Denne må gjøres om slik at det er hvis en bruker registrerer for dager som er før den 
                 // gjeldende dato
             

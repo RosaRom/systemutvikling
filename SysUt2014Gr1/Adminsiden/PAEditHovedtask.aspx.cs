@@ -13,6 +13,7 @@ namespace Adminsiden
     public partial class PAEditHovedtask : System.Web.UI.Page
     {
         private int taskCategoryID = 1; // hardkodet, må byttes ut
+        int projectID;
 
         private DBConnect db = new DBConnect();
         private DataTable dt = new DataTable();        
@@ -54,7 +55,8 @@ namespace Adminsiden
 
         private void GetTaskCategories()
         {
-            string query = "SELECT * FROM TaskCategory";
+            projectID = Convert.ToInt16(Session["projectID"]);
+            string query = string.Format("SELECT * FROM TaskCategory WHERE projectID = {0}", projectID);
             ddlTaskCategory.DataSource = db.getAll(query);
             ddlTaskCategory.DataTextField = "taskCategoryName";
             ddlTaskCategory.DataValueField = "taskCategoryID";
@@ -64,7 +66,8 @@ namespace Adminsiden
 
         public void PopulateFields()
         {
-            string query = String.Format("SELECT * FROM TaskCategory WHERE taskCategoryID = {0}", ddlTaskCategory.SelectedValue);
+            projectID = Convert.ToInt16(Session["projectID"]);
+            string query = String.Format("SELECT * FROM TaskCategory WHERE taskCategoryID = {0} AND projectID = {1}", ddlTaskCategory.SelectedValue, projectID);
             dt = db.getAll(query);
             tbTaskCategoryName.Text = dt.Rows[0]["taskCategoryName"].ToString();
             taTaskCategoryDesc.Text = dt.Rows[0]["taskCategoryDescription"].ToString();            
