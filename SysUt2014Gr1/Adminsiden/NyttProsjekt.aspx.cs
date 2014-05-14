@@ -16,7 +16,7 @@ namespace Adminsiden
         private DBConnect db = new DBConnect();        
         private DateTime startDate = new DateTime();
         private DateTime endDate = new DateTime();
-        private bool datesOK = false;
+        //private bool datesOK = false;
         private List<String> taskCategoryIDs = new List<String>(); // lagrer ingenting
         private List<String> taskCategories = new List<String>();
 
@@ -85,10 +85,12 @@ namespace Adminsiden
         {
             if (tbSelectNumberOfPhases.Text != "" && tbSelectNumberOfDaysPerPhase.Text != "" && tbStartDate.Text != "")
             {
-                    startDate = Convert.ToDateTime(tbStartDate.Text);
-                    endDate = startDate.AddDays(Convert.ToInt32(tbSelectNumberOfPhases.Text) * Convert.ToInt32(tbSelectNumberOfDaysPerPhase.Text));
-                    tbEndDate.Text = endDate.ToString("yyyy-MM-dd");
-                    datesOK = true;
+                startDate = Convert.ToDateTime(tbStartDate.Text);    
+                endDate = startDate.AddDays(Convert.ToInt32(tbSelectNumberOfPhases.Text) * Convert.ToInt32(tbSelectNumberOfDaysPerPhase.Text) - 1);
+                tbEndDate.Text = endDate.ToString("yyyy-MM-dd");
+
+                ViewState["dateOK"] = true;
+                //datesOK = true;
             }
         }
 
@@ -141,7 +143,7 @@ namespace Adminsiden
                 query = string.Format("INSERT INTO Project (projectName, projectDescription, projectState, teamID, latestProject) VALUES ('{0}', '{1}', {2}, {3}, {4})", tbProjectName.Text, tbDescription.Text, 0, ddlTeam.SelectedValue, 1);
             }
             
-            if (tbProjectName.Text != "" && datesOK == true && ddlTeam.SelectedIndex != 0)
+            if (tbProjectName.Text != "" && (bool)ViewState["dateOK"] == true && ddlTeam.SelectedIndex != 0)
             {
                 DataTable dt = new DataTable();
                 db.InsertDeleteUpdate(query);
@@ -173,17 +175,26 @@ namespace Adminsiden
         // legger til fasene i db
         private void AddPhases()
         {
+            startDate = Convert.ToDateTime(tbStartDate.Text);
+            DateTime phaseStartDate = new DateTime();
+            DateTime phaseEndDate = new DateTime();
+
             for (int i = 0; i < Convert.ToInt32(tbSelectNumberOfPhases.Text); i++)
             {
-                int fase = (i)+1;
-                DateTime phaseStartDate = new DateTime();
-                phaseStartDate = startDate.AddDays(Convert.ToInt32(tbSelectNumberOfDaysPerPhase.Text) * (fase));
-                
-                DateTime phaseEndDate = new DateTime();
-                phaseEndDate = phaseStartDate.AddDays(Convert.ToInt32(tbSelectNumberOfDaysPerPhase.Text) - 1);
+                int fase = i;
+                if (i == 0)
+                {
+                    phaseStartDate = startDate;
+                    phaseEndDate = phaseStartDate.AddDays(Convert.ToInt32(tbSelectNumberOfDaysPerPhase.Text) - 1);
+                }
+                else
+                {
+                    phaseStartDate = startDate.AddDays(Convert.ToInt32(tbSelectNumberOfDaysPerPhase.Text) * (fase));
+                    phaseEndDate = phaseStartDate.AddDays(Convert.ToInt32(tbSelectNumberOfDaysPerPhase.Text) - 1);
+                }
 
                 string phaseQuery = string.Format("INSERT INTO Fase (phaseName, phaseDescription, phaseFromDate, phaseToDate, projectID)" +
-                    " VALUES ('{0}', '{1}', '{2}', '{3}', {4})", "Fase " + (fase - 1), "Beskrivelse for sprint " + (fase - 1), phaseStartDate.ToString("yyyy-MM-dd"), phaseEndDate.ToString("yyyy-MM-dd"), projectID);
+                    " VALUES ('{0}', '{1}', '{2}', '{3}', {4})", "Fase " + fase, "Beskrivelse for sprint " + fase, phaseStartDate.ToString("yyyy-MM-dd"), phaseEndDate.ToString("yyyy-MM-dd"), projectID);
                 db.InsertDeleteUpdate(phaseQuery);
             }
         }

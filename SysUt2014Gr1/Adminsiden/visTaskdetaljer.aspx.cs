@@ -66,7 +66,11 @@ namespace Adminsiden
                 int hoursAllocated = Convert.ToInt16(dt.Rows[0]["hoursAllocated"]);
                 int priority = Convert.ToInt16(dt.Rows[0]["priority"]);
                 string backlogID = Convert.ToString(dt.Rows[0]["productBacklogID"]);
-                int parentTaskID = Convert.ToInt16(dt.Rows[0]["parentTaskID"]);
+                
+                int parentTaskID = 0;
+                if(Convert.ToBoolean(dt.Rows[0]["parentTaskID"]) != null) //blir alltid true, bug
+                    parentTaskID = Convert.ToInt16(dt.Rows[0]["parentTaskID"]);
+
                 int status = Convert.ToInt16(dt.Rows[0]["state"]);
 
                 if (parentTaskID != 0)

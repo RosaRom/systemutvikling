@@ -38,9 +38,9 @@
                     <div id="nyTeamleder">
                         <asp:Label ID="info" runat="server">Endre valgt bruker til Teamleder</asp:Label>
                         <br/>
-                        <asp:DropDownList ID="DropDownTeam" runat="server">
-                        </asp:DropDownList>
+                        <asp:DropDownList ID="ddlTeam" runat="server" AppendDataBoundItems="True" AutoPostBack="True" OnSelectedIndexChanged="ddlTeam_SelectedIndexChanged"></asp:DropDownList><asp:DropDownList ID="ddlBruker" AppendDataBoundItems="True" runat="server"></asp:DropDownList>
                         <asp:Button ID="btnOK" runat="server" Text="OK" OnClick="btnOK_Click" />
+                        <asp:Label ID="lbTeamlederTransferred" runat="server"></asp:Label>
                     </div>
               </div>
          </div>

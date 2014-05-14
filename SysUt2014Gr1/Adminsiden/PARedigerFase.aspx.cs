@@ -62,7 +62,7 @@ namespace Adminsiden
         {
             string query = "SELECT * FROM Fase WHERE projectID = " + projectID + " ORDER BY phaseToDate ASC";
             table = db.AdminGetAllUsers(query);
-            table.Rows.InsertAt(table.NewRow(), 0);
+            //table.Rows.InsertAt(table.NewRow(), 0);
             ViewState["table"] = table;
             velgFase.DataSource = table;
             velgFase.DataBind();
@@ -99,13 +99,8 @@ namespace Adminsiden
         /// <param name="e"></param>
         protected void VelgFase_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (velgFase.SelectedIndex == 0)
-                ResetFields();
-            else
-            {
                 PopulateFields();
-                lbPAError.Text = "";
-            }
+                lbPAError.Text = "";            
         }
 
         /// <summary>

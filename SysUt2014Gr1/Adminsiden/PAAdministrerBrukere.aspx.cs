@@ -10,7 +10,7 @@ namespace Adminsiden
 {
     public partial class PAAdministrerBrukere : System.Web.UI.Page
     {
-        private DBConnect db;
+        private DBConnect db = new DBConnect();
         private Boolean active = true;
         private DataTable table = new DataTable();
         private DataTable tableNull = new DataTable();
@@ -45,7 +45,6 @@ namespace Adminsiden
 
             if (session == "projectManager")
             {
-                db = new DBConnect();
                 if (!Page.IsPostBack)
                 {
                     aktiveEllerDeaktiv.Text = "Aktive brukere";
@@ -72,7 +71,6 @@ namespace Adminsiden
         private void GetAllUsersReset()
         {
             string queryActive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '1' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID AND (User.groupID = 1 OR User.groupID = 2)";
-            table = db.AdminGetAllUsers(queryActive);
 
             string queryNull = "SELECT userID, surname, firstname, username, phone, mail, teamID \"teamName\", groupName FROM User, UserGroup WHERE aktiv =  '1' AND User.teamID IS NULL  AND User.groupID = UserGroup.groupID AND (User.groupID = 1 OR User.groupID = 2)";
             tableNull = db.AdminGetAllUsers(queryNull);
@@ -80,7 +78,7 @@ namespace Adminsiden
             table = db.AdminGetAllUsers(queryActive);
             table.Merge(tableNull, true, MissingSchemaAction.Ignore);
 
-            
+           // table = db.AdminGetAllUsers(queryActive);
             ViewState["table"] = table;
 
             GridViewAdmin.DataSource = table;
@@ -132,7 +130,6 @@ namespace Adminsiden
         protected void GridViewAdmin_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = GridViewAdmin.Rows[e.RowIndex];
-            string query;
 
             try
             {
@@ -140,28 +137,19 @@ namespace Adminsiden
                 string surname = e.NewValues["surname"].ToString();
                 string firstname = e.NewValues["firstname"].ToString();
                 string username = e.NewValues["username"].ToString();
+                string passwordIn = e.NewValues["password"].ToString();
+                string password = Encryption.Encrypt(passwordIn);
                 string phone = e.NewValues["phone"].ToString();
                 string mail = e.NewValues["mail"].ToString();
 
                 DropDownList team = (DropDownList)row.FindControl("dropDownTeamUsers");
                 DropDownList group = (DropDownList)row.FindControl("dropDownGroupUsers");
 
+                int teamID = Convert.ToInt32(team.SelectedValue);
                 int groupID = Convert.ToInt32(group.SelectedValue);
-                
-                if (team.SelectedIndex != 0)
-                {
-                    int teamID = Convert.ToInt32(team.SelectedValue);
 
-                    query = String.Format("UPDATE User SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
-                    surname, firstname, username, phone, mail, teamID, groupID, id);
-                }
-                else
-                {
-                    query = String.Format("UPDATE User SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = NULL, groupID = {5} WHERE userID = {6}",
-                    surname, firstname, username, phone, mail, groupID, id);
-                }
-                
-                
+                string query = String.Format("UPDATE User SET surname = '{0}', firstname = '{1}', username = '{2}', password = '{8}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
+                surname, firstname, username, phone, mail, teamID, groupID, id, password);
                 db.InsertDeleteUpdate(query);
                 GridViewAdmin.EditIndex = -1;
 

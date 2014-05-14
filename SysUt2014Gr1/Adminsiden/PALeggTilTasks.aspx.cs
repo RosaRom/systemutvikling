@@ -72,7 +72,7 @@ namespace Adminsiden
                     description = "'" + beskrivelse.Text + "'";
 
                 string priority = DropDownPrioritering.SelectedValue.ToString();
-                string state = "0";
+                string state = "1";
 
                 string hoursAllocated;
                 if (timerAllokert.Text.Equals(""))
@@ -133,11 +133,19 @@ namespace Adminsiden
             string queryMainTask = "SELECT taskCategoryID, taskCategoryName FROM TaskCategory WHERE projectID = " + projectID;
             table = db.AdminGetAllUsers(queryMainTask);
 
-            DropDownMainTask.DataSource = table;
-            DropDownMainTask.DataBind();
+            try
+            {
+                DropDownMainTask.DataSource = table;
+                DropDownMainTask.DataBind();
 
-            SetProductBacklogID(false);
-            FillTasks();
+                SetProductBacklogID(false);
+                FillTasks();
+            }
+            catch (Exception ex)
+            {
+                beskjed.Text = "Noe gikk galt(FillMainTasks): " + ex.Message;
+            }
+            
         }
 
         //kjøres ved hver forandring av hovedtask, fyller opp tilhørende tasks på nytt
@@ -221,7 +229,7 @@ namespace Adminsiden
             }
             catch (Exception ex)
             {
-                beskjed.Text = "Noe gikk galt: " + ex.Message;
+                beskjed.Text = "Noe gikk galt: (Filldriodownfase)" + ex.Message;
             }
         }
     }
