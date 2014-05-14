@@ -12,7 +12,7 @@ namespace Adminsiden
 {
     public partial class PAEditHovedtask : System.Web.UI.Page
     {
-        private int taskCategoryID = 1; // hardkodet, må byttes ut
+//        private int taskCategoryID = 1; // hardkodet, må byttes ut
         int projectID;
 
         private DBConnect db = new DBConnect();
@@ -60,8 +60,9 @@ namespace Adminsiden
             ddlTaskCategory.DataSource = db.getAll(query);
             ddlTaskCategory.DataTextField = "taskCategoryName";
             ddlTaskCategory.DataValueField = "taskCategoryID";
-            ddlTaskCategory.Items.Insert(0, new ListItem("<Velg hovedtask>", "0")); //OBS! AppendDataBoundItems="true" i asp-kodene om dette skal funke!
+//            ddlTaskCategory.Items.Insert(0, new ListItem("<Velg hovedtask>", "0")); //OBS! AppendDataBoundItems="true" i asp-kodene om dette skal funke!
             ddlTaskCategory.DataBind();
+            PopulateFields();
         }
 
         public void PopulateFields()
@@ -84,7 +85,7 @@ namespace Adminsiden
             {
                 String desc = taTaskCategoryDesc.Text;
                 String name = tbTaskCategoryName.Text;
-                string query = String.Format("UPDATE TaskCategory SET TaskCategoryDescription = \"{1}\", TaskCategoryName =\"{2}\" WHERE TaskCategoryID = {0}", taskCategoryID, desc, name);
+                string query = String.Format("UPDATE TaskCategory SET TaskCategoryDescription = \"{1}\", TaskCategoryName =\"{2}\" WHERE TaskCategoryID = {0}", ddlTaskCategory.SelectedValue, desc, name);
                 db.InsertDeleteUpdate(query);
             }
             else
