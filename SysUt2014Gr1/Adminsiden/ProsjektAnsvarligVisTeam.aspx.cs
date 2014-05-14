@@ -14,6 +14,8 @@ namespace Adminsiden
         private DBConnect db;
         private int projectID;
         private DataTable table;
+        private int userID;
+        private string userType = "Teamleder";
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -44,6 +46,7 @@ namespace Adminsiden
                 if (!Page.IsPostBack)
                 {
                     GetTeam();
+                    PopulateTeams();
                 }
 
             }
@@ -95,9 +98,50 @@ namespace Adminsiden
             
         }
 
+       
+        // populater ddlTeams med team innlogget bruker er teamleder av
+        public void PopulateTeams()
+        {
+//            userID = Convert.ToInt16(Session["userID"]);
+            string query = String.Format("SELECT * FROM Team");
+            ddlTeam.DataSource = db.getAll(query);
+            ddlTeam.DataTextField = "teamName";
+            ddlTeam.DataValueField = "teamID";
+            ddlTeam.Items.Insert(0, new ListItem("<Velg team>", "0"));
+            ddlTeam.DataBind();
+        }
+
+        // populater ddlBruker med brukere som tilhører valgt team etter at et er valgt fra ddlTeam
+        public void PopulateTeamMembers()
+        {
+            string query = String.Format("SELECT *, CONCAT(firstname, \" \", surname) as name FROM User WHERE teamID = {0}", ddlTeam.SelectedValue);
+            ddlBruker.DataSource = db.getAll(query);
+            ddlBruker.DataTextField = "name";
+            ddlBruker.DataValueField = "userID";
+            ddlBruker.Items.Insert(0, new ListItem("<Velg bruker>", "0"));
+            ddlBruker.DataBind();
+        }
+
+        protected void ddlTeam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateTeamMembers();
+        }
+
+        // overfører teamlederstatus
         protected void btnOK_Click(object sender, EventArgs e)
         {
+            String query = String.Format("SELECT userID FROM User WHERE groupID = 2 AND teamID = {0}", ddlTeam.SelectedValue);
+            DataTable dt = new DataTable();
+            dt = db.getAll(query);
+            userID = Convert.ToInt32(dt.Rows[0]["userID"]);
+            
+            query = String.Format("UPDATE User SET groupID = 1 WHERE userID = {0}", userID);
+            db.InsertDeleteUpdate(query);
 
+            query = String.Format("UPDATE User SET groupID = 2 WHERE userID = {0}", ddlBruker.SelectedValue);
+            db.InsertDeleteUpdate(query);
+
+            lbTeamlederTransferred.Text = "Teamlederstatus overført";                       
         }
     }
 }

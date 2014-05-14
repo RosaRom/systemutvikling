@@ -49,13 +49,22 @@ namespace Adminsiden {
         protected global::System.Web.UI.WebControls.Label info;
         
         /// <summary>
-        /// DropDownTeam control.
+        /// ddlTeam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownTeam;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTeam;
+        
+        /// <summary>
+        /// ddlBruker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlBruker;
         
         /// <summary>
         /// btnOK control.
@@ -65,5 +74,14 @@ namespace Adminsiden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnOK;
+        
+        /// <summary>
+        /// lbTeamlederTransferred control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTeamlederTransferred;
     }
 }
