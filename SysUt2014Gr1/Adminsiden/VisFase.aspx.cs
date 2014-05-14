@@ -24,6 +24,8 @@ namespace Adminsiden
         private DataTable phaseDateToFromTable = new DataTable();
         private DataTable yAxis2Table = new DataTable();
 
+        private Legend legend = new Legend("Legend");
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -73,7 +75,7 @@ namespace Adminsiden
         public void PopulateFaseValg()
         {
 
-            phaseID = Convert.ToInt16(Session["phaseID"]);
+//            phaseID = Convert.ToInt16(Session["phaseID"]);
             projectID = Convert.ToInt16(Session["projectID"]);
 
 
@@ -82,14 +84,15 @@ namespace Adminsiden
             ddlFaseValg.DataTextField = "phaseName";
             ddlFaseValg.DataValueField = "PhaseID";
 //            ddlFaseValg.Items.Insert(0, new ListItem("<Velg fase>", "0"));
-            ddlFaseValg.DataBind();            
+            ddlFaseValg.DataBind();
+            PopulateBasicInfo();
+            PopulateHoursAndFinishedTasks();
+            FillGridView();
+            PopulateChart();            
         }
 
         protected void ddlTeam_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(ddlFaseValg.SelectedValue) != 0)
-                phaseID = Convert.ToInt32(ddlFaseValg.SelectedValue);
-
             PopulateBasicInfo();
             PopulateHoursAndFinishedTasks();
             FillGridView();
@@ -103,7 +106,7 @@ namespace Adminsiden
             DateTime dateFrom = new DateTime();
             DateTime dateTo = new DateTime();
 
-            phaseID = Convert.ToInt16(Session["phaseID"]);
+            phaseID = Convert.ToInt32(ddlFaseValg.SelectedValue);
             projectID = Convert.ToInt16(Session["projectID"]);
 
             // chart-properties
@@ -113,7 +116,10 @@ namespace Adminsiden
             this.phaseChart.Series["Allokerte timer"].Color = System.Drawing.Color.Red; // changes the color of the burn-up-ceiling to red
             this.phaseChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = -45;
             this.phaseChart.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = false;
-            this.phaseChart.Legends.Add(new Legend("Legend"));
+            if (this.phaseChart.Legends.Count == 0)
+            {
+                this.phaseChart.Legends.Add(legend);
+            }
             this.phaseChart.Legends["Legend"].Enabled = true;
             projectID = Convert.ToInt16(Session["projectID"]);
 
@@ -174,7 +180,7 @@ namespace Adminsiden
         // fills lbPhaseName, lbDateFrom, lbDateTo, lbDescription
         public void PopulateBasicInfo()
         {
-            phaseID = Convert.ToInt16(Session["phaseID"]);
+            phaseID = Convert.ToInt32(ddlFaseValg.SelectedValue);
             projectID = Convert.ToInt16(Session["projectID"]);
 
             String query = String.Format("SELECT * FROM Fase WHERE phaseID = '{0}'", phaseID);
@@ -193,7 +199,7 @@ namespace Adminsiden
         // fills lbHoursUsed, lbHoursAllocated, lbFinishedTaskNum and lbUnfinishedTaskNum
         public void PopulateHoursAndFinishedTasks()
         {
-            phaseID = Convert.ToInt16(Session["phaseID"]);
+            phaseID = Convert.ToInt32(ddlFaseValg.SelectedValue);
             projectID = Convert.ToInt16(Session["projectID"]);
 
             String query = String.Format("SELECT * FROM Task WHERE Task.phaseID IN (SELECT phaseID from Fase WHERE Fase.projectID = {1}) AND Task.PhaseID = {0}", phaseID, projectID);
@@ -238,7 +244,7 @@ namespace Adminsiden
 
         public void FillGridView()
         {
-            phaseID = Convert.ToInt16(Session["phaseID"]);
+            phaseID = Convert.ToInt32(ddlFaseValg.SelectedValue);
             projectID = Convert.ToInt16(Session["projectID"]);
 
             string queryActive = String.Format("SELECT productBacklogID \"BacklogID\", taskName \"Tasknavn\", priority \"Prioritet\", description \"Beskrivelse\"," +
