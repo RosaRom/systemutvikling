@@ -29,13 +29,6 @@
                     <asp:TextBox CssClass="beskrivelse" ID="txtBeskrivelse" runat="server" TextMode="MultiLine" Columns="48" Rows="5"></asp:TextBox>
                 </div>
 
-                <div class="nyHovedtask">
-                    <br /><br />
-                    <label>Velg fase</label>
-                    <asp:DropDownList ID="DropDownFase" runat="server" DataValueField="phaseID" DataTextField="phaseName"></asp:DropDownList>
-                    <asp:Button CssClass="nyTask" ID="btnNyTask" runat="server" Text="Ny Task" OnClick="BtnNyTask_Click"/>
-                </div>
-
                 <div class="divLagre">
                     <asp:Button ID="btnLagreHovedtask" runat="server" Text="Lagre hovedtask" OnClick="btnLagreHovedtask_Click" /><br />
                     <asp:Label ID="lbBeskjed" runat="server"></asp:Label>
