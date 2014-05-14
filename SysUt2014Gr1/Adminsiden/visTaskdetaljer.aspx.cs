@@ -68,7 +68,7 @@ namespace Adminsiden
                 string backlogID = Convert.ToString(dt.Rows[0]["productBacklogID"]);
                 
                 int parentTaskID = 0;
-                if(Convert.ToBoolean(dt.Rows[0]["parentTaskID"]) != null) //blir alltid true, bug
+                if(!dt.Rows[0]["parentTaskID"].ToString().Equals(""))
                     parentTaskID = Convert.ToInt16(dt.Rows[0]["parentTaskID"]);
 
                 int status = Convert.ToInt16(dt.Rows[0]["state"]);

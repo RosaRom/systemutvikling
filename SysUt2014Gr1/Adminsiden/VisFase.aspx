@@ -20,7 +20,7 @@
                 </div>
                 <br />
                 <div>
-                    <asp:Label ID="Label4" runat="server" Text="Uferdige tasks: "></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text="Dato: "></asp:Label>
                     <asp:Label ID="lbDateFrom" runat="server" Text="Dato Fra"></asp:Label> - 
                     <asp:Label ID="lbDateTo" runat="server" Text="tilDato"></asp:Label>
                 </div>
