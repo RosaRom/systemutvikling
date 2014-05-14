@@ -196,6 +196,7 @@ namespace Adminsiden
         protected void btn_ok_Click(object sender, EventArgs e)
         {
             string userDescription = TxtArea_userComment.Text;
+            TaskID = Convert.ToInt32(taskName.SelectedValue);
 
             int tidFra_min = Convert.ToInt32(ddl_min_from.SelectedItem.ToString());
             int tidFra_hour = Convert.ToInt32(ddl_hour_from.SelectedItem.ToString());
@@ -217,30 +218,61 @@ namespace Adminsiden
             int userID = Convert.ToInt32(Session["userID"]);
             int state = 1;
 
+            double antallTimer = Convert.ToInt16(ddl_hour_to.SelectedValue) - Convert.ToInt16(ddl_hour_from.SelectedValue);
+            int antallMinutt = Convert.ToInt16(ddl_min_to.SelectedValue) - Convert.ToInt16(ddl_min_from.SelectedValue);
+            double antallMinuttDouble = 0;
+
+            switch(antallMinutt)
+            {
+                case 00:
+                    antallMinuttDouble = 0;
+                    break;
+                case 15:
+                    antallMinuttDouble = 0.25;
+                    break;
+                case 30:
+                    antallMinuttDouble = 0.50;
+                    break;
+                case 45:
+                    antallMinuttDouble = 0.75;
+                    break;
+            }
+            double tidBrukt = antallTimer + antallMinuttDouble;
 
             if (dateFromFormated != null && dateToFormated != null && userID != 0 && TaskID != 0 && WorkplaceID != 0 && projectID != 0)
             {
                 int permissionState;
+                DataTable dt = new DataTable();
 
-                if (dateFrom > DateTime.Now.AddDays(1) || dateFrom < DateTime.Now.AddDays(-1))
+                dt = db.getAll("SELECT hoursUsed, hoursAllocated FROM Task where taskID=" + TaskID);
+
+                double hoursAllocated = Convert.ToDouble(dt.Rows[0]["hoursAllocated"].ToString());
+                double hoursUsed = Convert.ToDouble(dt.Rows[0]["hoursUsed"].ToString());
+
+                if (hoursUsed + tidBrukt < hoursAllocated)
                 {
-                    permissionState = 1;
-                    label_result.Text = "Du har sendt prøvd å registrere timer utenfor +- 24t. Timeantallet er under godkjenning";
-                    label_result.Visible = true;
-                }
+                    if (dateFrom > DateTime.Now.AddDays(1) || dateFrom < DateTime.Now.AddDays(-1))
+                    {
+                        permissionState = 1;
+                        label_result.Text = "Du har sendt prøvd å registrere timer utenfor +- 24t. Timeantallet er under godkjenning";
+                        label_result.Visible = true;
+                    }
 
+                    else
+                    {
+                        permissionState = 2;
+                        label_result.Text = "Registreringen ble fullført";
+                        label_result.Visible = true;
+                    }
+
+                    db.InsertTimeSheet(dateFromFormated, dateToFormated, userID, TaskID, userDescription, WorkplaceID, state, projectID, permissionState);
+                    db.InsertDeleteUpdate("UPDATE Task SET hoursUsed = hoursUsed + " + tidBrukt + "WHERE taskID = " + TaskID);
+                }
                 else
-                {
-                    permissionState = 2;
-                    label_result.Text = "Registreringen ble fullført";
+                { 
+                    label_result.Text = "Maks " + (hoursAllocated - hoursUsed) + " timer kan registreres på denne tasken";
                     label_result.Visible = true;
-                }
-
-                db.InsertTimeSheet(dateFromFormated, dateToFormated, userID, TaskID, userDescription, WorkplaceID, state, projectID, permissionState);
-                
-                // Denne må gjøres om slik at det er hvis en bruker registrerer for dager som er før den 
-                // gjeldende dato
-            
+                }            
             }
             else
             {
