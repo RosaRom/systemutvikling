@@ -15,7 +15,8 @@ namespace Adminsiden
 //        private int taskCategoryID = 19; // hardkodet, må byttes ut
         int projectID;
         
-        private DBConnect db = new DBConnect();        
+        private DBConnect db = new DBConnect();
+        private DataTable dt = new DataTable();
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -55,18 +56,18 @@ namespace Adminsiden
             ddlTaskCategory.DataSource = db.getAll(query);
             ddlTaskCategory.DataTextField = "taskCategoryName";
             ddlTaskCategory.DataValueField = "taskCategoryID";
-            ddlTaskCategory.Items.Insert(0, new ListItem("<Velg hovedtask>", "0")); //OBS! AppendDataBoundItems="true" i asp-kodene om dette skal funke!
+//            ddlTaskCategory.Items.Insert(0, new ListItem("<Velg hovedtask>", "0")); //OBS! AppendDataBoundItems="true" i asp-kodene om dette skal funke!
             ddlTaskCategory.DataBind();
+            PopulateFields();
         }
 
         public void PopulateFields()
         {
             projectID = Convert.ToInt16(Session["projectID"]);
             string query = String.Format("SELECT * FROM TaskCategory WHERE taskCategoryID = {0} AND projectID = {1}", ddlTaskCategory.SelectedValue, projectID);
-            DataTable dt = new DataTable();
             dt = db.getAll(query);
             lbTaskCategoryName.Text = dt.Rows[0]["taskCategoryName"].ToString();
-            taTaskCategoryDesc.Text = dt.Rows[0]["taskCategoryDescription"].ToString();
+            taTaskCategoryDesc.Text = dt.Rows[0]["taskCategoryDescription"].ToString();           
         }
 
         protected void ddlTaskCategory_SelectedIndexChanged(object sender, EventArgs e)
