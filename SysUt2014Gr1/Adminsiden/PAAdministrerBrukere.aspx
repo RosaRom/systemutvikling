@@ -29,9 +29,11 @@
                         <asp:BoundField DataField="firstname" HeaderText="Fornavn" />
                         <asp:BoundField DataField="username" HeaderText="Brukernavn" />
 
-                        <asp:BoundField DataField="password" HeaderText="Passord" />
-
-
+                        <asp:TemplateField HeaderText="Passord">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="password" runat="server" TextMode="Password" Text='<%# Bind("password") %>'></asp:TextBox>
+                                </EditItemTemplate>
+                        </asp:TemplateField>
 
                         <asp:BoundField DataField="phone" HeaderText="Telefon" />
                         <asp:BoundField DataField="mail" HeaderText="Mail" />
@@ -46,7 +48,7 @@
 
                         <asp:TemplateField HeaderText="Brukertype">
                             <EditItemTemplate>
-                                <asp:DropDownList ID="dropDownBruker" runat="server">
+                                <asp:DropDownList ID="dropDownGroup" runat="server">
                                     <asp:ListItem Text="Bruker" Value="1"></asp:ListItem>
                                     <asp:ListItem Text="Teamleder" Value="2"></asp:ListItem>
                                 </asp:DropDownList>
@@ -113,7 +115,7 @@
                                 </ItemTemplate>
 
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="dropDownBruker" runat="server">
+                                    <asp:DropDownList ID="dropDownGroupUsers" runat="server">
                                         <asp:ListItem Text="Bruker" Value="1"></asp:ListItem>
                                         <asp:ListItem Text="Teamleder" Value="2"></asp:ListItem>
                                     </asp:DropDownList>

@@ -134,6 +134,7 @@ namespace Adminsiden
         protected void GridViewAdmin_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = GridViewAdmin.Rows[e.RowIndex];
+            string query;
 
             try
             {
@@ -141,19 +142,26 @@ namespace Adminsiden
                 string surname = e.NewValues["surname"].ToString();
                 string firstname = e.NewValues["firstname"].ToString();
                 string username = e.NewValues["username"].ToString();
-                string passwordIn = e.NewValues["password"].ToString();
-                string password = Encryption.Encrypt(passwordIn);
                 string phone = e.NewValues["phone"].ToString();
                 string mail = e.NewValues["mail"].ToString();
 
                 DropDownList team = (DropDownList)row.FindControl("dropDownTeamUsers");
                 DropDownList group = (DropDownList)row.FindControl("dropDownGroupUsers");
 
-                int teamID = Convert.ToInt32(team.SelectedValue);
                 int groupID = Convert.ToInt32(group.SelectedValue);
 
-                string query = String.Format("UPDATE User SET surname = '{0}', firstname = '{1}', username = '{2}', password = '{8}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
-                surname, firstname, username, phone, mail, teamID, groupID, id, password);
+                if (team.SelectedIndex != 0)
+                {
+                    int teamID = Convert.ToInt32(team.SelectedValue);
+
+                    query = String.Format("UPDATE User SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = '{5}', groupID = '{6}' WHERE userID = {7}",
+                    surname, firstname, username, phone, mail, teamID, groupID, id);
+                }
+                else
+                {
+                    query = String.Format("UPDATE User SET surname = '{0}', firstname = '{1}', username = '{2}', phone = '{3}', mail = '{4}', teamID = NULL, groupID = {5} WHERE userID = {6}",
+                    surname, firstname, username, phone, mail, groupID, id);
+                }
                 db.InsertDeleteUpdate(query);
                 GridViewAdmin.EditIndex = -1;
 
@@ -405,8 +413,11 @@ namespace Adminsiden
         protected DataTable DropDownBoxTeamExistingUsers()
         {
             string query = "SELECT * FROM Team";
+            DataTable team = new DataTable();
+            team = db.AdminGetAllUsers(query);
+            team.Rows.InsertAt(team.NewRow(), 0);
 
-            return db.AdminGetAllUsers(query);
+            return team;
         }
 
         protected void GridViewInsert_SelectedIndexChanged(object sender, EventArgs e)
