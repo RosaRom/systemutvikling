@@ -169,5 +169,20 @@ namespace Adminsiden
             ddl_selectTeam.Items.Clear();
             getTeams();
         }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument.ToString());
+            
+            if (e.CommandName == "slett")
+            {
+                string selectedUserFirstName = GridView1.Rows[index].Cells[0].ToString();
+                string selectedUserSurName = GridView1.Rows[index].Cells[1].ToString();
+                string query = String.Format("UPDATE User SET teamID = NULL WHERE firstname = '{0}' AND surname = '{1}'", selectedUserFirstName, selectedUserSurName);
+                db.InsertDeleteUpdate(query);
+
+                fillGridView();
+            }
+        }
     }
 }
