@@ -62,10 +62,10 @@ namespace Adminsiden
         {
             string query = "SELECT * FROM Fase WHERE projectID = " + projectID + " ORDER BY phaseToDate ASC";
             table = db.AdminGetAllUsers(query);
-            //table.Rows.InsertAt(table.NewRow(), 0);
             ViewState["table"] = table;
             velgFase.DataSource = table;
             velgFase.DataBind();
+            PopulateFields();
         }
 
         /// <summary>

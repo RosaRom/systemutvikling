@@ -40,7 +40,6 @@ namespace Adminsiden
             {
                 if (!Page.IsPostBack)
                 {
-                    FillDropDownFase();
                     ProductBacklogID();
                 }
 
@@ -52,25 +51,6 @@ namespace Adminsiden
            
         }
 
-        private void FillDropDownFase()
-        {
-            projectID = Convert.ToInt16(Session["projectID"]);
-
-            string query = "SELECT phaseName, phaseID FROM Fase WHERE projectID = " + projectID;
-            DataTable table = new DataTable();
-
-            try
-            {
-                table = db.getAll(query);
-                DropDownFase.DataSource = table;
-                DropDownFase.DataBind();
-            }
-            catch (Exception ex)
-            {
-                lbBeskjed.Text = "Noe gikk galt: " + ex.Message;
-            }
-        }
-
         protected void btnLagreHovedtask_Click(object sender, EventArgs e)
         {
             projectID = Convert.ToInt16(Session["projectID"]);
@@ -79,9 +59,8 @@ namespace Adminsiden
                 string kategoriNavn = hovedtaskNavn.Text;
                 string productBacklogId = id.Text;
                 string beskrivelse = txtBeskrivelse.Text;
-                string fase = DropDownFase.SelectedValue;
 
-                string query = String.Format("INSERT INTO TaskCategory VALUES(null, '{0}', '{1}', {2}, {3}, '{4}')", kategoriNavn, beskrivelse, projectID, fase, productBacklogId);
+                string query = String.Format("INSERT INTO TaskCategory VALUES(NULL, '{0}', '{1}', {2}, NULL, '{3}')", kategoriNavn, beskrivelse, projectID, productBacklogId);
                 db.InsertDeleteUpdate(query);
 
                 lbBeskjed.Text = "Ny kategori lagt til";
