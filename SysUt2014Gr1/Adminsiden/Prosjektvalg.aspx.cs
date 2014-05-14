@@ -46,7 +46,7 @@ namespace Adminsiden
                 }
                 else
                 {
-                    Server.Transfer("NyttProsjekt.aspx", true);
+                    Server.Transfer("OpprettProsjekt.aspx", true);
                 }
             }
             else

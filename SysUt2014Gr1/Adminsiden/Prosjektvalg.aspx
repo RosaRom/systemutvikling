@@ -16,7 +16,6 @@
             <div class="panel-body">
                 <asp:Label ID="Label_ingenProsjekt" runat="server" visible="false"></asp:Label>
                 <asp:GridView ID="GridViewProject" 
-                    AllowPaging="True" 
                     AutoGenerateColumns="False"
                     CssClass="gridView" 
                     AlternatingRowStyle-CssClass="alt" 
