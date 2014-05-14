@@ -113,13 +113,16 @@ namespace Adminsiden
         //henter ut alle tasks som tilhører en valgt hovedtask, blir oppdatert hver gang hovedtask endres
         private void FillTasks()
         {
-            string queryTask = "SELECT taskID, taskName FROM Task WHERE TaskCategoryID = " + DropDownMainTask.SelectedValue.ToString();
+            if (!DropDownMainTask.SelectedValue.ToString().Equals(""))
+            {
+                string queryTask = "SELECT taskID, taskName FROM Task WHERE TaskCategoryID = " + DropDownMainTask.SelectedValue.ToString();
 
-            table = db.AdminGetAllUsers(queryTask);
-            table.Rows.InsertAt(table.NewRow(), 0);
+                table = db.AdminGetAllUsers(queryTask);
+                table.Rows.InsertAt(table.NewRow(), 0);
 
-            DropDownSubTask.DataSource = table;
-            DropDownSubTask.DataBind();
+                DropDownSubTask.DataSource = table;
+                DropDownSubTask.DataBind();
+            }
         }
 
         //kjøres ved oppstart av siden, henter ut alle hovedtasks til en gitt projectID
@@ -159,31 +162,37 @@ namespace Adminsiden
         private void SetProductBacklogID(Boolean subTask)
         {
             projectID = Convert.ToInt16(Session["projectID"]);
-
-            string id = DropDownMainTask.SelectedValue.ToString();
-            string query = "SELECT productBacklogID FROM TaskCategory WHERE projectID = " + projectID + " AND taskCategoryID = " + id;
-            string queryCount = "SELECT COUNT(*) FROM Task WHERE taskCategoryID = " + id + " AND LENGTH(productBacklogID) = 3";
-
-            table = db.AdminGetAllUsers(query);
-            int count = db.Count(queryCount) + 1;
-
-            string backlogID = table.Rows[0]["productBacklogID"].ToString() + "." + count;
-
-            if (DropDownSubTask.SelectedValue.ToString().Equals(""))
-                subTask = false;
-
-            //denne slår inn om den skal være en subtask av en annen task under samme kategori
-            if (subTask)
+            try
             {
-                query = "SELECT productBacklogID FROM Task WHERE taskID = " + DropDownSubTask.SelectedValue.ToString();
+                string id = DropDownMainTask.SelectedValue.ToString();
+                string query = "SELECT productBacklogID FROM TaskCategory WHERE projectID = " + projectID + " AND taskCategoryID = " + id;
+                string queryCount = "SELECT COUNT(*) FROM Task WHERE taskCategoryID = " + id + " AND LENGTH(productBacklogID) = 3";
+
                 table = db.AdminGetAllUsers(query);
+                int count = db.Count(queryCount) + 1;
 
-                queryCount = String.Format("SELECT COUNT(*) FROM Task WHERE productBacklogID LIKE '{0}%'", table.Rows[0]["productBacklogID"].ToString());
-                count = db.Count(queryCount);
+                string backlogID = table.Rows[0]["productBacklogID"].ToString() + "." + count;
 
-                backlogID = table.Rows[0]["productBacklogID"].ToString() + "." + count;
+                if (DropDownSubTask.SelectedValue.ToString().Equals(""))
+                    subTask = false;
+
+                //denne slår inn om den skal være en subtask av en annen task under samme kategori
+                if (subTask)
+                {
+                    query = "SELECT productBacklogID FROM Task WHERE taskID = " + DropDownSubTask.SelectedValue.ToString();
+                    table = db.AdminGetAllUsers(query);
+
+                    queryCount = String.Format("SELECT COUNT(*) FROM Task WHERE productBacklogID LIKE '{0}%'", table.Rows[0]["productBacklogID"].ToString());
+                    count = db.Count(queryCount);
+
+                    backlogID = table.Rows[0]["productBacklogID"].ToString() + "." + count;
+                }
+                pbID.Text = backlogID;
             }
-            pbID.Text = backlogID;
+            catch (Exception ex)
+            {
+
+            }
         }
 
         //setter alle verdier tilbake til null
