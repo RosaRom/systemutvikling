@@ -29,12 +29,17 @@
                 <asp:GridView ID="GridView1" 
                     runat="server"
                     AllowPaging="True" 
-                    AutoGenerateColumns="False">
+                    AutoGenerateColumns="False"
+                    CssClass="gridView" 
+                    AlternatingRowStyle-CssClass="alt" 
+                    HeaderStyle-CssClass="gridViewHeader" 
+                    HorizontalAlign="Left"
+                    OnRowCommand="GridView1_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="firstname" HeaderText="Fornavn" ItemStyle-Width="40%" />
                         <asp:BoundField DataField="surname" HeaderText="Etternavn" ItemStyle-Width="20%"/>
                         <asp:BoundField DataField="groupName" HeaderText="Rolle i teamet" ItemStyle-Width="20%" />
-                        <asp:buttonfield buttontype="Button" text="Slett" ItemStyle-Width="1%"/>
+                        <asp:buttonfield buttontype="Button" text="Slett" CommandName="slett" ItemStyle-Width="1%"/>
                     </Columns>
                 </asp:GridView>
             </div>
