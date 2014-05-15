@@ -53,7 +53,6 @@ namespace Adminsiden
                 }
                 if (!Page.IsPostBack)
                 {
-                    GetTasks();
                     getWorkplace();
                     fillTimeSelectDDL();
                     PopulateTeams();
