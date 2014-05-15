@@ -43,11 +43,12 @@ namespace Adminsiden
                 if(Page.IsPostBack && ddl_hour_from.SelectedValue != "00")
                 {
                     fillTimeToSelectDLL();
+                    GetTasks();
                     
                 }
                 if (!Page.IsPostBack)
                 {
-                    GetTasks();
+                    
                     getWorkplace();
                     fillTimeSelectDDL();
                 }
@@ -159,9 +160,11 @@ namespace Adminsiden
             string query1 = "SELECT * FROM Fase WHERE projectID =" + projectID;
             dt = db.getAll(query1);
 
+            DateTime dateFrom = Convert.ToDateTime(TB_Date.Text);
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (Convert.ToDateTime(dt.Rows[i][3]) <= DateTime.Today && Convert.ToDateTime(dt.Rows[i][4]) >= DateTime.Today)
+                if (Convert.ToDateTime(dt.Rows[i][3]) <= dateFrom && Convert.ToDateTime(dt.Rows[i][4]) >= dateFrom)
                 {
                     phaseID = Convert.ToInt16(dt.Rows[i][0]);
                 }
@@ -266,7 +269,7 @@ namespace Adminsiden
                     }
 
                     db.InsertTimeSheet(dateFromFormated, dateToFormated, userID, TaskID, userDescription, WorkplaceID, state, projectID, permissionState);
-                    db.InsertDeleteUpdate("UPDATE Task SET hoursUsed = hoursUsed + " + tidBrukt + "WHERE taskID = " + TaskID);
+                    db.InsertDeleteUpdate("UPDATE Task SET hoursUsed = hoursUsed + " + tidBrukt + " WHERE taskID = " + TaskID);
                 }
                 else
                 { 
