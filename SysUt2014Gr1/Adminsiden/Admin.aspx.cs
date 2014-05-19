@@ -9,8 +9,15 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using System.Text;
 
+
 namespace Adminsiden
 {
+    /// <summary>
+    /// Admin.aspx.cs av Kristian Alm
+    /// SysUt14Gr1 - SystemUtvikling - Vår 2014
+    /// Denne klassen tar seg av redigering og oppretting av alle brukere.
+    /// Brukes 2 gridview, en for å vise alle og 1 med en tom linje man kan legge inn nye brukere i.
+    /// </summary>
     public partial class Admin : System.Web.UI.Page
     {
         private DBConnect db;
@@ -26,6 +33,12 @@ namespace Adminsiden
             set { ViewState["SortDirection"] = value; }
         }
 
+        /// <summary>
+        /// Sjekker på cookie hvilken type bruker det er som er logget inn.
+        /// Er en standard metode vi har i alle klasser, da admin siden kun er tilgjengelig for administrator.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -43,6 +56,12 @@ namespace Adminsiden
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
 
+        /// <summary>
+        /// Laster inn siden, sjekker session at brukeren er innlogget som
+        /// administrator før siden vises.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {   //sjekker om bruker har rettigheter til å vise siden
             string session = (string)Session["userLoggedIn"];
@@ -60,18 +79,21 @@ namespace Adminsiden
                 else
                 {
                     active = (Boolean)ViewState["active"];                  //sørger for å ta vare på booleanverdien til active mellom postback
-                    table = (DataTable)ViewState["table"];
+                    table = (DataTable)ViewState["table"];                  //sørger for å ta vare på table mellom postback
                     beskjed.Text = "|";
                 }
             }
             else
             {
-                Server.Transfer("Login.aspx", true);
+                Server.Transfer("Login.aspx", true);                        //sender brukeren til login om brukeren ikke er innlogget eller ikke er admin
 
             }
         }
 
-        //her hentes alle aktive brukere ut og vises i gridview
+        /// <summary>
+        /// Her hentes alle brukerene ut ved kjøring første gang.
+        /// Hentes ut på nytt når en ny bruker blir lagt til.
+        /// </summary>
         private void GetAllUsersReset()
         {
             string queryActive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '1' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
@@ -88,13 +110,20 @@ namespace Adminsiden
             GridViewAdmin.DataBind();
         }
 
+        /// <summary>
+        /// Metode som binder DataTable til gridview.
+        /// Henter table som er lagret i ViewState for å huske forandringer og sorteringer.
+        /// </summary>
         private void GetAllUsers()
         {
             GridViewAdmin.DataSource = (DataTable)ViewState["table"];
             GridViewAdmin.DataBind();
         }
 
-        //her hentes alle inaktive brukere ut og vises når admin vil se de
+        /// <summary>
+        /// Ved å trykke på knappen for deaktiverte brukere vil de her hentes ut fra databasen
+        /// og bindes til gridview. Vil også lagres i Viewstate så siden "husker" hva som er valgt.
+        /// </summary>
         private void GetInactiveUsersReset()
         {
             string queryInactive = "SELECT userID, surname, firstname, username, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE aktiv = '0' AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
@@ -111,6 +140,11 @@ namespace Adminsiden
             GridViewAdmin.DataBind();
         }
 
+        /// <summary>
+        /// Her hentes de deaktiverte ut fra ViewState.
+        /// Dette gjør ved postback. Ved større foandringer vil GetInactiveUsersReset()
+        /// hente ut alle på nytt.
+        /// </summary>
         private void GetInactiveUsers()
         {
             GridViewAdmin.DataSource = (DataTable)ViewState["table"];
@@ -118,19 +152,33 @@ namespace Adminsiden
         }
 
         #region Events
-        //metode som kjøres når admin trykker på editknappen
+        /// <summary>
+        /// metode som kjøres når admin trykker på editknappen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GridViewAdmin_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridViewAdmin.EditIndex = e.NewEditIndex;
             GetUsers();
         }
-        //metode som kjøres når admin avbryter en edit
+        /// <summary>
+        /// metode som kjøres når admin avbryter en edit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GridViewAdmin_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             GridViewAdmin.EditIndex = -1;
             GetUsers();
         }
-        //metoden kjøres når admin oppdaterer en eksisterende bruker
+        /// <summary>
+        /// Metoden kjøres når admin oppdaterer en eksisterende bruker.
+        /// Ved oppdatering vil det skrives inn til databasen og en ny
+        /// liste vil bli hentet ut igjen etterpå for å huske forandringene.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GridViewAdmin_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = GridViewAdmin.Rows[e.RowIndex];
@@ -176,7 +224,12 @@ namespace Adminsiden
             }
         }
 
-        //metode som kjøres når admin aktiverer/deaktiverer en bruker
+        /// <summary>
+        /// metode som kjøres når admin aktiverer/deaktiverer en bruker.
+        /// Listen vil så bli hentet ut på nytt så gridview oppdateres.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GridViewAdmin_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string id = GridViewAdmin.DataKeys[e.RowIndex]["userID"].ToString();
@@ -201,7 +254,13 @@ namespace Adminsiden
         
         
 
-        //RowUpdating kjøres når det legges til en ny bruker
+        /// <summary>
+        /// RowUpdating kjøres når det legges til en ny bruker.
+        /// Henter ut informasjon fra hver celle og sender det til databasen.
+        /// Deretter blir gridview oppdatert for å vise den nye brukeren.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GridViewInsert_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = GridViewInsert.Rows[e.RowIndex];
@@ -251,14 +310,23 @@ namespace Adminsiden
             }
         }
 
-        //kjøres når man trykker edit for å legge til en ny bruker
+        /// <summary>
+        /// kjøres når man trykker edit for å legge til en ny bruker
+        /// Kjøres automatisk ved oppstart, så den står alltid i editmode.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GridViewInsert_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridViewInsert.EditIndex = e.NewEditIndex;
             GridViewInsertEmpty();
         }
 
-        //kjøres når trykker cancel etter å ha trykket edit i legg til ny bruker gridviewen
+        /// <summary>
+        /// kjøres når trykker cancel etter å ha trykket edit i legg til ny bruker gridviewen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GridViewInsert_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             GridViewInsert.EditIndex = -1;
@@ -266,7 +334,11 @@ namespace Adminsiden
             GridViewInsertEmpty();
         }
 
-        //viser alle deaktiverte brukere
+        /// <summary>
+        /// viser alle deaktiverte brukere
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnDeaktiverte_Click(object sender, EventArgs e)
         {
             aktiveEllerDeaktiv.Text = "Deaktiverte brukere";
@@ -275,7 +347,11 @@ namespace Adminsiden
             GetInactiveUsersReset();
         }
 
-        //viser aktive brukere
+        /// <summary>
+        /// viser aktive brukere
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnAktiv_Click(object sender, EventArgs e)
         {
             aktiveEllerDeaktiv.Text = "Aktive brukere";
@@ -284,7 +360,11 @@ namespace Adminsiden
             GetAllUsersReset();
         }
 
-        //søkeknappen for å finne spesifikke brukere
+        /// <summary>
+        /// søkeknappen for å finne spesifikke brukere
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnFilter_Click(object sender, EventArgs e) //Når brukeren vil filtrere listen med brukere
         {
             if (FilterSearchTerms.Text.Equals(String.Empty))
@@ -297,7 +377,12 @@ namespace Adminsiden
             }
         }
 
-
+        /// <summary>
+        /// Fjerner søk, og henter ut igjen alle brukere.
+        /// Sjekker om aktive eller deaktiverte er valgt.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnFjernFilter_Click(object sender, EventArgs e)//Når brukeren velger å fjerne filtering
         {
             FilterSearchTerms.Text = "";    //fjerner tekst fra søkevilkårboksen
@@ -307,7 +392,12 @@ namespace Adminsiden
                 GetInactiveUsersReset();
         }
 
-        //metode for sortering av brukere
+        /// <summary>
+        /// Metode for sortering av brukere, kjøres når en kolonne blir trykket på.
+        /// Sorterer radene etter informasjonen i kolonnen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GridViewAdmin_Sorting(object sender, GridViewSortEventArgs e)
         {
             DataTable dataTable = table;
@@ -326,7 +416,11 @@ namespace Adminsiden
         }
         #endregion
 
-        //henter ut hvilken vei kolonnene skal sorteres
+        /// <summary>
+        /// henter ut hvilken vei kolonnene skal sorteres.
+        /// </summary>
+        /// <param name="sortDirection"></param>
+        /// <returns></returns>
         private string ConvertSortDirectionToSql(SortDirection sortDirection)
         {
             switch (GridViewSortDirection)
@@ -341,6 +435,10 @@ namespace Adminsiden
             return GridViewSortDirection;
         }
 
+        /// <summary>
+        /// Kjøres for å binde viewstate tabell til gridview.
+        /// Sjekker om aktive eller deaktiverte brukere er valgt.
+        /// </summary>
         private void GetUsers()
         {
             if (active == true)
@@ -349,7 +447,9 @@ namespace Adminsiden
                 GetInactiveUsers();
         }
 
-        //setter inn en tom rad for å kunne legge til en bruker
+        /// <summary>
+        /// setter inn en tom rad for å kunne legge til en bruker i gridViewInsert
+        /// </summary>
         private void GridViewInsertEmpty()
         {
             string query = "SELECT userID, surname, firstname, username, password, phone, mail, teamName, groupName FROM User, Team, UserGroup WHERE userID = 0 AND User.teamID = Team.teamID AND User.groupID = UserGroup.groupID";
@@ -363,7 +463,11 @@ namespace Adminsiden
 
 
 
-        //Metode for å filtrere GridViewAdmin
+        /// <summary>
+        /// Metode for å søke på brukere.
+        /// Lager en query basert på valg og søkeord og binder den nye informasjonen til en datatable.
+        /// Om resultatet er tomt vil det ikke skje noen forandring.
+        /// </summary>
         public void FilterGridView()
         {
             DataTable filterTable = new DataTable(); //Lager en data table for å lagre data fra spørringen
@@ -393,6 +497,10 @@ namespace Adminsiden
             }
         }
 
+        /// <summary>
+        /// Binder data til en dropdownlist som viser alle teams
+        /// </summary>
+        /// <returns></returns>
         protected DataTable DropDownBoxTeam()
         {
             string query = "SELECT * FROM Team";
@@ -403,6 +511,10 @@ namespace Adminsiden
             return table;
         }
 
+        /// <summary>
+        /// Binder data til en dropdwonlist som viser alle brukertyper
+        /// </summary>
+        /// <returns></returns>
         protected DataTable DropDownBoxGroup()
         {
             string query = "SELECT * FROM UserGroup";
@@ -410,6 +522,10 @@ namespace Adminsiden
             return db.AdminGetAllUsers(query);
         }
 
+        /// <summary>
+        /// Binder data til en dropdownlist som viser alle teams ved redigering av brukere
+        /// </summary>
+        /// <returns></returns>
         protected DataTable DropDownBoxTeamExistingUsers()
         {
             string query = "SELECT * FROM Team";
@@ -420,43 +536,14 @@ namespace Adminsiden
             return team;
         }
 
+        /// <summary>
+        /// Måtte ha med en tom metode fordi GridViewInsert ikke virket uten
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GridViewInsert_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
-        // FUNKER IKKE ENDA
-        /*
-        protected void GridViewAdmin_RowCreated(object sender, GridViewRowEventArgs e)
-        {
-            Image sortImage = new Image();
-
-            if (e.Row.RowType == DataControlRowType.Header)
-            {
-                if (GridViewSortDirection.Equals("ASC"))
-                {
-                    sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.DOWNARROW.gif");
-                }
-                else if (GridViewSortDirection.Equals("DESC"))
-                {
-                    sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.UPARROW.gif");
-            }
-
-                switch (GridViewSortDirection)
-        {
-
-                    case "ASC":
-                        e.Row.Cells[Convert.ToInt32(e.Row.DataItemIndex.ToString())].Controls.Add(sortImage);
-                        break;
-                    case "DESC":
-                        e.Row.Cells[Convert.ToInt32(e.Row.DataItemIndex.ToString())].Controls.Add(sortImage);
-                        break;
-                    default:
-                        sortImage.ImageUrl = this.Page.ClientScript.GetWebResourceUrl(this.GetType(), "Adminsiden.Properties.Resources.DOWNARROW.gif");
-                        e.Row.Cells[Convert.ToInt32(e.Row.DataItemIndex.ToString())].Controls.Add(sortImage);
-                        break; 
-            }
-            }
-        }*/
     }
 }
