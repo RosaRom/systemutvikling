@@ -7,13 +7,22 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.DataVisualization.Charting;
 
+///
+/// VisFase.aspx.cs av Henning Fredriksen
+/// SysUt14Gr1 - Systemutvikling - Vår 2014
+///
+/// Lar deg velge blandt fasene på innlogget prosjekt og viser fram informasjon om valgt fase, noe som inkluderer:
+/// navn, beskrivelse, fra-til dato, totale timer brukt/allokert, ferdige tasks, uferdige tasks, oversikt over tasks
+/// og en burn-up chart for den fasen.
+/// 
+
+
 namespace Adminsiden
 {
     public partial class VisFase : System.Web.UI.Page
     {
         private int phaseID;
         private int projectID;
-                    
 
         private DBConnect db = new DBConnect();
         private DataTable dataTable = new DataTable();
@@ -42,7 +51,14 @@ namespace Adminsiden
             else
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
-
+        
+        /// <summary>
+        /// Sjekker om bruker er logget inn som bruker, teamleder eller prosjektansvarlig via session når formen loades,
+        /// og kjører metodene som genererer / henter fra informasjon til feltene i .aspx. Redirecter til login hvis
+        /// det ikke er en gyldig brukertype.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -67,12 +83,13 @@ namespace Adminsiden
             else
             {
                 Server.Transfer("Login.aspx", true);
-            }
-         
+            }         
         }
 
-        // populates combobox with phase selection
-        public void PopulateFaseValg()
+        /// <summary>
+        /// Fyller dropdownbox til fasevalg, og populater første fase i lista
+        /// </summary>
+         public void PopulateFaseValg()
         {
 
 //            phaseID = Convert.ToInt16(Session["phaseID"]);
@@ -91,6 +108,11 @@ namespace Adminsiden
             PopulateChart();            
         }
 
+        /// <summary>
+        /// Repopulater feltene i form når en annen fase blir valgt i dropdown
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ddlTeam_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateBasicInfo();
@@ -99,6 +121,9 @@ namespace Adminsiden
             PopulateChart();
         }
         
+        /// <summary>
+        /// Genererer burn-up chart for valgt fase
+        /// </summary>
         public void PopulateChart()
         {            
             double usedHours = 0;
@@ -110,20 +135,20 @@ namespace Adminsiden
             projectID = Convert.ToInt16(Session["projectID"]);
 
             // chart-properties
-            this.phaseChart.ChartAreas["ChartArea1"].AxisX.Interval = 1; // makes sure each point has a label
-            this.phaseChart.Series["Brukte timer"].BorderWidth = 3; // changes the width of the burn-up-line
-            this.phaseChart.Series["Allokerte timer"].BorderWidth = 3; // changes the width of the burn-up-ceiling
-            this.phaseChart.Series["Allokerte timer"].Color = System.Drawing.Color.Red; // changes the color of the burn-up-ceiling to red
-            this.phaseChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = -45;
+            this.phaseChart.ChartAreas["ChartArea1"].AxisX.Interval = 1; // gir hver dag en label
+            this.phaseChart.Series["Brukte timer"].BorderWidth = 3; // forandrer bredden til "brukte timer" linja
+            this.phaseChart.Series["Allokerte timer"].BorderWidth = 3; // forandrer bredden til "allokerte timer" linja
+            this.phaseChart.Series["Allokerte timer"].Color = System.Drawing.Color.Red; // setter fargen til "allokerte timer" linja til rød
+            this.phaseChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = -45; // setter vinkelen til labels
             this.phaseChart.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = false;
             if (this.phaseChart.Legends.Count == 0)
             {
-                this.phaseChart.Legends.Add(legend);
+                this.phaseChart.Legends.Add(legend); // legger et Legend-objekt til chart
             }
-            this.phaseChart.Legends["Legend"].Enabled = true;
+            this.phaseChart.Legends["Legend"].Enabled = true; // 
             projectID = Convert.ToInt16(Session["projectID"]);
 
-            //queries + datatables
+            // queries + datatables
             string query = String.Format("SELECT * FROM TimeSheet WHERE projectID = {0} AND state = 1", projectID);
             chartTable = db.getAll(query);
             string query2 = String.Format("SELECT phaseFromDate, phaseToDate FROM Fase WHERE phaseID = {0}", phaseID);
@@ -131,23 +156,23 @@ namespace Adminsiden
             string query3 = String.Format("SELECT hoursAllocated FROM Task WHERE phaseID = {0}", phaseID);
             yAxis2Table = db.getAll(query3);
 
-            // counts allocated hours from all the tasks from this phase
+            // sum av allokerte timer for alle tasks under valgt fase
             for (int i = 0; i < yAxis2Table.Rows.Count; i++)
             {
                 allocatedHours += Convert.ToDouble(yAxis2Table.Rows[i]["hoursAllocated"]);
             }
 
-            // gets startdate and enddate of the phase
+            // finner startdato og sluttdato for valgt fase
             var startDate = Convert.ToDateTime(phaseDateToFromTable.Rows[0]["phaseFromDate"]);
             var endDate = Convert.ToDateTime(phaseDateToFromTable.Rows[0]["phaseToDate"]);
 
-            // generates a list of DateTime objects, from startDate - endDate of the phase
+            // genererer en liste av DateTime objects, fra startDate til endDate av valgt fase, en for hver dag
             List<DateTime> range = Enumerable.Range(0, (endDate - startDate).Days + 1)
                 .Select(i => startDate.AddDays(i))
                 .ToList();
 
-            // populates the x-axis dynamically, with a number of datapoints equal to the length of the phase (in days,
-            // with how many hours are spent on tasks on that day
+            // populater grafen dynamisk, med et antall datapunkter lik antall dager i valgt fase, og legger dem til grafen.
+            // den ytre løkka går igjennom hver dag/datapunkt og den indre går igjennom alle tasks på den dagen.
             foreach (var d in range)
             {
                 for (int i = 0; i < chartTable.Rows.Count; i++)
@@ -159,25 +184,17 @@ namespace Adminsiden
                         usedHours += (dateTo - dateFrom).Hours + ((double)(dateTo - dateFrom).Minutes * 1 / 60);
                     }
                 }
-//                DateTime temp = new DateTime();
-//                temp = d.AddDays(-1);
-                this.phaseChart.Series["Brukte timer"].Points.AddXY(d.DayOfWeek + " " + d.ToShortDateString(), usedHours);
-                this.phaseChart.Series["Allokerte timer"].Points.AddXY(d.DayOfWeek + " " + d.ToShortDateString(), allocatedHours);
+
+                this.phaseChart.Series["Brukte timer"].Points.AddXY(d.DayOfWeek + " " + d.ToShortDateString(), usedHours); // legger til et punkt på "brukte timer" linja
+                this.phaseChart.Series["Allokerte timer"].Points.AddXY(d.DayOfWeek + " " + d.ToShortDateString(), allocatedHours); // legger til en punkt på "allokerte timer" linja
                 usedHours = 0;
             }
- /*           
-            this.phaseChart.Series["y-akse"].Points.AddXY("punkt1", 20);
-            this.phaseChart.Series["y-akse2"].Points.AddXY("punkt1", 59);
 
-            this.phaseChart.Series["y-akse"].Points.AddXY("punkt2", 30);
-            this.phaseChart.Series["y-akse2"].Points.AddXY("punkt2", 69);
-
-            this.phaseChart.Series["y-akse"].Points.AddXY("punkt3", 45);
-            this.phaseChart.Series["y-akse2"].Points.AddXY("punkt3", 76);
-*/
         }
 
-        // fills lbPhaseName, lbDateFrom, lbDateTo, lbDescription
+        /// <summary>
+        /// populater lbPhaseName, lbDateFrom, lbDateTo, lbDescription
+        /// </summary>
         public void PopulateBasicInfo()
         {
             phaseID = Convert.ToInt32(ddlFaseValg.SelectedValue);
@@ -196,7 +213,9 @@ namespace Adminsiden
             lbDescription.Text = description;
         }
 
-        // fills lbHoursUsed, lbHoursAllocated, lbFinishedTaskNum and lbUnfinishedTaskNum
+        /// <summary>
+        /// Populater lbHoursUsed, lbHoursAllocated, lbFinishedTaskNum and lbUnfinishedTaskNum
+        /// </summary>
         public void PopulateHoursAndFinishedTasks()
         {
             phaseID = Convert.ToInt32(ddlFaseValg.SelectedValue);
@@ -206,12 +225,12 @@ namespace Adminsiden
             String countRowsQuery = String.Format("SELECT COUNT(*) FROM Task WHERE Task.phaseID IN (SELECT phaseID from Fase WHERE Fase.projectID = {1}) AND Task.PhaseID = {0} AND Task.state != 0", phaseID, projectID);
             String countCompletedRowsQuery = String.Format("SELECT COUNT(*) FROM Task WHERE Task.phaseID IN (SELECT phaseID from Fase WHERE Fase.projectID = {1}) AND Task.PhaseID = {0} AND Task.state = 2", phaseID, projectID);
 
-            // counts returned # of rows selected, not including tasks with Task.state = 0
+            // teller antall rader i resultatsettet
             int countRows = 0;
             countTable = db.getAll(countRowsQuery);
-            countRows += Convert.ToInt32(countTable.Rows[0]["COUNT(*)"]);            
-            
-            // counts used hours for all selected tasks from db
+            countRows += Convert.ToInt32(countTable.Rows[0]["COUNT(*)"]);
+
+            // sum av alle brukte timer for alle tasks under denne fasen
             hourTable = db.getAll(query);            
             int hoursUsed = 0;            
 
@@ -222,7 +241,7 @@ namespace Adminsiden
             
             lbHoursUsed.Text = hoursUsed.ToString();
 
-            // counts allocated hours for all selected tasks from db
+            // sum av alle allokerte timer for alle tasks under denne fasen
             int hoursAllocated = 0;
 
             for (int i = 0; i < countRows; i++)
@@ -232,7 +251,7 @@ namespace Adminsiden
 
             lbHoursAllocated.Text = hoursAllocated.ToString();
 
-            // counts rows with Task.state = 2, meaning a task marked as completed
+            // teller rader med Task.state = 2, altså en task som er merket som ferdig
             int completedRows = 0;
             countTable = db.getAll(countCompletedRowsQuery);
             
@@ -242,6 +261,9 @@ namespace Adminsiden
             lbUnfinishedTaskNum.Text = (countRows - completedRows).ToString();
         }
 
+        /// <summary>
+        /// Fyller gridview med en liste av alle tasks under valgt fase
+        /// </summary>
         public void FillGridView()
         {
             phaseID = Convert.ToInt32(ddlFaseValg.SelectedValue);
@@ -257,7 +279,7 @@ namespace Adminsiden
             gvTaskList.DataSource = listTable;
             gvTaskList.DataBind();
 
-            // replaces the int in Task.state
+            // teller rader som skal være med i gridview
             String countRowsQuery = String.Format("SELECT COUNT(*) FROM Task WHERE Task.phaseID IN (SELECT phaseID from Fase WHERE Fase.projectID = {1}) AND Task.PhaseID = {0} AND Task.state != 0", phaseID, projectID);
 
             int countRows = 0;
@@ -268,6 +290,7 @@ namespace Adminsiden
             String prio2 = "Mid";
             String prio3 = "Lav";
 
+            // bytter ut prioritet som er en int i db med en beskrivelse (høy/mid/lav)
             for (int i = 0; i < countRows; i++)
             {
                 int prioritet = Convert.ToInt32(listTable.Rows[i]["Prioritet"]);
@@ -286,7 +309,7 @@ namespace Adminsiden
                 }
             }
         
-
+            // bytter ut state som er en int i db med en beskrivelse (inaktiv/aktiv/ferdig), samt fargekoder cellen
             for (int i = 0; i < countRows; i++)
             {
                 int status = Convert.ToInt32(listTable.Rows[i]["Status"]);
