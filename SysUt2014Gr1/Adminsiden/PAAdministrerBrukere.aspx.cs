@@ -30,7 +30,7 @@ namespace Adminsiden
 
         /// <summary>
         /// Sjekker på cookie hvilken type bruker det er som er logget inn.
-        /// Er en standard metode vi har i alle klasser, da admin siden kun er tilgjengelig for administrator.
+        /// Er en standard metode vi har i alle klasser, som sjekker om den innloggede har rettigheter til å se siden.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
