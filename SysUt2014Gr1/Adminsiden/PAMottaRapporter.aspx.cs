@@ -9,12 +9,24 @@ using System.Text;
 
 namespace Adminsiden
 {
+    /// <summary>
+    /// PAMottaRapporter.aspx.cs av Kristian Alm
+    /// SysUt14Gr1 - SystemUtvikling - Vår 2014
+    /// Denne siden skal vise alle nye rapporter generert av systemet
+    /// </summary>
     public partial class PAMottaRapporter : System.Web.UI.Page
     {
         DBConnect db = new DBConnect();
         DataTable table = new DataTable();
         DataTable tempTable = new DataTable();
-        
+
+        /// <summary>
+        /// Sjekker på session hvilken type bruker det er som er logget inn.
+        /// Er en standard metode vi har i alle klasser, setter masterpage for en gitt brukertype.
+        /// Da hver bruker har tilgang til litt forskjellige sider trenger de hver sin meny.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -32,6 +44,11 @@ namespace Adminsiden
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
         
+        /// <summary>
+        /// Ved oppstart av siden kjøres de metodene nedenfor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];

@@ -11,6 +11,7 @@ namespace Adminsiden
     /// <summary>
     /// PAAdministreBrukere.aspx.cs av Kristian Alm
     /// SysUt14Gr1 - SystemUtvikling - Vår 2014
+    /// Ari lagde søkefunksjonen og sorteringsfunksjonen for siden.
     /// Siden er nesten helt lik Admin.aspx.cs med unntak av at
     /// bare bruker og teamleder vises og kan opprettes
     /// </summary>
@@ -29,8 +30,9 @@ namespace Adminsiden
         }
 
         /// <summary>
-        /// Sjekker på cookie hvilken type bruker det er som er logget inn.
-        /// Er en standard metode vi har i alle klasser, som sjekker om den innloggede har rettigheter til å se siden.
+        /// Sjekker på session hvilken type bruker det er som er logget inn.
+        /// Er en standard metode vi har i alle klasser, setter masterpage for en gitt brukertype.
+        /// Da hver bruker har tilgang til litt forskjellige sider trenger de hver sin meny.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

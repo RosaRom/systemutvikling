@@ -22,8 +22,9 @@ namespace Adminsiden
         private DataTable categoryTable = new DataTable();
 
         /// <summary>
-        /// Sjekker på cookie hvilken type bruker det er som er logget inn.
-        /// Er en standard metode vi har i alle klasser, som sjekker om den innloggede har rettigheter til å se siden.
+        /// Sjekker på session hvilken type bruker det er som er logget inn.
+        /// Er en standard metode vi har i alle klasser, setter masterpage for en gitt brukertype.
+        /// Da hver bruker har tilgang til litt forskjellige sider trenger de hver sin meny.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -181,7 +182,11 @@ namespace Adminsiden
             
         }
 
-        //kjøres ved hver forandring av hovedtask, fyller opp tilhørende tasks på nytt
+        /// <summary>
+        /// kjøres ved hver forandring av kategori, fyller opp tilhørende tasks på nytt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void DropDownMainTask_SelectedIndexChanged(object sender, EventArgs e)
         {
             FillTasks();
@@ -190,7 +195,11 @@ namespace Adminsiden
             SetProductBacklogID(false);
         }
 
-        //kjøres ved hver forandring av hovedtask, fyller opp tilhørende tasks på nytt
+        /// <summary>
+        /// Setter backlog id basert på at denne task er under en undertask
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void DropDownSubTask_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetProductBacklogID(true);
@@ -236,7 +245,9 @@ namespace Adminsiden
             }
         }
 
-        //setter alle verdier tilbake til null
+        /// <summary>
+        /// setter alle verdier tilbake til null
+        /// </summary>
         private void ResetForm()
         {
             taskNavn.Text = "";
@@ -246,7 +257,9 @@ namespace Adminsiden
             DropDownSubTask.SelectedIndex = 0;
         }
 
-        //henter ut alle faser til et gitt prosjekt
+        /// <summary>
+        /// henter ut alle faser til et gitt prosjekt
+        /// </summary>
         private void FillDropDownFase()
         {
             projectID = Convert.ToInt16(Session["projectID"]);
