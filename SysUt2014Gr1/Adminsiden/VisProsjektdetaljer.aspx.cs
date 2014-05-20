@@ -7,6 +7,13 @@ using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 
+///
+/// VisProsjektdetaljer.aspx.cs av Tommy Langhelle (PopulateChart() av Henning Fredriksen)
+/// SysUt14Gr1 - Systemutvikling - Vår 2014
+///
+/// PopulateChart() genererer en burn-up chart for aktivt prosjekt.
+/// 
+
 namespace Adminsiden
 {
     public partial class VisTeam : System.Web.UI.Page
@@ -41,7 +48,9 @@ namespace Adminsiden
 
 
 
-        // har to problemer: 1) Viser ikke startdato på chart, kun dato for søndagen. 2) brukte timer er 1 dag forskjøvet
+        /// <summary>
+        /// Genererer burn-up chart for aktivt prosjekt
+        /// </summary>
         public void PopulateChart()
         {
             double usedHours = 0;
@@ -50,14 +59,14 @@ namespace Adminsiden
             DateTime dateTo = new DateTime();
 
             // chart-properties
-            this.projectChart.ChartAreas["ChartArea1"].AxisX.Interval = 7; // makes sure each week has a label
+            this.projectChart.ChartAreas["ChartArea1"].AxisX.Interval = 7; // // gir hver uke en label
             this.projectChart.ChartAreas["ChartArea1"].AxisY.Name = "test";
-            this.projectChart.Series["Brukte timer"].BorderWidth = 3; // changes the width of the burn-up-line
-            this.projectChart.Series["Allokerte timer"].BorderWidth = 3; // changes the width of the burn-up-ceiling
-            this.projectChart.Series["Allokerte timer"].Color = System.Drawing.Color.Red; // changes the color of the burn-up-ceiling to red
-            this.projectChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = -45;
+            this.projectChart.Series["Brukte timer"].BorderWidth = 3; // forandrer bredden til "brukte timer" linja
+            this.projectChart.Series["Allokerte timer"].BorderWidth = 3; // forandrer bredden til "allokerte timer" linja
+            this.projectChart.Series["Allokerte timer"].Color = System.Drawing.Color.Red; // setter fargen til "allokerte timer" linja til rød
+            this.projectChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = -45; // setter vinkelen til labels
             this.projectChart.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = false;
-            this.projectChart.Legends.Add(new Legend("Legend"));
+            this.projectChart.Legends.Add(new Legend("Legend"));  // legger et Legend-objekt til chart
             this.projectChart.Legends["Legend"].Enabled = true;
 
             //queries + datatable-assignment
@@ -68,13 +77,13 @@ namespace Adminsiden
             string query3 = String.Format("SELECT hoursAllocated FROM Task WHERE phaseID IN (SELECT phaseID FROM Fase WHERE projectID = {0})", projectID);
             yAxis2Table = db.getAll(query3);
 
-            // counts allocated hours from all the tasks from this project
+            // sum av allokerte timer for alle tasks under aktivt prosjekt
             for (int i = 0; i < yAxis2Table.Rows.Count; i++)
             {
                 allocatedHours += Convert.ToDouble(yAxis2Table.Rows[i]["hoursAllocated"]);
             }
 
-            // gets startdate and enddate of the project
+            // finner startdato og sluttdato for aktivt prosjekt ut ifra fasedatoene
             DataView dv = phaseDateToFromTable.DefaultView;
             dv.Sort = "phaseFromDate ASC";
             DataTable sortedDT = dv.ToTable();
@@ -83,13 +92,13 @@ namespace Adminsiden
             sortedDT = dv.ToTable();
             var endDate = Convert.ToDateTime(sortedDT.Rows[sortedDT.Rows.Count - 1]["phaseToDate"]);
 
-            // generates a list of DateTime objects, from startDate - endDate of the phase
+            /// genererer en liste av DateTime objects, fra startDate til endDate av aktivt prosjekt, en for hver dag
             List<DateTime> range = Enumerable.Range(0, (endDate - startDate).Days + 1)
                 .Select(i => startDate.AddDays(i))
                 .ToList();
 
-            // populates the x-axis dynamically, with a number of datapoints equal to the length of the phase (in days,
-            // with how many hours are spent on tasks on that day
+            // populater grafen dynamisk, med et antall datapunkter lik antall dager i aktivt prosjekt, og legger dem til grafen.
+            // den ytre løkka går igjennom hver dag/datapunkt og den indre går igjennom alle tasks på den dagen.
             foreach (var d in range)
             {
                 for (int i = 0; i < chartTable.Rows.Count; i++)
@@ -101,22 +110,11 @@ namespace Adminsiden
                         usedHours += (dateTo - dateFrom).Hours + ((double)(dateTo - dateFrom).Minutes * 1 / 60);
                     }
                 }
-                //                DateTime temp = new DateTime();
-                //                temp = d.AddDays(-1);
+
                 this.projectChart.Series["Brukte timer"].Points.AddXY(d.DayOfWeek + " " + d.ToShortDateString(), usedHours);
                 this.projectChart.Series["Allokerte timer"].Points.AddXY(d.DayOfWeek + " " + d.ToShortDateString(), allocatedHours);
                 usedHours = 0;
             }
-            /*           
-                       this.phaseChart.Series["y-akse"].Points.AddXY("punkt1", 20);
-                       this.phaseChart.Series["y-akse2"].Points.AddXY("punkt1", 59);
-
-                       this.phaseChart.Series["y-akse"].Points.AddXY("punkt2", 30);
-                       this.phaseChart.Series["y-akse2"].Points.AddXY("punkt2", 69);
-
-                       this.phaseChart.Series["y-akse"].Points.AddXY("punkt3", 45);
-                       this.phaseChart.Series["y-akse2"].Points.AddXY("punkt3", 76);
-           */
         }
 
         protected void Page_Load(object sender, EventArgs e)

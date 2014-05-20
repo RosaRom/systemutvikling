@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 
-
 namespace Adminsiden
 {
     public partial class PANyHovedtask : System.Web.UI.Page
@@ -31,6 +30,7 @@ namespace Adminsiden
             else
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {

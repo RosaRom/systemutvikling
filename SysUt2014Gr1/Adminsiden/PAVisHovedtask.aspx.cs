@@ -6,7 +6,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 
-// det er ikke gjort stort med utseendet, siden formen er så enkel og vi trenger et uniformt utseende uansett
+///
+/// PAVisHovedTask.aspx.cs av Henning Fredriksen
+/// SysUt14Gr1 - Systemutvikling - Vår 2014
+///
+/// Enkel form som lar prosjektansvarlig vise navn og beskrivelse for hovedtask
+/// 
 
 namespace Adminsiden
 {
@@ -35,6 +40,12 @@ namespace Adminsiden
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
 
+        /// <summary>
+        /// Sjekker om bruker er logget inn som prosjektansvarlig via session når formen loades,
+        /// kjører så metoden som fyller dropdownlista med hovedkategorier
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];
@@ -49,6 +60,9 @@ namespace Adminsiden
             } 
         }
 
+        /// <summary>
+        /// Fyller dropdownliste med taskkategorier
+        /// </summary>
         private void GetTaskCategories()
         {
             projectID = Convert.ToInt16(Session["projectID"]);
@@ -61,6 +75,9 @@ namespace Adminsiden
             PopulateFields();
         }
 
+        /// <summary>
+        /// Fyller label/tekstboks med navn og beskrivelse av valgt hovedtask
+        /// </summary>
         public void PopulateFields()
         {
             projectID = Convert.ToInt16(Session["projectID"]);
@@ -70,6 +87,11 @@ namespace Adminsiden
             taTaskCategoryDesc.Text = dt.Rows[0]["taskCategoryDescription"].ToString();           
         }
 
+        /// <summary>
+        /// Fyller label/tekstboks med navn og beskrivelse av valgt hovedtask når hovedtask blir valgt i dropdownliste
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ddlTaskCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateFields();
