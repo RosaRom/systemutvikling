@@ -8,17 +8,29 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Adminsiden
+namespace Adminsiden   
 {
+    /// <summary>
+    /// EditProject.aspx.cs av Tord-Marius Fredriksen
+    /// SysUt14Gr1 - Systemutvikling - Vår 2014
+    /// 
+    /// Klassen brukes til å endre et eksisterende prosjekt. Teamleder og Prosjektansvarlig har tilgang 
+    /// til denne siden.
+    /// </summary>
     public partial class editProject : System.Web.UI.Page
     {
-        private DBConnect db;
+        private DBConnect db; 
         private DataTable table = new DataTable();
         private DataTable tableProjectNames = new DataTable();
         private DataTable tableTeamNames = new DataTable();
         private int projectID;
         private string queryUpdate;
-
+        /// <summary>
+        /// Metode som kjøres først av alle for å sjekke hvilken masterpage som skal brukes,
+        /// alt etter hvilken brukertype som er logget inn.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -35,7 +47,11 @@ namespace Adminsiden
             else
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
-        
+        /// <summary>
+        /// Kjøres i det nettsiden lastes inn, og gir bare tilgang til brukere som skal ha det.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             db = new DBConnect();
@@ -60,7 +76,9 @@ namespace Adminsiden
             }
           
         }
-
+        /// <summary>
+        /// Lister ut gitt prosjekt fra databasetabellen
+        /// </summary>
         private void GetProjectDetails()
         {
             string queryProject = "SELECT * FROM Project WHERE projectID = " + projectID;
@@ -93,7 +111,11 @@ namespace Adminsiden
                 ddlTeam.Items.FindByValue(table.Rows[0]["teamID"].ToString()).Selected = true;
             }
         }
-
+        /// <summary>
+        /// Kjøres ved lagring av endringer.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnUpdateQuery_Click(object sender, EventArgs e)
         {
             try
