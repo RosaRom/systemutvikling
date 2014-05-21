@@ -8,13 +8,17 @@ using System.Web.UI.WebControls;
 
 namespace Adminsiden
 {
+    /// <summary>
+    /// PickTask.aspx.cs av Tord-Marius Fredriksen
+    /// SysUt14Gr1 - Systemutvikling - Vår 2014
+    /// 
+    /// Brukeren velger task for å endre den.
+    /// </summary>
     public partial class PickTask : System.Web.UI.Page
     {
-
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
         DataTable dtTest = new DataTable();
-
 
         protected void Page_PreInit(object sender, EventArgs e)
         {

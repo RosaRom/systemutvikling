@@ -8,6 +8,12 @@ using System.Web;
 
 namespace Adminsiden
 {
+    /// <summary>
+    /// Encryption.cs av Tord-Marius Fredriksen
+    /// SysUt14Gr1 - Systemutvikling - Vår 2014
+    /// 
+    /// Krypterer brukerpassord.
+    /// </summary>
     public static class Encryption
     {
         static readonly string PasswordHash = "P@@Sw0rdH@$h1ng";
@@ -23,7 +29,6 @@ namespace Adminsiden
             }
             else
                 return false;
-
         }
         public static string Encrypt(string plainText)
         {
