@@ -6,6 +6,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+///
+/// BrukerBeOmExtraTimer.aspx.cs av Henning Fredriksen
+/// SysUt14Gr1 - Systemutvikling - Vår 2014
+///
+/// Lar en bruker be om ekstra timer på en task.
+/// 
+
 namespace Adminsiden
 {
     public partial class BrukerBeOmExtraTimer : System.Web.UI.Page
@@ -37,7 +44,10 @@ namespace Adminsiden
         {
             PopulateFaseValg();
         }
-
+        
+        /// <summary>
+        /// lister opp informasjon om valgt task. Hvor mange timer brukt/allokert og om det er en forespørsel om flere timer på den allerede.
+        /// </summary>
         public void Populate()
         {
             if (Convert.ToInt32(ddlTaskValg.SelectedValue.ToString()) != 0)
@@ -51,7 +61,10 @@ namespace Adminsiden
             }
         }
 
-        // populates combobox with task selection
+        /// <summary>
+        /// populater dropdownlist med taskvalg fra alle tasks for aktivt prosjekt (prosjektet teamet hans er medlem av)
+        /// </summary>
+ 
         public void PopulateFaseValg()
         {            
             string query = String.Format("SELECT * FROM Task WHERE phaseID IN (SELECT phaseID FROM Fase WHERE projectID IN (SELECT projectID FROM Project WHERE teamID IN (SELECT teamID FROM User WHERE userID = {0})))", userID);
@@ -65,6 +78,12 @@ namespace Adminsiden
             }
         }
 
+        /// <summary>
+        /// lister opp informasjon om valgt task via Populate() når man velger en annen task fra dropdown
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+ 
         protected void ddlTaskValg_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Convert.ToInt32(ddlTaskValg.SelectedValue.ToString()) != 0)
@@ -74,6 +93,11 @@ namespace Adminsiden
             }
         }
 
+        /// <summary>
+        /// lagrer forespørselen om ekstra timer under Task.hoursExtra feltet i db
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnCommit_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt32(ddlTaskValg.SelectedValue.ToString()) != 0)

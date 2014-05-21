@@ -8,6 +8,11 @@ using System.Data;
 
 namespace Adminsiden
 {
+    /// <summary>
+    /// PARedigerFase.aspx.cs av Kristian Alm
+    /// SysUt14Gr1 - SystemUtvikling - Vår 2014
+    /// En side for å redigere eksisterende faser.
+    /// </summary>
     public partial class PARedigerFase : System.Web.UI.Page
     {
         private int projectID;
@@ -15,6 +20,13 @@ namespace Adminsiden
         private DataTable projectNameTable = new DataTable();
         private DBConnect db = new DBConnect();
 
+        /// <summary>
+        /// Sjekker på session hvilken type bruker det er som er logget inn.
+        /// Er en standard metode vi har i alle klasser, setter masterpage for en gitt brukertype.
+        /// Da hver bruker har tilgang til litt forskjellige sider trenger de hver sin meny.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -32,6 +44,11 @@ namespace Adminsiden
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
 
+        /// <summary>
+        /// Her startes siden med å kjøre GetAllPhases
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];
