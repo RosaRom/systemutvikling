@@ -72,12 +72,6 @@ namespace Adminsiden
                     PopulateFaseValg();
                     ddlFaseValg.SelectedIndex = 0;
                     phaseID = Convert.ToInt32(ddlFaseValg.SelectedValue);
-                    
-                    PopulateBasicInfo();
-                    PopulateHoursAndFinishedTasks();
-                    FillGridView();
-                    PopulateChart();
-
                 }
             }
             else
@@ -92,7 +86,7 @@ namespace Adminsiden
          public void PopulateFaseValg()
         {
 
-//            phaseID = Convert.ToInt16(Session["phaseID"]);
+
             projectID = Convert.ToInt16(Session["projectID"]);
 
 
@@ -100,7 +94,6 @@ namespace Adminsiden
             ddlFaseValg.DataSource = db.getAll(query);
             ddlFaseValg.DataTextField = "phaseName";
             ddlFaseValg.DataValueField = "PhaseID";
-//            ddlFaseValg.Items.Insert(0, new ListItem("<Velg fase>", "0"));
             ddlFaseValg.DataBind();
             PopulateBasicInfo();
             PopulateHoursAndFinishedTasks();
@@ -149,7 +142,7 @@ namespace Adminsiden
             projectID = Convert.ToInt16(Session["projectID"]);
 
             // queries + datatables
-            string query = String.Format("SELECT * FROM TimeSheet WHERE projectID = {0} AND state = 1", projectID);
+            string query = String.Format("SELECT * FROM TimeSheet WHERE taskID IN (SELECT taskID FROM Task WHERE phaseID = {0}) AND state = 1", phaseID);
             chartTable = db.getAll(query);
             string query2 = String.Format("SELECT phaseFromDate, phaseToDate FROM Fase WHERE phaseID = {0}", phaseID);
             phaseDateToFromTable = db.getAll(query2);
@@ -173,23 +166,21 @@ namespace Adminsiden
 
             // populater grafen dynamisk, med et antall datapunkter lik antall dager i valgt fase, og legger dem til grafen.
             // den ytre løkka går igjennom hver dag/datapunkt og den indre går igjennom alle tasks på den dagen.
-            foreach (var d in range)
+            foreach (var d in range) // går igjennom hver dag i fasen
             {
-                for (int i = 0; i < chartTable.Rows.Count; i++)
+                for (int i = 0; i < chartTable.Rows.Count; i++) // går igjennom alle timeregistreringene
                 {
-                    if (DateTime.Compare(d, Convert.ToDateTime(chartTable.Rows[i]["start"])) == 1)
+                    if (DateTime.Compare(d.Date, Convert.ToDateTime(chartTable.Rows[i]["start"]).Date) == 1)
                     {
                         dateFrom = Convert.ToDateTime(chartTable.Rows[i]["start"]);
                         dateTo = Convert.ToDateTime(chartTable.Rows[i]["stop"]);
                         usedHours += (dateTo - dateFrom).Hours + ((double)(dateTo - dateFrom).Minutes * 1 / 60);
                     }
                 }
-
                 this.phaseChart.Series["Brukte timer"].Points.AddXY(d.DayOfWeek + " " + d.ToShortDateString(), usedHours); // legger til et punkt på "brukte timer" linja
                 this.phaseChart.Series["Allokerte timer"].Points.AddXY(d.DayOfWeek + " " + d.ToShortDateString(), allocatedHours); // legger til en punkt på "allokerte timer" linja
-                usedHours = 0;
+                usedHours = 0.0;
             }
-
         }
 
         /// <summary>
