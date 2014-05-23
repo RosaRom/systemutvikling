@@ -24,75 +24,61 @@
         <div id="regbruker" class="panel panel-primary" style="width:25%;">
            <div class="panel-heading"><h4>Rediger task</h4></div>
             <div class="panel-body">
-                    <br />
-                    <asp:Label ID="Label3" runat="server" Text="Tasknavn"></asp:Label>
-                    &nbsp;&nbsp;
-                    <asp:TextBox ID="tbTaskName" runat="server"></asp:TextBox>
-                    <br />
-                    <br />
-                    <asp:Label ID="Label4" runat="server" Text="Legg til bruker"></asp:Label>
-    
-                    &nbsp;&nbsp;&nbsp;
-                    <asp:DropDownList ID="ddlAddUser" runat="server">
-                    </asp:DropDownList>
-    
-  
-                    <br />
-                    <br />
-                    <asp:Label ID="Label5" runat="server" Text="Allokert tid"></asp:Label>
-                    &nbsp;<asp:TextBox ID="tbAllocatedTime" runat="server"></asp:TextBox>
-                    <p>
-                        &nbsp;</p>
-                    <asp:Label ID="Label2" runat="server" Text="Prioritet"></asp:Label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tbPriority" runat="server"></asp:TextBox>
-                    <p>
-                        &nbsp;</p>
-                    <p>
-                        <asp:Label ID="Label6" runat="server" Text="Beskrivelse"></asp:Label>
-                    &nbsp;<asp:TextBox ID="tbDescription" runat="server"></asp:TextBox>
-                    </p>
-                    <br />
-                    <asp:Label ID="Label7" runat="server" Text="Fase"></asp:Label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tbPhase" runat="server"></asp:TextBox>
-                    <br />
-                    <br />
-                    <asp:Label ID="Label8" runat="server" Text="State"></asp:Label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tbState" runat="server"></asp:TextBox>
-                    <br />
-                    <br />
-                    <br />
-                    <asp:Label ID="Label10" runat="server" Text="Sett foreldretask"></asp:Label>
-            &nbsp;&nbsp;
-                    <asp:DropDownList ID="ddlParentTask" runat="server" Height="16px">
-                    </asp:DropDownList>
-                    <br />
-                    <br />
-                    <br />
-                    <asp:Label ID="Label9" runat="server" Text="BacklogID"></asp:Label>
-                    <asp:TextBox ID="tbBacklog" class="form-textbox" runat="server"></asp:TextBox>
-                    <br />
-                    <br />
-                    <br /> 
-                    <asp:Label ID="Label1" runat="server" Text="Gjør avhengig av"></asp:Label>
-                    &nbsp;&nbsp;
-                    <asp:DropDownList ID="ddlDependency" runat="server">
-                    </asp:DropDownList>
-                    <br />
-                    <br />
-                    <br />
-                    <asp:Button class="btn btn-primary" runat="server" OnClick="btnSave_Click" Text="Lagre endringer" />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-
+                 <div class="leggTilTask">
+                    <label>Velg Kategori</label>
+                    <asp:DropDownList ID="DropDownMainTask" runat="server" DataTextField="taskCategoryName" DataValueField="taskCategoryID" 
+                        OnSelectedIndexChanged="DropDownMainTask_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                 </div>
+                <br />
+                <div class="leggTilTask">
+                    <label>Navn på task</label>
+                    <asp:TextBox CssClass="textbox" ID="taskNavn" runat="server"></asp:TextBox>
+                </div>
+                <br />
+                <div class="leggTilTask">
+                    <label>Timer allokert</label>
+                    <asp:TextBox CssClass="textbox" ID="timerAllokert" runat="server"></asp:TextBox>
+                </div>
+                <br />
+                <div class="leggTilTask">
+                    <label id="lbBeskrivelse">Beskrivelse</label>
+                    <asp:TextBox CssClass="textbox" ID="beskrivelse" runat="server" TextMode="MultiLine"></asp:TextBox>
+                </div>
+                <br />
+                <div class="leggTilTask">
+                    <label>ID i Product Backlog</label>
+                    <asp:TextBox CssClass="textbox" ID="pbID" runat="server"></asp:TextBox>
+                </div>
+                <br />
+                <div class="leggTilTask">
+                    <br />
+                    <label>Fase</label>
+                    <asp:DropDownList ID="DropDownFase" runat="server" DataValueField="phaseID" DataTextField="phaseName"></asp:DropDownList>
+                </div>
+                <br />
+                <div class="leggTilTask">
+                    <label>Prioritet</label>
+                    <asp:DropDownList ID="DropDownPrioritering" runat="server">
+                        <asp:ListItem Text="Høy" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Middels" Value="2"></asp:ListItem>
+                        <asp:ListItem Text="Lav" Value="3"></asp:ListItem>
+                    </asp:DropDownList>
+            
+                </div>
+                <br />
+                <div class="leggTilTask">
+                    <label>Gjør til subtask av</label>
+                    <asp:DropDownList ID="DropDownSubTask" runat="server" DataTextField="taskName" DataValueField="taskID"
+                        OnSelectedIndexChanged="DropDownSubTask_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                </div>
+                <br />
+                <div id="divLagre">
+                    <asp:Button ID="BtnLagreTask" runat="server" Text="Lagre Task" OnClick="BtnLagreTask_Click" /><br />
+                    <asp:Label ID="beskjed" runat="server"></asp:Label>
+                </div>
+                        
             </div>
+           </div>
     </form>
 
     
