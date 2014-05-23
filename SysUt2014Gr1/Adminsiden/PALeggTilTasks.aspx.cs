@@ -8,6 +8,12 @@ using System.Data;
 
 namespace Adminsiden
 {
+    /// <summary>
+    /// PALeggTilTasks.aspx.cs av Kristian Alm
+    /// SysUt14Gr1 - SystemUtvikling - Vår 2014
+    /// Her legges ny tasks til et prosjekt. Tasks har ikke prosjektID, men tilhører en fase.
+    /// Fase har en prosjektID, så kan kan se hvilket prosjekt en tasks tilhører gjennom fasen.
+    /// </summary>
     public partial class PALeggTilTasks : System.Web.UI.Page
     {
         private int projectID;
@@ -15,6 +21,13 @@ namespace Adminsiden
         private DataTable table = new DataTable();
         private DataTable categoryTable = new DataTable();
 
+        /// <summary>
+        /// Sjekker på session hvilken type bruker det er som er logget inn.
+        /// Er en standard metode vi har i alle klasser, setter masterpage for en gitt brukertype.
+        /// Da hver bruker har tilgang til litt forskjellige sider trenger de hver sin meny.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -32,6 +45,11 @@ namespace Adminsiden
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
 
+        /// <summary>
+        /// Her lastes siden inn og kjøre metodene som ligger der kun ved først kjøring.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];
@@ -52,7 +70,12 @@ namespace Adminsiden
          
         }
 
-        //lagrer en ny task i databasen
+        /// <summary>
+        /// Når man trykker på lagre knappen sendes all informasjon om tasken inn til databasen.
+        /// Noen verdier som kan være null i databasen må sjekkes mot stringverdi og settes til null om ikke annet står der.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void BtnLagreTask_Click(object sender, EventArgs e)
         {
             try
@@ -105,12 +128,20 @@ namespace Adminsiden
             
         }
 
+        /// <summary>
+        /// Sender brukeren til siden hvor det kan opprettes ny kategori
+        /// om det skulle være behov for det.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void BtnNyKategori_Click(object sender, EventArgs e)
         {
             Response.Redirect("PANyHovedtask.aspx");
         }
 
-        //henter ut alle tasks som tilhører en valgt hovedtask, blir oppdatert hver gang hovedtask endres
+        /// <summary>
+        /// henter ut alle tasks som tilhører en valgt hovedtask, blir oppdatert hver gang hovedtask endres
+        /// </summary>
         private void FillTasks()
         {
             if (!DropDownMainTask.SelectedValue.ToString().Equals(""))
@@ -125,7 +156,10 @@ namespace Adminsiden
             }
         }
 
-        //kjøres ved oppstart av siden, henter ut alle hovedtasks til en gitt projectID
+        /// <summary>
+        /// kjøres ved oppstart av siden, henter ut alle hovedtasks til en gitt projectID.
+        /// ProsjektID blir hentet fra session som lagrer prosjektID rett etter innlogging.
+        /// </summary>
         private void FillMainTasks()
         {
             projectID = Convert.ToInt16(Session["projectID"]);
@@ -148,7 +182,11 @@ namespace Adminsiden
             
         }
 
-        //kjøres ved hver forandring av hovedtask, fyller opp tilhørende tasks på nytt
+        /// <summary>
+        /// kjøres ved hver forandring av kategori, fyller opp tilhørende tasks på nytt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void DropDownMainTask_SelectedIndexChanged(object sender, EventArgs e)
         {
             FillTasks();
@@ -157,7 +195,11 @@ namespace Adminsiden
             SetProductBacklogID(false);
         }
 
-        //kjøres ved hver forandring av hovedtask, fyller opp tilhørende tasks på nytt
+        /// <summary>
+        /// Setter backlog id basert på at denne task er under en undertask
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void DropDownSubTask_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetProductBacklogID(true);
@@ -203,7 +245,9 @@ namespace Adminsiden
             }
         }
 
-        //setter alle verdier tilbake til null
+        /// <summary>
+        /// setter alle verdier tilbake til null
+        /// </summary>
         private void ResetForm()
         {
             taskNavn.Text = "";
@@ -213,7 +257,9 @@ namespace Adminsiden
             DropDownSubTask.SelectedIndex = 0;
         }
 
-        //henter ut alle faser til et gitt prosjekt
+        /// <summary>
+        /// henter ut alle faser til et gitt prosjekt
+        /// </summary>
         private void FillDropDownFase()
         {
             projectID = Convert.ToInt16(Session["projectID"]);

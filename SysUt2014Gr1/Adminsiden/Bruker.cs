@@ -3,25 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-/* Brukerklassen til prosjektet
- * 
- * Første utkast
- * Under konstruksjon
- * 
- * Angående passord: Skal prosjektleder/admin selv velge passord for brukere forså skifte det til
- * det de vil ha selv? Eller skal skal det bare opprettes bruker, og ved første innlogging så må bruker 
- * velge passord? SVAR: Admin setter nok opp et passord, og så må vi ha funksjonalitet som lar brukere skifte passord
- * f.eks. en profilside.
- * 
- */
+
+
 namespace Adminsiden
 {
+    /// <summary>
+    /// Bruker.cs
+    /// SysUt14Gr1 - Systemutvikling - Vår 2014
+    /// 
+    /// Brukerklassen til prosjektet
+    /// </summary>
     public class Brukerklasse
     {
         private int brukerId, telefon, teamID, groupID;
         private string fornavn, etternavn, brukernavn, email;
-
-        //GroupID erstatter konstantene
 
         public Brukerklasse(int brukerId, string etternavn, string fornavn, string brukernavn, int telefon,
             string email, int teamID, int groupID)
@@ -87,9 +82,7 @@ namespace Adminsiden
         }
         #endregion
 
-        //Eksempel på ToString - litt usikker i hvordan sammenheng dette skal brukes.
-        //Er ikke sikkert vi har bruk for ToString(), men greit å ha just in case.
-        //Hardkodet inn verdiene for groupID, må sjekkes opp mot databasen senere.
+
         public override string ToString()
         {
             if (groupID == 0)

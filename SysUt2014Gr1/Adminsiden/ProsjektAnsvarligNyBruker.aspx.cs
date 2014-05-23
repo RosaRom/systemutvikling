@@ -10,6 +10,9 @@ using MySql.Data.MySqlClient;
 
 namespace Adminsiden
 {
+    /// <summary>
+    /// Brukes ikke
+    /// </summary>
     public partial class ProsjektAnsvarligNyBruker : System.Web.UI.Page
     {
         private DBConnect db;

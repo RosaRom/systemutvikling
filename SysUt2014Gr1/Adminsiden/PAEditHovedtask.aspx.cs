@@ -6,13 +6,17 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 
-// det er ikke gjort stort med utseendet, siden formen er så enkel og vi trenger et uniformt utseende uansett
+///
+/// PAEditHovedTask.aspx.cs av Henning Fredriksen
+/// SysUt14Gr1 - Systemutvikling - Vår 2014
+///
+/// Enkel form som lar prosjektansvarlig endre navn og beskrivelse på en hovedtask
+/// 
 
 namespace Adminsiden
 {
     public partial class PAEditHovedtask : System.Web.UI.Page
     {
-//        private int taskCategoryID = 1; // hardkodet, må byttes ut
         int projectID;
 
         private DBConnect db = new DBConnect();
@@ -35,6 +39,12 @@ namespace Adminsiden
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
 
+        /// <summary>
+        /// Sjekker om bruker er logget inn som prosjektansvarlig via session når formen loades,
+        /// kjører så metoden som fyller dropdownlista med hovedkategorier
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];
@@ -53,6 +63,9 @@ namespace Adminsiden
           
         }
 
+        /// <summary>
+        /// Fyller dropdownliste med taskkategorier
+        /// </summary>
         private void GetTaskCategories()
         {
             projectID = Convert.ToInt16(Session["projectID"]);
@@ -65,6 +78,9 @@ namespace Adminsiden
             PopulateFields();
         }
 
+        /// <summary>
+        /// Fyller tekstboksene med navn og beskrivelse av valgt hovedtask
+        /// </summary>
         public void PopulateFields()
         {
             projectID = Convert.ToInt16(Session["projectID"]);
@@ -74,11 +90,21 @@ namespace Adminsiden
             taTaskCategoryDesc.Text = dt.Rows[0]["taskCategoryDescription"].ToString();            
         }
 
+        /// <summary>
+        /// Fyller tekstboksene med navn og beskrivelse av valgt hovedtask når hovedtask blir valgt i dropdownliste
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ddlTaskCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateFields();
         }
 
+        /// <summary>
+        /// Lagrer evt. nytt navn / beskrivelse av hovedtask i db
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Button1_Click(object sender, EventArgs e)
         {
             if (taTaskCategoryDesc.Text != "" && tbTaskCategoryName.Text != "")

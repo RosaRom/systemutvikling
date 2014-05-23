@@ -6,6 +6,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+///
+/// PAGodkjennEkstraTid.aspx.cs av Henning Fredriksen
+/// SysUt14Gr1 - Systemutvikling - Vår 2014
+///
+/// Viser en liste av alle tasks som har forespørsler om ekstra tid aktive, og lar Teamleder
+/// godkjenne eller ikke godkjenne disse.
+/// 
+
 namespace Adminsiden
 {
     public partial class PAGodkjennEkstraTid : System.Web.UI.Page
@@ -32,6 +40,12 @@ namespace Adminsiden
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
 
+        /// <summary>
+        /// Sjekker om bruker er logget inn som teamleder via session når formen loades,
+        /// kjører så metoden som fyller gridview med tasks som har ekstra timer under godkjenning
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];
@@ -46,6 +60,9 @@ namespace Adminsiden
                 } 
             }
 
+        /// <summary>
+        /// Fyller gridview med tasks der hoursExtra ikke er 0
+        /// </summary>
         public void Populate()
         {
             projectID = Convert.ToInt16(Session["projectID"]);
@@ -59,8 +76,8 @@ namespace Adminsiden
 
             gvTaskList.DataSource = dt;
             gvTaskList.DataBind();
-                                           
-            
+
+            // bytter ut prioritet som er en int i db med en beskrivelse (høy/mid/lav)
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 int prioritet = Convert.ToInt32(dt.Rows[i]["Prioritet"]);
@@ -80,6 +97,12 @@ namespace Adminsiden
             }
         }
 
+        /// <summary>
+        /// event som registerer om en godkjenn/ikke godkjenn-knapp blir trykket på i gridview
+        /// og om hoursAllocated skal oppdateres ettersom. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvTaskList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument.ToString());

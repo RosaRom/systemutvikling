@@ -8,6 +8,13 @@ using System.Web.UI.WebControls;
 using System.Data;
 using MySql.Data.MySqlClient;
 
+///
+/// ProsjektAnsvarligNyFase.aspx.cs av Henning Fredriksen
+/// SysUt14Gr1 - Systemutvikling - Vår 2014
+///
+/// Lar prosjektansvarlig manuelt opprette en fase til valgt prosjekt
+/// 
+
 namespace Adminsiden
 {
     public partial class ProsjektAnsvarligNyFase : System.Web.UI.Page
@@ -39,12 +46,25 @@ namespace Adminsiden
 
         }
 
+        /// <summary>
+        /// hjelpemetode som skriver data generert i btnSubmit_Click til database
+        /// </summary>
+        /// <param name="_pName"></param>
+        /// <param name="_pDateFrom"></param>
+        /// <param name="_pDateTo"></param>
+        /// <param name="_pDesc"></param>
         public void WriteData(String _pName, DateTime _pDateFrom, DateTime _pDateTo, String _pDesc)
         {
             String query = "INSERT INTO Fase (phaseName, phaseFromDate, phaseToDate, phaseDescription) VALUES('" + _pName + "', '" + _pDateFrom.ToString("yyyy-MM-dd") + "', '" + _pDateTo.ToString("yyyy-MM-dd") + "', '" + _pDesc + "')";
             db.InsertDeleteUpdate(query);
         }
 
+        /// <summary>
+        /// legger inn properties til fasen som skal opprettes inn i database via WriteData()
+        /// Sjekker at alle feltene har verdier og at du ikke har valgt sluttdato tidligere enn startdato
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];

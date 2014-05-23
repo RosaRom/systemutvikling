@@ -9,6 +9,16 @@ using System.Drawing;
 using System.Data;
 using System.Collections;
 
+///
+/// NyttProsjekt.aspx.cs av Henning Fredriksen
+/// SysUt14Gr1 - Systemutvikling - Vår 2014
+///
+/// Lar prosjektansvarlig opprette et nytt prosjekt. Det tar input som prosjektnavn, beskrivelse,
+/// startdato, antall faser og faselengde, og genererer derfra faser og sluttdato ut i fra det.
+/// Det kan gjøres til et underprosjekt av et annet prosjekt, velges et team og velge en rekke
+/// hovedtasks som vil ligge under det prosjektet.
+/// 
+
 namespace Adminsiden
 {
     public partial class NyttProsjekt : System.Web.UI.Page
@@ -40,6 +50,11 @@ namespace Adminsiden
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
 
+        /// <summary>
+        /// fyller dropdownlister når formet loades
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -50,6 +65,9 @@ namespace Adminsiden
             }
         }
 
+        /// <summary>
+        /// fyller dropdownlista med alle teams
+        /// </summary>
         private void GetTeams()
         {
             string query = "SELECT * FROM Team";
@@ -60,6 +78,9 @@ namespace Adminsiden
             ddlTeam.DataBind();
         }
 
+        /// <summary>
+        /// fyller dropdownlista med alle aktive prosjekt
+        /// </summary>
         private void GetParentProjects()
         {            
             string query = "SELECT projectName, projectID FROM Project WHERE parentProjectID = 0 AND projectState = 1";
@@ -70,6 +91,9 @@ namespace Adminsiden
             ddlSubProject.DataBind();
         }
 
+        /// <summary>
+        /// fyller dropdownlista med alle hovedtasks
+        /// </summary>
         private void GetTaskCategories()
         {
             string query = "SELECT * FROM TaskCategory";
@@ -80,7 +104,10 @@ namespace Adminsiden
             ddlTaskCategory.DataBind();
         }
         
-        // event som oppdaterer endDate-boksen når startdato , antall faser og faselengde er fylt ut
+        /// <summary>
+        /// event som oppdaterer endDate-boksen når startdato , antall faser og faselengde er fylt ut, den kjøres når enten tbSelectNumberOfPhases,
+        /// tbSelectNumberOfDaysPerPhase eller tbStartDate forandres. Den sjekker så om alle 3 har en verdi og beregner sluttdato til prosjektet.
+        /// </summary>
         private void UpdateProjectEndDate()
         {
             if (tbSelectNumberOfPhases.Text != "" && tbSelectNumberOfDaysPerPhase.Text != "" && tbStartDate.Text != "")
@@ -94,14 +121,21 @@ namespace Adminsiden
             }
         }
 
+        /// <summary>
+        /// hjelpemetode som fyller lista med hovedtasks etterhvert som de blir valgt
+        /// </summary>
+        /// <param name="_list">tar imot en liste med navn på hovedtasks</param>
         private void PopulateTaskCategoryListBox(List<String> _list)
         {
             taskCategoryList.DataSource = _list;
             taskCategoryList.DataBind();
         }
 
-        // legger til hovedtask
-        // && (tbTaskCategoryPhase.Text != "" && Convert.ToInt32(tbTaskCategoryPhase.Text.ToString()) <= Convert.ToInt32(tbSelectNumberOfPhases.Text.ToString()))
+        /// <summary>
+        /// legger til en hovedtask til lista med taskkategorier som skal være med
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnAddTaskCategory_Click(object sender, EventArgs e)
         {
             if (ddlTaskCategory.SelectedIndex != 0)
@@ -128,11 +162,16 @@ namespace Adminsiden
             }
         }
 
-        // lagrer prosjektet i db
+        /// <summary>
+        /// lagrer prosjektet i db og gir feedback til bruker om hva som må gjøres videre.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnCreateProject_Click(object sender, EventArgs e)
         {
             string query;
             
+            // velger fra to queries, basert på om prosjektet skal være et underprosjekt
             if (ddlSubProject.SelectedIndex != 0)
             {
                 query = string.Format("INSERT INTO Project (projectName, projectDescription, projectState, parentProjectID, teamID, latestProject)" +
@@ -143,6 +182,7 @@ namespace Adminsiden
                 query = string.Format("INSERT INTO Project (projectName, projectDescription, projectState, teamID, latestProject) VALUES ('{0}', '{1}', {2}, {3}, {4})", tbProjectName.Text, tbDescription.Text, 0, ddlTeam.SelectedValue, 1);
             }
             
+            // sjekker om alle felt er fylt ut
             if (tbProjectName.Text != "" && (bool)ViewState["dateOK"] == true && ddlTeam.SelectedIndex != 0)
             {
                 DataTable dt = new DataTable();
@@ -154,9 +194,10 @@ namespace Adminsiden
                 string resetLatestProjectQuery = string.Format("UPDATE Project SET latestProject = 0  WHERE projectID = {0}", projectID);
                 db.InsertDeleteUpdate(resetLatestProjectQuery);
 
-                // kjører metodene nedenfor
+                // kjører metoden som legger til valgt antall faser, basert på faselengde og startdato for prosjekt
                 AddPhases();
 
+                // kjører metoden som legger til valgt antall hovedtasks
                 if (taskCategoriCounter > 0)
                 {
                     AddTaskCategories();
@@ -179,6 +220,7 @@ namespace Adminsiden
             DateTime phaseStartDate = new DateTime();
             DateTime phaseEndDate = new DateTime();
 
+            // løkke som beregner start og sluttdatoene for hver fase, og legger hver fase til i db
             for (int i = 0; i < Convert.ToInt32(tbSelectNumberOfPhases.Text); i++)
             {
                 int fase = i;
@@ -199,7 +241,7 @@ namespace Adminsiden
             }
         }
 
-        // legger til hovedtasks i db ( FUNKER IKKE FORELØPIG, pga taskCategoriIDs[i]-lista )
+        // legger til hovedtasks i db ( FUNGERER IKKE FORELØPIG, pga taskCategoriIDs[i]-lista )
         private void AddTaskCategories()
         {
             
@@ -211,7 +253,8 @@ namespace Adminsiden
                 db.InsertDeleteUpdate(taskCategoriesQuery);
             }
         }
-
+        
+        // 3 events som kjører UpdateProsjektEndDate()
         protected void tbSelectNumberOfPhases_TextChanged(object sender, EventArgs e)
         {
             UpdateProjectEndDate();

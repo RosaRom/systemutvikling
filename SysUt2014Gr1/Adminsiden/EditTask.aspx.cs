@@ -9,8 +9,13 @@ using System.Web.UI.WebControls;
 
 namespace Adminsiden
 {
-    /**Har metode SetProductBacklogID nederst, men får ikke brukt den for å sette korrekt backlogID. Slik
-     * det er nå, blir ID satt fra textbox **/
+    /// <summary>
+    /// EditTask.aspx.cs av Tord-Marius Fredriksen
+    /// SysUt14Gr1 - Systemutvikling - Vår 2014
+    /// 
+    /// Klassen brukes til å endre et eksisterende task. Teamleder og Prosjektansvarlig har tilgang 
+    /// til denne siden.
+    /// </summary>
     public partial class EditTask : System.Web.UI.Page
     {
         private DBConnect db;
@@ -22,7 +27,12 @@ namespace Adminsiden
         private string backlogID;
         private int taskID;
 
-
+        /// <summary>
+        /// Metode som kjøres først av alle for å sjekke hvilken masterpage som skal brukes,
+        /// alt etter hvilken brukertype som er logget inn.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -39,7 +49,11 @@ namespace Adminsiden
             else
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
-
+        /// <summary>
+        /// Kjøres i det nettsiden lastes inn, og gir bare tilgang til brukere som skal ha det.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];
@@ -64,6 +78,9 @@ namespace Adminsiden
                 Server.Transfer("Login.aspx", true);
             }      
         }
+        /// <summary>
+        /// Fyller ut data i tekstbokser og lister.
+        /// </summary>
         private void Query()
         {
             taskID = Convert.ToInt16(Session["taskID"]);
@@ -97,11 +114,6 @@ namespace Adminsiden
                 ddlDependency.DataSource = taskTable;
                 ddlDependency.DataBind();
 
-//                ddlParentTask.DataTextField = "taskName";
-//                ddlParentTask.DataValueField = "taskID";
-//                ddlParentTask.DataSource = taskTable;
-//                ddlParentTask.DataBind();
-
                 string backlogStart = dataTable.Rows[0]["productBacklogID"].ToString();
                 tbBacklog.Text = dataTable.Rows[0]["productBacklogID"].ToString();
 
@@ -115,8 +127,11 @@ namespace Adminsiden
  
         }
 
-        /**
-         * Sender inn oppdaterte verdier **/
+        /// <summary>
+        /// Lagrer oppdaterte verdier i databasen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
             SetProductBacklogID(true, (string)ViewState["taskID"]);
@@ -126,6 +141,11 @@ namespace Adminsiden
             db.InsertDeleteUpdate(saveQuery);
         }
 
+        /// <summary>
+        /// Denne klassen skal brukes til å sette korrekt BacklogID, men er ikke i dirft grunnet dårlig tid.
+        /// </summary>
+        /// <param name="subTask"></param>
+        /// <param name="_id"></param>
         private void SetProductBacklogID(Boolean subTask, String _id)
         {
             string id = _id;

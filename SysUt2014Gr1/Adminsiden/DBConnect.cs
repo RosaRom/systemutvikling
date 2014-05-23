@@ -7,6 +7,11 @@ using System.Data;
 
 namespace Adminsiden
 {
+    /// <summary>
+    /// DBConnet.cs skrevet litt av alle sammen 
+    /// SysUt14Gr1 - SystemUtvikling - Vår 2014
+    /// Denne klassen står for all kontakt mot databasen
+    /// </summary>
     public class DBConnect
     {
         private MySqlConnection connection;
@@ -17,11 +22,17 @@ namespace Adminsiden
         private string uid;
         private string password;
 
+        /// <summary>
+        /// Constructor for klassen
+        /// </summary>
         public DBConnect()
         {
             this.Initialize();
         }
 
+        /// <summary>
+        /// Her opprettes den en connection
+        /// </summary>
         private void Initialize()
         {
             server = "kark.hin.no";
@@ -35,18 +46,32 @@ namespace Adminsiden
             connection = new MySqlConnection(connectionString);
         }
 
+        /// <summary>
+        /// Kobler til databasen
+        /// </summary>
+        /// <returns></returns>
         private bool OpenConnection()
         {
             connection.Open();
             return true;
         }
 
+        /// <summary>
+        /// Stenger tilkoblingen mot databasen
+        /// </summary>
+        /// <returns></returns>
         private bool CloseConnection()
         {
             connection.Close();
             return true;
         }
 
+        /// <summary>
+        /// Her hentes ut data basert på en query og returnerer en datatable.
+        /// Navnet kan være misvisende, lagde den i forbindelse med Adminsiden.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public DataTable AdminGetAllUsers(string query)
         {
             try
@@ -70,6 +95,12 @@ namespace Adminsiden
                 this.CloseConnection();
             }
         }
+
+        /// <summary>
+        /// Gjør det samme som metoden over.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public DataTable getAll(string query)
         {
             if (this.OpenConnection() == true)
@@ -80,10 +111,13 @@ namespace Adminsiden
                 this.CloseConnection();
             }
             return dataTable;
-
         }
 
-        //Teller antall kolonner og returnere antallet
+        /// <summary>
+        /// Teller antall kolonner og returnere antallet
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public int Count(string query)
         {
             int count = 0;
@@ -108,7 +142,11 @@ namespace Adminsiden
                 this.CloseConnection();
             }
         }
-  
+        
+        /// <summary>
+        /// Gjør oppgaver som Update, Insert og Delete basert på hva query inneholder.
+        /// </summary>
+        /// <param name="query"></param>
         public void InsertDeleteUpdate(string query)
         {
             if (this.OpenConnection() == true)
@@ -123,8 +161,20 @@ namespace Adminsiden
                 this.CloseConnection();
             }
         }
-
-       public void InsertTimeSheet(string _start, string _stop, int _userID, int _taskID, string _description, int _workplaceID, int _state, int _projectID, int _permissionState)
+        
+        /// <summary>
+        /// Brukes for å oppdatere timesheet
+        /// </summary>
+        /// <param name="_start"></param>
+        /// <param name="_stop"></param>
+        /// <param name="_userID"></param>
+        /// <param name="_taskID"></param>
+        /// <param name="_description"></param>
+        /// <param name="_workplaceID"></param>
+        /// <param name="_state"></param>
+        /// <param name="_projectID"></param>
+        /// <param name="_permissionState"></param>
+        public void InsertTimeSheet(string _start, string _stop, int _userID, int _taskID, string _description, int _workplaceID, int _state, int _projectID, int _permissionState)
         {
             string query = "INSERT INTO TimeSheet (start, stop, userID, taskID, description, workplaceID, state, projectID, permissionState) VALUES('" + _start + "', '" + _stop + "', '" + _userID + "', '" + _taskID + "', '" + _description + "', '" + _workplaceID + "', '" + _state + "', '" + _projectID +"','" + _permissionState + "')";
                 

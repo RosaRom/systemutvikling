@@ -6,15 +6,26 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 
-
 namespace Adminsiden
 {
+    /// <summary>
+    /// PANyHovedTask.aspx.cs av Kristian Alm
+    /// SysUt14Gr1 - SystemUtvikling - Vår 2014
+    /// Ari lagde søkefunksjonen og sorteringsfunksjonen for siden.
+    /// En enkel side som oppretter en kategori til et valgt prosjekt
+    /// </summary>
     public partial class PANyHovedtask : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
         private int projectID;
-            
-           
+
+        /// <summary>
+        /// Sjekker på session hvilken type bruker det er som er logget inn.
+        /// Er en standard metode vi har i alle klasser, setter masterpage for en gitt brukertype.
+        /// Da hver bruker har tilgang til litt forskjellige sider trenger de hver sin meny.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -32,6 +43,11 @@ namespace Adminsiden
                 this.MasterPageFile = "~/Masterpages/Prosjektansvarlig.Master";
         }
 
+        /// <summary>
+        /// Ved oppstart av siden kjøres metoden som setter en automatisk produckt backlog id
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             string session = (string)Session["userLoggedIn"];
@@ -51,6 +67,12 @@ namespace Adminsiden
            
         }
 
+        /// <summary>
+        /// Her hentes all informasjon ut fra siden og lagrer det i databasen.
+        /// ProjectID henter fra session.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnLagreHovedtask_Click(object sender, EventArgs e)
         {
             projectID = Convert.ToInt16(Session["projectID"]);
@@ -74,12 +96,19 @@ namespace Adminsiden
             
         }
 
+        /// <summary>
+        /// Ved lagring fjernes all tekst
+        /// </summary>
         private void ResetForm()
         {
             hovedtaskNavn.Text = "";
             txtBeskrivelse.Text = "";
         }
 
+        /// <summary>
+        /// Teller antall eksisterende kategorier i prosjektet og gir en
+        /// product backlog id etter antall + 1.
+        /// </summary>
         private void ProductBacklogID()
         {
             projectID = Convert.ToInt16(Session["projectID"]);
@@ -90,6 +119,11 @@ namespace Adminsiden
             id.Text = Convert.ToString(count + 1);
         }
 
+        /// <summary>
+        /// En snarvei til å opprette nye tasks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void BtnNyTask_Click(object sender, EventArgs e)
         {
             Response.Redirect("PALeggTilTasks.aspx");

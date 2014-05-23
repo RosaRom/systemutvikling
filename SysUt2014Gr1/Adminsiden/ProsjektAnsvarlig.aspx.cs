@@ -9,6 +9,12 @@ using System.Web.UI.WebControls;
 
 namespace Adminsiden
 {
+    /// <summary>
+    /// ProsjektAnsvarlig.aspx.cs av Tord-Marius Fredriksen
+    /// SysUt14Gr1 - Systemutvikling - Vår 2014
+    /// 
+    /// Hovedsiden til prosjektansvarlig. Her kan brukeren gjøre alle valg.
+    /// </summary>
     public partial class ProsjektAnsvarlig : System.Web.UI.Page
     {
         string query;
@@ -35,7 +41,6 @@ namespace Adminsiden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             string session = (string)Session["userLoggedIn"];
 
             if (session == "projectManager" || session == "teamLeader")
@@ -59,12 +64,8 @@ namespace Adminsiden
             else
             {
                 Server.Transfer("Login.aspx", true);
-
-            }
-
-       
+            }  
         }
-
         private void FillProjectList()
         {
             query = "SELECT * FROM Project WHERE projectState = 1";
@@ -88,7 +89,6 @@ namespace Adminsiden
         {
         }
 
-
         protected void btnArchiveProject_Click(object sender, EventArgs e)
         {
             projectID = Convert.ToInt32(projectList.SelectedValue);
@@ -108,10 +108,6 @@ namespace Adminsiden
         {
             Server.Transfer("ViewProjectArchive.aspx", true);
 
-        }
-
-     
-
-     
+        } 
     }
 }
