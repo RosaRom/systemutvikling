@@ -9,12 +9,27 @@ using System.Web.UI.WebControls;
 
 namespace Adminsiden
 {
+    /// <summary>
+    /// 
+    /// Profilside.cs av Tommy Langhelle
+    /// SysUt14Gr1 - Systemutvikling - Vår 2014
+    /// 
+    /// Profilside hvor innlogget bruker kan se registrert informasjon om seg selv. Det er også mulighet
+    /// for å redigere registrert telefonnummer, epost og passord.
+    /// 
+    /// </summary>
+    /// 
     public partial class Profilside : System.Web.UI.Page
     {
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
         int userID;
 
+        /// <summary>
+        /// Riktig masterpage blir bestemt ut i fra hvilken status innlogget bruker har.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -46,9 +61,11 @@ namespace Adminsiden
 
             }
         }
+        /// <summary>
+        /// Fyller Labels med informasjon om bruker hentet fra databasen
+        /// </summary>
         public void getUserInfo()
         {
-            
             string query = String.Format("SELECT *, CONCAT (firstname, ' ',  surname) AS FullName FROM User, UserGroup WHERE userID = {0} AND User.groupID = UserGroup.groupID", Session["userID"]);// + Session["userID"];
             dt = db.getAll(query);
             userID = Convert.ToInt16(dt.Rows[0]["userID"]);
@@ -65,9 +82,12 @@ namespace Adminsiden
             Label_status.Text = usertype;
         }
 
-        // behandler endring av passord felt og labels
+        /// <summary>
+        /// De tre neste metodene behandler endring av passord felt og labels, samt oppdaterer passord 
+        /// opp mot databasen.
+        /// </summary>
+        protected void btn_endrePW_Click(object sender, EventArgs e) 
 
-        protected void btn_endrePW_Click(object sender, EventArgs e)
         {
             Label_titlePW.Visible = false;
             btn_endrePW.Visible = false;
@@ -117,8 +137,10 @@ namespace Adminsiden
             tb_np1.Text = "";
         }
 
-        // behandler endring av telefon felt og labels
-
+        /// <summary>
+        /// De tre neste metodene behandler endring av telefon felt og labels, samt oppdaterer passord 
+        /// opp mot databasen.
+        /// </summary>
         protected void btn_endretlf_Click(object sender, EventArgs e)
         {
             btn_endretlf.Visible = false;
@@ -152,8 +174,10 @@ namespace Adminsiden
             changeVisibleTlfFields(false);
         }
 
-        //behandler endring av email felt og labels
-
+        /// <summary>
+        /// De tre neste metodene behandler endring av email felt og labels, samt oppdaterer passord 
+        /// opp mot databasen.
+        /// </summary>
         protected void btn_endremail_Click(object sender, EventArgs e)
         {
             btn_endremail.Visible = false;
@@ -186,8 +210,9 @@ namespace Adminsiden
             changeVisibleEmailFields(false);
         }
 
-        //Metoder for å begrense kode-duplikat
-
+        /// <summary>
+        /// Resten av metodene nedenfor er for å begrense kode-duplikat
+        /// </summary>
         void changeVisiblePWFields(Boolean input)
         {
             Label_gp.Visible = input;
@@ -215,17 +240,6 @@ namespace Adminsiden
             btn_confirmChangeMail.Visible = input;
             btn_abortEmail.Visible = input;
         }
-
-        
-
-       
-
-      
-
-    
-
-
-
     }
     
 }

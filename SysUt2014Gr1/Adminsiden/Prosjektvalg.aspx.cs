@@ -9,6 +9,14 @@ using System.Web.UI.WebControls;
 
 namespace Adminsiden
 {
+    /// <summary>
+    /// 
+    /// Prosjektvalg.apsx.cs av Tommy Langhelle
+    /// SysUt14Gr1 - Systemutvikling - Vår 2014
+    /// 
+    /// Denne siden er den første som blir vist etter login, og her velger du prosjekt du vil registrere timer på, se grafer og fremgang over, eller redigere.
+    /// </summary>
+    /// 
     public partial class Prosjektvalg : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
@@ -31,6 +39,9 @@ namespace Adminsiden
                 Server.Transfer("Login.aspx", true);
             }
         }
+        /// <summary>
+        /// Fyller Gridview med prosjekter fra databasen
+        /// </summary>
         private void GetProject()
         {
             session = (string)Session["userLoggedIn"];
@@ -57,6 +68,11 @@ namespace Adminsiden
             
         }
 
+        /// <summary>
+        /// Sender deg videre til riktig side avhengig av inlogget brukers status.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GridViewProject_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument.ToString());

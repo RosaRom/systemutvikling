@@ -12,11 +12,24 @@ namespace Adminsiden
 {
     public partial class Bruker : System.Web.UI.Page
     {
+        /// <summary>
+        /// 
+        /// Bruker.apsx.cs av Tommy Langhelle
+        /// SysUt14Gr1 - Systemutvikling - Vår 2014
+        /// 
+        /// Timeregistreringssiden for brukerkontoer med status "bruker"
+        /// 
+        /// </summary>
         private DBConnect db = new DBConnect();
         private int TaskID;
         private int WorkplaceID;
         List<String> projectList = new List<string>();
 
+        /// <summary>
+        /// Riktig masterpage blir bestemt ut i fra hvilken status innlogget bruker har.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -60,11 +73,9 @@ namespace Adminsiden
             }
            
         }
-        //Fyller dropdownlister med timer og minutter
-        private void fillTimeSelectDDL()
+        private void fillTimeSelectDDL() //Fyller dropdownlister med timer og minutter
         {
-            //Fyller timer og minutter i "fra" dropdowns
-            if (ddl_hour_from.Items.Count == 0)
+            if (ddl_hour_from.Items.Count == 0) //Fyller timer og minutter i "fra" dropdowns
             {
                 for (int i = 0; i < 10; i++)
                 {
@@ -88,16 +99,17 @@ namespace Adminsiden
             }
         }
 
+        /// <summary>
+        /// Denne metoden blir kjørt først når både starttime og minutter er valgt
+        /// </summary>
         private void fillTimeToSelectDLL()
         {
-            //Denne metoden blir kjørt først når både starttime og minutter er valgt
 
             int from = 1;
             int hourTo = 0;
             int minTo = 0;
 
-            //tar vare på registrerte til-klokkeslett
-            if(ddl_hour_to.Items.Count != 0)
+            if (ddl_hour_to.Items.Count != 0) //tar vare på registrerte til-klokkeslett
             {
                 from = Convert.ToInt16(ddl_hour_from.SelectedValue);
                 hourTo = Convert.ToInt16(ddl_hour_to.SelectedValue);
@@ -109,10 +121,9 @@ namespace Adminsiden
 
             int hourFrom = Convert.ToInt16(ddl_hour_from.Text);
 
-            //Fyller timer dropdown
             int i;
 
-            for (i = hourFrom; i < 10; i++)
+            for (i = hourFrom; i < 10; i++) //Fyller timer dropdown
             {
                 ddl_hour_to.Items.Add("0" + i);
             }
@@ -121,8 +132,7 @@ namespace Adminsiden
                 ddl_hour_to.Items.Add("" + k);
             }
 
-            //Fyller minutter dropdown
-            for (int j = 0; j < 10; j += 15)
+            for (int j = 0; j < 10; j += 15) //Fyller minutter dropdown
             {
                 ddl_min_to.Items.Add("0" + j);
             }
@@ -131,9 +141,8 @@ namespace Adminsiden
                 ddl_min_to.Items.Add("" + j);
             }
 
-            /*bestemmer om registeret til-tid kan brukes, 
-             eller om dette blir ugyldig med den nye ny fra-tiden*/
-            if(from >= hourTo)
+            if (from >= hourTo) //bestemmer om registrert til-tid kan brukes, eller om dette blir ugyldig med den nye ny fra-tiden
+
             {
                 ddl_hour_to.SelectedValue = ddl_hour_from.SelectedValue;
                 ddl_min_to.SelectedValue = ddl_min_from.SelectedValue;
@@ -151,8 +160,8 @@ namespace Adminsiden
                     ddl_min_to.SelectedValue = Convert.ToString(minTo);
             }
         }
-        //Fyller dropdown med tasks
-        private void GetTasks()
+        private void GetTasks() //Fyller dropdown med tasks
+
         {
             DataTable dt = new DataTable();
             int phaseID = 0;
@@ -177,8 +186,7 @@ namespace Adminsiden
             taskName.Items.Insert(0, new ListItem("<Velg task>", "0"));
             taskName.DataBind();
         }
-        //Fyller dropdown med plasser å jobbe fra
-        private void getWorkplace()
+        private void getWorkplace() //Fyller dropdown med plasser å jobbe fra
         {
             string query = "SELECT * FROM Workplace";
             workPlace.DataSource = db.getAll(query);
@@ -196,6 +204,12 @@ namespace Adminsiden
         {
             WorkplaceID = Convert.ToInt32(workPlace.SelectedValue);
         }
+        /// <summary>
+        /// Metoden blir kjørt når "ok" knappen trykkes, og info fra alle felter blir formatert og sjekket.
+        /// Om all input er gyldig blir informasjon sendt til databasen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_ok_Click(object sender, EventArgs e)
         {
             string userDescription = TxtArea_userComment.Text;
@@ -242,6 +256,7 @@ namespace Adminsiden
             }
             double tidBrukt = antallTimer + antallMinuttDouble;
 
+            //Sjekker at alle felter er fylt ut.
             if (dateFromFormated != null && dateToFormated != null && userID != 0 && TaskID != 0 && WorkplaceID != 0 && projectID != 0)
             {
                 int permissionState;
@@ -252,6 +267,7 @@ namespace Adminsiden
                 double hoursAllocated = Convert.ToDouble(dt.Rows[0]["hoursAllocated"].ToString());
                 double hoursUsed = Convert.ToDouble(dt.Rows[0]["hoursUsed"].ToString());
 
+                //Sjekker at fasen tasken ligger under har nok ledige timer til å foreta registreringen.
                 if (hoursUsed + tidBrukt < hoursAllocated)
                 {
                     if (dateFrom > DateTime.Now.AddDays(1) || dateFrom < DateTime.Now.AddDays(-1))

@@ -8,12 +8,26 @@ using System.Web.UI.WebControls;
 
 namespace Adminsiden
 {
+    /// <summary>
+    /// 
+    /// OpprettTeam.apsx.cs av Tommy Langhelle
+    /// SysUt14Gr1 - Systemutvikling - Vår 2014
+    /// 
+    /// Her kan Team opprettes, redigeres og slettes. registrerte brukere kan flyttes mellom teams
+    /// og teamleder-status kan flyttes mellom brukere.
+    /// 
+    /// </summary>
     public partial class OpprettTeam : System.Web.UI.Page
     {
         private DBConnect db = new DBConnect();
         private int teamID;
         private int userID;
 
+        /// <summary>
+        /// Riktig masterpage blir bestemt ut i fra hvilken status innlogget bruker har.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -67,13 +81,16 @@ namespace Adminsiden
         }
         private void getUsers()
         {
-            string query = "SELECT userID, CONCAT (firstname, ' ',  surname) AS FullName FROM User WHERE teamID NOT LIKE " + teamID;
+            string query = "SELECT userID, CONCAT (firstname, ' ',  surname) AS FullName FROM User WHERE teamID NOT LIKE " + teamID + " AND aktiv = 1";
             ddl_users.DataSource = db.getAll(query);
             ddl_users.DataTextField = "FullName";
             ddl_users.DataValueField = "userID";
             ddl_users.Items.Insert(0, new ListItem("<Velg bruker>", "0"));
             ddl_users.DataBind(); 
         }
+        /// <summary>
+        /// Gridview blir fykt med Team valgt i getTeams()
+        /// </summary>
         private void fillGridView()
         {
             string query = "SELECT firstname, surname, groupName FROM User, UserGroup WHERE UserGroup.groupID = User.groupID AND teamID =" + teamID;
@@ -81,6 +98,11 @@ namespace Adminsiden
             GridView1.DataBind();
         }
 
+        /// <summary>
+        /// Ligger bruker med status "bruker" til i valgt team
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_addUser_Click(object sender, EventArgs e)
         {
             userID = Convert.ToInt32(ddl_users.SelectedValue);
@@ -92,6 +114,11 @@ namespace Adminsiden
             getUsers();
         }
 
+        /// <summary>
+        /// Ligger bruker med status "teamleder" til i valgt team
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_addTeamleader_Click(object sender, EventArgs e)
         {
             userID = Convert.ToInt32(ddl_users.SelectedValue);
@@ -114,7 +141,11 @@ namespace Adminsiden
             ddl_users.Items.Clear();
             getUsers();
         }
-
+        /// <summary>
+        /// Gjør textboxer nødvendig for å opprette team synlig.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_opprett_Click(object sender, EventArgs e)
         {
             btn_abort.Visible = true;
@@ -124,6 +155,11 @@ namespace Adminsiden
             btn_deleteTeam.Visible = false;
         }
 
+        /// <summary>
+        /// Input felter blir sjekket og innhold så videresendt til databasen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_createTeam_Click(object sender, EventArgs e)
         {
             string newTeam = tb_newTeam.Text;
@@ -149,6 +185,11 @@ namespace Adminsiden
             }
         }
 
+        /// <summary>
+        /// Avbryter oppretting av nytt team
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_abort_Click(object sender, EventArgs e)
         {
             tb_newTeam.Text = "";
