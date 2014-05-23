@@ -17,8 +17,7 @@ namespace Adminsiden
 {
     public partial class BrukerBeOmExtraTimer : System.Web.UI.Page
     {
-        int userID = 44; // hardkodet, trenger session
-//        int taskID = 0;
+        int userID;
 
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
@@ -26,6 +25,8 @@ namespace Adminsiden
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
+            userID = (int)Session["userID"];
+
 
             if (userLoggedIn == "teamMember")
                 this.MasterPageFile = "~/Masterpages/Bruker.Master";
@@ -67,7 +68,7 @@ namespace Adminsiden
  
         public void PopulateFaseValg()
         {            
-            string query = String.Format("SELECT * FROM Task WHERE phaseID IN (SELECT phaseID FROM Fase WHERE projectID IN (SELECT projectID FROM Project WHERE teamID IN (SELECT teamID FROM User WHERE userID = {0})))", userID);
+            string query = String.Format("SELECT * FROM Task WHERE phaseID IN (SELECT phaseID FROM Fase WHERE projectID IN (SELECT projectID FROM Project WHERE teamID IN (SELECT teamID FROM User WHERE userID = {0})))", (int)Session["userID"]);
             if (ddlTaskValg.Items.Count == 0)
             {
                 ddlTaskValg.DataSource = db.getAll(query);
