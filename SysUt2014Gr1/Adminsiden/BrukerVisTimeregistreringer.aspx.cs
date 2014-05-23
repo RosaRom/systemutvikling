@@ -85,9 +85,10 @@ namespace Adminsiden
 
             dt = db.getAll(query);
             ViewState["table"] = dt;
-
             gvTaskList.DataSource = dt;
             gvTaskList.DataBind();
+
+
 
             // bytter ut state som er en int i db med en beskrivelse (inaktiv/aktiv)            
             for (int i = 0; i < dt.Rows.Count; i++)

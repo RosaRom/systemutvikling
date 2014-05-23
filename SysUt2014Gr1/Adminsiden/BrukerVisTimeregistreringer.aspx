@@ -16,7 +16,7 @@
                 
                 <br />
                 <asp:GridView ID="gvTaskList" 
-                    AllowPaging="True" 
+                    AllowPaging="false"             
                     AutoGenerateColumns="False"
                     CssClass="gridView" 
                     AlternatingRowStyle-CssClass="alt" 

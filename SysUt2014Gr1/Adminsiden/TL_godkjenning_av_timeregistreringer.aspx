@@ -21,14 +21,11 @@
             &nbsp;</p>
 
 
-
-
         <div id="prosjektvalg" class="panel panel-primary">
            <div class="panel-heading"><h4>Godkjenning av timeregistreringer</h4></div>
             <div class="panel-body">
-                <asp:GridView ID="GridView1"      
-                 
-                    AllowPaging="True" 
+                <asp:GridView ID="GridView1"                    
+                    AllowPaging="false" 
                     AutoGenerateColumns="False"
                     CssClass="gridView" 
                     AlternatingRowStyle-CssClass="alt" 
