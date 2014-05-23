@@ -46,8 +46,9 @@ namespace Adminsiden
         }
         public void FillGridView()
         {
-            string query = String.Format("SELECT timeID, start \"start\", stop \"stop\", username \"username\", taskName \"taskName\", workplace \"workplace\", Task.description \"description\", priority \"priority\"" +
-            "FROM User, TimeSheet, Task, Workplace WHERE User.userID = TimeSheet.userID AND TimeSheet.projectID = 1 AND TimeSheet.taskID = Task.taskID AND TimeSheet.workplaceID = Workplace.workplaceID AND TimeSheet.permissionState = 1");
+            int projectID = Convert.ToInt32(Session["projectID"]);
+
+            string query = String.Format("SELECT timeID, start, stop, username, taskName, workplace, Task.description, priority FROM User, TimeSheet, Task, Workplace WHERE User.userID = TimeSheet.userID AND TimeSheet.projectID = " + projectID + " AND TimeSheet.taskID = Task.taskID AND TimeSheet.workplaceID = Workplace.workplaceID AND TimeSheet.permissionState = 1");
             
             dt = db.getAll(query);
             ViewState["table"] = dt;
