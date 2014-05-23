@@ -26,11 +26,15 @@ namespace Adminsiden
                 {
                     phaseName = Convert.ToString(dt.Rows[i][1]);
                     phaseID = Convert.ToInt16(dt.Rows[i][0]);
+                    Label_fase.Text = phaseName;
+                }
+                else
+                {
+                    Label_fase.Text = "Ingen aktiv fase per dags dato";
                 }
             }
             Session["phaseID"] = phaseID;
             Label_prosjekt.Text = (string)Session["projectNavn"];
-            Label_fase.Text = phaseName;
         }
     }
 }
