@@ -6,18 +6,24 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+/// TL_godkjenning_av_timeregistreringer.aspx.cs av Renate Karlsen
+/// SysUt14Gr1 - Systemutvikling - Vår 2014
+/// *************************************************************************************************************************
+/// Denne klassen sjekker om noen brukere har permissionState 1. Dersom dette er tilfelle må denne godkjenning registreres
+/// av Teamleder. Klassen henter ut diverse informasjon som blir lagt til i en gridView. Teamleder velger da om dette skal
+/// godkjennes eller ikke. Dersom Teamleder godkjenner skifter permissionState til 0 og registreringen er godkjent
+/// Dersom teamleder ikke godkjenner registreringen skifter permissionState til 2 og registreringen ble ikke godkjent.
+/// *************************************************************************************************************************
+
 namespace Adminsiden
 {
     public partial class TL_godkjenning_av_timeregistreringer : System.Web.UI.Page
     {
 
-        // Prosjekt skal automatisk stå under godkjenning state 1
-        // Hvis tl godkjenner så blir state forandret til 2
-        // Dersom TL ikke godkjenner skal det stå state 0
-
         DBConnect db = new DBConnect();
         DataTable dt = new DataTable();
 
+        // Session
         protected void Page_PreInit(object sender, EventArgs e)
         {
             String userLoggedIn = (String)Session["userLoggedIn"];
@@ -39,11 +45,10 @@ namespace Adminsiden
         {
             FillGridView(); 
         }
+        /// <summary>
+        ///  GridView fylles opp med start/slutt dato, brukernavn, oppgave navn, arbeidsplass og beskrivelse
+        /// </summary>
 
-        private void FillDates()
-        {
-            //   string query = String.Format("SELECT 
-        }
         public void FillGridView()
         {
             int projectID = Convert.ToInt32(Session["projectID"]);
@@ -55,7 +60,7 @@ namespace Adminsiden
             GridView1.DataSource = dt;
             GridView1.DataBind();
 
-
+            // Bytter prioriteten som er en int i DB med beskrivelsene: Høy, Mid, Lav
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 int prioritet = Convert.ToInt32(dt.Rows[i]["priority"]);
@@ -74,11 +79,17 @@ namespace Adminsiden
                 }
             }
         }
-
+        /// <summary>
+        ///  Event som registrerer om "Godkjenn" eller "Ikke godkjenn" - knapper blir trykker på i GridView
+        ///  Dersom en av knappene blir trykket på, oppdateres permissionState i DB. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
          protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
          {
              int index = Convert.ToInt32(e.CommandArgument.ToString());
 
+             // Kjører om "Godkjenn" - knappen blir trykket på
              if (e.CommandName == "godkjent")
              {
                  int timeID = Convert.ToInt32(dt.Rows[index]["timeID"].ToString());
@@ -88,7 +99,7 @@ namespace Adminsiden
                
                  
              }
-
+             // Kjører om "Ikke godkjenn" - knapp blir trykket på
              if (e.CommandName == "ikkeGodkjent")
              {
                  int timeID = Convert.ToInt32(dt.Rows[index]["timeID"].ToString());
