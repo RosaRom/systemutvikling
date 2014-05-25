@@ -2,7 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Administrator</title>
-    <link rel="Stylesheet" type="text/css" href="css/AdminStyle.css" />
+
+     <link href="http://malmen.hin.no/Rosarom/css/AdminStyle.css" rel="stylesheet"/>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
@@ -16,6 +17,7 @@
                     runat="server"
                     AutoGenerateColumns="False"
                     ShowHeaderWhenEmpty="True"
+                    HeaderStyle-CssClass="gridViewHeader" 
                     AutoGenerateEditButton="True"
                     OnRowCancelingEdit="GridViewInsert_RowCancelingEdit"
                     OnRowEditing="GridViewInsert_RowEditing"
@@ -131,6 +133,5 @@
                             </div>
                         </div>
                 </div>
-
     </form>
 </asp:Content>
