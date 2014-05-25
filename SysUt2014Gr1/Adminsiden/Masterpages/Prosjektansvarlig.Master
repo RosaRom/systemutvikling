@@ -34,7 +34,6 @@
                         <li><a href="OpprettTeam.aspx">Team</a></li>
                         <li><a href="PALeggTilTasks.aspx">Task</a></li>
                         <li><a href="PANyHovedtask.aspx">Hovedtask</a></li>
-                        <li><a href="ProsjektAnsvarligNyBruker.aspx">Bruker</a></li>
                       </ul>
                     </li>
                     <li class="dropdown">

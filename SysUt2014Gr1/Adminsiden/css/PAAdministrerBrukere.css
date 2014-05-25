@@ -5,9 +5,9 @@
 #GridViewInsert {
     margin-top: 0.5%;
     margin-left: 15%;
-    border-color: black;
+    border-color: white;
     border-bottom-style: solid;
-    background-color: white;
+    background-color: grey;
     width: 70%;
 }
 
@@ -15,9 +15,9 @@
     margin-top: 0.5%;
     margin-left: 15%;
     margin-bottom:5%;
-    border-color: black;
+    border-color: white;
     border-bottom-style: solid;
-    background-color: white;
+    background-color: grey;
     width: 70%;
 }
 
@@ -59,7 +59,7 @@
     background: url(../Resources/grd_head.png) repeat-x top;
     background-size: 100%;
     color: white;
-    border-color: black;
+    border-color: white;
 }
 
 .gridView .alt {
@@ -68,5 +68,5 @@
 }
 
 .gridViewHeader a {
-    color: black;
+    color: white;
 }

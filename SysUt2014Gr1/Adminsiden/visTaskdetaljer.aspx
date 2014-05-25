@@ -27,7 +27,7 @@
                              <asp:Label ID="Label_undertask" runat="server"></asp:Label>
                              <asp:linkbutton id="Link_task" onclientclick="NavigateTask()" runat="Server" /><br /><br />
                       <b>fremgang i task: <br />
-                      </b><progress id="progressBar1" value="4" max="7"></progress><br />
+                      </b><progress id="progressBar1" value="271" max="275"></progress><br />
                       <asp:Label ID="Label_progress" runat="server"></asp:Label><br />
                       <asp:Label ID="Label_tidsavvik" runat="server"></asp:Label>
                   </div>

@@ -15,18 +15,18 @@
 #GridViewTeam{
     margin-top:5%;
     margin-left:25%;
-    border-color:black;
+    border-color:white;
     border-bottom-style:solid;
-    background-color:white;
+    background-color:grey;
     width:50%;
 }
 
 #GridViewProject{
     margin-top:5%;
     margin-left:25%;
-    border-color:black;
+    border-color:white;
     border-bottom-style:solid;
-    background-color:white;
+    background-color:grey;
     width:50%;
 }
 
@@ -34,7 +34,7 @@
     background: url(../Resources/grd_head.png) repeat-x top;
     background-size:100%;
     color:white;
-    border-color:black;
+    border-color:white;
 }
 
 .gridView .alt{

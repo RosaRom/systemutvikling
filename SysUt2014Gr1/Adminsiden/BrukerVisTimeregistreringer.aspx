@@ -2,6 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Vis registrerte timer</title>
+      <style type="text/css">
+       Body{
+            background-color:lightgray;
+        }
+        </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
