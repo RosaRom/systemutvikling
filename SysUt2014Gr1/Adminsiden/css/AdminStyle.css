@@ -62,7 +62,7 @@
     background: url(../Resources/grd_head.png) repeat-x top;
     background-size: 100%;
     color: white;
-    border-color: white;
+    border-color: grey;
 }
 
 .gridView .alt {
