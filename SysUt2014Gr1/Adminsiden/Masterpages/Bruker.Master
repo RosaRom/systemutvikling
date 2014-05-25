@@ -31,7 +31,7 @@
                      <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vis... <b class="caret"></b></a>
                       <ul class="dropdown-menu">
-                        <li><a href="BrukerVisTimeregistreringer.aspx">registrerte timer</a></li>
+                        <li><a href="BrukerVisTimeregistreringer.aspx">Registrerte timer</a></li>
                         <li><a href="VisProsjektdetaljer.aspx">Prosjektdetaljer</a></li>
                         <li><a href="VisFase.aspx">Fasedetaljer</a></li>
                       </ul>

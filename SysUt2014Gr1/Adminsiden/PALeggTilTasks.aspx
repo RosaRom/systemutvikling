@@ -9,7 +9,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     
     <form id="PALeggTilTasks" runat="server">
-        <div id="regbruker" class="panel panel-primary" style="width:31%;">
+        <div id="regbruker" class="panel panel-primary" style="width:35%;">
             <div class="panel-heading"><h4>Opprett task</h4></div>
             <div class="panel-body">
                 <div class="leggTilTask">
