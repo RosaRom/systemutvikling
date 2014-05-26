@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PARedigerFase.aspx.cs" Inherits="Adminsiden.PARedigerFase" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Ny fase</title>
+    <title>Rediger fase</title>
     <link rel="Stylesheet" type="text/css" href="css/ProsjektAnsvarligNyFase.css" />
 </asp:Content>
 
@@ -9,7 +9,7 @@
     <form id="RedigerFaseForm" runat="server">
 
          <div id="regbruker" class="panel panel-primary" style="width:45%;">
-           <div class="panel-heading"><h4>Ny fase</h4></div>
+           <div class="panel-heading"><h4>Rediger fase</h4></div>
             <div class="panel-body">
                <div>
                    <label>Velg en fase her: </label>

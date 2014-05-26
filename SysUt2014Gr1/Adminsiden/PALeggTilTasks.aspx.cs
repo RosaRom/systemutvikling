@@ -54,7 +54,7 @@ namespace Adminsiden
         {
             string session = (string)Session["userLoggedIn"];
 
-            if (session == "projectManager")
+            if (session == "projectManager" || session == "teamLeader")
             {
                 if (!Page.IsPostBack)
                 {

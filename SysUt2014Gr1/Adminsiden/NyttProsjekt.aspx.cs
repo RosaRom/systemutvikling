@@ -56,13 +56,19 @@ namespace Adminsiden
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!Page.IsPostBack)
+        {             
+            string session = (string)Session["userLoggedIn"];
+
+            if (session == "projectManager")
             {
-                GetTeams();
-                GetParentProjects();
-                GetTaskCategories();
+                if (!Page.IsPostBack)
+                {
+                    GetTeams();
+                    GetParentProjects();
+                    GetTaskCategories();
+                }
             }
+
         }
 
         /// <summary>
